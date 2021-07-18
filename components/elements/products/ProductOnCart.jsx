@@ -28,7 +28,7 @@ const ProductOnCart = ({ product }) => {
                 </Link>
                 <p>
                     <small>
-                        ${product.price} x {product.quantity}
+                        ${product.price} x {product.cartCount}
                     </small>
                 </p>
             </div>

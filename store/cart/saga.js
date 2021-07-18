@@ -26,7 +26,9 @@ const modalWarning = (type) => {
 
 export const calculateAmount = (obj) =>
     Object.values(obj)
-        .reduce((acc, { quantity, price }) => acc + quantity * price, 0)
+        .reduce((acc, { cartCount, price }) => {
+            return acc + Number(cartCount) * Number(price);
+        }, 0)
         .toFixed(2);
 
 function* getCartSaga() {
@@ -40,22 +42,25 @@ function* getCartSaga() {
 function* addItemSaga(payload) {
     try {
         const { product } = payload;
+
         const localCart = JSON.parse(localStorage.getItem('persist:martfury'))
             .cart;
         let currentCart = JSON.parse(localCart);
         let existItem = currentCart.cartItems.find(
-            (item) => item.id === product.id
+            (item) => item._id === product._id
         );
+
         if (existItem) {
-            existItem.quantity += product.quantity;
+            existItem.cartCount += product.cartCount;
         } else {
-            if (!product.quantity) {
-                product.quantity = 1;
+            if (!product.cartCount) {
+                product.cartCount = 1;
             }
             currentCart.cartItems.push(product);
         }
         currentCart.amount = calculateAmount(currentCart.cartItems);
         currentCart.cartTotal++;
+
         yield put(updateCartSuccess(currentCart));
         modalSuccess('success');
     } catch (err) {
@@ -70,9 +75,9 @@ function* removeItemSaga(payload) {
             JSON.parse(localStorage.getItem('persist:martfury')).cart
         );
         let index = localCart.cartItems.findIndex(
-            (item) => item.id === product.id
+            (item) => item._id === product._id
         );
-        localCart.cartTotal = localCart.cartTotal - product.quantity;
+        localCart.cartTotal = localCart.cartTotal - product.cartCount;
         localCart.cartItems.splice(index, 1);
         localCart.amount = calculateAmount(localCart.cartItems);
         if (localCart.cartItems.length === 0) {
@@ -94,10 +99,10 @@ function* increaseQtySaga(payload) {
             JSON.parse(localStorage.getItem('persist:martfury')).cart
         );
         let selectedItem = localCart.cartItems.find(
-            (item) => item.id === product.id
+            (item) => item._id === product._id
         );
         if (selectedItem) {
-            selectedItem.quantity++;
+            selectedItem.cartCount++;
             localCart.cartTotal++;
             localCart.amount = calculateAmount(localCart.cartItems);
         }
@@ -114,11 +119,11 @@ function* decreaseItemQtySaga(payload) {
             JSON.parse(localStorage.getItem('persist:martfury')).cart
         );
         let selectedItem = localCart.cartItems.find(
-            (item) => item.id === product.id
+            (item) => item._id === product._id
         );
 
         if (selectedItem) {
-            selectedItem.quantity--;
+            selectedItem.cartCount--;
             localCart.cartTotal--;
             localCart.amount = calculateAmount(localCart.cartItems);
         }

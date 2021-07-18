@@ -129,7 +129,6 @@ export function StrapiProductThumbnail(product) {
     let view;
 
     const [image] = product.images || [];
-    console.log('image: ', image);
 
     if (product.thumbnail || image) {
         view = (

@@ -3,6 +3,7 @@ import { StrapiProductPrice } from '~/utilities/product-helper';
 import { useDispatch } from 'react-redux';
 import { addItemToCompare } from '~/store/compare/action';
 import { addItemToWishlist } from '~/store/wishlist/action';
+import { addItem } from '~/store/cart/action';
 
 const ModuleProductWideActions = ({ product }) => {
     const dispatch = useDispatch();
@@ -17,10 +18,15 @@ const ModuleProductWideActions = ({ product }) => {
         dispatch(addItemToWishlist(product));
     };
 
+    const handleAddItemToCart = (e) => {
+        e.preventDefault();
+        dispatch(addItem(product));
+    };
+
     return (
         <div className="ps-product__shopping">
             {StrapiProductPrice(product)}
-            <a className="ps-btn" href="#">
+            <a className="ps-btn" href="#" onClick={handleAddItemToCart}>
                 Add to cart
             </a>
             {/* <ul className="ps-product__actions">

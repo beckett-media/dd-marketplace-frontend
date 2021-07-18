@@ -27,12 +27,13 @@ class ShoppingCart extends Component {
         this.props.dispatch(decreaseItemQty(product));
     }
 
-    handleRemoveCartItem = product => {
+    handleRemoveCartItem = (product) => {
         this.props.dispatch(removeItem(product));
     };
 
     render() {
         const { amount, cartTotal, cartItems } = this.props;
+
         let currentCartItems = [];
         if (cartItems && cartItems.length > 0) {
             currentCartItems = cartItems;
@@ -56,7 +57,7 @@ class ShoppingCart extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {currentCartItems.map(product => (
+                                    {currentCartItems.map((product) => (
                                         <tr key={product.id}>
                                             <td>
                                                 <ProductCart
@@ -119,15 +120,17 @@ class ShoppingCart extends Component {
                                                         className="form-control"
                                                         type="text"
                                                         placeholder="1"
-                                                        value={product.quantity}
+                                                        value={Number(
+                                                            product.cartCount
+                                                        )}
                                                         readOnly={true}
                                                     />
                                                 </div>
                                             </td>
                                             <td>
                                                 $
-                                                {product.quantity *
-                                                    product.price}
+                                                {Number(product.cartCount) *
+                                                    Number(product.price)}
                                             </td>
                                             <td>
                                                 <a
@@ -184,7 +187,7 @@ class ShoppingCart extends Component {
                                                                                   <br />{' '}
                                                                                   x{' '}
                                                                                   {
-                                                                                      product.quantity
+                                                                                      product.cartCount
                                                                                   }
                                                                               </a>
                                                                           </Link>
@@ -215,7 +218,7 @@ class ShoppingCart extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.cart;
 };
 export default connect(mapStateToProps)(ShoppingCart);

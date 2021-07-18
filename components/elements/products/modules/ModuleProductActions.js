@@ -55,7 +55,7 @@ const ModuleProductActions = ({ product }) => {
                     <i className="icon-eye"></i>
                 </a>
             </li>
-            <li>
+            {/* <li>
                 <a
                     href="#"
                     data-toggle="tooltip"
@@ -64,7 +64,7 @@ const ModuleProductActions = ({ product }) => {
                     onClick={handleAddItemToWishlist}>
                     <i className="icon-heart"></i>
                 </a>
-            </li>
+            </li> */}
             {/* <li>
                 <a
                     href="#"
