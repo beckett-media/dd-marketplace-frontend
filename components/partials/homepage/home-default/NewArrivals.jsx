@@ -10,11 +10,7 @@ const titles = {
     newArrival: 'New Arrival',
 };
 
-const NewArrivals = ({ collectionSlug, id, list }) => {
-    console.log({ id, list });
-
-    const loading = false;
-
+const NewArrivals = ({ collectionSlug, id, list, loading }) => {
     // Views
     let productItemView;
     if (!loading) {

@@ -12,7 +12,10 @@ import ContainerHomeDefault from '~/components/layouts/ContainerHomeDefault';
 import HomeDefaultBanner from '~/components/partials/homepage/home-default/HomeDefaultBanner';
 import { getMarketPlaceDetails } from '~/store/home/action';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMarketPlaceData } from '~/store/home/selector';
+import {
+    getMarketPlaceData,
+    getMarketPlaceLoading,
+} from '~/store/home/selector';
 
 const HomepageDefaultPage = () => {
     const dispatch = useDispatch();
@@ -26,6 +29,8 @@ const HomepageDefaultPage = () => {
         trendingPlayers,
         newArrival,
     } = useSelector(getMarketPlaceData);
+
+    const isMarketPlaceLoading = useSelector(getMarketPlaceLoading);
 
     const marketplace = {
         recommendation,
@@ -61,6 +66,7 @@ const HomepageDefaultPage = () => {
                 if (list && list.length)
                     return (
                         <NewArrivals
+                            loading={isMarketPlaceLoading}
                             key={key}
                             id={key}
                             list={list}

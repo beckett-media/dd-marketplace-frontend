@@ -1,7 +1,13 @@
 import actionTypes from './actionTypes';
 
 const initState = {
-    marketPlace: {},
+    marketPlace: {
+        recommendation: [],
+        trendingCards: [],
+        trendingPlayers: [],
+        newArrival: [],
+    },
+    isMarketPlaceLoading: true,
 };
 
 export default function reducer(state = initState, action) {
@@ -14,6 +20,9 @@ export default function reducer(state = initState, action) {
                     ...action.payload,
                 },
             };
+
+        case actionTypes.SET_MARKET_PLACE_LOADING:
+            return { ...state, isMarketPlaceLoading: action.value };
         default:
             return state;
     }

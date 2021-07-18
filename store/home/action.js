@@ -8,3 +8,8 @@ export const getMarketPlaceDetailsData = (payload) => ({
     type: actionTypes.SET_MARKET_PLACE_DATA,
     payload,
 });
+
+export const getMarketPlaceLoading = (value) => ({
+    type: actionTypes.SET_MARKET_PLACE_LOADING,
+    value,
+});
