@@ -112,6 +112,16 @@ function* getListingsByProduct({ value }) {
             ProductRepository.getListingsByProduct,
             value
         );
+
+        yield put(getListingByProductSuccess(result.data, false));
+    } catch (err) {
+        log(err);
+    }
+}
+function* getListingsByGrade({ value }) {
+    try {
+        yield put(getListingByProductSuccess(null, true));
+        const result = yield call(ProductRepository.getListingsByGrade, value);
         yield put(getListingByProductSuccess(result.data, false));
     } catch (err) {
         log(err);
@@ -126,9 +136,18 @@ export default function* rootSaga() {
         takeEvery(actionTypes.GET_TOTAL_OF_PRODUCTS, getTotalOfProducts),
     ]);
     yield all([takeEvery(actionTypes.GET_BRANDS, getBrands)]);
+
+    //new
     yield all([
         takeEvery(actionTypes.GET_LISTING_BY_PRODUCT, getListingsByProduct),
     ]);
+
+    yield all([
+        takeEvery(actionTypes.GET_LISTING_BY_GRADE, getListingsByGrade),
+    ]);
+
+    //new
+
     yield all([
         takeEvery(actionTypes.GET_PRODUCTS_BY_CATEGORY, getProductByCategory),
     ]);

@@ -20,20 +20,27 @@ export const actionTypes = {
 
     GET_LISTING_BY_PRODUCT: 'GET_LISTING_BY_PRODUCT',
     GET_PRODUCT_CATEGORIES_SUCCESS: 'GET_PRODUCT_CATEGORIES_SUCCESS',
-    GET_LISTING_BY_PRODUCT_SUCCESS: 'GET_LISTING_BY_PRODUCT_SUCCESS',
+    GET_LISTING_BY_PRODUCT_AND_GRADE_SUCCESS:
+        'GET_LISTING_BY_PRODUCT_AND_GRADE_SUCCESS',
+    GET_LISTING_BY_GRADE: 'GET_LISTING_BY__GRADE',
 };
 
 ///New
+
 export function getListingsByProducts(value) {
     return { type: actionTypes.GET_LISTING_BY_PRODUCT, value };
 }
 
 export function getListingByProductSuccess(payload, loading) {
     return {
-        type: actionTypes.GET_LISTING_BY_PRODUCT_SUCCESS,
+        type: actionTypes.GET_LISTING_BY_PRODUCT_AND_GRADE_SUCCESS,
         payload,
         loading,
     };
+}
+
+export function getListingsByGrade(value) {
+    return { type: actionTypes.GET_LISTING_BY_GRADE, value };
 }
 
 ///New

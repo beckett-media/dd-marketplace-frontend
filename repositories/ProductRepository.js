@@ -2,6 +2,7 @@ import Repository, { baseUrl, serializeQuery } from './Repository';
 
 const routes = {
     byProduct: '/marketplace/product',
+    byGrade: '/marketplace/grade',
 };
 
 class ProductRepository {
@@ -155,7 +156,14 @@ class ProductRepository {
         const page = 1;
         const perPage = 100;
         const url = `${baseUrl}${routes.byProduct}/${productId}/${perPage}/${page}`;
-        console.log('url: ', url);
+        const request = await Repository.get(url);
+        return request.data;
+    }
+    async getListingsByGrade(gradeId) {
+        const page = 1;
+        const perPage = 100;
+        const url = `${baseUrl}${routes.byGrade}/${gradeId}/${perPage}/${page}`;
+
         const request = await Repository.get(url);
         return request.data;
     }

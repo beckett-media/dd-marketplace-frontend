@@ -4,47 +4,27 @@ import Link from 'next/link';
 import { Checkbox } from 'antd';
 import { Radio, Input } from 'antd';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMarketPlaceData } from '~/store/home/selector';
+import { getListingsByGrade } from '~/store/product/action';
 
 const WidgetShopBrands = () => {
     const Router = useRouter();
+    const dispatch = useDispatch();
     const { slug } = Router.query;
-    const [brands, setBrands] = useState(null);
+
     const [loading, setLoading] = useState(false);
 
     const { grades = [] } = useSelector(getMarketPlaceData);
 
-    async function getCategories() {
-        setLoading(true);
-        const responseData = await ProductRepository.getBrands();
-        if (responseData) {
-            let brandsGroup = [];
-            if (responseData.length > 0) {
-                responseData.forEach((brand) => {
-                    brandsGroup.push({
-                        id: brand.id,
-                        value: brand.slug,
-                        label: brand.name,
-                    });
-                });
-            }
-            setBrands(brandsGroup);
-
-            setTimeout(
-                function () {
-                    setLoading(false);
-                }.bind(this),
-                250
-            );
-        }
-    }
-
     function handleSelectBrand(e) {
-        Router.push(`/brand/${e.target.value}`);
-    }
+        const value = e.target.value;
 
-    useEffect(() => {}, []);
+        Router.replace('/shop', '/shop?gradeId=' + value, {
+            shallow: true,
+        });
+        dispatch(getListingsByGrade(value));
+    }
 
     // Views
     let brandsView;

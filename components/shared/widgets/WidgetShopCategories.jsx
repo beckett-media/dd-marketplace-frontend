@@ -15,20 +15,6 @@ const WidgetShopCategories = () => {
 
     const { slug } = Router.query;
 
-    async function getCategories() {
-        setLoading(true);
-        const responseData = await ProductRepository.getProductCategories();
-        if (responseData) {
-            setCategories(responseData);
-            setTimeout(
-                function () {
-                    setLoading(false);
-                }.bind(this),
-                250
-            );
-        }
-    }
-
     const { products = [] } = useSelector(getMarketPlaceData);
 
     useEffect(() => {
@@ -46,9 +32,11 @@ const WidgetShopCategories = () => {
         dispatch(getListingsByProducts(item._id));
     };
 
-    const urlSearchParams = new URLSearchParams(window.location.search);
-
-    const productId = urlSearchParams.get('productId');
+    let productId = null;
+    if (Boolean(products && products.length)) {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        productId = urlSearchParams.get('productId');
+    }
 
     let categoriesView;
     if (!loading) {

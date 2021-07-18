@@ -16,7 +16,7 @@ export const initialState = {
 function reducer(state = initialState, action) {
     switch (action.type) {
         //new
-        case actionTypes.GET_LISTING_BY_PRODUCT_SUCCESS:
+        case actionTypes.GET_LISTING_BY_PRODUCT_AND_GRADE_SUCCESS:
             const obj = {
                 productsLoading:
                     action.loading !== null

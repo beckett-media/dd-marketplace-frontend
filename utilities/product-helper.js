@@ -129,6 +129,7 @@ export function StrapiProductThumbnail(product) {
     let view;
 
     const [image] = product.images || [];
+    console.log('image: ', image);
 
     if (product.thumbnail || image) {
         view = (
@@ -136,7 +137,7 @@ export function StrapiProductThumbnail(product) {
                 <a>
                     <LazyLoad>
                         <img
-                            src={`${baseUrl}${image || product.thumbnail.url}`}
+                            src={`${baseUrl}/${image || product.thumbnail.url}`}
                             alt={product.title}
                         />
                     </LazyLoad>
