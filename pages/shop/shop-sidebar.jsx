@@ -1,7 +1,7 @@
 import React from 'react';
 import ContainerShop from '~/components/layouts/ContainerShop';
 import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
-import WidgetShopBrands from '~/components/shared/widgets/WidgetShopBrands';
+import WidgetShopBrands from '~/components/shared/widgets/WidgetShopGrade';
 import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
 import ShopItems from '~/components/partials/shop/ShopItems';
 import ProductGroupByCarousel from '~/components/partials/product/ProductGroupByCarousel';
@@ -9,8 +9,6 @@ import BreadCrumb from '~/components/elements/BreadCrumb';
 import ShopSidebarBanner from '~/components/partials/shop/ShopSidebarBanner';
 
 const ShopSidebarPage = () => {
-
-
     const breadCrumb = [
         {
             text: 'Home',

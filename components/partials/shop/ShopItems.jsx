@@ -8,14 +8,19 @@ import { useRouter } from 'next/router';
 import { generateTempArray } from '~/utilities/common-helpers';
 import SkeletonProduct from '~/components/elements/skeletons/SkeletonProduct';
 
-const ShopItems = ({ columns = 4, pageSize = 12 }) => {
+const ShopItems = ({
+    columns = 4,
+    pageSize = 12,
+    productItems = [],
+    loading = false,
+}) => {
     const Router = useRouter();
     const { page } = Router.query;
     const { query } = Router;
     const [listView, setListView] = useState(true);
-    const [productItems, setProductItems] = useState(null);
+    // const [productItems, setProductItems] = useState(null);
     const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const [classes, setClasses] = useState(
         'col-xl-4 col-lg-4 col-md-3 col-sm-6 col-6'
     );
@@ -25,29 +30,8 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
         setListView(!listView);
     }
 
-    async function getProducts(params) {
-        setLoading(true);
-        const responseData = await ProductRepository.getProducts(params);
-        if (responseData) {
-            setProductItems(responseData.items);
-            setTimeout(
-                function () {
-                    setLoading(false);
-                }.bind(this),
-                250
-            );
-        }
-    }
-
     function handlePagination(page, pageSize) {
         Router.push(`/shop?page=${page}`);
-    }
-
-    async function getTotalRecords(params) {
-        const responseData = await ProductRepository.getTotalRecords();
-        if (responseData) {
-            setTotal(responseData);
-        }
     }
 
     function handleSetColumns() {
@@ -87,8 +71,7 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
                 _limit: pageSize,
             };
         }
-        getTotalRecords();
-        getProducts(params);
+
         handleSetColumns();
     }, [query]);
 
@@ -127,12 +110,12 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
     return (
         <div className="ps-shopping">
             <div className="ps-shopping__header">
-                <p>
+                {/* <p>
                     <strong className="mr-2">{total}</strong>
                     Products found
-                </p>
+                </p> */}
                 <div className="ps-shopping__actions">
-                    <ModuleShopSortBy />
+                    {/* <ModuleShopSortBy /> */}
                     <div className="ps-shopping__view">
                         <p>View</p>
                         <ul className="ps-tab-list">
@@ -155,7 +138,7 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
                 </div>
             </div>
             <div className="ps-shopping__content">{productItemsView}</div>
-            <div className="ps-shopping__footer text-center">
+            {/* <div className="ps-shopping__footer text-center">
                 <div className="ps-pagination">
                     <Pagination
                         total={total - 1}
@@ -166,7 +149,7 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
                         onChange={(e) => handlePagination(e)}
                     />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

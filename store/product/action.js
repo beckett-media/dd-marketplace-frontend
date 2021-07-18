@@ -12,16 +12,31 @@ export const actionTypes = {
     GET_PRODUCT_BY_ID: 'GET_PRODUCT_BY_ID',
     GET_PRODUCT_BY_ID_SUCCESS: 'GET_PRODUCT_BY_ID_SUCCESS',
 
-
     GET_TOTAL_OF_PRODUCTS: 'GET_TOTAL_OF_PRODUCTS',
     GET_TOTAL_OF_PRODUCTS_SUCCESS: 'GET_TOTAL_OF_PRODUCTS_SUCCESS',
 
     GET_BRANDS: 'GET_BRANDS',
     GET_BRANDS_SUCCESS: 'GET_BRANDS_SUCCESS',
 
-    GET_PRODUCT_CATEGORIES: 'GET_PRODUCT_CATEGORIES',
+    GET_LISTING_BY_PRODUCT: 'GET_LISTING_BY_PRODUCT',
     GET_PRODUCT_CATEGORIES_SUCCESS: 'GET_PRODUCT_CATEGORIES_SUCCESS',
+    GET_LISTING_BY_PRODUCT_SUCCESS: 'GET_LISTING_BY_PRODUCT_SUCCESS',
 };
+
+///New
+export function getListingsByProducts(value) {
+    return { type: actionTypes.GET_LISTING_BY_PRODUCT, value };
+}
+
+export function getListingByProductSuccess(payload, loading) {
+    return {
+        type: actionTypes.GET_LISTING_BY_PRODUCT_SUCCESS,
+        payload,
+        loading,
+    };
+}
+
+///New
 
 export function getProducts(payload) {
     return { type: actionTypes.GET_PRODUCTS, payload };
@@ -37,14 +52,6 @@ export function getBrands() {
 
 export function getBrandsSuccess(payload) {
     return { type: actionTypes.GET_BRANDS_SUCCESS, payload };
-}
-
-export function getProductCategories() {
-    return { type: actionTypes.GET_PRODUCT_CATEGORIES };
-}
-
-export function getProductCategoriesSuccess(payload) {
-    return { type: actionTypes.GET_PRODUCT_CATEGORIES_SUCCESS, payload };
 }
 
 export function getTotalProductsSuccess(payload) {

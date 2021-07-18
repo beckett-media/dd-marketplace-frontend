@@ -8,7 +8,11 @@ import { carouselStandard } from '~/utilities/carousel-helpers';
 import NextArrow from '~/components/elements/carousel/NextArrow';
 import PrevArrow from '~/components/elements/carousel/PrevArrow';
 
-const ProductGroupByCarousel = ({ collectionSlug, title, layout = 'standard' }) => {
+const ProductGroupByCarousel = ({
+    collectionSlug,
+    title,
+    layout = 'standard',
+}) => {
     const sliderRef = useRef(null);
     const [productItems, setProductItems] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,15 +20,15 @@ const ProductGroupByCarousel = ({ collectionSlug, title, layout = 'standard' }) 
     async function getProducts() {
         setLoading(true);
         const responseData = await getProductsByCollectionHelper(
-            collectionSlug,
+            collectionSlug
         );
         if (responseData) {
             setProductItems(responseData.items);
             setTimeout(
-                function() {
+                function () {
                     setLoading(false);
                 }.bind(this),
-                250,
+                250
             );
         }
     }
@@ -81,7 +85,6 @@ const ProductGroupByCarousel = ({ collectionSlug, title, layout = 'standard' }) 
                     slidesToScroll: 1,
                     infinite: true,
                     dots: true,
-
                 },
             },
             {
@@ -91,7 +94,6 @@ const ProductGroupByCarousel = ({ collectionSlug, title, layout = 'standard' }) 
                     slidesToScroll: 1,
                     infinite: true,
                     dots: true,
-
                 },
             },
             {
@@ -124,7 +126,7 @@ const ProductGroupByCarousel = ({ collectionSlug, title, layout = 'standard' }) 
             if (layout !== 'standard') {
                 productItemsView = (
                     <Slider
-                        ref={slider => sliderRef.current = slider}
+                        ref={(slider) => (sliderRef.current = slider)}
                         {...carouselFullwidth}
                         arrows={false}
                         className="ps-carousel outside">
@@ -134,7 +136,7 @@ const ProductGroupByCarousel = ({ collectionSlug, title, layout = 'standard' }) 
             } else {
                 productItemsView = (
                     <Slider
-                        ref={slider => sliderRef.current = slider}
+                        ref={(slider) => (sliderRef.current = slider)}
                         {...carouselStandard}
                         arrows={false}
                         className="ps-carousel outside">
@@ -142,7 +144,6 @@ const ProductGroupByCarousel = ({ collectionSlug, title, layout = 'standard' }) 
                     </Slider>
                 );
             }
-
         } else {
             productItemsView = <p>No product found.</p>;
         }
@@ -172,9 +173,7 @@ const ProductGroupByCarousel = ({ collectionSlug, title, layout = 'standard' }) 
                     </a>
                 </div>
             </div>
-            <div className="ps-block__content">
-                {productItemsView}
-            </div>
+            <div className="ps-block__content">{productItemsView}</div>
         </div>
     );
 };

@@ -13,7 +13,7 @@ import {
     getProductsByCategory,
 } from '../../../../store/product/action';
 import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
-import WidgetShopBrands from '~/components/shared/widgets/WidgetShopBrands';
+import WidgetShopBrands from '~/components/shared/widgets/WidgetShopGrade';
 import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
 class ShopWidget extends Component {
     constructor(props) {
@@ -76,7 +76,7 @@ class ShopWidget extends Component {
         const { brands, categories } = this.props;
         const brandsGroup = [];
         if (brands.length > 0) {
-            brands.forEach(brand => {
+            brands.forEach((brand) => {
                 brandsGroup.push({
                     id: brand.id,
                     value: brand.id,
@@ -86,7 +86,6 @@ class ShopWidget extends Component {
         }
         return (
             <div className="ps-layout__left">
-
                 {/*<aside className="widget widget_shop">
                     <h4 className="widget-title">By Brands</h4>
                     <figure>
@@ -114,7 +113,7 @@ class ShopWidget extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.product;
 };
 export default connect(mapStateToProps)(ShopWidget);

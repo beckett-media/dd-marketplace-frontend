@@ -22,7 +22,7 @@ const ThumbnailDefault = ({ product, vertical = true }) => {
 
     useEffect(() => {
         let images = [];
-        if (product && product.images.length > 0) {
+        if (product && product.images && product.images.length > 0) {
             product.images.map((item) => {
                 images.push(`${baseUrl}${item.url}`);
             });

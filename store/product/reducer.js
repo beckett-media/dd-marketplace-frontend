@@ -10,10 +10,28 @@ export const initialState = {
     productsLoading: true,
     productLoading: true,
     searchResults: null,
+    listings: [],
 };
 
 function reducer(state = initialState, action) {
     switch (action.type) {
+        //new
+        case actionTypes.GET_LISTING_BY_PRODUCT_SUCCESS:
+            const obj = {
+                productsLoading:
+                    action.loading !== null
+                        ? action.loading
+                        : state.productsLoading,
+                listings: action.payload ? action.payload : state.listings,
+            };
+
+            return {
+                ...state,
+                ...obj,
+            };
+
+        //new
+
         case actionTypes.GET_PRODUCTS_SUCCESS:
             return {
                 ...state,

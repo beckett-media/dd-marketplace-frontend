@@ -8,7 +8,7 @@ import {
     getProductsSuccess,
     getSingleProductsSuccess,
     getTotalProductsSuccess,
-    getProductCategoriesSuccess,
+    getListingByProductSuccess,
     getBrandsSuccess,
     getProductByKeywordsSuccess,
 } from './action';
@@ -27,27 +27,14 @@ function* getTotalOfProducts() {
     try {
         const result = yield call(ProductRepository.getTotalRecords);
         yield put(getTotalProductsSuccess(result));
-    } catch (err) {
-        console.log(err);
-    }
+    } catch (err) {}
 }
 
 function* getBrands() {
     try {
         const result = yield call(ProductRepository.getBrands);
         yield put(getBrandsSuccess(result));
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-function* getProductCategories() {
-    try {
-        const result = yield call(ProductRepository.getProductCategories);
-        yield put(getProductCategoriesSuccess(result));
-    } catch (err) {
-        console.log(err);
-    }
+    } catch (err) {}
 }
 
 function* getProductById({ id }) {
@@ -92,8 +79,8 @@ function* getProductByBrand({ payload }) {
             payload
         );
         const products = [];
-        brands.forEach(brand => {
-            brand.products.forEach(product => {
+        brands.forEach((brand) => {
+            brand.products.forEach((product) => {
                 products.push(product);
             });
         });
@@ -116,6 +103,23 @@ function* getProductByKeyword({ keyword }) {
     }
 }
 
+///New
+const log = console.log;
+function* getListingsByProduct({ value }) {
+    try {
+        yield put(getListingByProductSuccess(null, true));
+        const result = yield call(
+            ProductRepository.getListingsByProduct,
+            value
+        );
+        yield put(getListingByProductSuccess(result.data, false));
+    } catch (err) {
+        log(err);
+    }
+}
+
+///New
+
 export default function* rootSaga() {
     yield all([takeEvery(actionTypes.GET_PRODUCTS, getProducts)]);
     yield all([
@@ -123,7 +127,7 @@ export default function* rootSaga() {
     ]);
     yield all([takeEvery(actionTypes.GET_BRANDS, getBrands)]);
     yield all([
-        takeEvery(actionTypes.GET_PRODUCT_CATEGORIES, getProductCategories),
+        takeEvery(actionTypes.GET_LISTING_BY_PRODUCT, getListingsByProduct),
     ]);
     yield all([
         takeEvery(actionTypes.GET_PRODUCTS_BY_CATEGORY, getProductByCategory),

@@ -1,5 +1,9 @@
 import Repository, { baseUrl, serializeQuery } from './Repository';
 
+const routes = {
+    byProduct: '/marketplace/product',
+};
+
 class ProductRepository {
     async getRecords(params) {
         const reponse = await Repository.get(
@@ -143,6 +147,17 @@ class ProductRepository {
             })
             .catch((error) => ({ error: JSON.stringify(error) }));
         return reponse;
+    }
+
+    // new methods
+
+    async getListingsByProduct(productId) {
+        const page = 1;
+        const perPage = 100;
+        const url = `${baseUrl}${routes.byProduct}/${productId}/${perPage}/${page}`;
+        console.log('url: ', url);
+        const request = await Repository.get(url);
+        return request.data;
     }
 }
 

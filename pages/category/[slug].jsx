@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ContainerShop from '~/components/layouts/ContainerShop';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
-import WidgetShopBrands from '~/components/shared/widgets/WidgetShopBrands';
+import WidgetShopBrands from '~/components/shared/widgets/WidgetShopGrade';
 import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
 import ProductRepository from '~/repositories/ProductRepository';
 import { useRouter } from 'next/router';

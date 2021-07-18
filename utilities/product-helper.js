@@ -128,7 +128,7 @@ export function StrapiProductPriceExpanded(product) {
 export function StrapiProductThumbnail(product) {
     let view;
 
-    const [image] = product.images;
+    const [image] = product.images || [];
 
     if (product.thumbnail || image) {
         view = (

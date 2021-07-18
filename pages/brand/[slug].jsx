@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ContainerShop from '~/components/layouts/ContainerShop';
 import BreadCrumb from '~/components/elements/BreadCrumb';
-import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
-import WidgetShopBrands from '~/components/shared/widgets/WidgetShopBrands';
+// import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
+// import WidgetShopBrands from '~/components/shared/widgets/WidgetShopGrade';
 import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
 import ProductRepository from '~/repositories/ProductRepository';
 import { useRouter } from 'next/router';
@@ -73,8 +73,8 @@ const ProductByBrandScreen = () => {
                 <div className="container">
                     <div className="ps-layout--shop ps-shop--category">
                         <div className="ps-layout__left">
-                            <WidgetShopCategories />
-                            <WidgetShopBrands />
+                            {/* <WidgetShopCategories /> */}
+                            {/* <WidgetShopBrands /> */}
                             <WidgetShopFilterByPriceRange />
                         </div>
                         <div className="ps-layout__right">

@@ -4,12 +4,16 @@ import Link from 'next/link';
 import { Checkbox } from 'antd';
 import { Radio, Input } from 'antd';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { getMarketPlaceData } from '~/store/home/selector';
 
 const WidgetShopBrands = () => {
     const Router = useRouter();
     const { slug } = Router.query;
     const [brands, setBrands] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const { grades = [] } = useSelector(getMarketPlaceData);
 
     async function getCategories() {
         setLoading(true);
@@ -40,17 +44,15 @@ const WidgetShopBrands = () => {
         Router.push(`/brand/${e.target.value}`);
     }
 
-    useEffect(() => {
-        getCategories();
-    }, []);
+    useEffect(() => {}, []);
 
     // Views
     let brandsView;
     if (!loading) {
-        if (brands && brands.length > 0) {
-            const items = brands.map((item) => (
-                <li key={item.id}>
-                    <Link href={`shop/${item.slug}`}>{item.name}</Link>
+        if (grades && grades.length > 0) {
+            const items = grades.map((item) => (
+                <li key={item._id}>
+                    <Link href={`shop/${item._id}`}>{item.name}</Link>
                 </li>
             ));
             brandsView = <ul className="ps-list--brands">{items}</ul>;
@@ -59,13 +61,20 @@ const WidgetShopBrands = () => {
     } else {
         brandsView = <p>Loading...</p>;
     }
+
+    const formatedBrands = grades.map((i) => ({
+        id: i._id,
+        value: i._id,
+        label: i.name,
+    }));
+
     return (
         <aside className="widget widget_shop widget_shop--brand">
-            <h4 className="widget-title">By Brands</h4>
+            <h4 className="widget-title">By Grades</h4>
             <figure>
                 <Radio.Group
                     defaultValue={slug}
-                    options={brands}
+                    options={formatedBrands}
                     onChange={handleSelectBrand}
                 />
             </figure>

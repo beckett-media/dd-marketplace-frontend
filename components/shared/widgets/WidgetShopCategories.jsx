@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import ProductRepository from '~/repositories/ProductRepository';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMarketPlaceData } from '~/store/home/selector';
+import { getListingsByProducts } from '~/store/product/action';
 
 const WidgetShopCategories = () => {
     const Router = useRouter();
+    const dispatch = useDispatch();
     const [categories, setCategories] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -24,19 +28,20 @@ const WidgetShopCategories = () => {
         }
     }
 
-    useEffect(() => {
-        getCategories();
-    }, []);
+    useEffect(() => {}, []);
+
+    const { products = [] } = useSelector(getMarketPlaceData);
 
     // Views
     let categoriesView;
     if (!loading) {
-        if (categories && categories.length > 0) {
-            const items = categories.map((item) => (
+        if (products && products.length > 0) {
+            const items = products.map((item) => (
                 <li
-                    key={item.slug}
-                    className={item.slug === slug ? 'active' : ''}>
-                    <Link href={`/category/${item.slug}`}>{item.name}</Link>
+                    key={item._id}
+                    className={item._id === slug ? 'active' : ''}
+                    onClick={() => dispatch(getListingsByProducts(item._id))}>
+                    {item.name}
                 </li>
             ));
             categoriesView = <ul className="ps-list--categories">{items}</ul>;
@@ -48,7 +53,7 @@ const WidgetShopCategories = () => {
 
     return (
         <aside className="widget widget_shop">
-            <h4 className="widget-title">Categories</h4>
+            <h4 className="widget-title">By Product</h4>
             {categoriesView}
         </aside>
     );

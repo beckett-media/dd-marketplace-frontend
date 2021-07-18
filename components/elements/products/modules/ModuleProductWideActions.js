@@ -23,7 +23,7 @@ const ModuleProductWideActions = ({ product }) => {
             <a className="ps-btn" href="#">
                 Add to cart
             </a>
-            <ul className="ps-product__actions">
+            {/* <ul className="ps-product__actions">
                 <li>
                     <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
                         <i className="icon-heart"></i> Wishlist
@@ -34,7 +34,7 @@ const ModuleProductWideActions = ({ product }) => {
                         <i className="icon-chart-bars"></i> Compare
                     </a>
                 </li>
-            </ul>
+            </ul> */}
         </div>
     );
 };
