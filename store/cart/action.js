@@ -28,9 +28,11 @@ export function getCart() {
     return { type: actionTypes.GET_CART };
 }
 
-export function getCartSuccess() {
+export function getCartSuccess(cart, amount) {
     return {
         type: actionTypes.GET_CART_SUCCESS,
+        cart,
+        amount,
     };
 }
 

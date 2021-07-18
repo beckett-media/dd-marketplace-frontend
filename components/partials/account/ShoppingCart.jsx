@@ -51,7 +51,7 @@ class ShoppingCart extends Component {
                                     <tr>
                                         <th>Product</th>
                                         <th>Price</th>
-                                        <th>Quantity</th>
+                                        {/* <th>Quantity</th> */}
                                         <th>Total</th>
                                         <th>Action</th>
                                     </tr>
@@ -98,7 +98,7 @@ class ShoppingCart extends Component {
                                             <td className="price">
                                                 ${product.price}
                                             </td>
-                                            <td>
+                                            {/* <td>
                                                 <div className="form-group--number">
                                                     <button
                                                         className="up"
@@ -126,7 +126,7 @@ class ShoppingCart extends Component {
                                                         readOnly={true}
                                                     />
                                                 </div>
-                                            </td>
+                                            </td> */}
                                             <td>
                                                 $
                                                 {Number(product.cartCount) *

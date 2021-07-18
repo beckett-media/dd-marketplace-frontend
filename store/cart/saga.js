@@ -1,5 +1,6 @@
-import { all, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { notification } from 'antd';
+import CartRespository from '~/repositories/CartRespository';
 
 import {
     actionTypes,
@@ -33,7 +34,20 @@ export const calculateAmount = (obj) =>
 
 function* getCartSaga() {
     try {
-        yield put(getCartSuccess());
+        const cartFromServer = yield call(CartRespository.getCart);
+
+        if (cartFromServer?.data?.carts && cartFromServer.data.carts.length) {
+            const cart = cartFromServer.data.carts.map((i) => ({
+                ...i.listing,
+                cartCount: 1,
+            }));
+
+            const amount = calculateAmount(cart);
+
+            yield put(getCartSuccess(cart, amount));
+        } else {
+            yield put(getCartSuccess([]));
+        }
     } catch (err) {
         yield put(getCartError(err));
     }
@@ -51,15 +65,20 @@ function* addItemSaga(payload) {
         );
 
         if (existItem) {
-            existItem.cartCount += product.cartCount;
+            // existItem.cartCount += product.cartCount;
         } else {
             if (!product.cartCount) {
                 product.cartCount = 1;
             }
+
+            yield call(CartRespository.addToCart, product._id);
+
             currentCart.cartItems.push(product);
         }
         currentCart.amount = calculateAmount(currentCart.cartItems);
         currentCart.cartTotal++;
+
+        ///add api call here
 
         yield put(updateCartSuccess(currentCart));
         modalSuccess('success');
@@ -77,6 +96,10 @@ function* removeItemSaga(payload) {
         let index = localCart.cartItems.findIndex(
             (item) => item._id === product._id
         );
+        const item = localCart.cartItems[index];
+
+        yield call(CartRespository.removeToCart, item._id);
+
         localCart.cartTotal = localCart.cartTotal - product.cartCount;
         localCart.cartItems.splice(index, 1);
         localCart.amount = calculateAmount(localCart.cartItems);
@@ -85,6 +108,9 @@ function* removeItemSaga(payload) {
             localCart.amount = 0;
             localCart.cartTotal = 0;
         }
+
+        ///add api call here
+
         yield put(updateCartSuccess(localCart));
         modalWarning('warning');
     } catch (err) {

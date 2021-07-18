@@ -11,6 +11,9 @@ function reducer(state = initCart, action) {
         case actionTypes.GET_CART_SUCCESS:
             return {
                 ...state,
+                cartItems: action.cart ? action.cart : state.cartItems,
+                cartTotal: action.cart ? action.cart.length : 0,
+                amount: action.amount ? action.amount : 0,
             };
         case actionTypes.UPDATE_CART_SUCCESS:
             return {
