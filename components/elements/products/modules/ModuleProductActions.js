@@ -65,7 +65,7 @@ const ModuleProductActions = ({ product }) => {
                     <i className="icon-heart"></i>
                 </a>
             </li>
-            <li>
+            {/* <li>
                 <a
                     href="#"
                     data-toggle="tooltip"
@@ -74,7 +74,7 @@ const ModuleProductActions = ({ product }) => {
                     onClick={handleAddItemToCompare}>
                     <i className="icon-chart-bars"></i>
                 </a>
-            </li>
+            </li> */}
             <Modal
                 centered
                 footer={null}

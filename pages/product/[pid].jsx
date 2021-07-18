@@ -22,8 +22,10 @@ const ProductDefaultPage = () => {
     async function getProduct(pid) {
         setLoading(true);
         const responseData = await ProductRepository.getProductsById(pid);
-        if (responseData) {
-            setProduct(responseData);
+        const payload = responseData?.data?.cardDetail[0];
+        console.log('payload: ', payload);
+        if (payload) {
+            setProduct(payload);
             setTimeout(
                 function () {
                     setLoading(false);
@@ -70,16 +72,16 @@ const ProductDefaultPage = () => {
                 <div className="ps-container">
                     <div className="ps-page__container">
                         <div className="ps-page__left">{productView}</div>
-                        <div className="ps-page__right">
+                        {/* <div className="ps-page__right">
                             <ProductWidgets />
-                        </div>
+                        </div> */}
                     </div>
-
+                    {/* 
                     <CustomerBought
                         layout="fullwidth"
                         collectionSlug="deal-of-the-day"
-                    />
-                    <RelatedProduct collectionSlug="shop-recommend-items" />
+                    /> */}
+                    {/* <RelatedProduct collectionSlug="shop-recommend-items" /> */}
                 </div>
             </div>
         </ContainerProductDetail>

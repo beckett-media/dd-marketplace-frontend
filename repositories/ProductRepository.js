@@ -59,15 +59,6 @@ class ProductRepository {
         return reponse;
     }
 
-    async getProductsById(payload) {
-        const reponse = await Repository.get(`${baseUrl}/products/${payload}`)
-            .then((response) => {
-                return response.data;
-            })
-            .catch((error) => ({ error: JSON.stringify(error) }));
-        return reponse;
-    }
-
     async getProductsByCategory(payload) {
         const reponse = await Repository.get(
             `${baseUrl}/product-categories?slug=${payload}`
@@ -166,6 +157,15 @@ class ProductRepository {
 
         const request = await Repository.get(url);
         return request.data;
+    }
+
+    async getProductsById(payload) {
+        const reponse = await Repository.get(`${baseUrl}/listing/${payload}`)
+            .then((response) => {
+                return response.data;
+            })
+            .catch((error) => ({ error: JSON.stringify(error) }));
+        return reponse;
     }
 }
 

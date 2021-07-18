@@ -24,8 +24,9 @@ const ThumbnailDefault = ({ product, vertical = true }) => {
         let images = [];
         if (product && product.images && product.images.length > 0) {
             product.images.map((item) => {
-                images.push(`${baseUrl}${item.url}`);
+                images.push(`${baseUrl}/${item}`);
             });
+
             setProductImages(images);
         }
         setGallery(galleryCarousel.current);

@@ -1,15 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 
-const ModuleProductDetailSpecification = () => (
+const ModuleProductDetailSpecification = ({ product }) => (
     <div className="ps-product__specification">
-        <Link href="/page/blank">
+        {/* <Link href="/page/blank">
             <a className="report">Report Abuse</a>
-        </Link>
-        <p>
+        </Link> */}
+        {/* <p>
             <strong>SKU:</strong> SF1133569600-1
-        </p>
-        <p className="categories">
+        </p> */}
+        {/* <p className="categories">
             <strong> Categories:</strong>
             <Link href="/shop">
                 <a>Consumer Electronics</a>
@@ -20,18 +20,17 @@ const ModuleProductDetailSpecification = () => (
             <Link href="/shop">
                 <a>Babies & Moms</a>
             </Link>
-        </p>
+        </p> */}
         <p className="tags">
             <strong> Tags</strong>
-            <Link href="/shop">
-                <a>sofa</a>
-            </Link>
-            <Link href="/shop">
-                <a>technologies</a>
-            </Link>
-            <Link href="/shop">
-                <a>wireless</a>
-            </Link>
+
+            {(product?.tags || []).map((tag) => {
+                return (
+                    <Link href="/shop">
+                        <a>{tag}</a>
+                    </Link>
+                );
+            })}
         </p>
     </div>
 );

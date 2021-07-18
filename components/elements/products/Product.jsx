@@ -31,14 +31,14 @@ const Product = ({ product }) => {
                     <Link href="/product/[pid]" as={`/product/${product.id}`}>
                         <a className="ps-product__title">{product.title}</a>
                     </Link>
-                    <div className="ps-product__rating">
+                    {/* <div className="ps-product__rating">
                         <Rating />
                         <span>02</span>
-                    </div>
+                    </div> */}
                     {priceView}
                 </div>
                 <div className="ps-product__content hover">
-                    <Link href="/product/[pid]" as={`/product/${product.id}`}>
+                    <Link href="/product/[pid]" as={`/product/${product._id}`}>
                         <a className="ps-product__title">{product.title}</a>
                     </Link>
                     {priceView}
