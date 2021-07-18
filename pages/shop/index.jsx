@@ -9,10 +9,13 @@ import ShopBanner from '~/components/partials/shop/ShopBanner';
 import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
 import WidgetShopGrade from '~/components/shared/widgets/WidgetShopGrade';
 import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getListings, getListingsLoading } from '~/store/product/selectors';
 
 const ShopDefaultPage = () => {
+    const productItems = useSelector(getListings);
+    const loading = useSelector(getListingsLoading);
+
     const breadCrumb = [
         {
             text: 'Home',
@@ -22,10 +25,6 @@ const ShopDefaultPage = () => {
             text: 'Shop Default',
         },
     ];
-    // productItems
-
-    const productItems = useSelector(getListings);
-    const loading = useSelector(getListingsLoading);
 
     return (
         <ContainerShop title="Shop">
@@ -55,6 +54,7 @@ const ShopDefaultPage = () => {
                             /> */}
                             <ShopItems
                                 productItems={productItems}
+                                loading={loading}
                                 columns={6}
                                 pageSize={18}
                             />

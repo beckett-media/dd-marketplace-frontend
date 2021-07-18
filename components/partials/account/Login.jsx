@@ -29,7 +29,6 @@ class Login extends Component {
     }
 
     handleLoginSubmit = (values) => {
-        console.log('values: ', values);
         this.props.dispatch(login(values));
     };
 

@@ -11,7 +11,6 @@ const titles = {
 };
 
 const NewArrivals = ({ collectionSlug, id, list, loading }) => {
-    // Views
     let productItemView;
     if (!loading) {
         if (list && list.length > 0) {
@@ -33,6 +32,13 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
             <div className="ps-container">
                 <div className="ps-section__header">
                     <h3>{titles[id] || ''}</h3>
+                    <ul className="ps-section__links">
+                        <li>
+                            <Link href="/shop">
+                                <a>View All</a>
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
                 <div className="ps-section__content">
                     <div className="row">{productItemView}</div>

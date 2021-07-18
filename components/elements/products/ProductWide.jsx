@@ -4,7 +4,6 @@ import { StrapiProductThumbnail } from '~/utilities/product-helper';
 import ModuleProductWideActions from '~/components/elements/products/modules/ModuleProductWideActions';
 
 const ProductWide = ({ product }) => {
-    console.log('product: ', product);
     return (
         <div className="ps-product ps-product--wide">
             <div className="ps-product__thumbnail">

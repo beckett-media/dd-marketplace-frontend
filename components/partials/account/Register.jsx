@@ -13,12 +13,10 @@ class Register extends Component {
     }
 
     onFinish = (values) => {
-        console.log('values: ', values);
         this.props.dispatch(register(values));
     };
 
     render() {
-        console.log('REGISTER');
         return (
             <div className="ps-my-account">
                 <div className="container">

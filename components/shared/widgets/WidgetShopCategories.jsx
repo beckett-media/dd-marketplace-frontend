@@ -8,6 +8,7 @@ import { getListingsByProducts } from '~/store/product/action';
 
 const WidgetShopCategories = () => {
     const Router = useRouter();
+
     const dispatch = useDispatch();
     const [categories, setCategories] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -28,19 +29,46 @@ const WidgetShopCategories = () => {
         }
     }
 
-    useEffect(() => {}, []);
-
     const { products = [] } = useSelector(getMarketPlaceData);
 
-    // Views
+    useEffect(() => {
+        if (products.length) {
+            const id = products[0]._id;
+            Router.replace('/shop', '/shop?productId=' + id, { shallow: true });
+            dispatch(getListingsByProducts(id));
+        }
+    }, [products.length]);
+
+    const onProductClick = (item) => {
+        Router.replace('/shop', '/shop?productId=' + item._id, {
+            shallow: true,
+        });
+        dispatch(getListingsByProducts(item._id));
+    };
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+
+    const productId = urlSearchParams.get('productId');
+
     let categoriesView;
     if (!loading) {
         if (products && products.length > 0) {
             const items = products.map((item) => (
                 <li
+                    style={{
+                        ...(productId === item._id
+                            ? {
+                                  backgroundColor: '#fcb800',
+                                  color: '#000',
+                                  padding: 10,
+                              }
+                            : {}),
+
+                        cursor: 'pointer',
+                    }}
                     key={item._id}
                     className={item._id === slug ? 'active' : ''}
-                    onClick={() => dispatch(getListingsByProducts(item._id))}>
+                    onClick={() => onProductClick(item)}>
                     {item.name}
                 </li>
             ));
