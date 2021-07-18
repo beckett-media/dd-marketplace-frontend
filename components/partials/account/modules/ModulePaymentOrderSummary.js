@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
     let listItemsView, shippingView, totalView;
     if (cartItems && cartItems.length > 0) {
-        listItemsView = cartItems.map(product => (
+        listItemsView = cartItems.map((product) => (
             <Link href="/" key={product.id}>
                 <a>
                     <strong>
                         {product.title}
-                        <span>x{product.quantity}</span>
+                        <span>x{product.cartCount}</span>
                     </strong>
-                    <small>${product.quantity * product.price}</small>
+                    <small>${product.cartCount * product.price}</small>
                 </a>
             </Link>
         ));
@@ -68,4 +68,4 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
         </div>
     );
 };
-export default connect(state => state.cart)(ModulePaymentOrderSummary);
+export default connect((state) => state.cart)(ModulePaymentOrderSummary);

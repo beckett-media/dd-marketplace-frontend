@@ -1,41 +1,122 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import { Form, Input } from 'antd';
+import { Form, Input, Checkbox, Radio, Popconfirm } from 'antd';
+import { connect } from 'react-redux';
+import {
+    getSavedAddressRequest,
+    saveAddressRequest,
+    setAddressDeleteRequest,
+    setDefaultAddressRequest,
+} from '~/store/checkout/action';
+import { getSavedAddress } from '~/store/checkout/selectors';
 
 class FormCheckoutInformation extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isEdit: false,
+        };
+        this.formRef = React.createRef();
     }
 
-    handleLoginSubmit = () => {
+    componentDidMount() {
+        this.props.dispatch(getSavedAddressRequest());
+    }
+
+    handleLoginSubmit = (values) => {
+        const isEdit = Boolean(values._id);
+        this.props.dispatch(saveAddressRequest(values, isEdit));
+        this.formRef.current.resetFields();
+    };
+
+    onDefaultAddressChange = (address) => {
+        this.props.dispatch(setDefaultAddressRequest(address._id));
+    };
+
+    onAddressEdit = (address) => {
+        this.setState({ edit: true });
+        this.formRef.current.setFieldsValue({
+            ...address,
+        });
+    };
+
+    onNextButtonClick = (event) => {
+        event.preventDefault();
         Router.push('/account/shipping');
     };
 
+    deleteConfirm(addressId) {
+        this.props.dispatch(setAddressDeleteRequest(addressId));
+    }
+
     render() {
+        const { address } = this.props;
+
         return (
             <Form
+                ref={this.formRef}
                 className="ps-form__billing-info"
                 onFinish={this.handleLoginSubmit}>
-                <h3 className="ps-form__heading">Contact information</h3>
-                <div className="form-group">
-                    <Form.Item
-                        name="name"
-                        rules={[
-                            {
-                                required: false,
-                                message:
-                                    'Enter an email or mobile phone number!',
-                            },
-                        ]}>
-                        <Input
-                            className="form-control"
-                            type="text"
-                            placeholder="Email or phone number"
-                        />
-                    </Form.Item>
+                <h3 className="ps-form__heading">Saved Address</h3>
+
+                <div className="ps-block--checkout-order">
+                    {address
+                        ? address.map((address) => (
+                              <div
+                                  className="row"
+                                  style={{
+                                      border: '1px solid',
+                                      marginBottom: 10,
+                                      padding: 10,
+                                  }}>
+                                  <div className="col-sm-4">
+                                      <Radio
+                                          checked={address.isDefaultAddress}
+                                          onChange={() =>
+                                              this.onDefaultAddressChange(
+                                                  address
+                                              )
+                                          }>
+                                          make default
+                                      </Radio>
+                                  </div>
+                                  <div className="col-sm-6">
+                                      {address.fullName}
+                                  </div>
+                                  <div className="col-sm-2">
+                                      <span
+                                          style={{ cursor: 'pointer' }}
+                                          onClick={() =>
+                                              this.onAddressEdit(address)
+                                          }>
+                                          <i className="icon-pencil mr-2"></i>
+                                          Edit
+                                      </span>
+                                      <Popconfirm
+                                          title="Are you sure to delete this address?"
+                                          onConfirm={() =>
+                                              this.deleteConfirm(address._id)
+                                          }
+                                          okText="Yes"
+                                          cancelText="No">
+                                          <span
+                                              style={{
+                                                  marginLeft: 5,
+                                                  cursor: 'pointer',
+                                              }}>
+                                              <i className="icon-trash2 mr-2"></i>
+                                              Delete
+                                          </span>
+                                      </Popconfirm>
+                                      ,
+                                  </div>
+                              </div>
+                          ))
+                        : null}
                 </div>
-                <div className="form-group">
+
+                {/* <div className="form-group">
                     <div className="ps-checkbox">
                         <input
                             className="form-control"
@@ -46,49 +127,87 @@ class FormCheckoutInformation extends Component {
                             Keep me up to date on news and exclusive offers?
                         </label>
                     </div>
-                </div>
+                </div> */}
                 <h3 className="ps-form__heading">Shipping address</h3>
                 <div className="row">
-                    <div className="col-sm-6">
-                        <div className="form-group">
+                    <div className="col-sm-12">
+                        <div style={{ display: 'none' }} className="form-group">
                             <Form.Item
-                                name="firstName"
+                                name="_id"
                                 rules={[
                                     {
                                         required: false,
-                                        message: 'Enter your first name!',
                                     },
                                 ]}>
                                 <Input
                                     className="form-control"
                                     type="text"
-                                    placeholder="First Name"
+                                    placeholder="Full Name"
                                 />
                             </Form.Item>
                         </div>
-                    </div>
-                    <div className="col-sm-6">
+
                         <div className="form-group">
                             <Form.Item
-                                name="lastName"
+                                name="fullName"
                                 rules={[
                                     {
                                         required: false,
-                                        message: 'Enter your last name!',
+                                        message: 'Enter your full name!',
                                     },
                                 ]}>
                                 <Input
                                     className="form-control"
                                     type="text"
-                                    placeholder="Last Name"
+                                    placeholder="Full Name"
                                 />
                             </Form.Item>
                         </div>
                     </div>
                 </div>
+
+                <div className="row">
+                    <div className="col-sm-2">
+                        <div className="form-group">
+                            <Form.Item
+                                name="countryCode"
+                                rules={[
+                                    {
+                                        required: false,
+                                        message: 'Enter country code',
+                                    },
+                                ]}>
+                                <Input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="CountryCode"
+                                />
+                            </Form.Item>
+                        </div>
+                    </div>
+                    <div className="col-sm-10">
+                        <div className="form-group">
+                            <Form.Item
+                                name="mobile"
+                                rules={[
+                                    {
+                                        required: false,
+                                        message: 'Enter your mobile',
+                                    },
+                                ]}>
+                                <Input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Mobile Number"
+                                />
+                            </Form.Item>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="form-group">
                     <Form.Item
-                        name="address"
+                        name="streetAddress"
                         rules={[
                             {
                                 required: false,
@@ -104,17 +223,33 @@ class FormCheckoutInformation extends Component {
                 </div>
                 <div className="form-group">
                     <Form.Item
-                        name="apartment"
+                        name="streetAddress2"
                         rules={[
                             {
                                 required: false,
-                                message: 'Enter an Apartment!',
+                                message: 'Enter an Street addrees2!',
                             },
                         ]}>
                         <Input
                             className="form-control"
                             type="text"
                             placeholder="Apartment, suite, etc. (optional)"
+                        />
+                    </Form.Item>
+                </div>
+                <div className="form-group">
+                    <Form.Item
+                        name="state"
+                        rules={[
+                            {
+                                required: false,
+                                message: 'Enter an State',
+                            },
+                        ]}>
+                        <Input
+                            className="form-control"
+                            type="text"
+                            placeholder="Enter your state"
                         />
                     </Form.Item>
                 </div>
@@ -140,7 +275,7 @@ class FormCheckoutInformation extends Component {
                     <div className="col-sm-6">
                         <div className="form-group">
                             <Form.Item
-                                name="postalCode"
+                                name="zipcode"
                                 rules={[
                                     {
                                         required: false,
@@ -149,7 +284,7 @@ class FormCheckoutInformation extends Component {
                                 ]}>
                                 <Input
                                     className="form-control"
-                                    type="postalCode"
+                                    type="string"
                                     placeholder="Postal Code"
                                 />
                             </Form.Item>
@@ -157,16 +292,16 @@ class FormCheckoutInformation extends Component {
                     </div>
                 </div>
                 <div className="form-group">
-                    <div className="ps-checkbox">
-                        <input
-                            className="form-control"
-                            type="checkbox"
-                            id="save-information"
-                        />
-                        <label htmlFor="save-information">
-                            Save this information for next time
-                        </label>
-                    </div>
+                    <Form.Item
+                        valuePropName="checked"
+                        name="isDefaultAddress"
+                        rules={[
+                            {
+                                required: false,
+                            },
+                        ]}>
+                        <Checkbox>Save this information for next time</Checkbox>
+                    </Form.Item>
                 </div>
                 <div className="ps-form__submit">
                     <Link href="/account/cart">
@@ -176,7 +311,15 @@ class FormCheckoutInformation extends Component {
                         </a>
                     </Link>
                     <div className="ps-block__footer">
-                        <button className="ps-btn">Continue to shipping</button>
+                        <button type="submit" className="ps-btn">
+                            Sumbit
+                        </button>
+                        <button
+                            style={{ marginLeft: 5 }}
+                            onClick={this.onNextButtonClick}
+                            className="ps-btn">
+                            Next
+                        </button>
                     </div>
                 </div>
             </Form>
@@ -184,4 +327,10 @@ class FormCheckoutInformation extends Component {
     }
 }
 
-export default FormCheckoutInformation;
+const connectStateToProps = (state) => {
+    return {
+        address: getSavedAddress(state),
+    };
+};
+
+export default connect(connectStateToProps)(FormCheckoutInformation);

@@ -10,6 +10,7 @@ import collection from './collection/reducer';
 import media from './media/reducer';
 import app from './app/reducer';
 import home from './home/reducers';
+import checkout from './checkout/reducer';
 
 export default combineReducers({
     auth,
@@ -23,4 +24,5 @@ export default combineReducers({
     media,
     app,
     home,
+    checkout,
 });

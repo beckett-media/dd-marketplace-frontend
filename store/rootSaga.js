@@ -10,6 +10,7 @@ import CollectionSaga from './collection/saga';
 import MediaSaga from './media/saga';
 import App from './app/saga';
 import HomeSaga from './home/saga';
+import CheckOutSaga from './checkout/saga';
 
 export default function* rootSaga() {
     yield all([
@@ -24,5 +25,6 @@ export default function* rootSaga() {
         MediaSaga(),
         App(),
         HomeSaga(),
+        CheckOutSaga(),
     ]);
 }

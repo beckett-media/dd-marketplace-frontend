@@ -1,4 +1,4 @@
-import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { notification } from 'antd';
 import CartRespository from '~/repositories/CartRespository';
 
@@ -173,9 +173,9 @@ function* clearCartSaga() {
 }
 
 export default function* rootSaga() {
-    yield all([takeEvery(actionTypes.GET_CART, getCartSaga)]);
-    yield all([takeEvery(actionTypes.ADD_ITEM, addItemSaga)]);
-    yield all([takeEvery(actionTypes.REMOVE_ITEM, removeItemSaga)]);
-    yield all([takeEvery(actionTypes.INCREASE_QTY, increaseQtySaga)]);
-    yield all([takeEvery(actionTypes.DECREASE_QTY, decreaseItemQtySaga)]);
+    yield all([takeLatest(actionTypes.GET_CART, getCartSaga)]);
+    yield all([takeLatest(actionTypes.ADD_ITEM, addItemSaga)]);
+    yield all([takeLatest(actionTypes.REMOVE_ITEM, removeItemSaga)]);
+    yield all([takeLatest(actionTypes.INCREASE_QTY, increaseQtySaga)]);
+    yield all([takeLatest(actionTypes.DECREASE_QTY, decreaseItemQtySaga)]);
 }
