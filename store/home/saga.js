@@ -1,11 +1,11 @@
 import actionTypes from './actionTypes';
 import { all, put, takeLatest, call } from 'redux-saga/effects';
 import HomeRespository from '~/repositories/HomeRespository';
+import { getMarketPlaceDetailsData } from './action';
 
 function* getMarketPlaceDetails() {
     const marketPlace = yield call(HomeRespository.getmarketPlace);
-
-    console.log('getMarketPlaceDetails: ', { marketPlace });
+    yield put(getMarketPlaceDetailsData(marketPlace));
 }
 
 export default function* rootSaga() {

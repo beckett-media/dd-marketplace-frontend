@@ -11,13 +11,28 @@ import ContainerHomeDefault from '~/components/layouts/ContainerHomeDefault';
 // import HomeDefaultProductListing from '~/components/partials/homepage/home-default/HomeDefaultProductListing';
 import HomeDefaultBanner from '~/components/partials/homepage/home-default/HomeDefaultBanner';
 import { getMarketPlaceDetails } from '~/store/home/action';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMarketPlaceData } from '~/store/home/selector';
 
 const HomepageDefaultPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getMarketPlaceDetails());
     }, []);
+
+    const {
+        recommendation,
+        trendingCards,
+        trendingPlayers,
+        newArrival,
+    } = useSelector(getMarketPlaceData);
+
+    const marketplace = {
+        recommendation,
+        trendingCards,
+        trendingPlayers,
+        newArrival,
+    };
 
     return (
         <ContainerHomeDefault title="Multipurpose Marketplace React Ecommerce Template">
@@ -40,7 +55,20 @@ const HomepageDefaultPage = () => {
             /> */}
             {/* <HomeAds /> */}
             {/* <DownLoadApp /> */}
-            <NewArrivals collectionSlug="new-arrivals-products" />
+
+            {Object.keys(marketplace).map((key) => {
+                const list = marketplace[key];
+                if (list && list.length)
+                    return (
+                        <NewArrivals
+                            key={key}
+                            id={key}
+                            list={list}
+                            collectionSlug="new-arrivals-products"
+                        />
+                    );
+            })}
+
             <Newletters />
         </ContainerHomeDefault>
     );

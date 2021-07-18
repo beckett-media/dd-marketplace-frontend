@@ -128,13 +128,15 @@ export function StrapiProductPriceExpanded(product) {
 export function StrapiProductThumbnail(product) {
     let view;
 
-    if (product.thumbnail) {
+    const [image] = product.images;
+
+    if (product.thumbnail || image) {
         view = (
             <Link href="/product/[pid]" as={`/product/${product.id}`}>
                 <a>
                     <LazyLoad>
                         <img
-                            src={`${baseUrl}${product.thumbnail.url}`}
+                            src={`${baseUrl}${image || product.thumbnail.url}`}
                             alt={product.title}
                         />
                     </LazyLoad>

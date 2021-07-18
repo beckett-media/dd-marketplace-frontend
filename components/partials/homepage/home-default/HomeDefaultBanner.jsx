@@ -71,7 +71,7 @@ const HomeDefaultBanner = () => {
     }
     return (
         <div className="ps-home-banner ps-home-banner--1">
-            <div className="ps-container">
+            {/* <div className="ps-container">
                 <div className="ps-section__left">{mainCarouselView}</div>
                 <div className="ps-section__right">
                     <Promotion
@@ -83,7 +83,7 @@ const HomeDefaultBanner = () => {
                         image={promotion2 ? promotion2.image : null}
                     />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

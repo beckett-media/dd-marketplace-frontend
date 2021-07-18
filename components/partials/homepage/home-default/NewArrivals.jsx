@@ -3,35 +3,23 @@ import Link from 'next/link';
 import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
 import ProductHorizontal from '~/components/elements/products/ProductHorizontal';
 
-const NewArrivals = ({ collectionSlug }) => {
-    const [productItems, setProductItems] = useState(null);
-    const [loading, setLoading] = useState(true);
+const titles = {
+    recommendation: 'Recommended',
+    trendingCards: 'Trending Cards',
+    trendingPlayers: 'Trending Players',
+    newArrival: 'New Arrival',
+};
 
-    async function getProducts(collectionSlug) {
-        setLoading(true);
-        const responseData = await getProductsByCollectionHelper(
-            collectionSlug
-        );
-        if (responseData) {
-            setProductItems(responseData.items);
-            setTimeout(
-                function () {
-                    setLoading(false);
-                }.bind(this),
-                250
-            );
-        }
-    }
+const NewArrivals = ({ collectionSlug, id, list }) => {
+    console.log({ id, list });
 
-    useEffect(() => {
-        getProducts(collectionSlug);
-    }, [collectionSlug]);
+    const loading = false;
 
     // Views
     let productItemView;
     if (!loading) {
-        if (productItems && productItems.length > 0) {
-            productItemView = productItems.map((item) => (
+        if (list && list.length > 0) {
+            productItemView = list.map((item) => (
                 <div
                     className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 "
                     key={item.id}>
@@ -48,8 +36,19 @@ const NewArrivals = ({ collectionSlug }) => {
         <div className="ps-product-list ps-new-arrivals">
             <div className="ps-container">
                 <div className="ps-section__header">
-                    <h3>Hot New Arrivals</h3>
-                    {/* <ul className="ps-section__links">
+                    <h3>{titles[id] || ''}</h3>
+                </div>
+                <div className="ps-section__content">
+                    <div className="row">{productItemView}</div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default NewArrivals;
+
+/* <ul className="ps-section__links">
                         <li>
                             <Link href="/shop">
                                 <a>Technologies</a>
@@ -80,14 +79,4 @@ const NewArrivals = ({ collectionSlug }) => {
                                 <a>View All</a>
                             </Link>
                         </li>
-                    </ul> */}
-                </div>
-                <div className="ps-section__content">
-                    <div className="row">{productItemView}</div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default NewArrivals;
+                    </ul> */
