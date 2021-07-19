@@ -13,7 +13,7 @@ const deviceToken = randomstring.generate();
 class AuthenticationRepository {
     async register(payload) {
         try {
-            const postObject = { osType: 'linux', deviceToken, ...payload };
+            const postObject = { osType: getOsType(), deviceToken, ...payload };
             const request = await Repository.post(
                 `${baseUrl}${routes.register}`,
                 postObject
@@ -30,7 +30,7 @@ class AuthenticationRepository {
     }
     async login(payload) {
         try {
-            const postObject = { osType: 'linux', deviceToken, ...payload };
+            const postObject = { osType: getOsType(), deviceToken, ...payload };
             const request = await Repository.post(
                 `${baseUrl}${routes.login}`,
                 postObject
