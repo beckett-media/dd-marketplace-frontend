@@ -12,6 +12,7 @@ import App from './app/saga';
 import HomeSaga from './home/saga';
 import CheckOutSaga from './checkout/saga';
 import UserInfoSaga from './userInfo/saga';
+import InvoiceSaga from './invoices/saga';
 
 export default function* rootSaga() {
     yield all([
@@ -28,5 +29,6 @@ export default function* rootSaga() {
         HomeSaga(),
         CheckOutSaga(),
         UserInfoSaga(),
+        InvoiceSaga(),
     ]);
 }

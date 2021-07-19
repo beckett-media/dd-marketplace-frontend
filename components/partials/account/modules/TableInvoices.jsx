@@ -8,58 +8,26 @@ class TableInvoices extends Component {
             You can change data by API
             example: https://ant.design/components/table/
         */
-        const tableData = [
-            {
-                id: '1',
-                invoiceId: '500884010',
-                title: 'Marshall Kilburn Portable Wireless Speaker',
-                dateCreate: '20-1-2020',
-                amount: '42.99',
-                status: 'Successful delivery',
-            },
-            {
-                id: '2',
-                invoiceId: '593347935',
-                title: 'Herschel Leather Duffle Bag In Brown Color',
-                dateCreate: '20-1-2020',
-                amount: '199.99',
-                status: 'Cancel',
-            },
-            {
-                id: '3',
-                invoiceId: '593347935',
-                title: 'Xbox One Wireless Controller Black Color',
-                dateCreate: '20-1-2020',
-                amount: '199.99',
-                status: 'Cancel',
-            },
-            {
-                id: '4',
-                invoiceId: '615397400',
-                title: 'Grand Slam Indoor Of Show Jumping Novel',
-                dateCreate: '20-1-2020',
-                amount: '41.00',
-                status: 'Cancel',
-            },
-        ];
+        const { orders = [] } = this.props;
+
+        const tableData = orders;
         const tableColumn = [
             {
                 title: 'Id',
-                dataIndex: 'invoiceId',
-                rowKey: 'invoiceId',
+                dataIndex: 'id',
+                rowKey: 'id',
                 key: 'invoiceId',
                 width: '120px',
                 render: (text, record) => (
-                    <Link href="/account/invoice-detail">
-                        {record.invoiceId}
-                    </Link>
+                    <Link href="/account/invoice-detail">{record.id}</Link>
                 ),
             },
             {
                 title: 'Title',
-                dataIndex: 'title',
+                dataIndex: 'listing.title',
                 rowKey: 'title',
                 key: 'title',
+                render: (text, record) => record.listing.title,
             },
             {
                 title: 'Date',
@@ -67,16 +35,9 @@ class TableInvoices extends Component {
                 dataIndex: 'dateCreate',
                 key: 'dateCreate',
                 width: '120px',
+                render: (text, record) => record.createdAt,
             },
-            {
-                title: 'Amount',
-                rowKey: 'amount',
-                dataIndex: 'amount',
-                key: 'amount',
-                render: (text, record) => (
-                    <span className="text-right">${record.amount}</span>
-                ),
-            },
+
             {
                 title: 'Status',
                 key: 'status',
@@ -84,7 +45,7 @@ class TableInvoices extends Component {
                 rowKey: 'status',
                 width: '150px',
                 render: (text, record) => (
-                    <span className="text-right">{record.amount}</span>
+                    <span className="text-right">{record.status}</span>
                 ),
             },
         ];
@@ -92,7 +53,7 @@ class TableInvoices extends Component {
             <Table
                 columns={tableColumn}
                 dataSource={tableData}
-                rowKey={record => record.id}
+                rowKey={(record) => record.id}
             />
         );
     }

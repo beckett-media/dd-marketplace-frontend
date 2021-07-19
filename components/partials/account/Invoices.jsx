@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getInvoicesRequest } from '~/store/invoices/actions';
+import { getOrders } from '~/store/invoices/selectors';
 import AccountMenuSidebar from './modules/AccountMenuSidebar';
 import TableInvoices from './modules/TableInvoices';
 
@@ -6,6 +9,10 @@ class Invoices extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    componentDidMount() {
+        this.props.dispatch(getInvoicesRequest());
     }
 
     render() {
@@ -42,6 +49,10 @@ class Invoices extends Component {
                 icon: 'icon-papers',
             },
         ];
+
+        const { orders } = this.props;
+        console.log('orders: Render', orders);
+
         return (
             <section className="ps-my-account ps-page--account">
                 <div className="container">
@@ -58,7 +69,7 @@ class Invoices extends Component {
                                         <h3>Invoices</h3>
                                     </div>
                                     <div className="ps-section__content">
-                                        <TableInvoices />
+                                        <TableInvoices orders={orders} />
                                     </div>
                                 </div>
                             </div>
@@ -70,4 +81,10 @@ class Invoices extends Component {
     }
 }
 
-export default Invoices;
+const connetStateToProps = (state) => {
+    return {
+        orders: getOrders(state),
+    };
+};
+
+export default connect(connetStateToProps)(Invoices);

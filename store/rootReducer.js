@@ -12,6 +12,7 @@ import app from './app/reducer';
 import home from './home/reducers';
 import checkout from './checkout/reducer';
 import userInfo from './userInfo/reducer';
+import orders from './invoices/reducer';
 
 export default combineReducers({
     auth,
@@ -27,4 +28,5 @@ export default combineReducers({
     home,
     checkout,
     userInfo,
+    orders,
 });

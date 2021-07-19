@@ -23,13 +23,13 @@ const UserInformation = (props) => {
             text: 'Invoices',
             url: '/account/invoices',
             icon: 'icon-papers',
-            disabled: true,
+            disabled: false,
         },
         {
             text: 'Address',
             url: '/account/addresses',
             icon: 'icon-map-marker',
-            disabled: true,
+            disabled: false,
         },
         {
             text: 'Recent Viewed Product',
