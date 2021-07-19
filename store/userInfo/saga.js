@@ -31,7 +31,7 @@ function* getUserDetails() {
 function* updateProfilePhoto({ image }) {
     try {
         const userInfo = yield call(UserService.updateProfilePhoto, image);
-        yield put(loginSuccess(userInfo.user));
+        yield put(loginSuccess(userInfo.data.user));
         showNotification('success', {
             message: 'Updated',
             description: 'Profile Photo Updated',
