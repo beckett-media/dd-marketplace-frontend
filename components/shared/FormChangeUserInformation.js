@@ -1,19 +1,117 @@
 import React from 'react';
-import { DatePicker, Form, Input, Radio } from 'antd';
+import { Input, Form, Row } from 'antd';
+import AvatarUpload from './upload/AvatharUpload';
 
-const FormChangeUserInformation = () => {
+const FormChangeUserInformation = (props) => {
+    const formRef = React.useRef();
+    const { userInfo } = props;
+    React.useEffect(() => {
+        if (userInfo && formRef.current)
+            formRef.current.setFieldsValue({
+                ...userInfo,
+            });
+    }, [userInfo]);
     return (
-        <form className="ps-form--account-setting">
+        <Form
+            ref={formRef}
+            className="ps-form--account-setting"
+            layout="vertical">
             <div className="ps-form__header">
                 <h3>Account Information</h3>
             </div>
             <div className="ps-form__content">
-                <div className="form-group">
-                    <input
-                        className="form-control"
-                        type="text"
-                        placeholder="Username or email address"
+                <Row align="middle" justify="center">
+                    <AvatarUpload
+                        profilePhoto={userInfo?.profilePicture || null}
                     />
+                </Row>
+
+                <div className="row">
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <Form.Item
+                                label="Full Name"
+                                name="fullName"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your title',
+                                    },
+                                ]}>
+                                <Input
+                                    disabled
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Enter Full name..."
+                                />
+                            </Form.Item>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="form-group">
+                            <Form.Item
+                                label="User Name"
+                                name="username"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your User name',
+                                    },
+                                ]}>
+                                <Input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Enter User Name..."
+                                />
+                            </Form.Item>
+                        </div>
+                    </div>
+                    <div className="col-sm-12">
+                        <div className="form-group">
+                            <Form.Item
+                                label="Email"
+                                name="email"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your email',
+                                    },
+                                ]}>
+                                <Input
+                                    disabled
+                                    className="form-control"
+                                    type="email"
+                                    placeholder="Enter Email..."
+                                />
+                            </Form.Item>
+                        </div>
+                    </div>
+                </div>
+                <div className="ps-form__submit text-center">
+                    {/* <button className="ps-btn ps-btn--gray mr-3">Cancel</button> */}
+                    {/* <button className="ps-btn success">Update Profile</button> */}
+                </div>
+            </div>
+        </Form>
+    );
+};
+
+export default FormChangeUserInformation;
+
+/*
+
+<div className="form-group">
+                    <Form.Item
+                        label="User Name"
+                        name="email"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input your User name',
+                            },
+                        ]}>
+                        <Input disabled className="form-control" type="text" />
+                    </Form.Item>
                 </div>
                 <div className="row">
                     <div className="col-sm-6">
@@ -85,9 +183,4 @@ const FormChangeUserInformation = () => {
                 <div className="form-group submit">
                     <button className="ps-btn">Update profile</button>
                 </div>
-            </div>
-        </form>
-    );
-};
-
-export default FormChangeUserInformation;
+*/

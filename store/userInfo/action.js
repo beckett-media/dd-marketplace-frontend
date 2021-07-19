@@ -7,3 +7,7 @@ export function getUserDetails() {
 export function toggleUserInfoLoading(value) {
     return { type: actionTypes.TOGGLE_USER_INFO_LOADING, value };
 }
+
+export function updateProfilePhoto(image) {
+    return { type: actionTypes.UPDATE_PROFILE_PHOTO, image };
+}

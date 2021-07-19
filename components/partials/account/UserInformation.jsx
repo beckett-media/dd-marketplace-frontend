@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import FormChangeUserInformation from '~/components/shared/FormChangeUserInformation';
+import { getUserInfo } from '~/store/auth/selectors';
+import { connect } from 'react-redux';
+import AvatarUpload from '~/components/shared/upload/AvatharUpload';
 
-const UserInformation = () => {
+const UserInformation = (props) => {
     const accountLinks = [
         {
             text: 'Account Information',
@@ -14,26 +17,31 @@ const UserInformation = () => {
             text: 'Notifications',
             url: '/account/notifications',
             icon: 'icon-alarm-ringing',
+            disabled: true,
         },
         {
             text: 'Invoices',
             url: '/account/invoices',
             icon: 'icon-papers',
+            disabled: true,
         },
         {
             text: 'Address',
             url: '/account/addresses',
             icon: 'icon-map-marker',
+            disabled: true,
         },
         {
             text: 'Recent Viewed Product',
             url: '/account/recent-viewed-product',
             icon: 'icon-store',
+            disabled: true,
         },
         {
             text: 'Wishlist',
             url: '/account/wishlist',
             icon: 'icon-heart',
+            disabled: true,
         },
     ];
 
@@ -67,6 +75,18 @@ const UserInformation = () => {
                                     <ul className="ps-list--user-links">
                                         {accountLinks.map((link) => (
                                             <li
+                                                style={
+                                                    link.disabled
+                                                        ? {
+                                                              pointerEvents:
+                                                                  'none',
+                                                              opacity: 0.6,
+                                                              cursor:
+                                                                  'not-allowed',
+                                                          }
+                                                        : {}
+                                                }
+                                                disabled={link.disabled}
                                                 key={link.text}
                                                 className={
                                                     link.active ? 'active' : ''
@@ -97,7 +117,9 @@ const UserInformation = () => {
                     </div>
                     <div className="col-lg-9">
                         <div className="ps-page__content">
-                            <FormChangeUserInformation />
+                            <FormChangeUserInformation
+                                userInfo={props.userInfo}
+                            />
                         </div>
                     </div>
                 </div>
@@ -106,4 +128,10 @@ const UserInformation = () => {
     );
 };
 
-export default UserInformation;
+const connectStateToProps = (state) => {
+    return {
+        userInfo: getUserInfo(state),
+    };
+};
+
+export default connect(connectStateToProps)(UserInformation);

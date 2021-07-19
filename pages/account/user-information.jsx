@@ -3,6 +3,7 @@ import React from 'react';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import UserInformation from '~/components/partials/account/UserInformation';
 import ContainerPage from '~/components/layouts/ContainerPage';
+import AuthHoc from '~/repositories/AuthHoc';
 
 const UserInformationPage = () => {
     const breadCrumb = [
@@ -25,4 +26,4 @@ const UserInformationPage = () => {
     );
 };
 
-export default UserInformationPage;
+export default AuthHoc(UserInformationPage);
