@@ -3,6 +3,7 @@ import React from 'react';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import ShoppingCart from '~/components/partials/account/ShoppingCart';
 import ContainerPage from '~/components/layouts/ContainerPage';
+import AuthHoc from '~/repositories/AuthHoc';
 
 const ShoppingCartPage = () => {
     const breadCrumb = [
@@ -24,4 +25,4 @@ const ShoppingCartPage = () => {
     );
 };
 
-export default ShoppingCartPage;
+export default AuthHoc(ShoppingCartPage);

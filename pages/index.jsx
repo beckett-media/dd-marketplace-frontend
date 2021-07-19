@@ -17,6 +17,8 @@ import {
     getMarketPlaceLoading,
 } from '~/store/home/selector';
 
+import AuthHoc from '~/repositories/AuthHoc';
+
 const HomepageDefaultPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -80,4 +82,4 @@ const HomepageDefaultPage = () => {
     );
 };
 
-export default HomepageDefaultPage;
+export default AuthHoc(HomepageDefaultPage);

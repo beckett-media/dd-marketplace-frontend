@@ -5,6 +5,7 @@ import Checkout from '~/components/partials/account/Checkout';
 import { getCart } from '~/store/cart/action';
 import { connect, useDispatch } from 'react-redux';
 import ContainerPage from '~/components/layouts/ContainerPage';
+import AuthHoc from '~/repositories/AuthHoc';
 const CheckoutPage = () => {
     const breadCrumb = [
         {
@@ -34,4 +35,4 @@ const CheckoutPage = () => {
     );
 };
 
-export default connect()(CheckoutPage);
+export default connect()(AuthHoc(CheckoutPage));

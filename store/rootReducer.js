@@ -11,6 +11,7 @@ import media from './media/reducer';
 import app from './app/reducer';
 import home from './home/reducers';
 import checkout from './checkout/reducer';
+import userInfo from './userInfo/reducer';
 
 export default combineReducers({
     auth,
@@ -25,4 +26,5 @@ export default combineReducers({
     app,
     home,
     checkout,
+    userInfo,
 });

@@ -7,3 +7,5 @@ export const getDefaultAddress = (state) => {
     console.log('address: ', address);
     return address.find((i) => i.isDefaultAddress);
 };
+
+export const getCheckoutLoading = (state) => getData(state).isCheckoutLoading;

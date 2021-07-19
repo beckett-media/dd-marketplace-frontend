@@ -3,13 +3,20 @@ import actionTypes from './actionTypes';
 
 const initState = {
     savedAddress: [],
+    isCheckoutLoading: false,
 };
 
 export default function reducer(state = initState, action) {
     switch (action.type) {
         case actionTypes.GET_SAVED_ADDRESS_SUCCESS:
             return {
+                ...state,
                 savedAddress: action.address ? action.address : [],
+            };
+        case actionTypes.HANDLE_CHECKOUT_LOADING:
+            return {
+                ...state,
+                isCheckoutLoading: action.value,
             };
 
         case RESET_AFTER_CHECKOUT:

@@ -1,6 +1,10 @@
 import { all, call, put, takeLatest, select } from 'redux-saga/effects';
 import CheckoutRespository from '~/repositories/CheckoutRespository';
-import { getSavedAddressRequest, getSavedAddressSuccess } from './action';
+import {
+    getSavedAddressRequest,
+    getSavedAddressSuccess,
+    handleCheckoutLoading,
+} from './action';
 import actionTypes from './actionTypes';
 import { notification } from 'antd';
 import CartRespository from '~/repositories/CartRespository';
@@ -9,22 +13,30 @@ import Router from 'next/router';
 import { RESET_AFTER_CHECKOUT } from '../globalTypes';
 
 function* addAddress({ address, isEdit }) {
-    let request;
-    if (isEdit) {
-        request = yield call(
-            CheckoutRespository.editAddress,
-            address,
-            address._id
-        );
-    } else request = yield call(CheckoutRespository.saveAddress, address);
+    try {
+        let request;
+        if (isEdit) {
+            request = yield call(
+                CheckoutRespository.editAddress,
+                address,
+                address._id
+            );
+        } else request = yield call(CheckoutRespository.saveAddress, address);
 
-    if (request.success) yield put(getSavedAddressRequest());
+        if (request.success) yield put(getSavedAddressRequest());
 
-    notification.success({
-        message: 'Success',
-        description: `The Address has been ${isEdit ? 'updated' : 'saved'}`,
-        duration: 1,
-    });
+        notification.success({
+            message: 'Success',
+            description: `The Address has been ${isEdit ? 'updated' : 'saved'}`,
+            duration: 1,
+        });
+    } catch (error) {
+        notification.error({
+            message: 'Failed',
+            description: `${error}`,
+            duration: 1,
+        });
+    }
 }
 
 function* getSavedAddress() {
@@ -62,6 +74,7 @@ function* deleteAddress({ addressId }) {
 
 function* handleCheckoutComplete({ token }) {
     try {
+        yield put(handleCheckoutLoading(true));
         const address = yield select(getDefaultAddress);
 
         const cart = yield call(CartRespository.getCart);
@@ -72,15 +85,16 @@ function* handleCheckoutComplete({ token }) {
             token,
             listingIds,
         });
+        Router.replace('/');
 
         notification.success({
             message: 'Success!!',
             description: request.message,
-            duration: 1,
+            duration: 20,
         });
 
-        Router.push('/');
-        put({ type: RESET_AFTER_CHECKOUT });
+        yield put(handleCheckoutLoading(false));
+        yield put({ type: RESET_AFTER_CHECKOUT });
     } catch (error) {
         notification.error({
             message: 'Failed',

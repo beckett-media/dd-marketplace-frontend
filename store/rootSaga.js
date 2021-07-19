@@ -11,6 +11,7 @@ import MediaSaga from './media/saga';
 import App from './app/saga';
 import HomeSaga from './home/saga';
 import CheckOutSaga from './checkout/saga';
+import UserInfoSaga from './userInfo/saga';
 
 export default function* rootSaga() {
     yield all([
@@ -26,5 +27,6 @@ export default function* rootSaga() {
         App(),
         HomeSaga(),
         CheckOutSaga(),
+        UserInfoSaga(),
     ]);
 }

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'next/link';
-import { Radio, Select, notification } from 'antd';
+import { Modal, Select, notification, Spin, Row } from 'antd';
 import ModulePaymentOrderSummary from '~/components/partials/account/modules/ModulePaymentOrderSummary';
 import { getUserInfo } from '~/store/auth/selectors';
-import { getDefaultAddress } from '~/store/checkout/selectors';
+import {
+    getCheckoutLoading,
+    getDefaultAddress,
+} from '~/store/checkout/selectors';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -104,6 +107,9 @@ class Payment extends Component {
                                             <CheckoutForm
                                                 handleCheckout={
                                                     this.handleCheckout
+                                                }
+                                                isCheckoutLoading={
+                                                    this.props.isCheckoutLoading
                                                 }
                                             />
                                             {/* {this.state.method === 1 ? (
@@ -213,10 +219,16 @@ class Payment extends Component {
                                         </div>
                                     </div>
                                     <div className="ps-block__footer">
-                                        <Link href="/account/shipping">
+                                        <Link
+                                            style={
+                                                this.props.isCheckoutLoading
+                                                    ? { pointerEvent: 'none' }
+                                                    : {}
+                                            }
+                                            href="/account/checkout">
                                             <a>
                                                 <i className="icon-arrow-left mr-2"></i>
-                                                Return to shipping
+                                                Return to Address
                                             </a>
                                         </Link>
                                     </div>
@@ -239,6 +251,7 @@ const connectStateToProps = (state) => {
     return {
         userInfo: getUserInfo(state),
         defaultAddress: getDefaultAddress(state),
+        isCheckoutLoading: getCheckoutLoading(state),
     };
 };
 
@@ -255,7 +268,7 @@ const StripeHoc = (WrappedComponent) => (props) => {
     );
 };
 
-const CheckoutForm = StripeHoc(({ handleCheckout }) => {
+const CheckoutForm = StripeHoc(({ handleCheckout, isCheckoutLoading }) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -288,11 +301,24 @@ const CheckoutForm = StripeHoc(({ handleCheckout }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <CardElement />
-            <button type="submit" disabled={!stripe}>
-                Pay
-            </button>
-        </form>
+        <>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <CardElement />
+                </div>
+
+                <div className="form-group">
+                    {isCheckoutLoading ? (
+                        <Row align="middle" justify="center">
+                            <Spin size="large"></Spin>
+                        </Row>
+                    ) : (
+                        <button className="ps-btn ps-btn--fullwidth">
+                            Submit
+                        </button>
+                    )}
+                </div>
+            </form>
+        </>
     );
 });

@@ -23,3 +23,7 @@ export function setAddressDeleteRequest(addressId) {
 export function onCheckoutComplete(token) {
     return { type: actionTypes.HANDLE_CHECKOUT_REQUEST, token };
 }
+
+export function handleCheckoutLoading(value) {
+    return { type: actionTypes.HANDLE_CHECKOUT_LOADING, value };
+}

@@ -312,7 +312,7 @@ class FormCheckoutInformation extends Component {
                     </Link>
                     <div className="ps-block__footer">
                         <button type="submit" className="ps-btn">
-                            Sumbit
+                            Submit
                         </button>
                         <button
                             style={{ marginLeft: 5 }}
