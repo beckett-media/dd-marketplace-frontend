@@ -4,6 +4,9 @@ import FormChangeUserInformation from '~/components/shared/FormChangeUserInforma
 import { getUserInfo } from '~/store/auth/selectors';
 import { connect } from 'react-redux';
 import AvatarUpload from '~/components/shared/upload/AvatharUpload';
+import { baseUrl } from '~/repositories/Repository';
+import { Avatar } from 'antd';
+import { logOut } from '~/store/auth/action';
 
 const UserInformation = (props) => {
     const accountLinks = [
@@ -29,7 +32,7 @@ const UserInformation = (props) => {
             text: 'Address',
             url: '/account/addresses',
             icon: 'icon-map-marker',
-            disabled: false,
+            disabled: true,
         },
         {
             text: 'Recent Viewed Product',
@@ -45,17 +48,11 @@ const UserInformation = (props) => {
         },
     ];
 
-    //Views
-    const accountLinkView = accountLinks.map((item) => (
-        <li key={item.text} className={item.active ? 'active' : ''}>
-            <Link href={item.url}>
-                <a>
-                    <i className={item.icon}></i>
-                    {item.text}
-                </a>
-            </Link>
-        </li>
-    ));
+    const { userInfo = {} } = props;
+
+    const photo = userInfo?.profilePicture
+        ? `${baseUrl}/${userInfo.profilePicture}`
+        : '/img/user/admin.jpg';
 
     return (
         <section className="ps-my-account ps-page--account">
@@ -65,10 +62,19 @@ const UserInformation = (props) => {
                         <div className="ps-section__left">
                             <aside className="ps-widget--account-dashboard">
                                 <div className="ps-widget__header">
-                                    <img src="/static/img/users/3.jpg" />
+                                    <Avatar
+                                        size="large"
+                                        src={
+                                            photo
+                                                ? photo
+                                                : '/static/img/users/3.jpg'
+                                        }
+                                        alt=""
+                                    />
+
                                     <figure>
                                         <figcaption>Hello</figcaption>
-                                        <p>username@gmail.com</p>
+                                        <p>{userInfo?.email || ''}</p>
                                     </figure>
                                 </div>
                                 <div className="ps-widget__content">
@@ -103,12 +109,13 @@ const UserInformation = (props) => {
                                             </li>
                                         ))}
                                         <li>
-                                            <Link href="/account/my-account">
-                                                <a>
-                                                    <i className="icon-power-switch"></i>
-                                                    Logout
-                                                </a>
-                                            </Link>
+                                            <a
+                                                onClick={() =>
+                                                    props.dispatch(logOut())
+                                                }>
+                                                <i className="icon-power-switch"></i>
+                                                Logout
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>

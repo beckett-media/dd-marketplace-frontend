@@ -12,7 +12,7 @@ const AccountMenuSidebar = ({ data }) => (
         </div>
         <div className="ps-widget__content">
             <ul>
-                {data.map(link => (
+                {data.map((link) => (
                     <li key={link.text} className={link.active ? 'active' : ''}>
                         <Link href={link.url}>
                             <a>

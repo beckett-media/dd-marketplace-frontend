@@ -53,6 +53,11 @@ function* loginSaga(action) {
 
         Router.replace('/');
     } catch (error) {
+        notification.error({
+            message: 'Failed',
+            description: ' User with the given email not found',
+        });
+
         throw error;
     }
 }
@@ -64,6 +69,7 @@ function* logOutSaga() {
         localStorage.removeItem(`${appName}_xAuthToken`);
         localStorage.removeItem(`${appName}_refreshToken`);
         modalWarning('warning');
+        Router.replace('/account/login');
     } catch (err) {}
 }
 

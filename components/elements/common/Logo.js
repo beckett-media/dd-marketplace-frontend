@@ -8,47 +8,42 @@ const Logo = ({ type }) => {
             url: '/home/autopart',
             img: 'img/logo-autopart.png',
         };
-    }
-    else if (type === 'technology') {
+    } else if (type === 'technology') {
         data = {
             url: '/home/technology',
             img: 'static/img/logo-technology.png',
         };
-    }
-    else if (type === 'technology') {
+    } else if (type === 'technology') {
         data = {
             url: '/home/technology',
             img: 'static/img/logo-technology.png',
         };
-    }
-    else if (type === 'electronic') {
+    } else if (type === 'electronic') {
         data = {
             url: '/home/electronic',
             img: 'static/img/logo-electronic.png',
         };
-    }
-    else if (type === 'furniture') {
+    } else if (type === 'furniture') {
         data = {
             url: '/home/furniture',
             img: 'static/img/logo-furniture.png',
         };
-    }
-    else if (type === 'organic') {
+    } else if (type === 'organic') {
         data = {
             url: '/home/organic',
             img: 'static/img/logo-organic.png',
         };
-    }
-    else {
+    } else {
         data = {
             url: '/',
             img: '/static/img/logo_light.png',
         };
     }
+    data.img = '/static/img/logo.png';
     return (
         <Link href={data.url}>
             <a className="ps-logo">
-                <img src={data.img} alt="" />
+                <img style={{ width: 100, height: 30 }} src={data.img} alt="" />
             </a>
         </Link>
     );

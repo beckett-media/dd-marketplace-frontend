@@ -28,7 +28,7 @@ function* getUserDetails() {
     }
 }
 
-function* updateProfilePhoto({ image }) {
+function* updateProfilePhoto({ image, callback }) {
     try {
         const userInfo = yield call(UserService.updateProfilePhoto, image);
         yield put(loginSuccess(userInfo.data.user));
@@ -36,8 +36,10 @@ function* updateProfilePhoto({ image }) {
             message: 'Updated',
             description: 'Profile Photo Updated',
         });
+        if (callback) callback(image);
     } catch (error) {
         showNotification('error', { message: 'Failed', description: error });
+        if (callback) callback(null);
     }
 }
 

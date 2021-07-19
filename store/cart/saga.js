@@ -29,7 +29,6 @@ const modalWarning = (type) => {
 export const calculateAmount = (obj) =>
     Object.values(obj)
         .reduce((acc, { cartCount, price }) => {
-            console.log('price: ', price);
             return acc + Number(cartCount) * Number(price);
         }, 0)
         .toFixed(2);
@@ -46,7 +45,6 @@ function* getCartSaga() {
             }));
 
             const amount = calculateAmount(cart);
-            console.log('amount: ', amount);
 
             yield put(getCartSuccess(cart, amount));
         } else {
@@ -75,7 +73,7 @@ function* addItemSaga(payload) {
                 product.cartCount = 1;
             }
 
-            yield call(CartRespository.addToCart, product._id);
+            const response = yield call(CartRespository.addToCart, product._id);
 
             currentCart.cartItems.push(product);
         }
@@ -90,6 +88,10 @@ function* addItemSaga(payload) {
 
         modalSuccess('success');
     } catch (err) {
+        notification.error({
+            message: 'Failed!',
+            description: 'Something went wrong',
+        });
         yield put(getCartError(err));
     }
 }

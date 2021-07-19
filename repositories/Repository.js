@@ -30,6 +30,7 @@ instance.interceptors.request.use(
         return config;
     },
     (error) => {
+        console.log('error: interceptors', error);
         return Promise.reject(error);
     }
 );
