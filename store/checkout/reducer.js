@@ -1,3 +1,4 @@
+import { RESET_AFTER_CHECKOUT } from '../globalTypes';
 import actionTypes from './actionTypes';
 
 const initState = {
@@ -10,6 +11,9 @@ export default function reducer(state = initState, action) {
             return {
                 savedAddress: action.address ? action.address : [],
             };
+
+        case RESET_AFTER_CHECKOUT:
+            return initState;
         default:
             return state;
     }

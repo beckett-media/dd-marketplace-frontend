@@ -1,3 +1,4 @@
+import { RESET_AFTER_CHECKOUT } from '../globalTypes';
 import { actionTypes } from './action';
 
 export const initCart = {
@@ -39,6 +40,9 @@ function reducer(state = initCart, action) {
                 ...state,
                 ...{ error: action.error },
             };
+
+        case RESET_AFTER_CHECKOUT:
+            return initCart;
         default:
             return state;
     }

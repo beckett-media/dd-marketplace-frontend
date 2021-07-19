@@ -43,7 +43,7 @@ class FormCheckoutInformation extends Component {
 
     onNextButtonClick = (event) => {
         event.preventDefault();
-        Router.push('/account/shipping');
+        Router.push('/account/payment');
     };
 
     deleteConfirm(addressId) {

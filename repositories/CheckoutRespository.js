@@ -6,6 +6,7 @@ const routes = {
     makeDefault: '/address/change',
     editAddress: '/address/edit',
     deleteAddress: '/address/remove',
+    checkout: '/order/checkout',
 };
 
 class CheckoutRepository {
@@ -34,6 +35,23 @@ class CheckoutRepository {
     async makeDefaultAddress(addressId) {
         const url = `${baseUrl}${routes.makeDefault}/${addressId}`;
         const response = await Repository.post(url, { isDefaultAddress: true });
+        return response.data;
+    }
+
+    async checkoutComplete({ addressId, token, listingIds }) {
+        console.log('token: checkoutComplete', {
+            addressId,
+            token,
+            listingIds,
+        });
+        const url = `${baseUrl}${routes.checkout}`;
+        console.log('url: checkoutComplete', url);
+        const response = await Repository.post(url, {
+            cardToken: token,
+            addressId,
+            listingIds,
+        });
+        console.log('response: checkoutComplete', response);
         return response.data;
     }
 }

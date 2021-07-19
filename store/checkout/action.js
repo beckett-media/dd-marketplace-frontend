@@ -17,6 +17,9 @@ export function setDefaultAddressRequest(addressId) {
 }
 
 export function setAddressDeleteRequest(addressId) {
-    console.log('addressId: setAddressDeleteRequest', addressId);
     return { type: actionTypes.DELETE_ADDRESS_REQUEST, addressId };
+}
+
+export function onCheckoutComplete(token) {
+    return { type: actionTypes.HANDLE_CHECKOUT_REQUEST, token };
 }
