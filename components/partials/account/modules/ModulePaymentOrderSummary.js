@@ -41,7 +41,7 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
             <figure className="ps-block__total">
                 <h3>
                     Total
-                    <strong>${parseInt(amount)}.00</strong>
+                    <strong>${Number(amount).toFixed(2)}</strong>
                 </h3>
             </figure>
         );

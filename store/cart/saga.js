@@ -8,6 +8,7 @@ import {
     getCartSuccess,
     updateCartSuccess,
     updateCartError,
+    getCart,
 } from './action';
 
 const modalSuccess = (type) => {
@@ -28,6 +29,7 @@ const modalWarning = (type) => {
 export const calculateAmount = (obj) =>
     Object.values(obj)
         .reduce((acc, { cartCount, price }) => {
+            console.log('price: ', price);
             return acc + Number(cartCount) * Number(price);
         }, 0)
         .toFixed(2);
@@ -40,9 +42,11 @@ function* getCartSaga() {
             const cart = cartFromServer.data.carts.map((i) => ({
                 ...i.listing,
                 cartCount: 1,
+                cartId: i.id,
             }));
 
             const amount = calculateAmount(cart);
+            console.log('amount: ', amount);
 
             yield put(getCartSuccess(cart, amount));
         } else {
@@ -81,6 +85,9 @@ function* addItemSaga(payload) {
         ///add api call here
 
         yield put(updateCartSuccess(currentCart));
+
+        yield put(getCart());
+
         modalSuccess('success');
     } catch (err) {
         yield put(getCartError(err));
@@ -98,7 +105,7 @@ function* removeItemSaga(payload) {
         );
         const item = localCart.cartItems[index];
 
-        yield call(CartRespository.removeToCart, item._id);
+        yield call(CartRespository.removeToCart, item.cartId);
 
         localCart.cartTotal = localCart.cartTotal - product.cartCount;
         localCart.cartItems.splice(index, 1);

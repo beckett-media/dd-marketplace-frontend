@@ -52,7 +52,7 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
     if (!extended) {
         return (
             <div className="ps-product__shopping">
-                <figure>
+                {/* <figure>
                     <figcaption>Quantity</figcaption>
                     <div className="form-group--number">
                         <button
@@ -72,7 +72,7 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
                             disabled
                         />
                     </div>
-                </figure>
+                </figure> */}
                 <a
                     className="ps-btn ps-btn--black"
                     href="#"
@@ -96,7 +96,7 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
         return (
             <div className="ps-product__shopping extend">
                 <div className="ps-product__btn-group">
-                    <figure>
+                    {/* <figure>
                         <figcaption>Quantity</figcaption>
                         <div className="form-group--number">
                             <button
@@ -116,7 +116,7 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
                                 disabled
                             />
                         </div>
-                    </figure>
+                    </figure> */}
                     <a
                         className="ps-btn ps-btn--black"
                         href="#"

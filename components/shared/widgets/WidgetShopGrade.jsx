@@ -45,7 +45,7 @@ const WidgetShopBrands = () => {
     const formatedBrands = grades.map((i) => ({
         id: i._id,
         value: i._id,
-        label: i.name,
+        label: i._id,
     }));
 
     return (

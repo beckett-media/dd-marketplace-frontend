@@ -33,6 +33,7 @@ class ShoppingCart extends Component {
 
     render() {
         const { amount, cartTotal, cartItems } = this.props;
+        console.log('amount:dsad ', amount);
 
         let currentCartItems = [];
         if (cartItems && cartItems.length > 0) {
