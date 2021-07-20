@@ -46,7 +46,7 @@ const WidgetShopCategories = () => {
                     style={{
                         ...(productId === item._id
                             ? {
-                                  backgroundColor: '#fcb800',
+                                  backgroundColor: '#37c4ce',
                                   color: '#000',
                                   padding: 10,
                               }

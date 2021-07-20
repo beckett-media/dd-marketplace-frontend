@@ -7,7 +7,9 @@ import ShopCategories from '~/components/partials/shop/ShopCategories';
 import ShopBrands from '~/components/partials/shop/ShopBrands';
 import ShopBanner from '~/components/partials/shop/ShopBanner';
 import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
-import WidgetShopGrade from '~/components/shared/widgets/WidgetShopGrade';
+import WidgetShopGrade, {
+    WidgetShopGradesNew,
+} from '~/components/shared/widgets/WidgetShopGrade';
 import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListings, getListingsLoading } from '~/store/product/selectors';
@@ -37,7 +39,7 @@ const ShopDefaultPage = () => {
                     <div className="ps-layout--shop">
                         <div className="ps-layout__left">
                             <WidgetShopCategories />
-                            <WidgetShopGrade />
+                            <WidgetShopGradesNew />
                             {/* <WidgetShopFilterByPriceRange /> */}
                         </div>
                         <div className="ps-layout__right">

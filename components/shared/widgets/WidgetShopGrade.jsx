@@ -63,3 +63,72 @@ const WidgetShopBrands = () => {
 };
 
 export default WidgetShopBrands;
+
+export const WidgetShopGradesNew = () => {
+    const Router = useRouter();
+
+    const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState(false);
+
+    const { slug } = Router.query;
+
+    const { grades = [] } = useSelector(getMarketPlaceData);
+
+    useEffect(() => {
+        if (grades.length) {
+            const id = grades[0]._id;
+            Router.replace('/shop', '/shop?gradeId=' + id, { shallow: true });
+            dispatch(getListingsByGrade(id));
+        }
+    }, [grades.length]);
+
+    const onProductClick = (item) => {
+        Router.replace('/shop', '/shop?gradeId=' + item._id, {
+            shallow: true,
+        });
+        dispatch(getListingsByGrade(item._id));
+    };
+
+    let productId = null;
+    if (Boolean(grades && grades.length)) {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        productId = urlSearchParams.get('gradeId');
+    }
+
+    let categoriesView;
+    if (!loading) {
+        if (grades && grades.length > 0) {
+            const items = grades.map((item) => (
+                <li
+                    style={{
+                        ...(productId === item._id
+                            ? {
+                                  backgroundColor: '#37c4ce',
+                                  color: '#000',
+                                  padding: 10,
+                              }
+                            : {}),
+
+                        cursor: 'pointer',
+                    }}
+                    key={item._id}
+                    className={item._id === slug ? 'active' : ''}
+                    onClick={() => onProductClick(item)}>
+                    {item._id}&nbsp;({item.name})
+                </li>
+            ));
+            categoriesView = <ul className="ps-list--categories">{items}</ul>;
+        } else {
+        }
+    } else {
+        categoriesView = <p>Loading...</p>;
+    }
+
+    return (
+        <aside className="widget widget_shop">
+            <h4 className="widget-title">By Grades</h4>
+            {categoriesView}
+        </aside>
+    );
+};
