@@ -55,8 +55,6 @@
 @import 'elements/accordion';
 @import 'elements/skeleton';
 
-
-
 // 2.18 modal
 @import 'elements/tabs';
 
@@ -86,5 +84,12 @@
 /*5. HELPERS */
 @import 'elements/helpers';
 
+@import 'react/custom';
 
-@import "react/custom";
+.ant-btn-primary {
+    background: linear-gradient(
+        0deg,
+        rgba(87, 240, 216, 1) 0%,
+        rgba(55, 196, 206, 1) 100%
+    ) !important;
+}
