@@ -8,6 +8,7 @@ import { getOrders } from '~/store/invoices/selectors';
 import AccountMenuSidebar from './modules/AccountMenuSidebar';
 import TableInvoices from './modules/TableInvoices';
 import Link from 'next/link';
+import { baseUrl } from '~/repositories/Repository';
 
 class Invoices extends Component {
     constructor(props) {
