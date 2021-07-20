@@ -41,7 +41,11 @@ const AvatarUpload = ({ profilePhoto, userInfo = '' }) => {
 
     return (
         <>
-            <Upload multiple={false} maxCount={1} onChange={onChange}>
+            <Upload
+                accept="image/png,image/jpeg"
+                multiple={false}
+                maxCount={1}
+                onChange={onChange}>
                 <div
                     style={{
                         display: 'flex',
