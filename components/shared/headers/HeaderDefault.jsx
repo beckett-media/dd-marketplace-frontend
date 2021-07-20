@@ -6,9 +6,9 @@ import HeaderActions from '~/components/shared/headers/modules/HeaderActions';
 import { stickyHeader } from '~/utilities/common-helpers';
 import MenuCategoriesDropdown from '~/components/shared/menus/MenuCategoriesDropdown';
 
-const HeaderDefault = () => {
+const HeaderDefault = ({ hideScrollEvent }) => {
     useEffect(() => {
-        if (process.browser) {
+        if (process.browser && !hideScrollEvent) {
             window.addEventListener('scroll', stickyHeader);
         }
     }, []);
@@ -17,7 +17,8 @@ const HeaderDefault = () => {
         <header
             className="header header--1"
             data-sticky="true"
-            id="headerSticky">
+            // id="headerSticky"
+        >
             <div className="header__top">
                 <div className="ps-container">
                     <div className="header__left">
