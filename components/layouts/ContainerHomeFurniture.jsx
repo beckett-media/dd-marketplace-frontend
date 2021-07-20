@@ -20,9 +20,9 @@ const ContainerHomeFurniture = ({ children, title = 'Home Furniture' }) => {
             </Head>
             <HeaderFurniture />
             <HeaderMobileFurniture />
-            <NavigationList />
+            {/* <NavigationList /> */}
             <main id="homepage-8">{children}</main>
-            <FooterSecond classes="ps-footer--furniture" />
+            {/* <FooterSecond classes="ps-footer--furniture" /> */}
         </div>
     );
 };

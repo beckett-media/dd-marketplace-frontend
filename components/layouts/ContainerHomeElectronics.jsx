@@ -21,13 +21,13 @@ const ContainerHomeElectronics = ({ children, title = 'Home Electronics' }) => {
             </Head>
             <HeaderElectronic />
             <HeaderMobileElectronic />
-            <NavigationList />
+            {/* <NavigationList /> */}
             {/* <SubscribePopup active={subscribe} />*/}
             <main id="homepage-7">
                 {children}
                 <SiteFeatures />
             </main>
-            <FooterDefault />
+            {/* <FooterDefault /> */}
         </div>
     );
 };

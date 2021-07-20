@@ -20,9 +20,9 @@ const ContainerHomeDefault = ({ children, title }) => {
             </Head>
             <HeaderDefault />
             <HeaderMobile />
-            <NavigationList />
+            {/* <NavigationList /> */}
             <main id="homepage-1">{children}</main>
-            <FooterFullwidth />
+            {/* <FooterFullwidth /> */}
             {/*<SwicherDemo />
             <SubscribePopup active={subscribe} />*/}
         </div>

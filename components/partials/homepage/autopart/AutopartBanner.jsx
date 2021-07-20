@@ -50,7 +50,7 @@ const AutopartBanner = () => {
                         }}>
                         <img
                             src="/static/img/slider/autopart/2.jpg"
-                            alt="martfury"
+                            alt="Due Dilly"
                         />
                         <div className="ps-banner__content">
                             <h4>Version 2018</h4>

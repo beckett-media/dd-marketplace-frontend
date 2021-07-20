@@ -21,9 +21,9 @@ const ContainerMarketPlace4 = ({ children, title }) => {
             </Head>
             <HeaderMarketPlace4 />
             <HeaderMobile />
-            <NavigationList />
+            {/* <NavigationList /> */}
             <main id="homepage-6">{children}</main>
-            <FooterMarketPlace2 />
+            {/* <FooterMarketPlace2 /> */}
         </div>
     );
 };

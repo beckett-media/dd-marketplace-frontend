@@ -23,9 +23,9 @@ const ContainerShop = ({ children, title, boxed = false }) => {
                 <HeaderDefault />
                 <HeaderMobile />
                 <main>{children}</main>
-                <Newletters layout='container' />
+                <Newletters layout="container" />
                 <FooterDefault />
-                <NavigationList />
+                {/* <NavigationList /> */}
             </div>
         );
     } else {
@@ -37,13 +37,12 @@ const ContainerShop = ({ children, title, boxed = false }) => {
                 <HeaderDefault />
                 <HeaderMobile />
                 <main>{children}</main>
-                <Newletters />
-                <FooterFullwidth />
-                <NavigationList />
+                {/* <Newletters /> */}
+                {/* <FooterFullwidth /> */}
+                {/* <NavigationList /> */}
             </div>
         );
     }
-
 };
 
 export default ContainerShop;

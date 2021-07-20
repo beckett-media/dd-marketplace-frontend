@@ -25,12 +25,12 @@ const ContainerMarketPlace = ({ children, title }) => {
             <MarketPlacePromotionHeader />
             <HeaderMarketPlace />
             <HeaderMobile />
-            <NavigationList />
+            {/* <NavigationList /> */}
             <main id="homepage-3">
                 {children}
                 <Newsletters />
             </main>
-            <FooterDefault />
+            {/* <FooterDefault /> */}
         </div>
     );
 };

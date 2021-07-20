@@ -79,16 +79,16 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
                     onClick={(e) => handleAddItemToCart(e)}>
                     Add to cart
                 </a>
-                <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
+                {/* <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
                     Buy Now
-                </a>
+                </a> */}
                 <div className="ps-product__actions">
-                    <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
+                    {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
                         <i className="icon-heart"></i>
                     </a>
                     <a href="#" onClick={(e) => handleAddItemToCompare(e)}>
                         <i className="icon-chart-bars"></i>
-                    </a>
+                    </a> */}
                 </div>
             </div>
         );
@@ -124,17 +124,17 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
                         Add to cart
                     </a>
                     <div className="ps-product__actions">
-                        <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
+                        {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
                             <i className="icon-heart"></i>
                         </a>
                         <a href="#" onClick={(e) => handleAddItemToCompare(e)}>
                             <i className="icon-chart-bars"></i>
-                        </a>
+                        </a> */}
                     </div>
                 </div>
-                <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
+                {/* <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
                     Buy Now
-                </a>
+                </a> */}
             </div>
         );
     }

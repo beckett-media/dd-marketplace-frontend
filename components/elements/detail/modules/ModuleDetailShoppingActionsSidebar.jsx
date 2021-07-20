@@ -66,21 +66,21 @@ const ModuleDetailShoppingActionsSidebar = ({ product }) => {
                 onClick={(e) => handleAddItemToCart(e)}>
                 Add to cart
             </a>
-            <a
+            {/* <a
                 className="ps-btn"
                 href="#"
                 onClick={(e) => handleAddItemToCart(e)}>
                 Buy Now
-            </a>
+            </a> */}
             <div className="ps-product__actions">
-                <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
+                {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
                     <i className="icon-heart mr-1"></i>
                     Add to wishlist
-                </a>
-                <a href="#" onClick={(e) => handleAddItemToCompare(e)}>
+                </a> */}
+                {/* <a href="#" onClick={(e) => handleAddItemToCompare(e)}>
                     <i className="icon-chart-bars mr-1"></i>
                     Compare
-                </a>
+                </a> */}
             </div>
         </div>
     );

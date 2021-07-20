@@ -12,13 +12,13 @@ class ThumbnailVideoFeatured extends Component {
             modalVisible: false,
         };
     }
-    handleCloseModal = e => {
+    handleCloseModal = (e) => {
         e.preventDefault();
         this.setState({
             modalVisible: false,
         });
     };
-    handleOpenModal = e => {
+    handleOpenModal = (e) => {
         e.preventDefault();
         this.setState({
             modalVisible: true,
@@ -49,14 +49,14 @@ class ThumbnailVideoFeatured extends Component {
                     <div className="ps-wrapper">
                         <Slider
                             {...gallerySetting}
-                            ref={slider => (this.slider1 = slider)}
+                            ref={(slider) => (this.slider1 = slider)}
                             asNavFor={this.state.variantCarousel}
                             className="ps-product__gallery ps-carousel inside">
                             <div className="item">
                                 <a href="/static/img/products/detail/fullwidth/1.jpg">
                                     <img
                                         src="/static/img/products/detail/fullwidth/1.jpg"
-                                        alt="martfury"
+                                        alt="Due Dilly"
                                     />
                                 </a>
                             </div>
@@ -64,7 +64,7 @@ class ThumbnailVideoFeatured extends Component {
                                 <a href="/static/img/products/detail/fullwidth/2.jpg">
                                     <img
                                         src="/static/img/products/detail/fullwidth/2.jpg"
-                                        alt="martfury"
+                                        alt="Due Dilly"
                                     />
                                 </a>
                             </div>
@@ -72,23 +72,23 @@ class ThumbnailVideoFeatured extends Component {
                                 <a href="/static/img/products/detail/fullwidth/23.jpg">
                                     <img
                                         src="/static/img/products/detail/fullwidth/3.jpg"
-                                        alt="martfury"
+                                        alt="Due Dilly"
                                     />
                                 </a>
                             </div>
                             <div className="ps-video">
                                 <a
                                     href="https://www.youtube.com/watch?v=ilw-qmqZ5zY"
-                                    onClick={e => this.handleOpenModal(e)}>
+                                    onClick={(e) => this.handleOpenModal(e)}>
                                     <img
                                         src="/static/img/products/detail/fullwidth/3.jpg"
-                                        alt="martfury"
+                                        alt="Due Dilly"
                                     />
                                 </a>
                                 <Modal
                                     visible={this.state.modalVisible}
-                                    onOk={e => this.handleOpenModal(e)}
-                                    onCancel={e => this.handleCloseModal(e)}
+                                    onOk={(e) => this.handleOpenModal(e)}
+                                    onCancel={(e) => this.handleCloseModal(e)}
                                     width={1024}
                                     footer={null}>
                                     <div className="embed-responsive embed-responsive-16by9">
@@ -107,7 +107,7 @@ class ThumbnailVideoFeatured extends Component {
                 </figure>
                 <Slider
                     asNavFor={this.state.galleryCarousel}
-                    ref={slider => (this.slider2 = slider)}
+                    ref={(slider) => (this.slider2 = slider)}
                     swipeToSlide={true}
                     slidesToShow={6}
                     vertical={false}
@@ -119,29 +119,29 @@ class ThumbnailVideoFeatured extends Component {
                     <div className="item">
                         <img
                             src="/static/img/products/detail/fullwidth/1.jpg"
-                            alt="martfury"
+                            alt="Due Dilly"
                         />
                     </div>
                     <div className="item">
                         <img
                             src="/static/img/products/detail/fullwidth/2.jpg"
-                            alt="martfury"
+                            alt="Due Dilly"
                         />
                     </div>
                     <div className="item">
                         <img
                             src="/static/img/products/detail/fullwidth/3.jpg"
-                            alt="martfury"
+                            alt="Due Dilly"
                         />
                     </div>
                     <div className="item">
                         <div className="ps-video">
                             <a
                                 href="https://www.youtube.com/watch?v=ilw-qmqZ5zY"
-                                onClick={e => e.preventDefault()}>
+                                onClick={(e) => e.preventDefault()}>
                                 <img
                                     src="/static/img/products/detail/fullwidth/3.jpg"
-                                    alt="martfury"
+                                    alt="Due Dilly"
                                 />
                             </a>
                         </div>

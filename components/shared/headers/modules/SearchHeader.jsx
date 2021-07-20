@@ -177,28 +177,28 @@ const SearchHeader = () => {
             method="get"
             action="/"
             onSubmit={handleSubmit}>
-            <div className="ps-form__categories">
+            {/* <div className="ps-form__categories">
                 <select className="form-control">{selectOptionView}</select>
-            </div>
+            </div> */}
             <div className="ps-form__input">
-                <input
+                {/* <input
                     ref={inputEl}
                     className="form-control"
                     type="text"
                     value={keyword}
                     placeholder="I'm shopping for..."
                     onChange={(e) => setKeyword(e.target.value)}
-                />
-                {clearTextView}
-                {loadingView}
+                /> */}
+                {/* {clearTextView} */}
+                {/* {loadingView} */}
             </div>
-            <button onClick={handleSubmit}>Search</button>
+            {/* <button onClick={handleSubmit}>Search</button> */}
             <div
                 className={`ps-panel--search-result${
                     isSearch ? ' active ' : ''
                 }`}>
-                <div className="ps-panel__content">{productItemsView}</div>
-                {loadMoreView}
+                {/* <div className="ps-panel__content">{productItemsView}</div> */}
+                {/* {loadMoreView} */}
             </div>
         </form>
     );

@@ -22,8 +22,8 @@ const LayoutDefault = ({ children, title }) => {
             <HeaderDefault />
             <NavigationList />
             {children}
-            <Newsletters layout="container" />
-            <FooterDefault />
+            {/* <Newsletters layout="container" /> */}
+            {/* <FooterDefault /> */}
         </div>
     );
 };

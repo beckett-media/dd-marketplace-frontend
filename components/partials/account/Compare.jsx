@@ -10,7 +10,7 @@ class Compare extends Component {
         super(props);
     }
 
-    handleAddItemToCart = product => {
+    handleAddItemToCart = (product) => {
         this.props.dispatch(addItem(product));
     };
 
@@ -36,157 +36,160 @@ class Compare extends Component {
                             <div className="table-responsive">
                                 <table className="table ps-table--compare">
                                     <tbody>
-                                    <tr>
-                                        <td className="heading" rowSpan="2">
-                                            Product
-                                        </td>
-                                        {compareItems &&
-                                        compareItems.length > 0 ? (
-                                            compareItems.map(product => (
-                                                <td key={product.id}>
-                                                    <a
-                                                        href="#"
-                                                        onClick={e =>
-                                                            this.handleRemoveCompareItem(
-                                                                e,
-                                                                product,
-                                                            )
-                                                        }>
-                                                        Remove
-                                                    </a>
-                                                </td>
-                                            ))
-                                        ) : (
-                                            <td></td>
-                                        )}
-                                    </tr>
-                                    <tr>
-                                        {compareItems &&
-                                        compareItems.length > 0 ? (
-                                            compareItems.map(product => (
-                                                <td key={product.id}>
-                                                    <div className="ps-product--compare">
-                                                        <div className="ps-product__thumbnail">
-                                                            <Link
-                                                                href="/product/[pid]"
-                                                                as={`/product/${product.id}`}>
-                                                                <a>
-                                                                    <img
-                                                                        src={
-                                                                            product.thumbnail
-                                                                        }
-                                                                        alt="martfury"
-                                                                    />
-                                                                </a>
-                                                            </Link>
-                                                        </div>
-                                                        <div className="ps-product__content">
-                                                            <Link
-                                                                href="/product/[pid]"
-                                                                as={`/product/${product.id}`}>
-                                                                <a className="ps-product__title">
-                                                                    {
-                                                                        product.title
-                                                                    }
-                                                                </a>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            ))
-                                        ) : (
-                                            <td></td>
-                                        )}
-                                    </tr>
-                                    <tr>
-                                        <td className="heading">Rating</td>
-                                        {compareItems &&
-                                        compareItems.length > 0 ? (
-                                            compareItems.map(product => (
-                                                <td key={product.id}>
-                                                    <Rate
-                                                        disabled
-                                                        defaultValue={4}
-                                                    />
-                                                </td>
-                                            ))
-                                        ) : (
-                                            <td></td>
-                                        )}
-                                    </tr>
-                                    <tr>
-                                        <td className="heading">Price</td>
-                                        {compareItems &&
-                                        compareItems.length > 0 ? (
-                                            compareItems.map(product => {
-                                                if (product.sale === true) {
-                                                    return (
-                                                        <td
-                                                            key={
-                                                                product.id
+                                        <tr>
+                                            <td className="heading" rowSpan="2">
+                                                Product
+                                            </td>
+                                            {compareItems &&
+                                            compareItems.length > 0 ? (
+                                                compareItems.map((product) => (
+                                                    <td key={product.id}>
+                                                        <a
+                                                            href="#"
+                                                            onClick={(e) =>
+                                                                this.handleRemoveCompareItem(
+                                                                    e,
+                                                                    product
+                                                                )
                                                             }>
-                                                            <h4 className="price sale">
-                                                                $
-                                                                {
-                                                                    product.price
-                                                                }
-                                                                <del>
-                                                                    ${product.salePrice}
-                                                                </del>
-                                                            </h4>
-                                                        </td>
-                                                    );
-                                                } else
-                                                    return (
-                                                        <td
-                                                            key={
-                                                                product.id
-                                                            }>
-                                                            <h4 className="price">
-                                                                ${' '}
-                                                                {
-                                                                    product.price
-                                                                }
-                                                            </h4>
-                                                        </td>
-                                                    );
-                                            })
-                                        ) : (
-                                            <td></td>
-                                        )}
-                                    </tr>
-                                    <tr>
-                                        <td className="heading">Sold By</td>
-                                        {compareItems &&
-                                        compareItems.length > 0 ? (
-                                            compareItems.map(product => (
-                                                <td key={product.id}>
-                                                    <Link href="/vendor/store-list">
-                                                        <a>
-                                                            {product.vendor}
+                                                            Remove
                                                         </a>
-                                                    </Link>
-                                                </td>
-                                            ))
-                                        ) : (
-                                            <td></td>
-                                        )}
-                                    </tr>
-                                    <tr>
-                                        <td className="heading"></td>
-                                        {compareItems &&
-                                        compareItems.length > 0 ? (
-                                            compareItems.map(product => (
-                                                <td key={product.id}>
-                                                    <button className="ps-btn">
-                                                        Add To Cart
-                                                    </button>
-                                                </td>
-                                            ))
-                                        ) : (
-                                            <td></td>
-                                        )}
-                                    </tr>
+                                                    </td>
+                                                ))
+                                            ) : (
+                                                <td></td>
+                                            )}
+                                        </tr>
+                                        <tr>
+                                            {compareItems &&
+                                            compareItems.length > 0 ? (
+                                                compareItems.map((product) => (
+                                                    <td key={product.id}>
+                                                        <div className="ps-product--compare">
+                                                            <div className="ps-product__thumbnail">
+                                                                <Link
+                                                                    href="/product/[pid]"
+                                                                    as={`/product/${product.id}`}>
+                                                                    <a>
+                                                                        <img
+                                                                            src={
+                                                                                product.thumbnail
+                                                                            }
+                                                                            alt="Due Dilly"
+                                                                        />
+                                                                    </a>
+                                                                </Link>
+                                                            </div>
+                                                            <div className="ps-product__content">
+                                                                <Link
+                                                                    href="/product/[pid]"
+                                                                    as={`/product/${product.id}`}>
+                                                                    <a className="ps-product__title">
+                                                                        {
+                                                                            product.title
+                                                                        }
+                                                                    </a>
+                                                                </Link>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                ))
+                                            ) : (
+                                                <td></td>
+                                            )}
+                                        </tr>
+                                        <tr>
+                                            <td className="heading">Rating</td>
+                                            {compareItems &&
+                                            compareItems.length > 0 ? (
+                                                compareItems.map((product) => (
+                                                    <td key={product.id}>
+                                                        <Rate
+                                                            disabled
+                                                            defaultValue={4}
+                                                        />
+                                                    </td>
+                                                ))
+                                            ) : (
+                                                <td></td>
+                                            )}
+                                        </tr>
+                                        <tr>
+                                            <td className="heading">Price</td>
+                                            {compareItems &&
+                                            compareItems.length > 0 ? (
+                                                compareItems.map((product) => {
+                                                    if (product.sale === true) {
+                                                        return (
+                                                            <td
+                                                                key={
+                                                                    product.id
+                                                                }>
+                                                                <h4 className="price sale">
+                                                                    $
+                                                                    {
+                                                                        product.price
+                                                                    }
+                                                                    <del>
+                                                                        $
+                                                                        {
+                                                                            product.salePrice
+                                                                        }
+                                                                    </del>
+                                                                </h4>
+                                                            </td>
+                                                        );
+                                                    } else
+                                                        return (
+                                                            <td
+                                                                key={
+                                                                    product.id
+                                                                }>
+                                                                <h4 className="price">
+                                                                    ${' '}
+                                                                    {
+                                                                        product.price
+                                                                    }
+                                                                </h4>
+                                                            </td>
+                                                        );
+                                                })
+                                            ) : (
+                                                <td></td>
+                                            )}
+                                        </tr>
+                                        <tr>
+                                            <td className="heading">Sold By</td>
+                                            {compareItems &&
+                                            compareItems.length > 0 ? (
+                                                compareItems.map((product) => (
+                                                    <td key={product.id}>
+                                                        <Link href="/vendor/store-list">
+                                                            <a>
+                                                                {product.vendor}
+                                                            </a>
+                                                        </Link>
+                                                    </td>
+                                                ))
+                                            ) : (
+                                                <td></td>
+                                            )}
+                                        </tr>
+                                        <tr>
+                                            <td className="heading"></td>
+                                            {compareItems &&
+                                            compareItems.length > 0 ? (
+                                                compareItems.map((product) => (
+                                                    <td key={product.id}>
+                                                        <button className="ps-btn">
+                                                            Add To Cart
+                                                        </button>
+                                                    </td>
+                                                ))
+                                            ) : (
+                                                <td></td>
+                                            )}
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -198,7 +201,7 @@ class Compare extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.compare;
 };
 export default connect(mapStateToProps)(Compare);

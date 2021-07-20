@@ -19,7 +19,7 @@ const ContainerProductDetail = ({ children, title }) => {
             </Head>
             <HeaderMobileProduct />
             <main>{children}</main>
-            <Newletters />
+            {/* <Newletters /> */}
             {/* <FooterFullwidth /> */}
         </div>
     );

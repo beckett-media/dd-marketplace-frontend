@@ -8,7 +8,7 @@ const PostGrid = ({ data }) => {
                 <Link href="/post/[pid]" as={`/post/${data.id}`}>
                     <a className="ps-post__overlay"></a>
                 </Link>
-                <img src={data.thumbnail} alt="martfury" />
+                <img src={data.thumbnail} alt="Due Dilly" />
                 {data && data.badge ? (
                     <div className="ps-post__badge">
                         <i className={data.badge}></i>
@@ -19,7 +19,7 @@ const PostGrid = ({ data }) => {
             </div>
             <div className="ps-post__content">
                 <div className="ps-post__meta">
-                    {data.categories.map(category => (
+                    {data.categories.map((category) => (
                         <Link href="/shop" key={category.id + category.text}>
                             <a>{category.text}</a>
                         </Link>

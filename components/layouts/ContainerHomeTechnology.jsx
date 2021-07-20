@@ -21,7 +21,7 @@ const ContainerHomeTechnology = ({ children, title = 'Home Technology' }) => {
             </Head>
             <HeaderTechnology />
             <HeaderMobileTechnology />
-            <NavigationList />
+            {/* <NavigationList /> */}
             <main id="homepage-10">
                 {children}
                 <SiteFeatures />

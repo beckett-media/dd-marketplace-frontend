@@ -8,15 +8,19 @@ const DownloadApp = () => (
                     <div className="row">
                         <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                             <div className="ps-block__thumbnail">
-                                <img src="/static/img/app.png" alt="martfury" />
+                                <img
+                                    src="/static/img/app.png"
+                                    alt="Due Dilly"
+                                />
                             </div>
                         </div>
                         <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                             <div className="ps-block__content">
-                                <h3>Download Martfury App Now!</h3>
+                                <h3>Download Due Dilly App Now!</h3>
                                 <p>
-                                    Shopping fastly and easily more with our app. Get a link to
-                                    download the app on your phone
+                                    Shopping fastly and easily more with our
+                                    app. Get a link to download the app on your
+                                    phone
                                 </p>
                                 <form
                                     className="ps-form--download-app"
@@ -28,15 +32,23 @@ const DownloadApp = () => (
                                             type="Email"
                                             placeholder="Email Address"
                                         />
-                                        <button className="ps-btn">Subscribe</button>
+                                        <button className="ps-btn">
+                                            Subscribe
+                                        </button>
                                     </div>
                                 </form>
                                 <p className="download-link">
                                     <a href="#">
-                                        <img src="/static/img/google-play.png" alt="martfury" />
+                                        <img
+                                            src="/static/img/google-play.png"
+                                            alt="Due Dilly"
+                                        />
                                     </a>
                                     <a href="#">
-                                        <img src="/static/img/app-store.png" alt="martfury" />
+                                        <img
+                                            src="/static/img/app-store.png"
+                                            alt="Due Dilly"
+                                        />
                                     </a>
                                 </p>
                             </div>

@@ -32,7 +32,7 @@ const StoreDefault = ({ source }) => {
                 <a className="ps-block__user" href="#">
                     <img
                         src="/static/img/vendor/store/vendor-150x150.jpg"
-                        alt="martfury"
+                        alt="Due Dilly"
                     />
                 </a>
                 <Link href="/store/[slug]" as={`/store/${source.slug}`}>

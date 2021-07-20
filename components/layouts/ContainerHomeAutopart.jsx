@@ -21,7 +21,7 @@ const ContainerHomeAutopart = ({ children, title = 'Home Autopart' }) => {
             </Head>
             <HeaderAutoPart />
             <HeaderMobileAutopart />
-            <NavigationList />
+            {/* <NavigationList /> */}
             <main id="homepage-2">
                 {children}
                 <SiteFeatures />

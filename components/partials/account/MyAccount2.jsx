@@ -104,10 +104,15 @@ class MyAccount extends Component {
                                                     </label>
                                                 </div>
                                                 <p>
-                                                    Your personal data will be used to support your
-                                                    experience throughout this website, to manage
-                                                    access to your account, and for other purposes
-                                                    described in our<a href="#">privacy policy.</a>
+                                                    Your personal data will be
+                                                    used to support your
+                                                    experience throughout this
+                                                    website, to manage access to
+                                                    your account, and for other
+                                                    purposes described in our
+                                                    <a href="#">
+                                                        privacy policy.
+                                                    </a>
                                                 </p>
                                             </div>
                                             <div className="form-group submit">
@@ -122,15 +127,20 @@ class MyAccount extends Component {
                         </div>
                         <div className="ps-section__right">
                             <figure className="ps-section__desc">
-                                <figcaption>Sign up today and you will be able to:</figcaption>
+                                <figcaption>
+                                    Sign up today and you will be able to:
+                                </figcaption>
                                 <p>
-                                    MartFury Buyer Protection has you covered from click to
-                                    delivery. Sign up or sign in and you will be able to:
+                                    Due Dilly Buyer Protection has you covered
+                                    from click to delivery. Sign up or sign in
+                                    and you will be able to:
                                 </p>
                                 <ul className="ps-list">
                                     <li>
                                         <i className="icon-credit-card"></i>
-                                        <span>SPEED YOUR WAY THROUGH CHECKOUT</span>
+                                        <span>
+                                            SPEED YOUR WAY THROUGH CHECKOUT
+                                        </span>
                                     </li>
                                     <li>
                                         <i className="icon-clipboard-check"></i>
@@ -138,17 +148,22 @@ class MyAccount extends Component {
                                     </li>
                                     <li>
                                         <i className="icon-bag2"></i>
-                                        <span>KEEP A RECORD OF ALL YOUR PURCHASES</span>
+                                        <span>
+                                            KEEP A RECORD OF ALL YOUR PURCHASES
+                                        </span>
                                     </li>
                                 </ul>
                             </figure>
                             <div className="ps-section__coupon">
                                 <span>$25</span>
                                 <aside>
-                                    <h5>A small gift for your first purchase</h5>
+                                    <h5>
+                                        A small gift for your first purchase
+                                    </h5>
                                     <p>
-                                        Martfury give $25 as a small gift for your first purchase.
-                                        Welcome to Martfury!
+                                        Due Dilly give $25 as a small gift for
+                                        your first purchase. Welcome to Due
+                                        Dilly!
                                     </p>
                                 </aside>
                             </div>

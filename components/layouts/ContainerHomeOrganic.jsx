@@ -21,7 +21,7 @@ const ContainerHomeOrganic = ({ children, title = 'Home Organic' }) => {
             </Head>
             <HeaderOrganic />
             <HeaderMobileOrganic />
-            <NavigationList />
+            {/* <NavigationList /> */}
             <main id="homepage-9">{children}</main>
             <FooterSecond classes="ps-footer--organic" />
         </div>

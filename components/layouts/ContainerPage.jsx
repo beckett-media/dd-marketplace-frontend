@@ -37,9 +37,9 @@ const ContainerPage = ({ children, title, boxed = false }) => {
                 <HeaderDefault />
                 <HeaderMobile />
                 <main>{children}</main>
-                <Newletters />
-                <FooterFullwidth />
-                <NavigationList />
+                {/* <Newletters /> */}
+                {/* <FooterFullwidth /> */}
+                {/* <NavigationList /> */}
             </div>
         );
     }

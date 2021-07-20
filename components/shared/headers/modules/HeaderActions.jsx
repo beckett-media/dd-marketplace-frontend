@@ -15,22 +15,22 @@ const HeaderActions = (props) => {
     }
     return (
         <div className="header__actions">
-            <Link href="/account/compare">
+            {/* <Link href="/account/compare">
                 <a className="header__extra">
                     <i className="icon-chart-bars"></i>
                     <span>
                         <i>{compare ? compare.compareTotal : 0}</i>
                     </span>
                 </a>
-            </Link>
-            <Link href="/account/wishlist">
+            </Link> */}
+            {/* <Link href="/account/wishlist">
                 <a className="header__extra">
                     <i className="icon-heart"></i>
                     <span>
                         <i>{wishlist ? wishlist.wishlistTotal : 0}</i>
                     </span>
                 </a>
-            </Link>
+            </Link> */}
             <MiniCart />
             {headerAuthView}
         </div>
