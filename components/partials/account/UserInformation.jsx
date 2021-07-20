@@ -54,6 +54,8 @@ const UserInformation = (props) => {
         ? `${baseUrl}/${userInfo.profilePicture}`
         : '/img/user/admin.jpg';
 
+    const name = userInfo?.username || userInfo?.fullName || '';
+
     return (
         <section className="ps-my-account ps-page--account">
             <div className="container">
@@ -67,7 +69,10 @@ const UserInformation = (props) => {
                                         src={
                                             photo
                                                 ? photo
-                                                : '/static/img/users/3.jpg'
+                                                : (
+                                                      (name || '').charAt(0) ||
+                                                      ''
+                                                  ).toUpperCase()
                                         }
                                         alt=""
                                     />

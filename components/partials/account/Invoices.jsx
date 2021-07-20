@@ -60,11 +60,12 @@ class Invoices extends Component {
             ? `${baseUrl}/${userInfo.profilePicture}`
             : '/img/user/admin.jpg';
 
+        const name = userInfo?.username || userInfo?.fullName || '';
         return (
             <section className="ps-my-account ps-page--account">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-4">
+                        <div className="col-lg-3">
                             <div className="ps-section__left">
                                 <aside className="ps-widget--account-dashboard">
                                     <div className="ps-widget__header">
@@ -73,7 +74,11 @@ class Invoices extends Component {
                                             src={
                                                 photo
                                                     ? photo
-                                                    : '/static/img/users/3.jpg'
+                                                    : (
+                                                          (name || '').charAt(
+                                                              0
+                                                          ) || ''
+                                                      ).toUpperCase()
                                             }
                                             alt=""
                                         />
@@ -138,7 +143,7 @@ class Invoices extends Component {
                                 <AccountMenuSidebar data={accountLinks} />
                             </div> */}
                         </div>
-                        <div className="col-lg-8">
+                        <div className="col-lg-9">
                             <div className="ps-page__content">
                                 <div className="ps-section--account-setting">
                                     <div className="ps-section__header">

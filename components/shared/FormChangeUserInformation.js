@@ -31,6 +31,7 @@ const FormChangeUserInformation = (props) => {
             <div className="ps-form__content">
                 <Row align="middle" justify="center">
                     <AvatarUpload
+                        userInfo={userInfo}
                         profilePhoto={userInfo?.profilePicture || null}
                     />
                 </Row>

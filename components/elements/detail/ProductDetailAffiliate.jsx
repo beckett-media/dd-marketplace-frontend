@@ -31,7 +31,7 @@ const ProductDetailAffiliate = ({ product }) => {
                             </a>
                         </div>
                     </div>
-                    <ModuleProductDetailSpecification />
+                    <ModuleProductDetailSpecification product={product} />
                     <ModuleProductDetailSharing />
                     <ModuleDetailActionsMobile />
                 </div>

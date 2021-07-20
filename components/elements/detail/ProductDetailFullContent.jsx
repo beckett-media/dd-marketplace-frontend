@@ -29,7 +29,9 @@ const ProductDetailFullContent = ({ product }) => {
                         <div className="ps-product__info">
                             <ModuleDetailTopInformation product={product} />
                             <ModuleProductDetailDescription product={product} />
-                            <ModuleProductDetailSpecification />
+                            <ModuleProductDetailSpecification
+                                product={product}
+                            />
                             <ModuleProductDetailSharing />
                             <ModuleDetailActionsMobile />
                         </div>

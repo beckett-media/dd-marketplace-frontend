@@ -20,7 +20,7 @@ const ProductDetailExtended = ({ product }) => (
                     product={product}
                     extended={true}
                 />
-                <ModuleProductDetailSpecification />
+                <ModuleProductDetailSpecification product={product} />
                 <ModuleProductDetailSharing />
                 <ModuleDetailActionsMobile />
             </div>

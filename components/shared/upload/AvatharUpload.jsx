@@ -14,7 +14,7 @@ export function getBase64(file) {
     });
 }
 
-const AvatarUpload = ({ profilePhoto }) => {
+const AvatarUpload = ({ profilePhoto, userInfo = '' }) => {
     const [isloadingComplete, setLoading] = useState(true);
 
     const dispatch = useDispatch();
@@ -37,6 +37,8 @@ const AvatarUpload = ({ profilePhoto }) => {
 
     const url = `${baseUrl}/${profilePhoto}`;
 
+    const name = userInfo?.username || userInfo?.fullName || '';
+
     return (
         <>
             <Upload multiple={false} maxCount={1} onChange={onChange}>
@@ -56,7 +58,11 @@ const AvatarUpload = ({ profilePhoto }) => {
                               }
                             : {})}
                         size={200}>
-                        {!isloadingComplete ? <Spin /> : 'User'}
+                        {!isloadingComplete ? (
+                            <Spin />
+                        ) : (
+                            ((name || '').charAt(0) || '').toUpperCase()
+                        )}
                     </Avatar>
                 </div>
             </Upload>

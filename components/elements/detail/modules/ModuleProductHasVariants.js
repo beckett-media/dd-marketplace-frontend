@@ -294,7 +294,7 @@ class ModuleProductHasVariants extends Component {
                             </a>
                         </div>
                     </div>
-                    <ModuleProductDetailSpecification />
+                    <ModuleProductDetailSpecificatio product={product} n />
                     <ModuleProductDetailSharing />
                     <div className="ps-product__actions-mobile">
                         <a
