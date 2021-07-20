@@ -28,13 +28,13 @@ function* addAddress({ address, isEdit }) {
         notification.success({
             message: 'Success',
             description: `The Address has been ${isEdit ? 'updated' : 'saved'}`,
-            duration: 1,
+            duration: 15,
         });
     } catch (error) {
         notification.error({
             message: 'Failed',
             description: `${error}`,
-            duration: 1,
+            duration: 15,
         });
     }
 }
@@ -46,28 +46,47 @@ function* getSavedAddress() {
 }
 
 function* makeAddressDefault({ addressId }) {
-    const request = yield call(
-        CheckoutRespository.makeDefaultAddress,
-        addressId
-    );
+    try {
+        const request = yield call(
+            CheckoutRespository.makeDefaultAddress,
+            addressId
+        );
 
-    if (request.success) yield put(getSavedAddressRequest());
+        if (request.success) yield put(getSavedAddressRequest());
 
-    notification.success({
-        message: 'Success',
-        description: `The Address has been default`,
-        duration: 1,
-    });
+        notification.success({
+            message: 'Success',
+            description: `The Address has been default`,
+            duration: 15,
+        });
+    } catch (error) {
+        notification.error({
+            message: 'Error',
+            description: error + '',
+            duration: 15,
+        });
+    }
 }
 
 function* deleteAddress({ addressId }) {
-    const request = yield call(CheckoutRespository.deleteAddress, addressId);
-    if (request.success) {
-        yield put(getSavedAddressRequest());
-        notification.success({
-            message: 'Success',
-            description: `The Address has been deleted`,
-            duration: 1,
+    try {
+        const request = yield call(
+            CheckoutRespository.deleteAddress,
+            addressId
+        );
+        if (request.success) {
+            yield put(getSavedAddressRequest());
+            notification.success({
+                message: 'Success',
+                description: `The Address has been deleted`,
+                duration: 15,
+            });
+        }
+    } catch (error) {
+        notification.error({
+            message: 'Error',
+            description: error + '',
+            duration: 15,
         });
     }
 }
@@ -84,6 +103,8 @@ function* handleCheckoutComplete({ token }) {
             addressId: address._id,
             token,
             listingIds,
+            customerId: '',
+            isCardSave: true,
         });
         Router.replace('/');
 
@@ -96,10 +117,11 @@ function* handleCheckoutComplete({ token }) {
         yield put(handleCheckoutLoading(false));
         yield put({ type: RESET_AFTER_CHECKOUT });
     } catch (error) {
+        yield put(handleCheckoutLoading(false));
         notification.error({
             message: 'Failed',
             description: `${error}`,
-            duration: 1,
+            duration: 15,
         });
     }
 }

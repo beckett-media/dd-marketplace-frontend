@@ -1,4 +1,4 @@
-import Repository, { baseUrl } from './Repository';
+import Repository, { baseUrl, getError } from './Repository';
 
 const routes = {
     add: '/cart/add',
@@ -8,22 +8,34 @@ const routes = {
 
 class CartRepository {
     async addToCart(listingId) {
-        const url = `${baseUrl}${routes.add}/${listingId}`;
-        const response = await Repository.post(url);
+        try {
+            const url = `${baseUrl}${routes.add}/${listingId}`;
+            const response = await Repository.post(url);
 
-        return response;
+            return response;
+        } catch (error) {
+            throw getError(error);
+        }
     }
     async removeToCart(listingId) {
-        const url = `${baseUrl}${routes.remove}/${listingId}`;
-        const response = await Repository.post(url);
+        try {
+            const url = `${baseUrl}${routes.remove}/${listingId}`;
+            const response = await Repository.post(url);
 
-        return response;
+            return response;
+        } catch (error) {
+            throw getError(error);
+        }
     }
     async getCart() {
-        const url = `${baseUrl}${routes.get}`;
-        const response = await Repository.get(url);
+        try {
+            const url = `${baseUrl}${routes.get}`;
+            const response = await Repository.get(url);
 
-        return response.data;
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
     }
 }
 

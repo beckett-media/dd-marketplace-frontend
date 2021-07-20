@@ -16,36 +16,36 @@ const UserInformation = (props) => {
             icon: 'icon-user',
             active: true,
         },
-        {
-            text: 'Notifications',
-            url: '/account/notifications',
-            icon: 'icon-alarm-ringing',
-            disabled: true,
-        },
+        // {
+        //     text: 'Notifications',
+        //     url: '/account/notifications',
+        //     icon: 'icon-alarm-ringing',
+        //     disabled: true,
+        // },
         {
             text: 'Invoices',
             url: '/account/invoices',
             icon: 'icon-papers',
             disabled: false,
         },
-        {
-            text: 'Address',
-            url: '/account/addresses',
-            icon: 'icon-map-marker',
-            disabled: true,
-        },
-        {
-            text: 'Recent Viewed Product',
-            url: '/account/recent-viewed-product',
-            icon: 'icon-store',
-            disabled: true,
-        },
-        {
-            text: 'Wishlist',
-            url: '/account/wishlist',
-            icon: 'icon-heart',
-            disabled: true,
-        },
+        // {
+        //     text: 'Address',
+        //     url: '/account/addresses',
+        //     icon: 'icon-map-marker',
+        //     disabled: true,
+        // },
+        // {
+        //     text: 'Recent Viewed Product',
+        //     url: '/account/recent-viewed-product',
+        //     icon: 'icon-store',
+        //     disabled: true,
+        // },
+        // {
+        //     text: 'Wishlist',
+        //     url: '/account/wishlist',
+        //     icon: 'icon-heart',
+        //     disabled: true,
+        // },
     ];
 
     const { userInfo = {} } = props;

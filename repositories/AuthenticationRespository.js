@@ -1,4 +1,4 @@
-import Repository, { baseUrl } from './Repository';
+import Repository, { baseUrl, getError } from './Repository';
 import { getOsType } from './utils';
 const randomstring = require('randomstring');
 
@@ -25,7 +25,7 @@ class AuthenticationRepository {
                 payload: request.data,
             };
         } catch (error) {
-            throw error;
+            throw getError(error);
         }
     }
     async login(payload) {
@@ -42,7 +42,7 @@ class AuthenticationRepository {
                 payload: request.data,
             };
         } catch (error) {
-            throw error;
+            throw getError(error);
         }
     }
     async logout() {
@@ -51,7 +51,7 @@ class AuthenticationRepository {
                 deviceToken,
             });
         } catch (error) {
-            throw error;
+            throw getError(error);
         }
     }
 }

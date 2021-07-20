@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import { Form, Input, Checkbox, Radio, Popconfirm } from 'antd';
+import {
+    Form,
+    Input,
+    Checkbox,
+    Radio,
+    Popconfirm,
+    Typography,
+    Space,
+    Card,
+} from 'antd';
 import { connect } from 'react-redux';
 import {
     getSavedAddressRequest,
@@ -26,6 +35,9 @@ class FormCheckoutInformation extends Component {
 
     handleLoginSubmit = (values) => {
         const isEdit = Boolean(values._id);
+        const { address } = this.props;
+        const isAddressAvailable = Boolean(address && address.length);
+        if (!isAddressAvailable) values.isDefaultAddress = true;
         this.props.dispatch(saveAddressRequest(values, isEdit));
         this.formRef.current.resetFields();
     };
@@ -53,15 +65,19 @@ class FormCheckoutInformation extends Component {
     render() {
         const { address } = this.props;
 
+        const isAddressAvailable = Boolean(address && address.length);
+
         return (
             <Form
                 ref={this.formRef}
                 className="ps-form__billing-info"
                 onFinish={this.handleLoginSubmit}>
-                <h3 className="ps-form__heading">Saved Address</h3>
+                {address && address.length ? (
+                    <h3 className="ps-form__heading">Saved Address</h3>
+                ) : null}
 
                 <div className="ps-block--checkout-order">
-                    {address
+                    {address && address.length
                         ? address.map((address) => (
                               <div
                                   className="row"
@@ -109,7 +125,6 @@ class FormCheckoutInformation extends Component {
                                               Delete
                                           </span>
                                       </Popconfirm>
-                                      ,
                                   </div>
                               </div>
                           ))
@@ -314,12 +329,17 @@ class FormCheckoutInformation extends Component {
                         <button type="submit" className="ps-btn">
                             Submit
                         </button>
-                        <button
-                            style={{ marginLeft: 5 }}
-                            onClick={this.onNextButtonClick}
-                            className="ps-btn">
-                            Next
-                        </button>
+                        {isAddressAvailable && (
+                            <button
+                                disabled={!isAddressAvailable}
+                                style={{
+                                    marginLeft: 5,
+                                }}
+                                onClick={this.onNextButtonClick}
+                                className="ps-btn">
+                                Next
+                            </button>
+                        )}
                     </div>
                 </div>
             </Form>

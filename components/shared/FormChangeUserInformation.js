@@ -1,8 +1,11 @@
 import React from 'react';
-import { Input, Form, Row } from 'antd';
+import { Input, Form, Row, Button } from 'antd';
 import AvatarUpload from './upload/AvatharUpload';
+import { updateUserName } from '~/store/userInfo/action';
+import { useDispatch } from 'react-redux';
 
 const FormChangeUserInformation = (props) => {
+    const dispatch = useDispatch();
     const formRef = React.useRef();
     const { userInfo } = props;
     React.useEffect(() => {
@@ -11,6 +14,12 @@ const FormChangeUserInformation = (props) => {
                 ...userInfo,
             });
     }, [userInfo]);
+
+    const onUserNameSave = () => {
+        const username = formRef.current.getFieldValue('username');
+        dispatch(updateUserName(username));
+    };
+
     return (
         <Form
             ref={formRef}
@@ -62,6 +71,14 @@ const FormChangeUserInformation = (props) => {
                                     className="form-control"
                                     type="text"
                                     placeholder="Enter User Name..."
+                                    suffix={
+                                        <Button
+                                            onClick={onUserNameSave}
+                                            type="primary"
+                                            icon={
+                                                <i class="fa fa-check"></i>
+                                            }></Button>
+                                    }
                                 />
                             </Form.Item>
                         </div>

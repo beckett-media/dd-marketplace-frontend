@@ -11,3 +11,7 @@ export function toggleUserInfoLoading(value) {
 export function updateProfilePhoto(image, callback) {
     return { type: actionTypes.UPDATE_PROFILE_PHOTO, image, callback };
 }
+
+export function updateUserName(userName) {
+    return { type: actionTypes.UPDATE_USER_NAME, userName };
+}

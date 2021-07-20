@@ -20,6 +20,7 @@ function* getUserDetails() {
     try {
         put(toggleUserInfoLoading(true));
         const userInfo = yield call(UserService.getUserInfo);
+
         yield put(loginSuccess(userInfo.user));
         yield put(toggleUserInfoLoading(false));
     } catch (error) {
@@ -43,10 +44,25 @@ function* updateProfilePhoto({ image, callback }) {
     }
 }
 
+function* updateUserName({ userName }) {
+    try {
+        const userInfo = yield call(UserService.updateUserName, userName);
+        yield put(loginSuccess(userInfo.data.user));
+        notification.success({
+            message: 'Updated',
+            description: 'User Name Updated',
+        });
+    } catch (error) {
+        notification.error({ message: 'Failed', description: error + '' });
+    }
+}
+
 export default function* rootSaga() {
     yield all([
         takeLatest(actionTypes.GET_USER_DETAILS_REQUEST, getUserDetails),
     ]);
+
+    yield all([takeLatest(actionTypes.UPDATE_USER_NAME, updateUserName)]);
 
     yield all([
         takeLatest(actionTypes.UPDATE_PROFILE_PHOTO, updateProfilePhoto),

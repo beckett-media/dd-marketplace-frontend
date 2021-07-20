@@ -1,4 +1,4 @@
-import Repository, { baseUrl } from './Repository';
+import Repository, { baseUrl, getError } from './Repository';
 
 const routes = {
     get: '/order/pending',
@@ -6,10 +6,14 @@ const routes = {
 
 class InvoicesRepository {
     async getInvoices() {
-        const url = `${baseUrl}${routes.get}`;
-        const response = await Repository.get(url);
-        console.log('response: getInvoices', response);
-        return response;
+        try {
+            const url = `${baseUrl}${routes.get}`;
+            const response = await Repository.get(url);
+            console.log('response: getInvoices', response);
+            return response;
+        } catch (error) {
+            throw getError(error);
+        }
     }
 }
 

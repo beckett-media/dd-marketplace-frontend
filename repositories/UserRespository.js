@@ -1,4 +1,4 @@
-import Repository, { baseUrl } from './Repository';
+import Repository, { baseUrl, getError } from './Repository';
 
 const routes = {
     getUserInfo: '/user/user-details',
@@ -15,7 +15,7 @@ class AuthenticationRepository {
             );
             return request.data.data;
         } catch (error) {
-            throw error;
+            throw getError(error);
         }
     }
 
@@ -29,7 +29,18 @@ class AuthenticationRepository {
             );
             return request.data;
         } catch (error) {
-            throw 'Auth token invalid or expired';
+            throw getError(error);
+        }
+    }
+    async updateUserName(username) {
+        try {
+            const request = await Repository.post(
+                `${baseUrl}${routes.updateUserName}`,
+                { username }
+            );
+            return request.data;
+        } catch (error) {
+            throw getError(error);
         }
     }
 }

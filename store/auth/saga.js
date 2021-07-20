@@ -35,6 +35,10 @@ function* signUpSaga(action) {
 
         Router.replace('/');
     } catch (err) {
+        notification.error({
+            message: 'Failed',
+            description: err + '',
+        });
         throw err;
     }
 }
@@ -55,7 +59,7 @@ function* loginSaga(action) {
     } catch (error) {
         notification.error({
             message: 'Failed',
-            description: ' User with the given email not found',
+            description: error + '',
         });
 
         throw error;

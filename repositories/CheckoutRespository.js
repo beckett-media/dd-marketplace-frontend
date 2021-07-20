@@ -1,4 +1,4 @@
-import Repository, { baseUrl } from './Repository';
+import Repository, { baseUrl, getError } from './Repository';
 
 const routes = {
     saveAddress: '/address/add',
@@ -11,48 +11,71 @@ const routes = {
 
 class CheckoutRepository {
     async saveAddress(address) {
-        const url = `${baseUrl}${routes.saveAddress}`;
-        const response = await Repository.post(url, address);
-        return response.data;
+        try {
+            const url = `${baseUrl}${routes.saveAddress}`;
+            const response = await Repository.post(url, address);
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
     }
     async editAddress(address, addressId) {
-        const url = `${baseUrl}${routes.editAddress}/${addressId}`;
+        try {
+            const url = `${baseUrl}${routes.editAddress}/${addressId}`;
 
-        if (address._id) delete address._id;
-        const response = await Repository.post(url, address);
-        return response.data;
+            if (address._id) delete address._id;
+            const response = await Repository.post(url, address);
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
     }
     async deleteAddress(addressId) {
-        const url = `${baseUrl}${routes.deleteAddress}/${addressId}`;
-        const response = await Repository.delete(url);
-        return response.data;
+        try {
+            const url = `${baseUrl}${routes.deleteAddress}/${addressId}`;
+            const response = await Repository.delete(url);
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
     }
     async getSavedAddress() {
-        const url = `${baseUrl}${routes.getAddress}`;
-        const response = await Repository.get(url);
-        return response.data;
+        try {
+            const url = `${baseUrl}${routes.getAddress}`;
+            const response = await Repository.get(url);
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
     }
     async makeDefaultAddress(addressId) {
-        const url = `${baseUrl}${routes.makeDefault}/${addressId}`;
-        const response = await Repository.post(url, { isDefaultAddress: true });
-        return response.data;
+        try {
+            const url = `${baseUrl}${routes.makeDefault}/${addressId}`;
+            const response = await Repository.post(url, {
+                isDefaultAddress: true,
+            });
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
     }
 
-    async checkoutComplete({ addressId, token, listingIds }) {
-        console.log('token: checkoutComplete', {
-            addressId,
-            token,
-            listingIds,
-        });
-        const url = `${baseUrl}${routes.checkout}`;
-        console.log('url: checkoutComplete', url);
-        const response = await Repository.post(url, {
-            cardToken: token,
-            addressId,
-            listingIds,
-        });
-        console.log('response: checkoutComplete', response);
-        return response.data;
+    async checkoutComplete(payload) {
+        try {
+            const { token, ...rest } = payload;
+            console.log('token: checkoutComplete', {
+                ...rest,
+                cardToken: token,
+            });
+            const url = `${baseUrl}${routes.checkout}`;
+            const response = await Repository.post(url, {
+                cardToken: token,
+                ...rest,
+            });
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
     }
 }
 
