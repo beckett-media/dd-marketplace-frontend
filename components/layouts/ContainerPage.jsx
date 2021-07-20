@@ -20,8 +20,8 @@ const ContainerPage = ({ children, title, boxed = false }) => {
                 <Head>
                     <title>{titleView}</title>
                 </Head>
-                {/* <HeaderDefault />
-                <HeaderMobile /> */}
+                <HeaderDefault />
+                <HeaderMobile />
                 <main>{children}</main>
                 {/* <Newletters layout="container" />
                 <FooterDefault />

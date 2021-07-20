@@ -12,7 +12,7 @@ const withImages = require('next-images');
 const nextSettings = {
     env: {
         title: 'Due Dilly',
-        titleDescription: 'Cards  Marketplace',
+        titleDescription: 'Due Dilly | Marketplace',
     },
 };
 
