@@ -3,13 +3,14 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { login } from '../../../store/auth/action';
 
-import { Form, Input, notification } from 'antd';
+import { Form, Input, notification, Row, Spin } from 'antd';
 import { connect } from 'react-redux';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.ref = React.createRef();
     }
 
     static getDerivedStateFromProps(props) {
@@ -28,8 +29,14 @@ class Login extends Component {
         });
     }
 
+    handleLoading = () => {
+        this.setState({ loading: false });
+    };
+
     handleLoginSubmit = (values) => {
-        this.props.dispatch(login(values));
+        this.setState({ loading: true });
+        this.props.dispatch(login(values, this.handleLoading));
+        this.ref.current.resetFields();
     };
 
     render() {
@@ -37,6 +44,7 @@ class Login extends Component {
             <div className="ps-my-account">
                 <div className="container">
                     <Form
+                        ref={this.ref}
                         className="ps-form--account"
                         onFinish={this.handleLoginSubmit}>
                         <ul className="ps-tab-list">
@@ -102,11 +110,17 @@ class Login extends Component {
                                     </div>
                                 </div>
                                 <div className="form-group submit">
-                                    <button
-                                        type="submit"
-                                        className="ps-btn ps-btn--fullwidth">
-                                        Login
-                                    </button>
+                                    {this.state.loading ? (
+                                        <Row align="middle" justify="center">
+                                            <Spin></Spin>
+                                        </Row>
+                                    ) : (
+                                        <button
+                                            type="submit"
+                                            className="ps-btn ps-btn--fullwidth">
+                                            Login
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                             {/* <div className="ps-form__footer">

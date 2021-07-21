@@ -10,17 +10,22 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.ref = React.createRef();
     }
 
     onFinish = (values) => {
         this.props.dispatch(register(values));
+        this.ref.current.resetFields();
     };
 
     render() {
         return (
             <div className="ps-my-account">
                 <div className="container">
-                    <Form className="ps-form--account" onFinish={this.onFinish}>
+                    <Form
+                        ref={this.ref}
+                        className="ps-form--account"
+                        onFinish={this.onFinish}>
                         <ul className="ps-tab-list">
                             <li>
                                 <Link href="/account/login">

@@ -1,5 +1,13 @@
 import AuthService from '~/repositories/AuthenticationRespository';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import {
+    all,
+    call,
+    put,
+    takeEvery,
+    takeLatest,
+    cancel,
+    cancelled,
+} from 'redux-saga/effects';
 import { notification } from 'antd';
 import actionTypes from './actionTypes';
 import { loginSuccess, logOutSuccess } from './action';
@@ -40,6 +48,8 @@ function* signUpSaga(action) {
             description: err + '',
         });
         throw err;
+    } finally {
+        yield cancel();
     }
 }
 
@@ -57,12 +67,15 @@ function* loginSaga(action) {
 
         Router.replace('/');
     } catch (error) {
+        if (action && action.callback) action.callback();
         notification.error({
             message: 'Failed',
             description: error + '',
         });
 
         throw error;
+    } finally {
+        yield cancel();
     }
 }
 
@@ -78,7 +91,7 @@ function* logOutSaga() {
 }
 
 export default function* rootSaga() {
-    yield all([takeLatest(actionTypes.SIGNUP_REQUEST, signUpSaga)]);
-    yield all([takeLatest(actionTypes.LOGIN_REQUEST, loginSaga)]);
-    yield all([takeLatest(actionTypes.LOGOUT, logOutSaga)]);
+    yield all([takeEvery(actionTypes.SIGNUP_REQUEST, signUpSaga)]);
+    yield all([takeEvery(actionTypes.LOGIN_REQUEST, loginSaga)]);
+    yield all([takeEvery(actionTypes.LOGOUT, logOutSaga)]);
 }

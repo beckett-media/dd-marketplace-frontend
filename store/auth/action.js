@@ -1,8 +1,8 @@
 import actionTypes from './actionTypes';
 
-export function login(payload) {
+export function login(payload, callback) {
     console.log('payload:login ', payload);
-    return { type: actionTypes.LOGIN_REQUEST, payload };
+    return { type: actionTypes.LOGIN_REQUEST, payload, callback };
 }
 export function register(payload) {
     return { type: actionTypes.SIGNUP_REQUEST, payload };
