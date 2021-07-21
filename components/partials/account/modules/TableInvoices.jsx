@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Divider, Tag } from 'antd';
 import Link from 'next/link';
+const dayjs = require('dayjs');
 
 class TableInvoices extends Component {
     render() {
@@ -27,7 +28,7 @@ class TableInvoices extends Component {
                 dataIndex: 'listing.title',
                 rowKey: 'title',
                 key: 'title',
-                render: (text, record) => record.listing.title,
+                render: (text, record) => record?.listing?.title || '',
             },
             {
                 title: 'Date',
@@ -35,7 +36,8 @@ class TableInvoices extends Component {
                 dataIndex: 'dateCreate',
                 key: 'dateCreate',
                 width: '120px',
-                render: (text, record) => record.createdAt,
+                render: (text, record) =>
+                    dayjs(record.createdAt).format('DD-MMM-YYYY'),
             },
 
             {
