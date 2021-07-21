@@ -130,7 +130,9 @@ class Invoices extends Component {
                                             <li>
                                                 <a
                                                     onClick={() =>
-                                                        props.dispatch(logOut())
+                                                        this.props.dispatch(
+                                                            logOut()
+                                                        )
                                                     }>
                                                     <i className="icon-power-switch"></i>
                                                     Logout

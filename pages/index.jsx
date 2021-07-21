@@ -42,7 +42,7 @@ const HomepageDefaultPage = () => {
     };
 
     return (
-        <ContainerHomeDefault title="Multipurpose Marketplace React Ecommerce Template">
+        <ContainerHomeDefault title="Revolutionizing how the world buys and sells sports cards">
             <HomeDefaultBanner />
             {/* <SiteFeatures /> */}
             {/* <HomeDefaultDealOfDay collectionSlug="deal-of-the-day" /> */}
