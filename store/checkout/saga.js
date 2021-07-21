@@ -106,7 +106,7 @@ function* handleCheckoutComplete({ token }) {
             customerId: '',
             isCardSave: true,
         });
-        Router.replace('/');
+        Router.replace('/account/invoices');
 
         notification.success({
             message: 'Success!!',
