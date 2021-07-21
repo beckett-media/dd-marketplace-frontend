@@ -132,7 +132,7 @@ export function StrapiProductThumbnail(product) {
 
     if (product.thumbnail || image) {
         view = (
-            <Link href="/product/[pid]" as={`/product/${product.id}`}>
+            <Link href="/product/[pid]" as={`/product/${product._id}`}>
                 <a>
                     <LazyLoad>
                         <img
@@ -145,7 +145,7 @@ export function StrapiProductThumbnail(product) {
         );
     } else {
         view = (
-            <Link href="/product/[pid]" as={`/product/${product.id}`}>
+            <Link href="/product/[pid]" as={`/product/${product._id}`}>
                 <a>
                     <LazyLoad>
                         <img src="/static/img/not-found.jpg" alt="martfury" />
