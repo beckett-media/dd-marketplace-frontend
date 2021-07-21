@@ -90,7 +90,7 @@ function* addItemSaga(payload) {
     } catch (err) {
         notification.error({
             message: 'Failed!',
-            description: 'Something went wrong',
+            description: err + '',
         });
         yield put(getCartError(err));
     }

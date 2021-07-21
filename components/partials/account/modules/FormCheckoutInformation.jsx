@@ -94,7 +94,7 @@ class FormCheckoutInformation extends Component {
                                                   address
                                               )
                                           }>
-                                          make default
+                                          Set default
                                       </Radio>
                                   </div>
                                   <div className="col-sm-6">
