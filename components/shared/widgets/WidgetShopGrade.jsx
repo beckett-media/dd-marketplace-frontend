@@ -78,7 +78,10 @@ export const WidgetShopGradesNew = () => {
     useEffect(() => {
         if (grades.length) {
             const id = grades[0]._id;
-            Router.replace('/shop', '/shop?gradeId=' + id, { shallow: true });
+
+            Router.replace('/shop', '/shop?gradeId=' + 'GradeRaw' || id, {
+                shallow: true,
+            });
             dispatch(getListingsByGrade(id));
         }
     }, [grades.length]);

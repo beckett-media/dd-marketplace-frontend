@@ -21,7 +21,7 @@ const ProductDetailSidebar = ({ product }) => (
                 />
                 <ModuleProductDetailSpecification product={product} />
                 <ModuleProductDetailSharing />
-                <ModuleDetailActionsMobile />
+                <ModuleDetailActionsMobile product={product} />
             </div>
         </div>
         <DefaultDescription />

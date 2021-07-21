@@ -7,7 +7,7 @@ const ModuleDetailActionsMobile = ({ product }) => {
     const handleAddItemToCart = (e) => {
         e.preventDefault();
         let tmp = product;
-        tmp.quantity = 1;
+        // tmp.quantity = 1;
         dispatch(addItem(tmp));
     };
     return (

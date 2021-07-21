@@ -19,7 +19,7 @@ const ProductDetailBox = ({ product }) => (
                 <ModuleDetailShoppingActions product={product} />
                 <ModuleProductDetailSpecification product={product} />
                 <ModuleProductDetailSharing />
-                <ModuleDetailActionsMobile />
+                <ModuleDetailActionsMobile product={product} />
             </div>
         </div>
         <div className="ps-product__content">

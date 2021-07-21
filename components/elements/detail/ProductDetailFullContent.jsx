@@ -33,7 +33,7 @@ const ProductDetailFullContent = ({ product }) => {
                                 product={product}
                             />
                             <ModuleProductDetailSharing />
-                            <ModuleDetailActionsMobile />
+                            <ModuleDetailActionsMobile product={product} />
                         </div>
                     </div>
                     <div className="ps-product__price-right">

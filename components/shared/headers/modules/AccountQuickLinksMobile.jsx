@@ -14,6 +14,8 @@ class AccountQuickLinks extends Component {
     };
 
     render() {
+        console.log('MOBILE');
+
         const accountLinks = [
             {
                 text: 'Account Information',
@@ -51,16 +53,14 @@ class AccountQuickLinks extends Component {
                 ))}
 
                 <Menu.Item>
-                    <a href="#" onClick={this.handleLogout.bind(this)}>
-                        Logout
-                    </a>
+                    <a onClick={this.handleLogout.bind(this)}>Logout</a>
                 </Menu.Item>
             </Menu>
         );
 
         return (
-            <Dropdown overlay={menu} placement="bottomLeft">
-                <a href="#" className="header__extra ps-user--mobile">
+            <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']}>
+                <a className="header__extra ps-user--mobile">
                     <i className="icon-user"></i>
                 </a>
             </Dropdown>

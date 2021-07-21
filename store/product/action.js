@@ -40,6 +40,7 @@ export function getListingByProductSuccess(payload, loading) {
 }
 
 export function getListingsByGrade(value) {
+    console.log('value:getListingsByGrade ', value);
     return { type: actionTypes.GET_LISTING_BY_GRADE, value };
 }
 

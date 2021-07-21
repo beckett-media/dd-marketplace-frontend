@@ -31,7 +31,7 @@ const ProductDetailVariants = ({ product }) => {
                                 product={product}
                             />
                             <ModuleProductDetailSharing />
-                            <ModuleDetailActionsMobile />
+                            <ModuleDetailActionsMobile product={product} />
                         </div>
                     </div>
                     <DefaultDescription />

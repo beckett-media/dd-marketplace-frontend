@@ -13,10 +13,10 @@ class HeaderMobile extends Component {
         return (
             <header className="header header--mobile">
                 <div className="header__top">
-                    <div className="header__left">
+                    {/* <div className="header__left">
                         <p>Welcome to Martfury Online Shopping Store !</p>
-                    </div>
-                    <div className="header__right">
+                    </div> */}
+                    {/* <div className="header__right">
                         <ul className="navigation__extra">
                             <li>
                                 <Link href="/vendor/become-a-vendor">
@@ -35,14 +35,15 @@ class HeaderMobile extends Component {
                                 <LanguageSwicher />
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="navigation--mobile">
                     <div className="navigation__left">
                         <Link href="/">
                             <a className="ps-logo">
                                 <img
-                                    src="/static/img/logo_light.png"
+                                    style={{ width: 50, height: 25 }}
+                                    src="/static/img/logo.png"
                                     alt="martfury"
                                 />
                             </a>
@@ -50,7 +51,7 @@ class HeaderMobile extends Component {
                     </div>
                     <MobileHeaderActions />
                 </div>
-                <div className="ps-search--mobile">
+                {/* <div className="ps-search--mobile">
                     <form
                         className="ps-form--search-mobile"
                         action="/"
@@ -66,7 +67,7 @@ class HeaderMobile extends Component {
                             </button>
                         </div>
                     </form>
-                </div>
+                </div> */}
             </header>
         );
     }

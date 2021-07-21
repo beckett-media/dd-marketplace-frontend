@@ -13,6 +13,13 @@ import WidgetShopGrade, {
 import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListings, getListingsLoading } from '~/store/product/selectors';
+import { Row, Select } from 'antd';
+import { getMarketPlaceData } from '~/store/home/selector';
+import {
+    getListingsByGrade,
+    getListingsByProducts,
+} from '~/store/product/action';
+import Router from 'next/router';
 
 const ShopDefaultPage = () => {
     const productItems = useSelector(getListings);
@@ -36,12 +43,14 @@ const ShopDefaultPage = () => {
                     <ShopBanner />
                     {/* <ShopBrands />
                     <ShopCategories /> */}
+
                     <div className="ps-layout--shop">
                         <div className="ps-layout__left">
                             <WidgetShopCategories />
                             <WidgetShopGradesNew />
                             {/* <WidgetShopFilterByPriceRange /> */}
                         </div>
+
                         <div className="ps-layout__right">
                             {/* <ProductGroupByCarousel
                                 collectionSlug="shop-best-seller-items"
@@ -54,6 +63,9 @@ const ShopDefaultPage = () => {
                                 collectionSlug="shop-recommend-items"
                                 title="Recommended Items"
                             /> */}
+
+                            <MobileFilter />
+
                             <ShopItems
                                 productItems={productItems}
                                 loading={loading}
@@ -68,3 +80,57 @@ const ShopDefaultPage = () => {
     );
 };
 export default ShopDefaultPage;
+
+const MobileFilter = () => {
+    const dispatch = useDispatch();
+    const { products = [], grades = [] } = useSelector(getMarketPlaceData);
+
+    const onChange = (id) => {
+        if (grades.includes(id)) {
+            dispatch(getListingsByGrade(id));
+            Router.replace('/shop', '/shop?gradeId=' + id, {
+                shallow: true,
+            });
+        } else {
+            Router.replace('/shop', '/shop?productId=' + id, { shallow: true });
+            dispatch(getListingsByProducts(id));
+        }
+    };
+
+    return (
+        <div className="ps-layout__left_mobile" style={{ marginTop: 10 }}>
+            <Row align="stretch">
+                <Selector
+                    onChange={onChange}
+                    options={[...products, ...grades]}
+                />
+            </Row>
+        </div>
+    );
+};
+
+const { Option } = Select;
+
+const Selector = (props) => {
+    const { options = [], value, onChange } = props;
+
+    return (
+        <Select
+            style={{ width: '100%' }}
+            value={value}
+            placeholder="Select a Type"
+            allowClear
+            onChange={onChange}>
+            <Option disabled value="">
+                Choose
+            </Option>
+            {options && options.length
+                ? options.map(({ _id, name }) => (
+                      <Option key={_id} value={_id}>
+                          {name}
+                      </Option>
+                  ))
+                : null}
+        </Select>
+    );
+};

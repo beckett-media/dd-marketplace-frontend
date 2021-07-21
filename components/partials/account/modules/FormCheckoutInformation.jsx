@@ -86,7 +86,7 @@ class FormCheckoutInformation extends Component {
                                       marginBottom: 10,
                                       padding: 10,
                                   }}>
-                                  <div className="col-sm-4">
+                                  <div className="col-sm-4 d-flex justify-content-center">
                                       <Radio
                                           checked={address.isDefaultAddress}
                                           onChange={() =>
@@ -97,10 +97,10 @@ class FormCheckoutInformation extends Component {
                                           Set default
                                       </Radio>
                                   </div>
-                                  <div className="col-sm-6">
+                                  <div className="col-sm-6 d-flex justify-content-center">
                                       {address.fullName}
                                   </div>
-                                  <div className="col-sm-2">
+                                  <div className="col-sm-2 d-flex justify-content-center">
                                       <span
                                           style={{ cursor: 'pointer' }}
                                           onClick={() =>

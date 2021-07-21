@@ -35,7 +35,6 @@ const HeaderMobileProduct = () => {
                     <Link href="/shop">
                         <a href="/" className="header__back">
                             <i className="icon-chevron-left"></i>
-                            <strong>Back to previous</strong>
                         </a>
                     </Link>
                 </div>
