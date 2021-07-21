@@ -41,10 +41,12 @@ class FormCheckoutInformation extends Component {
         const isAddressAvailable = Boolean(address && address.length);
         if (!isAddressAvailable) values.isDefaultAddress = true;
 
-        this.props.dispatch(saveAddressRequest(values, isEdit));
-        this.formRef.current.resetFields();
-        this.setState({ newAddress: false });
-        this.onNextButtonClick();
+        this.props.dispatch(
+            saveAddressRequest(values, isEdit, () => {
+                this.formRef.current.resetFields();
+                this.setState({ newAddress: false });
+            })
+        );
     };
 
     onDefaultAddressChange = (address) => {
@@ -52,10 +54,15 @@ class FormCheckoutInformation extends Component {
     };
 
     onAddressEdit = (address) => {
-        this.setState({ edit: true });
+        this.setState({ edit: true, newAddress: true });
         this.formRef.current.setFieldsValue({
             ...address,
         });
+    };
+
+    handleOnNewAddressClose = (event) => {
+        event.preventDefault();
+        this.setState({ newAddress: false });
     };
 
     onNextButtonClick = () => {
@@ -90,27 +97,32 @@ class FormCheckoutInformation extends Component {
                                       marginBottom: 10,
                                       padding: 10,
                                   }}>
-                                  <div className="col-sm-4">
+                                  <div className="col-sm-8 d-flex">
                                       <Radio
                                           checked={
                                               this.state.newAddress
                                                   ? false
                                                   : address.isDefaultAddress
-                                          }
-                                          onChange={() =>
+                                          }></Radio>
+                                      {address.streetAddress || ''},{' '}
+                                      {address.state || ''},{address.city || ''}
+                                  </div>
+                                  <div className="col-sm-4 d-flex justify-content-end">
+                                      <span
+                                          style={{ cursor: 'pointer' }}
+                                          onClick={() =>
                                               this.onDefaultAddressChange(
                                                   address
                                               )
                                           }>
                                           Set default
-                                      </Radio>
-                                  </div>
-                                  <div className="col-sm-6 d-flex justify-content-center">
-                                      {address.fullName}
-                                  </div>
-                                  <div className="col-sm-2 d-flex justify-content-center">
+                                      </span>
+
                                       <span
-                                          style={{ cursor: 'pointer' }}
+                                          style={{
+                                              cursor: 'pointer',
+                                              marginLeft: 10,
+                                          }}
                                           onClick={() =>
                                               this.onAddressEdit(address)
                                           }>
@@ -364,21 +376,21 @@ class FormCheckoutInformation extends Component {
                             Return to shopping cart
                         </a>
                     </Link>
+
                     <div className="ps-block__footer">
+                        {this.state.newAddress && (
+                            <button
+                                style={{
+                                    marginRight: 5,
+                                }}
+                                onClick={this.handleOnNewAddressClose}
+                                className="ps-btn ps-btn--gray ">
+                                Close
+                            </button>
+                        )}
                         <button type="submit" className="ps-btn">
                             Next
                         </button>
-                        {/* {isAddressAvailable && (
-                            <button
-                                disabled={!isAddressAvailable}
-                                style={{
-                                    marginLeft: 5,
-                                }}
-                                onClick={this.onNextButtonClick}
-                                className="ps-btn">
-                                Next
-                            </button>
-                        )} */}
                     </div>
                 </div>
             </Form>

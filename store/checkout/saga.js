@@ -12,7 +12,7 @@ import { getDefaultAddress } from './selectors';
 import Router from 'next/router';
 import { RESET_AFTER_CHECKOUT } from '../globalTypes';
 
-function* addAddress({ address, isEdit }) {
+function* addAddress({ address, isEdit, callback }) {
     try {
         let request;
         if (isEdit) {
@@ -30,6 +30,8 @@ function* addAddress({ address, isEdit }) {
             description: `The Address has been ${isEdit ? 'updated' : 'saved'}`,
             duration: 15,
         });
+        if (callback) callback();
+        if (!isEdit) Router.push('/account/payment');
     } catch (error) {
         notification.error({
             message: 'Failed',

@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 
-export function saveAddressRequest(address, isEdit) {
-    return { type: actionTypes.ADD_ADDRESS_REQUEST, address, isEdit };
+export function saveAddressRequest(address, isEdit, callback) {
+    return { type: actionTypes.ADD_ADDRESS_REQUEST, address, isEdit, callback };
 }
 
 export function getSavedAddressRequest() {
