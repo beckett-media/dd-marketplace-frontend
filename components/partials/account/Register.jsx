@@ -95,7 +95,7 @@ class Register extends Component {
                                     </button>
                                 </div>
                             </div>
-                            <div className="ps-form__footer">
+                            {/* <div className="ps-form__footer">
                                 <p>Connect with:</p>
                                 <ul className="ps-list--social">
                                     <li>
@@ -119,7 +119,7 @@ class Register extends Component {
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                     </Form>
                 </div>
