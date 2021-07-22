@@ -35,10 +35,14 @@ class FormCheckoutInformation extends Component {
     }
 
     handleLoginSubmit = (values) => {
-        if (!this.state.newAddress) return this.onNextButtonClick();
-        const isEdit = Boolean(values._id);
         const { address } = this.props;
         const isAddressAvailable = Boolean(address && address.length);
+
+        if (!this.state.newAddress && isAddressAvailable) {
+            return this.onNextButtonClick();
+        }
+        const isEdit = Boolean(values._id);
+
         if (!isAddressAvailable) values.isDefaultAddress = true;
 
         this.props.dispatch(
@@ -50,6 +54,7 @@ class FormCheckoutInformation extends Component {
     };
 
     onDefaultAddressChange = (address) => {
+        this.setState({ newAddress: false });
         this.props.dispatch(setDefaultAddressRequest(address._id));
     };
 
@@ -87,92 +92,97 @@ class FormCheckoutInformation extends Component {
                     <h3 className="ps-form__heading">Saved Address</h3>
                 ) : null}
 
-                <div className="ps-block--checkout-order">
-                    {address && address.length
-                        ? address.map((address) => (
-                              <div
-                                  className="row"
-                                  style={{
-                                      border: '1px solid',
-                                      marginBottom: 10,
-                                      padding: 10,
-                                  }}>
-                                  <div className="col-sm-8 d-flex">
-                                      <Radio
-                                          checked={
-                                              this.state.newAddress
-                                                  ? false
-                                                  : address.isDefaultAddress
-                                          }></Radio>
-                                      {address.streetAddress || ''},{' '}
-                                      {address.state || ''},{address.city || ''}
-                                  </div>
-                                  <div className="col-sm-4 d-flex justify-content-end">
-                                      <span
-                                          style={{ cursor: 'pointer' }}
-                                          onClick={() =>
-                                              this.onDefaultAddressChange(
-                                                  address
-                                              )
-                                          }>
-                                          Set default
-                                      </span>
+                {!isAddressAvailable ? null : (
+                    <div className="ps-block--checkout-order">
+                        {address && address.length
+                            ? address.map((address) => (
+                                  <div
+                                      className="row"
+                                      style={{
+                                          border: '1px solid',
+                                          marginBottom: 10,
+                                          padding: 10,
+                                      }}>
+                                      <div className="col-sm-8 d-flex">
+                                          <Radio
+                                              checked={
+                                                  this.state.newAddress
+                                                      ? false
+                                                      : address.isDefaultAddress
+                                              }></Radio>
+                                          {address.streetAddress || ''},{' '}
+                                          {address.state || ''},
+                                          {address.city || ''}
+                                      </div>
+                                      <div className="col-sm-4 d-flex justify-content-end">
+                                          <span
+                                              style={{ cursor: 'pointer' }}
+                                              onClick={() =>
+                                                  this.onDefaultAddressChange(
+                                                      address
+                                                  )
+                                              }>
+                                              Set default
+                                          </span>
 
-                                      <span
-                                          style={{
-                                              cursor: 'pointer',
-                                              marginLeft: 10,
-                                          }}
-                                          onClick={() =>
-                                              this.onAddressEdit(address)
-                                          }>
-                                          <i className="icon-pencil mr-2"></i>
-                                          Edit
-                                      </span>
-                                      <Popconfirm
-                                          title="Are you sure to delete this address?"
-                                          onConfirm={() =>
-                                              this.deleteConfirm(address._id)
-                                          }
-                                          okText="Yes"
-                                          cancelText="No">
                                           <span
                                               style={{
-                                                  marginLeft: 5,
                                                   cursor: 'pointer',
-                                              }}>
-                                              <i className="icon-trash2 mr-2"></i>
-                                              Delete
+                                                  marginLeft: 10,
+                                              }}
+                                              onClick={() =>
+                                                  this.onAddressEdit(address)
+                                              }>
+                                              <i className="icon-pencil mr-2"></i>
+                                              Edit
                                           </span>
-                                      </Popconfirm>
+                                          <Popconfirm
+                                              title="Are you sure to delete this address?"
+                                              onConfirm={() =>
+                                                  this.deleteConfirm(
+                                                      address._id
+                                                  )
+                                              }
+                                              okText="Yes"
+                                              cancelText="No">
+                                              <span
+                                                  style={{
+                                                      marginLeft: 5,
+                                                      cursor: 'pointer',
+                                                  }}>
+                                                  <i className="icon-trash2 mr-2"></i>
+                                                  Delete
+                                              </span>
+                                          </Popconfirm>
+                                      </div>
                                   </div>
-                              </div>
-                          ))
-                        : null}
-                    <div
-                        className="row"
-                        style={{
-                            border: '1px solid',
-                            marginBottom: 10,
-                            padding: 10,
-                        }}>
-                        <div className="col-sm-4">
-                            <Radio
-                                checked={this.state.newAddress}
-                                onClick={() => {
-                                    this.setState((prev) => ({
-                                        newAddress: !prev.newAddress,
-                                    }));
+                              ))
+                            : null}
+                        <div
+                            className="row"
+                            style={{
+                                border: '1px solid',
+                                marginBottom: 10,
+                                padding: 10,
+                            }}>
+                            <div className="col-sm-4">
+                                <Radio
+                                    checked={this.state.newAddress}
+                                    onClick={() => {
+                                        this.setState((prev) => ({
+                                            newAddress: !prev.newAddress,
+                                        }));
 
-                                    this.formRef.current.setFieldsValue({
-                                        isDefaultAddress: true,
-                                    });
-                                }}>
-                                Other
-                            </Radio>
+                                        this.formRef.current.setFieldsValue({
+                                            isDefaultAddress: true,
+                                        });
+                                    }}>
+                                    Other
+                                </Radio>
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
 
                 {/* <div className="form-group">
                     <div className="ps-checkbox">
@@ -186,7 +196,7 @@ class FormCheckoutInformation extends Component {
                         </label>
                     </div>
                 </div> */}
-                {this.state.newAddress && (
+                {(this.state.newAddress || !isAddressAvailable) && (
                     <>
                         <h3 className="ps-form__heading">Shipping address</h3>
                         <div className="row">
@@ -354,18 +364,20 @@ class FormCheckoutInformation extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="form-group">
-                            <Form.Item
-                                valuePropName="checked"
-                                name="isDefaultAddress"
-                                rules={[
-                                    {
-                                        required: false,
-                                    },
-                                ]}>
-                                <Checkbox>Make default Address</Checkbox>
-                            </Form.Item>
-                        </div>
+                        {isAddressAvailable ? (
+                            <div className="form-group">
+                                <Form.Item
+                                    valuePropName="checked"
+                                    name="isDefaultAddress"
+                                    rules={[
+                                        {
+                                            required: false,
+                                        },
+                                    ]}>
+                                    <Checkbox>Make default Address</Checkbox>
+                                </Form.Item>
+                            </div>
+                        ) : null}
                     </>
                 )}
 
