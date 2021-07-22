@@ -11,7 +11,7 @@ const RegisterPage = () => {
             url: '/',
         },
         {
-            text: 'Register an account',
+            text: 'Register',
         },
     ];
 

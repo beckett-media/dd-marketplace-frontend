@@ -40,7 +40,6 @@ class Register extends Component {
                         </ul>
                         <div className="ps-tab active" id="register">
                             <div className="ps-form__content">
-                                <h5>Register An Account</h5>
                                 <div className="form-group">
                                     <Form.Item
                                         name="fullName"

@@ -61,7 +61,6 @@ class Login extends Component {
                         </ul>
                         <div className="ps-tab active" id="sign-in">
                             <div className="ps-form__content">
-                                <h5>Log In Your Account</h5>
                                 <div className="form-group">
                                     <Form.Item
                                         name="email"
@@ -96,7 +95,7 @@ class Login extends Component {
                                         />
                                     </Form.Item>
                                 </div>
-                             
+
                                 <div className="form-group submit">
                                     {this.state.loading ? (
                                         <Row align="middle" justify="center">
