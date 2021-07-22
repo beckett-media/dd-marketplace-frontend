@@ -118,11 +118,15 @@ class FormCheckoutInformation extends Component {
                                           <span
                                               style={{ cursor: 'pointer' }}
                                               onClick={() =>
-                                                  this.onDefaultAddressChange(
-                                                      address
-                                                  )
+                                                  address.isDefaultAddress
+                                                      ? null
+                                                      : this.onDefaultAddressChange(
+                                                            address
+                                                        )
                                               }>
-                                              Set default
+                                              {address.isDefaultAddress
+                                                  ? 'Default'
+                                                  : 'Set default'}
                                           </span>
 
                                           <span
