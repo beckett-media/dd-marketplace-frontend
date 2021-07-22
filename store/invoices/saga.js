@@ -6,10 +6,8 @@ const log = console.log;
 
 function* getInvoices() {
     try {
-        const { data: { data: { orders = [] } = {} } = {} } = yield call(
-            InvoicesRepository.getInvoices
-        );
-        yield put(getInvoicesSuccess(orders));
+        const data = yield call(InvoicesRepository.getInvoices);
+        yield put(getInvoicesSuccess(data.data));
     } catch (error) {
         log(error, '[getInvoices]');
     }
