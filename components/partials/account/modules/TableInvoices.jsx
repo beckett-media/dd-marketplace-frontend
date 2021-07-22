@@ -19,9 +19,7 @@ class TableInvoices extends Component {
                 rowKey: 'id',
                 key: 'invoiceId',
                 width: '120px',
-                render: (text, record) => (
-                    <Link href="/account/invoice-detail">{record._id}</Link>
-                ),
+                render: (text, record) => record._id,
             },
             {
                 title: 'Title',
