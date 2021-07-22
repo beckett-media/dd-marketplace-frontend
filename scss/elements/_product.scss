@@ -135,14 +135,14 @@
         padding: 0 0 5px;
         font-size: 14px;
         line-height: 1.2em;
-        color: #06c;
+        color: $color-1st;
         --max-lines: 2;
         max-height: calc(1.2em * var(--max-lines));
         overflow: hidden;
         padding-right: 1rem;
 
         &:hover {
-            color: $color-1st;
+            color: $color-hover;
         }
     }
 
@@ -282,9 +282,9 @@
     display: flex;
     padding: 0;
     flex-flow: row nowrap;
-    border: 1px solid transparent;
-    border-bottom: 1px solid #f0f0f0;
-
+    border: 1px solid #f5f5f5;
+    margin-right: 20px;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2) !important;
     > * {
         width: 100%;
     }
@@ -368,8 +368,8 @@
     }
 
     .ps-product__thumbnail {
-        min-width: 210px;
-        flex-basis: 210px;
+        min-width: 150px;
+        flex-basis: 150px;
     }
 
     .ps-product__container {
@@ -422,13 +422,22 @@
         }
     }
 }
+.ps-product__meta {
+    display: flex;
+    flex-direction: row;
+    > div {
+        margin-right: 15px;
+    }
+}
 
 .ps-product--horizontal {
-    display: flex;
-    flex-flow: row nowrap;
     margin-bottom: 30px;
-    padding-right: 15px;
-
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #f5f5f5;
+    margin-right: 20px;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2) !important;
     .ps-product__rating {
         .ps-rating {
             margin-right: 0.5em;
@@ -465,7 +474,9 @@
     }
 
     .ps-product__thumbnail {
-        max-width: 100px;
+        margin: 10px auto;
+        height: 325px;
+        overflow: hidden;
         width: 100%;
     }
 
@@ -516,7 +527,7 @@
 
         a {
             font-size: 16px;
-            color: #0066cc;
+            color: $color-hover;
 
             &:hover {
                 color: $color-1st;
@@ -2140,9 +2151,9 @@
             content: '';
             @include max-area();
             @include linear-gradient(
-                            to bottom,
-                            rgba(#000, 0.05) 0%,
-                            rgba(#000, 0.9)
+                to bottom,
+                rgba(#000, 0.05) 0%,
+                rgba(#000, 0.9)
             );
             transition: all 0.4s ease;
             @include hidden;

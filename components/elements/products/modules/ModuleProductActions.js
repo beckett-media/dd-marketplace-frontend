@@ -82,7 +82,6 @@ const ModuleProductActions = ({ product }) => {
                 onCancel={(e) => handleHideQuickView(e)}
                 visible={isQuickView}
                 closeIcon={<i className="icon icon-cross2"></i>}>
-                <h3>Quickview</h3>
                 <ProductDetailQuickView product={product} />
             </Modal>
         </ul>

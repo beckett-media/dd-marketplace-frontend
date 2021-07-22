@@ -202,6 +202,9 @@
                 &:first-child {
                     text-align: left;
                 }
+                &.price {
+                    text-align: right;
+                }
             }
         }
     }
@@ -220,6 +223,9 @@
                     input {
                         border-radius: 0;
                     }
+                }
+                &.price {
+                    text-align: right;
                 }
 
                 .ps-product--cart {

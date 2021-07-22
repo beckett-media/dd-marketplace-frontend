@@ -41,7 +41,7 @@ class Payment extends Component {
             year.push(i);
         }
 
-        const { userInfo = {}, defaultAddress = {} } = this.props;
+        const { userInfo = {}, defaultAddress = {}, cart } = this.props;
 
         return (
             <div className="ps-checkout ps-section--shopping">
@@ -105,6 +105,7 @@ class Payment extends Component {
                                         </div> */}
                                         <div className="ps-block__content">
                                             <CheckoutForm
+                                                amount={cart.amount}
                                                 handleCheckout={
                                                     this.handleCheckout
                                                 }
@@ -252,6 +253,7 @@ const connectStateToProps = (state) => {
         userInfo: getUserInfo(state),
         defaultAddress: getDefaultAddress(state),
         isCheckoutLoading: getCheckoutLoading(state),
+        cart: state.cart,
     };
 };
 
@@ -268,57 +270,73 @@ const StripeHoc = (WrappedComponent) => (props) => {
     );
 };
 
-const CheckoutForm = StripeHoc(({ handleCheckout, isCheckoutLoading }) => {
-    const stripe = useStripe();
-    const elements = useElements();
+const CheckoutForm = StripeHoc(
+    ({ handleCheckout, isCheckoutLoading, amount }) => {
+        const stripe = useStripe();
+        const elements = useElements();
 
-    const handleSubmit = async (event) => {
-        // Block native form submission.
-        event.preventDefault();
+        const handleSubmit = async (event) => {
+            // Block native form submission.
+            event.preventDefault();
 
-        if (!stripe || !elements) {
-            // Stripe.js has not loaded yet. Make sure to disable
-            // form submission until Stripe.js has loaded.
-            return;
-        }
+            if (!stripe || !elements) {
+                // Stripe.js has not loaded yet. Make sure to disable
+                // form submission until Stripe.js has loaded.
+                return;
+            }
 
-        // Get a reference to a mounted CardElement. Elements knows how
-        // to find your CardElement because there can only ever be one of
-        // each type of element.
-        const cardElement = elements.getElement(CardElement);
+            // Get a reference to a mounted CardElement. Elements knows how
+            // to find your CardElement because there can only ever be one of
+            // each type of element.
+            const cardElement = elements.getElement(CardElement);
 
-        // Use your card Element with other Stripe.js APIs
-        const { error, token } = await stripe.createToken(cardElement);
+            // Use your card Element with other Stripe.js APIs
+            const { error, token } = await stripe.createToken(cardElement);
 
-        if (error) {
-            notification.error({
-                message: 'Validation failed',
-                description: error.message,
-            });
-        } else {
-            handleCheckout(token.id);
-        }
-    };
+            if (error) {
+                notification.error({
+                    message: 'Validation failed',
+                    description: error.message,
+                });
+            } else {
+                handleCheckout(token.id);
+            }
+        };
 
-    return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <CardElement />
-                </div>
+        return (
+            <>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <CardElement
+                            options={{
+                                hidePostalCode: true,
+                                style: {
+                                    base: {
+                                        fontSize: '16px',
+                                        border: '1px solid red',
+                                        color: '#424770',
+                                        '::placeholder': {
+                                            color: '#aab7c4',
+                                        },
+                                    },
+                                },
+                            }}
+                        />
+                    </div>
 
-                <div className="form-group">
-                    {isCheckoutLoading ? (
-                        <Row align="middle" justify="center">
-                            <Spin size="large"></Spin>
-                        </Row>
-                    ) : (
-                        <button className="ps-btn ps-btn--fullwidth">
-                            Submit
-                        </button>
-                    )}
-                </div>
-            </form>
-        </>
-    );
-});
+                    <div>
+                        {isCheckoutLoading ? (
+                            <Row align="middle" justify="center">
+                                <Spin size="large"></Spin>
+                            </Row>
+                        ) : (
+                            <button className="ps-btn ps-btn--fullwidth">
+                                Pay ${amount}
+                            </button>
+                        )}
+                    </div>
+                </form>
+            </>
+        );
+    }
+);

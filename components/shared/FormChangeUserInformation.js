@@ -26,7 +26,7 @@ const FormChangeUserInformation = (props) => {
             className="ps-form--account-setting"
             layout="vertical">
             <div className="ps-form__header">
-                <h3>Account Information</h3>
+                <h3>My Profile</h3>
             </div>
             <div className="ps-form__content">
                 <Row align="middle" justify="center">

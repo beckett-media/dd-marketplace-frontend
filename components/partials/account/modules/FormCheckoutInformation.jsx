@@ -394,16 +394,6 @@ class FormCheckoutInformation extends Component {
                     </Link>
 
                     <div className="ps-block__footer">
-                        {this.state.newAddress && (
-                            <button
-                                style={{
-                                    marginRight: 5,
-                                }}
-                                onClick={this.handleOnNewAddressClose}
-                                className="ps-btn ps-btn--gray ">
-                                Close
-                            </button>
-                        )}
                         <button type="submit" className="ps-btn">
                             Next
                         </button>

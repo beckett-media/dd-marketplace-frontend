@@ -48,7 +48,6 @@ const WidgetShopCategories = () => {
                             ? {
                                   backgroundColor: '#37c4ce',
                                   color: '#000',
-                                  padding: 10,
                               }
                             : {}),
 

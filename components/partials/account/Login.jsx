@@ -61,7 +61,6 @@ class Login extends Component {
                         </ul>
                         <div className="ps-tab active" id="sign-in">
                             <div className="ps-form__content">
-                                <h5>Log In Your Account</h5>
                                 <div className="form-group">
                                     <Form.Item
                                         name="email"
@@ -96,19 +95,7 @@ class Login extends Component {
                                         />
                                     </Form.Item>
                                 </div>
-                                <div className="form-group">
-                                    <div className="ps-checkbox">
-                                        <input
-                                            className="form-control"
-                                            type="checkbox"
-                                            id="remember-me"
-                                            name="remember-me"
-                                        />
-                                        <label htmlFor="remember-me">
-                                            Rememeber me
-                                        </label>
-                                    </div>
-                                </div>
+
                                 <div className="form-group submit">
                                     {this.state.loading ? (
                                         <Row align="middle" justify="center">

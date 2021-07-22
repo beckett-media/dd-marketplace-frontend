@@ -51,9 +51,9 @@ class ShoppingCart extends Component {
                                 <thead>
                                     <tr>
                                         <th>Product</th>
-                                        <th>Price</th>
+                                        <th className="price">Price</th>
                                         {/* <th>Quantity</th> */}
-                                        <th>Total</th>
+                                        <th className="price">Total</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -128,7 +128,7 @@ class ShoppingCart extends Component {
                                                     />
                                                 </div>
                                             </td> */}
-                                            <td>
+                                            <td className="price">
                                                 $
                                                 {Number(product.cartCount) *
                                                     Number(product.price)}

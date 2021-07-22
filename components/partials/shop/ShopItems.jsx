@@ -41,11 +41,11 @@ const ShopItems = ({
                 return 3;
                 break;
             case 4:
-                setClasses('col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6');
+                setClasses('col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6');
                 return 4;
                 break;
             case 6:
-                setClasses('col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6');
+                setClasses('col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6');
                 return 6;
                 break;
 

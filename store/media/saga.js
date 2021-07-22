@@ -24,6 +24,6 @@ function* getPromotionsBySlugs({ payload }) {
 }
 
 export default function* rootSaga() {
-    yield all([takeEvery(actionTypes.GET_BANNERS, getBannersBySlugs)]);
-    yield all([takeEvery(actionTypes.GET_PROMOTIONS, getPromotionsBySlugs)]);
+    // yield all([takeEvery(actionTypes.GET_BANNERS, getBannersBySlugs)]);
+    // yield all([takeEvery(actionTypes.GET_PROMOTIONS, getPromotionsBySlugs)]);
 }

@@ -31,7 +31,7 @@ const ShopDefaultPage = () => {
             url: '/',
         },
         {
-            text: 'Shop Default',
+            text: 'Shop',
         },
     ];
 
