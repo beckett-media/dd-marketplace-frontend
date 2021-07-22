@@ -31,7 +31,7 @@ const HeaderActions = (props) => {
                     </span>
                 </a>
             </Link> */}
-            <MiniCart />
+            {auth.isLoggedIn && Boolean(auth.isLoggedIn) && <MiniCart />}
             {headerAuthView}
         </div>
     );
