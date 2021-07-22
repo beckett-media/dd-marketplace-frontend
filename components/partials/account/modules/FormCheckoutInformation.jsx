@@ -105,6 +105,7 @@ class FormCheckoutInformation extends Component {
                                       }}>
                                       <div className="col-sm-8 d-flex">
                                           <Radio
+                                              style={{ pointerEvents: 'none' }}
                                               checked={
                                                   this.state.newAddress
                                                       ? false
@@ -116,7 +117,17 @@ class FormCheckoutInformation extends Component {
                                       </div>
                                       <div className="col-sm-4 d-flex justify-content-end">
                                           <span
-                                              style={{ cursor: 'pointer' }}
+                                              style={{
+                                                  ...(address.isDefaultAddress
+                                                      ? {
+                                                            backgroundColor:
+                                                                'green',
+                                                            color: '#fff',
+                                                            padding: '1px 10px',
+                                                            borderRadius: 20,
+                                                        }
+                                                      : { cursor: 'pointer' }),
+                                              }}
                                               onClick={() =>
                                                   address.isDefaultAddress
                                                       ? null
