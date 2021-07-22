@@ -4,26 +4,51 @@ import {
     StrapiProductPrice,
     StrapiProductThumbnail,
 } from '~/utilities/product-helper';
-import Rating from '~/components/elements/Rating';
+import { useSelector } from 'react-redux';
 
 const ProductHorizontal = ({ product }) => {
+    let grade = useSelector(({ home }) =>
+        home?.marketPlace?.grades?.find((grade) => grade._id === product.grade)
+    );
+    let packaging = useSelector(({ home }) =>
+        home?.marketPlace?.products?.find((p) => p._id === product.product)
+    );
+
     return (
-        <div className="ps-product--horizontal">
-            <div className="ps-product__thumbnail">
-                {StrapiProductThumbnail(product)}
+        <Link
+            href="/product/[pid]"
+            as={`/product/${product._id || product.id}`}>
+            <div className="ps-product--horizontal">
+                <div className="ps-product__thumbnail">
+                    {StrapiProductThumbnail(product)}
+                </div>
+                <div className="ps-product__content">
+                    <>
+                        <span>{product.title}</span>
+                        <h4 className={'my-3'}>
+                            {product.playerNames.join(',')}
+                        </h4>
+                    </>
+
+                    {StrapiProductPrice(product)}
+
+                    <div className="ps-product__meta">
+                        <div>
+                            <span>Packaging</span>
+                            <p>
+                                <strong>{packaging?.name}</strong>
+                            </p>
+                        </div>
+                        <div>
+                            <span>Grade</span>
+                            <p>
+                                <strong>{grade?.name}</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="ps-product__content">
-                <Link
-                    href="/product/[pid]"
-                    as={`/product/${product._id || product.id}`}>
-                    <a className="ps-product__title">{product.title}</a>
-                </Link>
-                {/* <div className="ps-product__rating">
-                    <Rating />
-                </div> */}
-                {StrapiProductPrice(product)}
-            </div>
-        </div>
+        </Link>
     );
 };
 

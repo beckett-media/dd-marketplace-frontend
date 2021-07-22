@@ -6,7 +6,7 @@ const Checkout = () => {
         <div className="ps-checkout ps-section--shopping">
             <div className="container">
                 <div className="ps-section__header">
-                    <h1>Checkout Information</h1>
+                    <h1>Summary</h1>
                 </div>
                 <div className="ps-section__content">
                     <div className="ps-form--checkout">

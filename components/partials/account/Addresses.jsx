@@ -10,7 +10,7 @@ class Addresses extends Component {
     render() {
         const accountLinks = [
             {
-                text: 'Account Information',
+                text: 'My Profile',
                 url: '/account/user-information',
                 icon: 'icon-user',
             },

@@ -85,7 +85,6 @@
     .ps-layout--shop {
         padding-top: 30px;
     }
-
 }
 
 #contact-us {
@@ -275,7 +274,6 @@
     }
 
     @media (max-width: 1199px) {
-
         .ps-shop-banner,
         .ps-shop-brand,
         .ps-shop-categories,
@@ -455,7 +453,7 @@
 }
 
 .layout--product {
-    .navigation--list{
+    .navigation--list {
         @include hidden;
     }
 }

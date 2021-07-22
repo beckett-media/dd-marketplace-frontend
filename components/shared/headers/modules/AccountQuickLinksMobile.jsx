@@ -18,7 +18,7 @@ class AccountQuickLinks extends Component {
 
         const accountLinks = [
             {
-                text: 'Account Information',
+                text: 'My Profile',
                 url: '/account/user-information',
             },
             // {

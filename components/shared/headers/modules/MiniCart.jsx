@@ -31,7 +31,9 @@ class MiniCart extends Component {
                         </h3>
                         <figure>
                             <Link href="/account/shopping-cart">
-                                <a className="ps-btn">View Cart</a>
+                                <a className="ps-btn ps-btn--outline">
+                                    View Cart
+                                </a>
                             </Link>
                             <Link href="/account/checkout">
                                 <a className="ps-btn">Checkout</a>

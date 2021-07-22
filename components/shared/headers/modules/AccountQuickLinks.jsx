@@ -11,7 +11,7 @@ const AccountQuickLinks = (props) => {
     };
     const accountLinks = [
         {
-            text: 'Account Information',
+            text: 'My Profile',
             url: '/account/user-information',
         },
         // {

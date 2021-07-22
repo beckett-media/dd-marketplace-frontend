@@ -17,7 +17,7 @@ const ShippingPage = () => {
             url: '/account/shopping-cart',
         },
         {
-            text: 'Checkout Information',
+            text: 'Summary',
             url: '/account/checkout',
         },
         {
