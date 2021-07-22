@@ -20,7 +20,7 @@ class TableInvoices extends Component {
                 key: 'invoiceId',
                 width: '120px',
                 render: (text, record) => (
-                    <Link href="/account/invoice-detail">{record.id}</Link>
+                    <Link href="/account/invoice-detail">{record._id}</Link>
                 ),
             },
             {
@@ -37,7 +37,9 @@ class TableInvoices extends Component {
                 key: 'dateCreate',
                 width: '120px',
                 render: (text, record) =>
-                    dayjs(record.createdAt).format('DD-MMM-YYYY'),
+                    dayjs(record?.createdAt || new Date()).format(
+                        'DD-MMM-YYYY'
+                    ),
             },
 
             {
@@ -47,7 +49,7 @@ class TableInvoices extends Component {
                 rowKey: 'status',
                 width: '150px',
                 render: (text, record) => (
-                    <span className="text-right">{record.status}</span>
+                    <span className="text-right">{record?.status || ''}</span>
                 ),
             },
         ];
@@ -55,7 +57,7 @@ class TableInvoices extends Component {
             <Table
                 columns={tableColumn}
                 dataSource={tableData}
-                rowKey={(record) => record.id}
+                rowKey={(record) => record._id}
             />
         );
     }

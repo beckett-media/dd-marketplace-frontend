@@ -1,16 +1,18 @@
 import Repository, { baseUrl, getError } from './Repository';
 
 const routes = {
-    get: '/order/pending',
+    get: '/listing/buying',
 };
 
 class InvoicesRepository {
     async getInvoices() {
         try {
-            const url = `${baseUrl}${routes.get}`;
+            const page = 1;
+            const perPage = 100;
+            const url = `${baseUrl}${routes.get}/${perPage}/${page}`;
             const response = await Repository.get(url);
             console.log('response: getInvoices', response);
-            return response;
+            return response.data;
         } catch (error) {
             throw getError(error);
         }
