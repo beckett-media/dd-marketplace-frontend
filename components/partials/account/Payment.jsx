@@ -307,10 +307,24 @@ const CheckoutForm = StripeHoc(
             <>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <CardElement />
+                        <CardElement
+                            options={{
+                                hidePostalCode: true,
+                                style: {
+                                    base: {
+                                        fontSize: '16px',
+                                        border: '1px solid red',
+                                        color: '#424770',
+                                        '::placeholder': {
+                                            color: '#aab7c4',
+                                        },
+                                    },
+                                },
+                            }}
+                        />
                     </div>
 
-                    <div className="form-group">
+                    <div>
                         {isCheckoutLoading ? (
                             <Row align="middle" justify="center">
                                 <Spin size="large"></Spin>

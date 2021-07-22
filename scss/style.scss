@@ -109,3 +109,10 @@
         rgba(55, 196, 206, 1) 100%
     ) !important;
 }
+
+.StripeElement {
+    border: 1px solid $color-1st;
+    border-radius: 10px;
+    padding: 20px;
+    background: #fff;
+}
