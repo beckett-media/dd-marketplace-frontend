@@ -11,15 +11,19 @@ const CheckoutSuccess = () => {
                     title="Thank you"
                     subTitle="Your order has been confirmed"
                     extra={[
-                        <Button
+                        <a
+                            className="ps-btn "
                             href="/account/invoices"
                             type="primary"
                             key="console">
                             View Orders
-                        </Button>,
-                        <Button href="/shop" key="buy">
+                        </a>,
+                        <a
+                            className="ps-btn ps-btn--outline"
+                            href="/shop"
+                            key="buy">
                             Continue Shopping
-                        </Button>,
+                        </a>,
                     ]}
                 />
             </Row>
