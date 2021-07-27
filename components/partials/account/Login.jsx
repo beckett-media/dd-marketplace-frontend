@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { login } from '../../../store/auth/action';
 
-import { Form, Input, notification, Row, Spin } from 'antd';
+import { Form, Input, notification, Row, Spin, Col } from 'antd';
 import { connect } from 'react-redux';
 
 class Login extends Component {
@@ -95,6 +95,20 @@ class Login extends Component {
                                         />
                                     </Form.Item>
                                 </div>
+
+                                <Col xs={24}>
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            alighItem: 'flex-end',
+                                            justifyContent: 'flex-end',
+                                        }}>
+                                        <Link href="/account/forgotpassword">
+                                            <a>Forgot password</a>
+                                        </Link>
+                                    </div>
+                                </Col>
 
                                 <div className="form-group submit">
                                     {this.state.loading ? (

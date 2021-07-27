@@ -3432,6 +3432,11 @@ inline-style-prefixer@^3.0.8:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
 
+input-masked-react@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/input-masked-react/-/input-masked-react-0.4.8.tgz#e6cfae6aced9f63eb8443f79e86ea3a870cf55a7"
+  integrity sha512-BKwzZe2VkiReSaaH77uIJgLw1i2z6cZdSZ3zaGnrzP1+KXc+CcEwKifQIhFdJQVF/ON+Vuu+ZCmcQkwGjA8klA==
+
 inquirer@^7.0.0:
   version "7.2.0"
   resolved "https://registry.npmjs.org/inquirer/-/inquirer-7.2.0.tgz"

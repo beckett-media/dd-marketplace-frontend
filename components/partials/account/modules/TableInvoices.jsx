@@ -19,7 +19,7 @@ class TableInvoices extends Component {
                 rowKey: 'id',
                 key: 'invoiceId',
                 width: '120px',
-                render: (text, record) => record._id,
+                render: (text, record) => record.invoiceId,
             },
             {
                 title: 'Title',
@@ -35,9 +35,7 @@ class TableInvoices extends Component {
                 key: 'dateCreate',
                 width: '120px',
                 render: (text, record) =>
-                    dayjs(record?.createdAt || new Date()).format(
-                        'DD-MMM-YYYY'
-                    ),
+                    dayjs(record?.date || new Date()).format('DD-MMM-YYYY'),
             },
 
             {

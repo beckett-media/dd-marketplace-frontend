@@ -14,6 +14,11 @@ import { loginSuccess, logOutSuccess } from './action';
 import { appName } from '~/repositories/Repository';
 // import { toggleUserInfoLoading } from '../userInfo/action';
 import Router from 'next/router';
+import { addItem } from '../cart/action';
+
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 const modalSuccess = (type) => {
     notification[type]({
@@ -66,6 +71,14 @@ function* loginSaga(action) {
         yield put(loginSuccess(payload.user));
 
         Router.replace('/');
+
+        const notAuthCart = JSON.parse(localStorage.getItem('not-auth-cart'));
+
+        if (notAuthCart || notAuthCart != null || notAuthCart != 'null') {
+            yield sleep(2000);
+            if (notAuthCart?.product) yield put(addItem(notAuthCart?.product));
+            localStorage.setItem('not-auth-cart', null);
+        }
     } catch (error) {
         if (action && action.callback) action.callback();
         notification.error({
@@ -90,8 +103,50 @@ function* logOutSaga() {
     } catch (err) {}
 }
 
+function* forgotpasswordSaga({ method, payload, callback }) {
+    try {
+        switch (method) {
+            case 'send-otp':
+                yield call(AuthService.sendotp, payload);
+                notification.success({
+                    message: 'Success',
+                    description: 'Please check your email for the OTP',
+                });
+                if (callback) callback();
+                break;
+            case 'verify-otp':
+                yield call(AuthService.verifyOtp, payload);
+                notification.success({
+                    message: 'Success',
+                    description: 'OTP has been verified!',
+                });
+                if (callback) callback();
+                break;
+            case 'newpassword':
+                yield call(AuthService.newpassword, payload);
+                notification.success({
+                    message: 'Success',
+                    description: 'Your password has been reset!',
+                });
+                if (callback) callback();
+                break;
+        }
+    } catch (error) {
+        notification.error({
+            message: 'Failed',
+            description: error + '',
+        });
+        if (callback) callback(true);
+    } finally {
+        yield cancel();
+    }
+}
+
 export default function* rootSaga() {
     yield all([takeEvery(actionTypes.SIGNUP_REQUEST, signUpSaga)]);
     yield all([takeEvery(actionTypes.LOGIN_REQUEST, loginSaga)]);
     yield all([takeEvery(actionTypes.LOGOUT, logOutSaga)]);
+    yield all([
+        takeLatest(actionTypes.FORGOTPASSWORD_REQUEST, forgotpasswordSaga),
+    ]);
 }
