@@ -105,7 +105,6 @@ function* handleCheckoutComplete({ token }) {
             addressId: address._id,
             token,
             listingIds,
-            customerId: '',
             isCardSave: true,
         });
         Router.replace('/account/checkoutSuccess');

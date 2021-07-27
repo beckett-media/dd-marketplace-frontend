@@ -22,7 +22,7 @@ class ForgotPassword extends Component {
             const { dispatch } = this.props;
             this.setState({ loading: true });
             const data = { ...this.state.values, ...values };
-            console.log('data: ', data);
+
             if (values.email)
                 dispatch(
                     forgotpasswordrequests('send-otp', data, (error) =>
@@ -99,7 +99,9 @@ class ForgotPassword extends Component {
                                         </Col>
                                     )}
                                     {email && otp && !forgotpassword && (
-                                        <Col xs={24}>
+                                        <Col
+                                            xs={24}
+                                            className="d-flex justify-content-center align-items-center otp">
                                             <Form.Item
                                                 name="otp"
                                                 rules={[
@@ -117,6 +119,14 @@ class ForgotPassword extends Component {
                                                             &nbsp;&nbsp;
                                                         </span>
                                                     }
+                                                    inputStyle={{
+                                                        border:
+                                                            '1px solid #DFE0E3',
+                                                        // borderBottom:
+                                                        // ,
+                                                        width: 30,
+                                                        height: 30,
+                                                    }}
                                                 />
                                             </Form.Item>
                                         </Col>
@@ -134,7 +144,7 @@ class ForgotPassword extends Component {
                                                 ]}>
                                                 <Input
                                                     className="form-control"
-                                                    type="text"
+                                                    type="password"
                                                     label="New Password"
                                                     placeholder="Enter New Password"
                                                 />

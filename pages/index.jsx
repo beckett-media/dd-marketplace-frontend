@@ -82,4 +82,4 @@ const HomepageDefaultPage = () => {
     );
 };
 
-export default AuthHoc(HomepageDefaultPage);
+export default HomepageDefaultPage;

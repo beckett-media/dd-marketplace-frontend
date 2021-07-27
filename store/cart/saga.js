@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
 import { notification } from 'antd';
 import CartRespository from '~/repositories/CartRespository';
 
@@ -9,7 +9,10 @@ import {
     updateCartSuccess,
     updateCartError,
     getCart,
+    addItem,
 } from './action';
+import { isUserAuthenticated } from '../auth/selectors';
+import Router from 'next/router';
 
 const modalSuccess = (type) => {
     notification[type]({
@@ -57,7 +60,16 @@ function* getCartSaga() {
 
 function* addItemSaga(payload) {
     try {
+        const isUseAuthenticated = yield select(isUserAuthenticated);
+        console.log('isUseAuthenticated: ', isUseAuthenticated);
+
+        if (!isUseAuthenticated) {
+            localStorage.setItem('not-auth-cart', JSON.stringify(payload));
+            return Router.replace('/account/login');
+        }
+
         const { product } = payload;
+        console.log('product: ', product);
 
         const localCart = JSON.parse(localStorage.getItem('persist:martfury'))
             .cart;
@@ -73,7 +85,11 @@ function* addItemSaga(payload) {
                 product.cartCount = 1;
             }
 
+            console.log('product: addItemSaga', product);
+
             const response = yield call(CartRespository.addToCart, product._id);
+
+            console.log('product: response', product);
 
             currentCart.cartItems.push(product);
         }

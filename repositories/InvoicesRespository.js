@@ -1,7 +1,7 @@
 import Repository, { baseUrl, getError } from './Repository';
 
 const routes = {
-    get: '/listing/buying',
+    get: '/listing/invoices',
 };
 
 class InvoicesRepository {
@@ -11,7 +11,7 @@ class InvoicesRepository {
             const perPage = 100;
             const url = `${baseUrl}${routes.get}/${perPage}/${page}`;
             const response = await Repository.get(url);
-            console.log('response: getInvoices', response);
+
             return response.data;
         } catch (error) {
             throw getError(error);

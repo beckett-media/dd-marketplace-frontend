@@ -14,6 +14,11 @@ import { loginSuccess, logOutSuccess } from './action';
 import { appName } from '~/repositories/Repository';
 // import { toggleUserInfoLoading } from '../userInfo/action';
 import Router from 'next/router';
+import { addItem } from '../cart/action';
+
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 const modalSuccess = (type) => {
     notification[type]({
@@ -66,6 +71,14 @@ function* loginSaga(action) {
         yield put(loginSuccess(payload.user));
 
         Router.replace('/');
+
+        const notAuthCart = JSON.parse(localStorage.getItem('not-auth-cart'));
+
+        if (notAuthCart || notAuthCart != null || notAuthCart != 'null') {
+            yield sleep(2000);
+            if (notAuthCart?.product) yield put(addItem(notAuthCart?.product));
+            localStorage.setItem('not-auth-cart', null);
+        }
     } catch (error) {
         if (action && action.callback) action.callback();
         notification.error({

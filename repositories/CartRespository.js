@@ -10,7 +10,7 @@ class CartRepository {
     async addToCart(listingId) {
         try {
             const url = `${baseUrl}${routes.add}/${listingId}`;
-            const response = await Repository.post(url);
+            const response = await Repository.post(url, { quantity: 1 });
 
             return response;
         } catch (error) {
