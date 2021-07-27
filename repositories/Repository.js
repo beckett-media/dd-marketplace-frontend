@@ -3,11 +3,7 @@ import axios from 'axios';
 export const basePostUrl = 'https://beta.apinouthemes.com'; // API for post
 export const baseStoreURL = 'https://beta.apinouthemes.com'; // API for vendor(store)
 
-<<<<<<< HEAD
 const baseDomain = 'https://staging105.botkraft.com'; // API for products
-=======
-const baseDomain = 'http://localhost:4000' || 'http://3.139.34.166'; // API for products
->>>>>>> ea3f5afac1f305c2ab6bd5ff8aa3e3e6fc8a65c6
 
 const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIsImlhdCI6MTYwNzg2NDcwMX0.F_3ZTAs_7MbboyzrNCkg0oOyV3yIacP81wee8LPTHJw`;
 
