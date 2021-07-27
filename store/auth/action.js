@@ -23,3 +23,12 @@ export function logOut() {
 export function logOutSuccess() {
     return { type: actionTypes.LOGOUT_SUCCESS };
 }
+
+export function forgotpasswordrequests(method, payload, callback) {
+    return {
+        type: actionTypes.FORGOTPASSWORD_REQUEST,
+        method,
+        payload,
+        callback,
+    };
+}

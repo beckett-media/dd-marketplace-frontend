@@ -16,6 +16,7 @@
         "dayjs": "^1.10.6",
         "es6-promise": "^4.2.8",
         "history": "^4.10.1",
+        "input-masked-react": "^0.4.8",
         "moment": "^2.29.1",
         "next": "^10.0.3",
         "next-compose-plugins": "^2.2.0",
