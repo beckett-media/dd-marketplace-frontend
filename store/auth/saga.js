@@ -70,16 +70,25 @@ function* loginSaga(action) {
         modalSuccess('success');
         yield put(loginSuccess(payload.user));
 
-        Router.replace('/');
-
         const notAuthCart = JSON.parse(localStorage.getItem('not-auth-cart'));
 
-        if (notAuthCart || notAuthCart != null || notAuthCart != 'null') {
-            yield sleep(2000);
-            if (notAuthCart?.product) yield put(addItem(notAuthCart?.product));
-            localStorage.setItem('not-auth-cart', null);
+        if (notAuthCart && notAuthCart != null && notAuthCart != 'null') {
+            yield sleep(1000);
+            if (notAuthCart?.product) {
+                yield put(addItem(notAuthCart?.product));
+                localStorage.setItem('not-auth-cart', null);
+
+                const path = localStorage.getItem('not-auth-cart-path');
+                Router.push(path);
+                localStorage.setItem('not-auth-cart-path', null);
+            } else {
+                Router.push('/');
+            }
+        } else {
+            Router.push('/');
         }
     } catch (error) {
+        console.log('error: ', error);
         if (action && action.callback) action.callback();
         notification.error({
             message: 'Failed',
@@ -99,7 +108,7 @@ function* logOutSaga() {
         localStorage.removeItem(`${appName}_xAuthToken`);
         localStorage.removeItem(`${appName}_refreshToken`);
         modalWarning('warning');
-        Router.replace('/account/login');
+        Router.replace('/');
     } catch (err) {}
 }
 

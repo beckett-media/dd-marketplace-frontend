@@ -61,15 +61,17 @@ function* getCartSaga() {
 function* addItemSaga(payload) {
     try {
         const isUseAuthenticated = yield select(isUserAuthenticated);
-        console.log('isUseAuthenticated: ', isUseAuthenticated);
 
         if (!isUseAuthenticated) {
             localStorage.setItem('not-auth-cart', JSON.stringify(payload));
+            localStorage.setItem(
+                'not-auth-cart-path',
+                window.location.pathname
+            );
             return Router.replace('/account/login');
         }
 
         const { product } = payload;
-        console.log('product: ', product);
 
         const localCart = JSON.parse(localStorage.getItem('persist:martfury'))
             .cart;
@@ -85,11 +87,7 @@ function* addItemSaga(payload) {
                 product.cartCount = 1;
             }
 
-            console.log('product: addItemSaga', product);
-
             const response = yield call(CartRespository.addToCart, product._id);
-
-            console.log('product: response', product);
 
             currentCart.cartItems.push(product);
         }

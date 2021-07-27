@@ -1,4 +1,4 @@
-const getData = (state) => state.auth;
+const getData = (state) => state?.auth || {};
 
 export const isUserAuthenticated = (state) => getData(state).isLoggedIn;
 
