@@ -161,7 +161,7 @@ class ForgotPassword extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    return state.auth;
+    return state?.auth || {};
 };
 export default connect(mapStateToProps)(ForgotPassword);
 
