@@ -68,7 +68,7 @@ class ForgotPassword extends Component {
         const { email, otp, forgotpassword, loading } = this.state;
         return (
             <React.Fragment>
-                <div className="ps-my-account">
+                <div className="ps-my-account form-group dark">
                     <div className="container">
                         <Row
                             justify="center"

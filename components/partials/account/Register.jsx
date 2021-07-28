@@ -40,14 +40,14 @@ class Register extends Component {
                         </ul>
                         <div className="ps-tab active" id="register">
                             <div className="ps-form__content">
-                                <div className="form-group">
+                                <div className="form-group dark">
                                     <Form.Item
                                         name="fullName"
                                         rules={[
                                             {
                                                 required: true,
                                                 message:
-                                                    'Please input your fullName!',
+                                                    'Please input your Full Name!',
                                             },
                                         ]}>
                                         <Input
@@ -57,7 +57,7 @@ class Register extends Component {
                                         />
                                     </Form.Item>
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group dark">
                                     <Form.Item
                                         name="email"
                                         rules={[
@@ -74,7 +74,7 @@ class Register extends Component {
                                         />
                                     </Form.Item>
                                 </div>
-                                <div className="form-group form-forgot">
+                                <div className="form-group dark form-forgot">
                                     <Form.Item
                                         name="password"
                                         rules={[

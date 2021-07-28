@@ -79,7 +79,7 @@ const UserInformation = (props) => {
 
                                     <figure>
                                         <figcaption>
-                                            Hello &nbsp;
+                                            Hello{' '}
                                             {userInfo?.username ||
                                                 userInfo?.fullName ||
                                                 ''}

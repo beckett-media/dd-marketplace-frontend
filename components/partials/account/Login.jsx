@@ -61,7 +61,7 @@ class Login extends Component {
                         </ul>
                         <div className="ps-tab active" id="sign-in">
                             <div className="ps-form__content">
-                                <div className="form-group">
+                                <div className="form-group dark">
                                     <Form.Item
                                         name="email"
                                         rules={[
@@ -78,7 +78,7 @@ class Login extends Component {
                                         />
                                     </Form.Item>
                                 </div>
-                                <div className="form-group form-forgot">
+                                <div className="form-group dark form-forgot">
                                     <Form.Item
                                         name="password"
                                         rules={[
@@ -96,7 +96,7 @@ class Login extends Component {
                                     </Form.Item>
                                 </div>
 
-                                <Col xs={24}>
+                                <Col xs={24} className="mb-5">
                                     <div
                                         style={{
                                             display: 'flex',
@@ -105,7 +105,7 @@ class Login extends Component {
                                             justifyContent: 'flex-end',
                                         }}>
                                         <Link href="/account/forgotpassword">
-                                            <a>Forgot password</a>
+                                            <a>Forgot password?</a>
                                         </Link>
                                     </div>
                                 </Col>

@@ -21,7 +21,7 @@ const ProductWide = ({ product }) => {
                 <div className="ps-product__content">
                     <>
                         <span>{product.title}</span>
-                        <h4 className={'my-3'}>
+                        <h4 className={'my-3 ps-product__player'}>
                             {product.playerNames.join(',')}
                         </h4>
                     </>
@@ -29,13 +29,17 @@ const ProductWide = ({ product }) => {
                         <div>
                             <span>Packaging</span>
                             <p>
-                                <strong>{packaging?.name}</strong>
+                                <strong className="text-secondary">
+                                    {packaging?.name}
+                                </strong>
                             </p>
                         </div>
                         <div>
                             <span>Grade</span>
                             <p>
-                                <strong>{grade?.name}</strong>
+                                <strong className="text-secondary">
+                                    {grade?.name}
+                                </strong>
                             </p>
                         </div>
                     </div>

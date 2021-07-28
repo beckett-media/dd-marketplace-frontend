@@ -86,9 +86,24 @@
 
 @import 'react/custom';
 
+@font-face {
+    font-family: 'Pti-Improv';
+    src: url('/static/fonts/pti-improv.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+a:link {
+    color: $color-1st;
+}
 .ant-btn {
     padding: 15px !important;
     height: 50px !important;
+}
+
+.ant-checkbox-wrapper,
+.ant-result-title,
+.ant-result-subtitle {
+    color: #fff;
 }
 
 .ant-btn-icon-only {

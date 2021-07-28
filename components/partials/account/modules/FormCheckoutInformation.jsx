@@ -223,7 +223,9 @@ class FormCheckoutInformation extends Component {
                 </div> */}
                 {(this.state.newAddress || !isAddressAvailable) && (
                     <>
-                        <h3 className="ps-form__heading">Shipping address</h3>
+                        <h3 className="ps-form__heading mt-5">
+                            Shipping address
+                        </h3>
                         <div className="row">
                             <div className="col-sm-12">
                                 <div

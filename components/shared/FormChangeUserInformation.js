@@ -38,7 +38,7 @@ const FormChangeUserInformation = (props) => {
 
                 <div className="row">
                     <div className="col-sm-6">
-                        <div className="form-group">
+                        <div className="form-group dark">
                             <Form.Item
                                 label="Full Name"
                                 name="fullName"
@@ -58,7 +58,7 @@ const FormChangeUserInformation = (props) => {
                         </div>
                     </div>
                     <div className="col-sm-6">
-                        <div className="form-group">
+                        <div className="form-group dark">
                             <Form.Item
                                 label="User Name"
                                 name="username"
@@ -85,7 +85,7 @@ const FormChangeUserInformation = (props) => {
                         </div>
                     </div>
                     <div className="col-sm-12">
-                        <div className="form-group">
+                        <div className="form-group dark">
                             <Form.Item
                                 label="Email"
                                 name="email"

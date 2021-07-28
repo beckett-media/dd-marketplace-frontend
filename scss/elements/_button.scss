@@ -252,11 +252,11 @@ button.ps-btn {
     width: 45px;
     height: 45px;
     z-index: 10000;
-    background-color: #fff;
-    border: 1px solid #eaeaea;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
 
     i {
-        color: $color-text;
+        color: $color-1st;
     }
 
     &:hover {

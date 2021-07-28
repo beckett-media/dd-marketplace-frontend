@@ -26,7 +26,6 @@ function Error({ statusCode }) {
                     </div>
                 </div>
             </div>
-            <FooterDefault />
         </div>
     );
 }
