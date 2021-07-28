@@ -16,7 +16,7 @@ const StyleSheets = () => (
         <meta name="keywords" content="Due Dilly, React, eCommerce, Template" />
         <meta name="description" content="Due Dilly" />
         <link
-            href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext"
+            href="https://fonts.googleapis.com/css?family=Archivo:300,400,500,600,700&amp;amp;subset=latin-ext"
             rel="stylesheet"
         />
         <link

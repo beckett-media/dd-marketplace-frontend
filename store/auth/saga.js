@@ -23,14 +23,14 @@ function sleep(ms) {
 const modalSuccess = (type) => {
     notification[type]({
         message: 'Wellcome back',
-        description: 'You are login successful!',
+        description: 'You have succesfully logged in!',
     });
 };
 
 const modalWarning = (type) => {
     notification[type]({
         message: 'Good bye!',
-        description: 'Your account has been logged out!',
+        description: 'You have been logged out!',
     });
 };
 

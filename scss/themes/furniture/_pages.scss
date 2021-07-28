@@ -44,6 +44,7 @@
 
             h3 {
                 font-weight: 400;
+                text-transform: uppercase !important;
 
                 span {
                     color: $color-furniture;
@@ -65,6 +66,7 @@
             h3 {
                 font-weight: 400;
                 font-size: 24px;
+                text-transform: uppercase !important;
             }
         }
     }
@@ -80,7 +82,7 @@
             h3 {
                 font-weight: 400;
                 font-size: 24px;
-                text-transform: uppercase;
+                text-transform: uppercase !important;
             }
         }
     }
@@ -106,7 +108,7 @@
         h3 {
             font-weight: 400;
             font-size: 24px;
-            text-transform: uppercase;
+            text-transform: uppercase !important;
         }
     }
 }

@@ -25,10 +25,14 @@
         height: 50px;
         border-radius: 0;
         border: 1px solid #dddddd;
+        color: #fff;
+        background: rgba(#000, 0.1);
+
         &:focus {
             border-color: $color-1st;
             outline: none;
             box-shadow: 0 0 0 transparent;
+            background: rgba(#000, 0.1);
         }
     }
 }

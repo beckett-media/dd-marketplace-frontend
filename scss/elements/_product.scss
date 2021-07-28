@@ -1,3 +1,6 @@
+.ps-product__main-title {
+    font-size: 1.75rem;
+}
 .ps-badge {
     position: absolute;
     padding: 5px 15px;
@@ -185,7 +188,7 @@
 
     .ps-product__content {
         > p {
-            color: $color-heading;
+            color: $color-2nd;
         }
 
         &.hover {
@@ -280,10 +283,11 @@
 .ps-product--wide {
     margin-bottom: 40px;
     display: flex;
-    padding: 0;
+    padding: 10px;
+    border-radius: 10px;
     flex-flow: row nowrap;
     border: 1px solid #f5f5f5;
-    margin-right: 20px;
+    background: #fff;
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2) !important;
     > * {
         width: 100%;
@@ -430,7 +434,12 @@
     }
 }
 
+.ps-product__player {
+    color: $color-2nd;
+}
+
 .ps-product--horizontal {
+    background: #fff;
     margin-bottom: 30px;
     cursor: pointer;
     padding: 10px;
@@ -448,12 +457,16 @@
         }
     }
 
+    .ps-product__player {
+        color: $color-2nd;
+    }
+
     .ps-product__title {
         margin: 0;
         padding: 0 0 5px;
         font-size: 14px;
         line-height: 1.2em;
-        color: #06c;
+        color: $color-2nd;
 
         &:hover {
             color: $color-1st;

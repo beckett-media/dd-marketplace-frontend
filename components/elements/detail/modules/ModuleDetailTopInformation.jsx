@@ -18,7 +18,7 @@ const ModuleDetailTopInformation = ({ product }) => {
     }
     return (
         <header>
-            <h4>{product.title}</h4>
+            <p className="ps-product__main-title">{product.title}</p>
             <h2>{product?.playerNames.join(', ')}</h2>
             <div className="ps-product__meta">
                 {/* <p>
