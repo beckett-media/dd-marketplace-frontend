@@ -209,7 +209,7 @@ const LayoutWrapper = (props) => {
                                     ? 'Set New Password'
                                     : otp
                                     ? 'Verify OTP'
-                                    : 'Sign In'}
+                                    : 'Send Instructions'}
                             </button>
 
                             {/* <Button
