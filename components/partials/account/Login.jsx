@@ -96,7 +96,7 @@ class Login extends Component {
                                     </Form.Item>
                                 </div>
 
-                                <Col xs={24}>
+                                <Col xs={24} className="mb-5">
                                     <div
                                         style={{
                                             display: 'flex',
@@ -105,7 +105,7 @@ class Login extends Component {
                                             justifyContent: 'flex-end',
                                         }}>
                                         <Link href="/account/forgotpassword">
-                                            <a>Forgot password</a>
+                                            <a>Forgot password?</a>
                                         </Link>
                                     </div>
                                 </Col>
