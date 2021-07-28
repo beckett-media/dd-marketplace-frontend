@@ -202,12 +202,22 @@ const LayoutWrapper = (props) => {
                 ) : (
                     <>
                         <Col xs={24} align="middle" justify="center">
-                            <Button
+                            <button
+                                type="submit"
+                                className="ps-btn ps-btn--fullwidth">
+                                {forgotpassword
+                                    ? 'Set New Password'
+                                    : otp
+                                    ? 'Verify OTP'
+                                    : 'Sign In'}
+                            </button>
+
+                            {/* <Button
                                 className="full"
                                 htmlType="submit"
                                 type="primary">
-                                Sign In
-                            </Button>
+                               
+                            </Button> */}
                         </Col>
                         <Col xs={24}>
                             <Row align="middle" justify="center">

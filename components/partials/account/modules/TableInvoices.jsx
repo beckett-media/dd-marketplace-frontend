@@ -10,7 +10,6 @@ class TableInvoices extends Component {
             example: https://ant.design/components/table/
         */
         const { orders = [] } = this.props;
-        console.log('orders: ', orders);
 
         const tableData = orders;
         const tableColumn = [
@@ -46,6 +45,7 @@ class TableInvoices extends Component {
                 width: '120px',
                 render: (text, record) => `$${record.price}`,
             },
+
             {
                 title: 'Date',
                 rowKey: 'dateCreate',
