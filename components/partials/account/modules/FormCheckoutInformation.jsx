@@ -102,7 +102,17 @@ class FormCheckoutInformation extends Component {
                                           border: '1px solid',
                                           marginBottom: 10,
                                           padding: 10,
-                                      }}>
+                                          cursor: address.isDefaultAddress
+                                              ? 'not-allowed'
+                                              : 'pointer',
+                                      }}
+                                      onClick={() =>
+                                          address.isDefaultAddress
+                                              ? null
+                                              : this.onDefaultAddressChange(
+                                                    address
+                                                )
+                                      }>
                                       <div className="col-sm-8 d-flex">
                                           <Radio
                                               style={{ pointerEvents: 'none' }}
