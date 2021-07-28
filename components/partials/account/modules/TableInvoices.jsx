@@ -10,6 +10,7 @@ class TableInvoices extends Component {
             example: https://ant.design/components/table/
         */
         const { orders = [] } = this.props;
+        console.log('orders: ', orders);
 
         const tableData = orders;
         const tableColumn = [
@@ -19,14 +20,31 @@ class TableInvoices extends Component {
                 rowKey: 'id',
                 key: 'invoiceId',
                 width: '120px',
-                render: (text, record) => record.invoiceId,
+                render: (text, record) =>
+                    record?.invoiceId || record?.orderId || '',
             },
             {
-                title: 'Title',
+                title: 'Product',
                 dataIndex: 'listing.title',
                 rowKey: 'title',
                 key: 'title',
-                render: (text, record) => record?.listing?.title || '',
+                render: (text, record) => {
+                    let productTitle = '';
+
+                    record.items.forEach(({ title, quantity }) => {
+                        productTitle += `${title} x ${quantity} \n`;
+                    });
+
+                    return productTitle || '';
+                },
+            },
+            {
+                title: 'Price',
+                rowKey: 'datePrice',
+                dataIndex: 'datePrice',
+                key: 'datePrice',
+                width: '120px',
+                render: (text, record) => `$${record.price}`,
             },
             {
                 title: 'Date',
