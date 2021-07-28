@@ -4,8 +4,10 @@ export const getSavedAddress = (state) => getData(state).savedAddress;
 
 export const getDefaultAddress = (state) => {
     const address = getSavedAddress(state);
-    console.log('address: ', address);
-    return address.find((i) => i.isDefaultAddress);
+    const selected = address.find((i) => i.selected);
+    if (selected) return selected;
+    const isDefaultAddress = address.find((i) => i.isDefaultAddress);
+    return isDefaultAddress;
 };
 
 export const getCheckoutLoading = (state) => getData(state).isCheckoutLoading;

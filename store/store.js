@@ -17,7 +17,7 @@ const bindMiddleware = (middleware) => {
 const persistConfig = {
     key: 'martfury',
     storage,
-    whitelist: ['cart', 'compare', 'auth', 'wishlist', 'home'],
+    whitelist: ['cart', 'compare', 'auth', 'checkout', 'home'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -8,9 +8,14 @@ import {
 import actionTypes from './actionTypes';
 import { notification } from 'antd';
 import CartRespository from '~/repositories/CartRespository';
-import { getDefaultAddress } from './selectors';
+import {
+    getDefaultAddress,
+    getSavedAddress as getSavedAddressSelector,
+} from './selectors';
 import Router from 'next/router';
 import { RESET_AFTER_CHECKOUT } from '../globalTypes';
+
+var unionBy = require('lodash.unionby');
 
 function* addAddress({ address, isEdit, callback }) {
     try {
@@ -23,7 +28,7 @@ function* addAddress({ address, isEdit, callback }) {
             );
         } else request = yield call(CheckoutRespository.saveAddress, address);
 
-        if (request.success) yield put(getSavedAddressRequest());
+        if (request.success) yield put(getSavedAddressRequest(true));
 
         notification.success({
             message: 'Success',
@@ -41,10 +46,16 @@ function* addAddress({ address, isEdit, callback }) {
     }
 }
 
-function* getSavedAddress() {
-    const request = yield call(CheckoutRespository.getSavedAddress);
-    const address = request.data;
-    yield put(getSavedAddressSuccess(address));
+function* getSavedAddress({ refetch }) {
+    try {
+        const saved = yield select(getSavedAddressSelector);
+
+        if (!saved.length || refetch) {
+            const request = yield call(CheckoutRespository.getSavedAddress);
+            const address = request.data;
+            yield put(getSavedAddressSuccess(address));
+        }
+    } catch (error) {}
 }
 
 function* makeAddressDefault({ addressId }) {
@@ -54,7 +65,7 @@ function* makeAddressDefault({ addressId }) {
             addressId
         );
 
-        if (request.success) yield put(getSavedAddressRequest());
+        if (request.success) yield put(getSavedAddressRequest(true));
 
         notification.success({
             message: 'Success',
@@ -77,7 +88,7 @@ function* deleteAddress({ addressId }) {
             addressId
         );
         if (request.success) {
-            yield put(getSavedAddressRequest());
+            yield put(getSavedAddressRequest(true));
             notification.success({
                 message: 'Success',
                 description: `The Address has been deleted`,

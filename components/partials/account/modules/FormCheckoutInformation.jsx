@@ -14,6 +14,7 @@ import {
 import { connect } from 'react-redux';
 import {
     getSavedAddressRequest,
+    getSavedAddressSuccess,
     saveAddressRequest,
     setAddressDeleteRequest,
     setDefaultAddressRequest,
@@ -31,7 +32,7 @@ class FormCheckoutInformation extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(getSavedAddressRequest());
+        this.props.dispatch(getSavedAddressRequest(true));
     }
 
     handleLoginSubmit = (values) => {
@@ -78,10 +79,26 @@ class FormCheckoutInformation extends Component {
         this.props.dispatch(setAddressDeleteRequest(addressId));
     }
 
+    selectAddress = (index) => {
+        const { address } = this.props;
+        const clone = [...(address || [])].map((i) => ({
+            ...i,
+            selected: false,
+        }));
+        clone[index] = { ...clone[index], selected: true };
+        this.props.dispatch(getSavedAddressSuccess(clone));
+        this.setState({ newAddress: false });
+    };
+
     render() {
         const { address } = this.props;
 
         const isAddressAvailable = Boolean(address && address.length);
+
+        const handleRadioCheck = (item) => {
+            if (this.state.newAddress) return false;
+            if (item.hasOwnProperty('selected')) return item.selected;
+        };
 
         return (
             <Form
@@ -95,32 +112,24 @@ class FormCheckoutInformation extends Component {
                 {!isAddressAvailable ? null : (
                     <div className="ps-block--checkout-order">
                         {address && address.length
-                            ? address.map((address) => (
+                            ? address.map((address, index) => (
                                   <div
                                       className="row"
                                       style={{
                                           border: '1px solid',
                                           marginBottom: 10,
                                           padding: 10,
-                                          cursor: address.isDefaultAddress
-                                              ? 'not-allowed'
-                                              : 'pointer',
-                                      }}
-                                      onClick={() =>
-                                          address.isDefaultAddress
-                                              ? null
-                                              : this.onDefaultAddressChange(
-                                                    address
-                                                )
-                                      }>
-                                      <div className="col-sm-8 d-flex">
+                                      }}>
+                                      <div
+                                          className="col-sm-8 d-flex"
+                                          onClick={() =>
+                                              this.selectAddress(index)
+                                          }>
                                           <Radio
                                               style={{ pointerEvents: 'none' }}
-                                              checked={
-                                                  this.state.newAddress
-                                                      ? false
-                                                      : address.isDefaultAddress
-                                              }></Radio>
+                                              checked={handleRadioCheck(
+                                                  address
+                                              )}></Radio>
                                           {address.streetAddress || ''},{' '}
                                           {address.state || ''},
                                           {address.city || ''}
