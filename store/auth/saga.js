@@ -46,7 +46,22 @@ function* signUpSaga(action) {
         modalSuccess('success');
         yield put(loginSuccess(payload.user));
 
-        Router.replace('/');
+        const notAuthCart = JSON.parse(localStorage.getItem('not-auth-cart'));
+
+        if (notAuthCart && notAuthCart != null && notAuthCart != 'null') {
+            yield sleep(1000);
+            if (notAuthCart?.product) {
+                yield put(addItem(notAuthCart?.product));
+                localStorage.setItem('not-auth-cart', null);
+                const path = localStorage.getItem('not-auth-cart-path');
+                Router.push(path);
+                localStorage.setItem('not-auth-cart-path', null);
+            } else {
+                Router.push('/');
+            }
+        } else {
+            Router.push('/');
+        }
     } catch (err) {
         notification.error({
             message: 'Failed',
