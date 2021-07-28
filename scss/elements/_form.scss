@@ -428,6 +428,15 @@ textarea.form-control {
     }
 }
 
+.dark.form-group {
+    .form-control.ant-input {
+        color: $color-2nd !important;
+        &:focus {
+            color: $color-2nd;
+        }
+    }
+}
+
 .form-group {
     margin-bottom: 2.5rem;
 
