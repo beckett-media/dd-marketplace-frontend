@@ -95,9 +95,14 @@ class FormCheckoutInformation extends Component {
 
         const isAddressAvailable = Boolean(address && address.length);
 
+        const isSelectedAddressAvailable = address.find((i) => i.selected);
+
         const handleRadioCheck = (item) => {
             if (this.state.newAddress) return false;
-            if (item.hasOwnProperty('selected')) return item.selected;
+            if (item.hasOwnProperty('selected') && isSelectedAddressAvailable) {
+                return item.selected;
+            }
+            if (!isSelectedAddressAvailable) return item.isDefaultAddress;
         };
 
         return (
