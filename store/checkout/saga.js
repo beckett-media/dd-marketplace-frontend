@@ -15,8 +15,6 @@ import {
 import Router from 'next/router';
 import { RESET_AFTER_CHECKOUT } from '../globalTypes';
 
-var unionBy = require('lodash.unionby');
-
 function* addAddress({ address, isEdit, callback }) {
     try {
         let request;
