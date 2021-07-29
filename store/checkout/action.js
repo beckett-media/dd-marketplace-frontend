@@ -4,8 +4,8 @@ export function saveAddressRequest(address, isEdit, callback) {
     return { type: actionTypes.ADD_ADDRESS_REQUEST, address, isEdit, callback };
 }
 
-export function getSavedAddressRequest() {
-    return { type: actionTypes.GET_SAVED_ADDRESS_REQUEST };
+export function getSavedAddressRequest(refetch) {
+    return { type: actionTypes.GET_SAVED_ADDRESS_REQUEST, refetch };
 }
 
 export function getSavedAddressSuccess(address) {
