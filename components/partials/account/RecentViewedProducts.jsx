@@ -20,8 +20,8 @@ class RecentViewedProducts extends Component {
                 icon: 'icon-alarm-ringing',
             },
             {
-                text: 'Invoices',
-                url: '/account/invoices',
+                text: 'Orders',
+                url: '/account/orders',
                 icon: 'icon-papers',
             },
             {
@@ -57,7 +57,7 @@ class RecentViewedProducts extends Component {
                                     </div>
                                     <div className="ps-widget__content">
                                         <ul>
-                                            {accountLinks.map(link => (
+                                            {accountLinks.map((link) => (
                                                 <li
                                                     key={link.text}
                                                     className={

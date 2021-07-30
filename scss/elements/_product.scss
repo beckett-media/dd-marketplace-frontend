@@ -475,7 +475,7 @@
 
     .ps-product__price {
         font-size: 16px;
-        color: $color-heading;
+        color: $color-2nd;
 
         &.sale {
             color: #f30;
@@ -488,7 +488,7 @@
 
     .ps-product__thumbnail {
         margin: 10px auto;
-        height: 325px;
+        height: 225px;
         overflow: hidden;
         width: 100%;
     }

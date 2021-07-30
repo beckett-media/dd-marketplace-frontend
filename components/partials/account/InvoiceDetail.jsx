@@ -23,8 +23,8 @@ class InvoiceDetail extends Component {
                 icon: 'icon-alarm-ringing',
             },
             {
-                text: 'Invoices',
-                url: '/account/invoices',
+                text: 'Orders',
+                url: '/account/orders',
                 icon: 'icon-papers',
                 active: true,
             },
@@ -157,7 +157,7 @@ class InvoiceDetail extends Component {
                                                 </thead>
                                                 <tbody>
                                                     {invoiceProducts.map(
-                                                        product => (
+                                                        (product) => (
                                                             <tr
                                                                 key={
                                                                     product.id
@@ -189,7 +189,7 @@ class InvoiceDetail extends Component {
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <Link href="/account/invoices">
+                                        <Link href="/account/orders">
                                             <a className="ps-btn ps-btn--sm ">
                                                 Back to invoices
                                             </a>

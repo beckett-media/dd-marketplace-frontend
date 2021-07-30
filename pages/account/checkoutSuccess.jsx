@@ -13,7 +13,7 @@ const CheckoutSuccess = () => {
                     extra={[
                         <a
                             className="ps-btn "
-                            href="/account/invoices"
+                            href="/account/orders"
                             type="primary"
                             key="console">
                             View Orders

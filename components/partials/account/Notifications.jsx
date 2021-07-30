@@ -24,8 +24,8 @@ class Notifications extends Component {
                 active: true,
             },
             {
-                text: 'Invoices',
-                url: '/account/invoices',
+                text: 'Orders',
+                url: '/account/orders',
                 icon: 'icon-papers',
             },
             {

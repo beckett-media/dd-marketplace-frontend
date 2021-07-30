@@ -14,6 +14,7 @@ const nextSettings = {
         title: 'Due Dilly',
         titleDescription: 'Due Dilly | Marketplace',
     },
+    exportTrailingSlash: true,
 };
 
 module.exports = withPlugins([withImages(), nextSettings]);

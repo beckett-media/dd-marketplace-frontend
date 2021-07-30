@@ -23,8 +23,8 @@ const UserInformation = (props) => {
         //     disabled: true,
         // },
         {
-            text: 'Invoices',
-            url: '/account/invoices',
+            text: 'Orders',
+            url: '/account/orders',
             icon: 'icon-papers',
             disabled: false,
         },

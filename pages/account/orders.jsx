@@ -11,7 +11,7 @@ const InvoicePage = () => {
             url: '/',
         },
         {
-            text: 'Invoices',
+            text: 'Orders',
         },
     ];
     return (
