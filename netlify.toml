@@ -11,7 +11,7 @@
   #  status = 200
 
 
-  [[redirects]]
+[[redirects]]
   from = "/product/*"
   to = "/product/[id].html"
   status = 200
