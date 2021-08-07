@@ -118,6 +118,7 @@ function* loginSaga(action) {
 
 function* logOutSaga() {
     try {
+        console.log('LOGOUT');
         yield call(AuthService.logout);
         yield put(logOutSuccess());
         localStorage.removeItem(`${appName}_xAuthToken`);
