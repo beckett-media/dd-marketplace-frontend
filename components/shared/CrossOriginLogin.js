@@ -10,7 +10,6 @@ const CrossOriginLogin = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        document.domain = sellerDashboardDomain;
         window.addEventListener(
             'message',
             (event) => {
