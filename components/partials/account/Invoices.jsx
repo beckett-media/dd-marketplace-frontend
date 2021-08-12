@@ -9,6 +9,7 @@ import AccountMenuSidebar from './modules/AccountMenuSidebar';
 import TableInvoices from './modules/TableInvoices';
 import Link from 'next/link';
 import { baseUrl } from '~/repositories/Repository';
+import AvatarUpload from '~/components/shared/upload/AvatharUpload';
 
 class Invoices extends Component {
     constructor(props) {
@@ -70,29 +71,26 @@ class Invoices extends Component {
                             <div className="ps-section__left">
                                 <aside className="ps-widget--account-dashboard">
                                     <div className="ps-widget__header">
-                                        <Avatar
-                                            size="large"
-                                            src={
-                                                photo
-                                                    ? photo
-                                                    : (
-                                                          (name || '').charAt(
-                                                              0
-                                                          ) || ''
-                                                      ).toUpperCase()
-                                            }
-                                            alt=""
-                                        />
-
-                                        <figure>
-                                            <figcaption>
-                                                Hello &nbsp;
-                                                {userInfo?.username ||
-                                                    userInfo?.fullName ||
-                                                    ''}
-                                            </figcaption>
-                                            <p>{userInfo?.email || ''}</p>
-                                        </figure>
+                                        <div>
+                                            <AvatarUpload
+                                                userInfo={userInfo}
+                                                profilePhoto={
+                                                    userInfo?.profilePicture ||
+                                                    null
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <figure>
+                                                <figcaption>
+                                                    Hello, &nbsp;
+                                                    {userInfo?.username ||
+                                                        userInfo?.fullName ||
+                                                        ''}
+                                                </figcaption>
+                                                <p>{userInfo?.email || ''}</p>
+                                            </figure>
+                                        </div>
                                     </div>
                                     <div className="ps-widget__content">
                                         <ul className="ps-list--user-links">

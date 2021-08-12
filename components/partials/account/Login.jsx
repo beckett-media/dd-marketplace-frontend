@@ -5,6 +5,7 @@ import { login } from '../../../store/auth/action';
 
 import { Form, Input, notification, Row, Spin, Col } from 'antd';
 import { connect } from 'react-redux';
+import Title from '~/components/elements/Title';
 
 class Login extends Component {
     constructor(props) {
@@ -47,55 +48,55 @@ class Login extends Component {
                         ref={this.ref}
                         className="ps-form--account"
                         onFinish={this.handleLoginSubmit}>
-                        <ul className="ps-tab-list">
-                            <li className="active">
-                                <Link href="/account/login">
-                                    <a>Login</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/account/register">
-                                    <a>Register</a>
-                                </Link>
-                            </li>
-                        </ul>
                         <div className="ps-tab active" id="sign-in">
                             <div className="ps-form__content">
-                                <div className="form-group dark">
-                                    <Form.Item
-                                        name="email"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    'Please input your email!',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="text"
-                                            placeholder="Username or email address"
-                                        />
-                                    </Form.Item>
+                                <a href="/">
+                                    <img
+                                        style={{ maxWidth: 120 }}
+                                        src={'/static/img/logo.png'}
+                                        className="mb-5"
+                                    />
+                                </a>
+                                <Title
+                                    title="WELCOME BACK"
+                                    subtitle="Login to your Due Dilly account"
+                                />
+                                <div style={{ paddingTop: 30 }}>
+                                    <div className="form-group dark">
+                                        <Form.Item
+                                            name="email"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Please input your email!',
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="text"
+                                                placeholder="Username or email address"
+                                            />
+                                        </Form.Item>
+                                    </div>
+                                    <div className="form-group dark form-forgot">
+                                        <Form.Item
+                                            name="password"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Please input your password!',
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="password"
+                                                placeholder="Password..."
+                                            />
+                                        </Form.Item>
+                                    </div>
                                 </div>
-                                <div className="form-group dark form-forgot">
-                                    <Form.Item
-                                        name="password"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    'Please input your password!',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="password"
-                                            placeholder="Password..."
-                                        />
-                                    </Form.Item>
-                                </div>
-
                                 <Col xs={24} className="mb-5">
                                     <div
                                         style={{
@@ -105,7 +106,9 @@ class Login extends Component {
                                             justifyContent: 'flex-end',
                                         }}>
                                         <Link href="/account/forgotpassword">
-                                            <a>Forgot password?</a>
+                                            <a className="text-white">
+                                                Forgot password?
+                                            </a>
                                         </Link>
                                     </div>
                                 </Col>
@@ -119,9 +122,22 @@ class Login extends Component {
                                         <button
                                             type="submit"
                                             className="ps-btn ps-btn--fullwidth">
-                                            Login
+                                            Sign In
                                         </button>
                                     )}
+                                </div>
+
+                                <div>
+                                    <p
+                                        className="text-center"
+                                        style={{ marginRight: 5 }}>
+                                        Dont't have an account?{' '}
+                                        <span>
+                                            <a href="/account/register">
+                                                Sign Up
+                                            </a>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                             {/* <div className="ps-form__footer">

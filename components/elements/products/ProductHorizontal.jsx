@@ -25,12 +25,11 @@ const ProductHorizontal = ({ product }) => {
                 <div className="ps-product__content">
                     <>
                         <span>{product.title}</span>
-                        <h4 className={'my-3 ps-product__player'}>
+                        <p className={'my-3 ps-product__player'}>
                             {product.playerNames.join(',')}
-                        </h4>
+                        </p>
                     </>
-
-                    {StrapiProductPrice(product)}
+                    <hr />
 
                     <div className="ps-product__meta">
                         <div>
@@ -50,6 +49,7 @@ const ProductHorizontal = ({ product }) => {
                             </p>
                         </div>
                     </div>
+                    {StrapiProductPrice(product)}
                 </div>
             </div>
         </Link>

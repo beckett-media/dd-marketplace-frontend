@@ -1,4 +1,6 @@
 #homepage-1 {
+    background: url('/static/img/circle-bg.png') no-repeat;
+    background-size: cover;
     .ps-home-banner {
         padding-top: 30px;
         margin-bottom: 30px;
@@ -82,7 +84,7 @@
             }
         }
 
-        @include media("<xs") {
+        @include media('<xs') {
             .ps-section__left {
                 height: 150px;
             }
@@ -92,7 +94,6 @@
     .ps-site-features {
         padding-bottom: 90px;
         @media screen and (max-width: 480px) {
-
         }
     }
 

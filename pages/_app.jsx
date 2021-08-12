@@ -21,7 +21,10 @@ import '~/scss/technology.scss';
 import '~/scss/autopart.scss';
 import '~/scss/electronic.scss';
 import '~/scss/custom.scss';
-
+import { appName, sellerDashboardDomain } from '~/repositories/Repository';
+import CrossOriginLogin from '~/components/shared/CrossOriginLogin';
+import CrossDomainIFrame from '~/components/shared/CrossDomainIframe';
+import CircleBg from '../public/static/img/circle-bg.png';
 class MyApp extends App {
     constructor(props) {
         super(props);
@@ -36,7 +39,7 @@ class MyApp extends App {
         this.setState({ open: true });
     }
     render() {
-        const { Component, pageProps, store } = this.props;
+        const { Component, pageProps, store, router } = this.props;
         const getLayout =
             Component.getLayout ||
             ((page) => <DefaultLayout children={page} />);
@@ -45,7 +48,14 @@ class MyApp extends App {
                 <PersistGate
                     loading={<Component {...pageProps} />}
                     persistor={this.persistor}>
-                    <Component {...pageProps} />
+                    {router.path === '/cross-login' ? (
+                        <CrossOriginLogin />
+                    ) : (
+                        <>
+                            <Component {...pageProps} />
+                            <CrossDomainIFrame />
+                        </>
+                    )}
                 </PersistGate>
             </Provider>
         );

@@ -21,9 +21,9 @@ const ProductWide = ({ product }) => {
                 <div className="ps-product__content">
                     <>
                         <span>{product.title}</span>
-                        <h4 className={'my-3 ps-product__player'}>
+                        <p className={'my-3 ps-product__player'}>
                             {product.playerNames.join(',')}
-                        </h4>
+                        </p>
                     </>
                     <div className="ps-product__meta" style={{ marginTop: 40 }}>
                         <div>

@@ -63,29 +63,26 @@ const UserInformation = (props) => {
                     <div className="col-lg-3">
                         <div className="ps-section__left">
                             <aside className="ps-widget--account-dashboard">
-                                <div className="ps-widget__header">
-                                    <Avatar
-                                        size="large"
-                                        src={
-                                            photo
-                                                ? photo
-                                                : (
-                                                      (name || '').charAt(0) ||
-                                                      ''
-                                                  ).toUpperCase()
-                                        }
-                                        alt=""
-                                    />
-
-                                    <figure>
-                                        <figcaption>
-                                            Hello{' '}
-                                            {userInfo?.username ||
-                                                userInfo?.fullName ||
-                                                ''}
-                                        </figcaption>
-                                        <p>{userInfo?.email || ''}</p>
-                                    </figure>
+                                <div className="ps-widget__header text-center">
+                                    <div>
+                                        <AvatarUpload
+                                            userInfo={userInfo}
+                                            profilePhoto={
+                                                userInfo?.profilePicture || null
+                                            }
+                                        />
+                                    </div>
+                                    <div>
+                                        <figure>
+                                            <figcaption>
+                                                Hello, &nbsp;
+                                                {userInfo?.username ||
+                                                    userInfo?.fullName ||
+                                                    ''}
+                                            </figcaption>
+                                            <p>{userInfo?.email || ''}</p>
+                                        </figure>
+                                    </div>
                                 </div>
                                 <div className="ps-widget__content">
                                     <ul className="ps-list--user-links">

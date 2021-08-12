@@ -111,18 +111,9 @@ a:link {
 }
 
 .ant-btn-primary {
-    background: linear-gradient(
-        0deg,
-        rgba(87, 240, 216, 1) 0%,
-        rgba(55, 196, 206, 1) 100%
-    ) !important;
+    background: $color-1st;
     border: none;
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2) !important;
-    background: linear-gradient(
-        0deg,
-        rgba(87, 240, 216, 1) 0%,
-        rgba(55, 196, 206, 1) 100%
-    ) !important;
 }
 
 .StripeElement {
@@ -130,4 +121,30 @@ a:link {
     border-radius: 10px;
     padding: 20px;
     background: #fff;
+}
+
+.profile-cover-image {
+    width: 100%;
+    height: 150px;
+    background: url('/static/img/profile-cover-image.png') repeat-x;
+    background-size: cover;
+}
+
+.main-title {
+    position: relative;
+    h1.ant-typography {
+        position: relative;
+        z-index: 1;
+        font-size: 32px;
+    }
+
+    h1.ant-typography:not(.text-shadow)::after {
+        content: '';
+        position: absolute;
+        width: 55px;
+        height: 10px;
+        background-color: white;
+        left: 0;
+        bottom: -20px;
+    }
 }

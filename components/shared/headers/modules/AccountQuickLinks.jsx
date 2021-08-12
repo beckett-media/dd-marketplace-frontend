@@ -2,6 +2,14 @@ import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { logOut } from '~/store/auth/action';
+import { sellerDashboardURL } from '~/repositories/Repository';
+import {
+    PoweroffOutlined,
+    CodeSandboxOutlined,
+    ProfileOutlined,
+    UserOutlined,
+    ShoppingOutlined,
+} from '@ant-design/icons';
 
 const AccountQuickLinks = (props) => {
     const dispatch = useDispatch();
@@ -13,14 +21,22 @@ const AccountQuickLinks = (props) => {
         {
             text: 'My Profile',
             url: '/account/user-information',
+            icon: <UserOutlined />,
         },
         // {
         //     text: 'Notifications',
         //     url: '/account/notifications',
         // },
+
         {
             text: 'Orders',
             url: '/account/orders',
+            icon: <ProfileOutlined />,
+        },
+        {
+            text: 'Switch to Selling',
+            url: sellerDashboardURL,
+            icon: <ShoppingOutlined />,
         },
         // {
         //     text: 'Address',
@@ -40,6 +56,8 @@ const AccountQuickLinks = (props) => {
     // View
     const linksView = accountLinks.map((item) => (
         <li key={item.text}>
+            <i>{item.icon}</i>
+
             <Link href={item.url}>
                 <a>{item.text}</a>
             </Link>
@@ -54,6 +72,9 @@ const AccountQuickLinks = (props) => {
                     <ul className="ps-list--arrow">
                         {linksView}
                         <li className="ps-block__footer">
+                            <i>
+                                <PoweroffOutlined />
+                            </i>
                             <a href="#" onClick={(e) => handleLogout(e)}>
                                 Logout
                             </a>

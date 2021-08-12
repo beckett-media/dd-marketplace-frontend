@@ -1,5 +1,6 @@
 import { appName } from '~/repositories/Repository';
 import actionTypes from './actionTypes';
+import actionTypesUser from '../userInfo/actionTypes';
 
 export function login(payload, callback) {
     console.log('payload:login ', payload);

@@ -3,9 +3,12 @@ import axios from 'axios';
 export const basePostUrl = 'https://beta.apinouthemes.com'; // API for post
 export const baseStoreURL = 'https://beta.apinouthemes.com'; // API for vendor(store)
 
-const baseDomain =  'https://staging105.botkraft.com'; // API for products
+const baseDomain = 'http://localhost:4000' || 'https://staging105.botkraft.com'; // API for products
 
 const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIsImlhdCI6MTYwNzg2NDcwMX0.F_3ZTAs_7MbboyzrNCkg0oOyV3yIacP81wee8LPTHJw`;
+
+export const sellerDashboardDomain = 'localhost';
+export const sellerDashboardURL = 'http://localhost:3002';
 
 export const appName = 'dilly_client';
 

@@ -3220,6 +3220,7 @@
 .ps-block--user-account {
     position: relative;
     color: #fff;
+    border-radius: 0;
 
     i {
         font-size: 30px;
@@ -3228,16 +3229,23 @@
 
     .ps-list--arrow {
         li {
+            padding: 10px;
+            margin-bottom: 0 !important;
+            &:hover {
+                background-color: $color-1st;
+            }
+            i {
+                display: inline-block;
+                margin-right: 30px;
+                font-size: 20px;
+            }
             a {
                 padding-left: 0;
-                color: $color-2nd;
+                color: #fff;
+                display: inline-block;
 
                 &:before {
                     display: none;
-                }
-
-                &:hover {
-                    color: $color-1st;
                 }
             }
         }
@@ -3251,6 +3259,7 @@
     }
 
     .ps-block__footer {
+        margin-top: 10px;
         padding-top: 10px;
         margin-bottom: 0;
         border-top: 1px solid #eaeaea;
@@ -3258,6 +3267,8 @@
 
     .ps-block__content {
         position: absolute;
+        background-color: $color-dark-main;
+        padding: 0px !important;
         min-width: 240px;
         right: 0;
         z-index: 30;
@@ -3265,7 +3276,7 @@
         transform: translate(0 20px) scale3d(1, 1, 0);
         transition: all 0.4s ease;
         @include hidden;
-        border-radius: 10px;
+        border-radius: 0;
         box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2) !important;
     }
 
@@ -3273,7 +3284,7 @@
         .ps-block__content {
             @include show;
             transform: translate(0 20px) scale3d(1, 1, 1);
-            background-color: #fff;
+            background-color: $color-dark-main;
             padding: 10px 15px;
         }
     }

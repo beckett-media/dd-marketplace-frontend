@@ -447,7 +447,28 @@
 }
 
 .ps-list--user-links {
+    border: none !important;
+
     li {
-        background-color: #fff;
+        &.active {
+            background-color: transparent !important;
+            a {
+                color: $color-1st !important;
+                &:hover {
+                    color: #fff !important;
+                }
+            }
+        }
+        i {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+
+        a {
+            font-weight: 400;
+            color: #fff !important;
+            text-transform: uppercase !important;
+        }
+        border: none !important;
     }
 }

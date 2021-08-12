@@ -1466,6 +1466,24 @@
 
 .ps-my-account {
     min-height: 100vh;
+    .ps-form__content {
+        background-color: #43475f !important;
+    }
+    label {
+        color: #fff;
+    }
+    .ant-input {
+        background-color: transparent !important;
+        color: #fff !important;
+    }
+    .dark {
+        &.form-group {
+            .ant-input {
+                background-color: transparent !important;
+                color: #fff !important;
+            }
+        }
+    }
 }
 
 .ps-order-tracking {

@@ -623,16 +623,15 @@
 
 .ps-widget--account-dashboard {
     .ps-widget__header {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        align-items: flex-start;
         padding-bottom: 20px;
+        text-align: center;
+        .ant-avatar {
+            margin-top: -100px;
+        }
 
         img {
-            flex-basis: 60px;
-            max-width: 60px;
             border-radius: 50%;
+            border: 3px solid #fff;
         }
 
         figure {

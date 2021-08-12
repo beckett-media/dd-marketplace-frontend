@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { updateProfilePhoto } from '~/store/userInfo/action';
 import { baseUrl } from '~/repositories/Repository';
 import { useState } from 'react';
+import { UploadOutlined } from '@ant-design/icons';
 
 export function getBase64(file) {
     return new Promise((resolve, reject) => {
@@ -51,7 +52,22 @@ const AvatarUpload = ({ profilePhoto, userInfo = '' }) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        position: 'relative',
                     }}>
+                    <div
+                        style={{
+                            position: 'absolute',
+                            right: 10,
+                            bottom: 30,
+                            zIndex: 500,
+                            background: 'white',
+                            width: 30,
+                            height: 30,
+                            borderRadius: 30,
+                            textAlign: 'center',
+                        }}>
+                        <UploadOutlined />
+                    </div>
                     <Avatar
                         {...(profilePhoto && isloadingComplete
                             ? {

@@ -15,12 +15,12 @@ const LoginPage = () => {
         },
     ];
     return (
-        <ContainerPage title="Login" boxed={true}>
-            <div className="ps-page--my-account">
-                {/* <BreadCrumb breacrumb={breadCrumb} /> */}
-                <Login />
-            </div>
-        </ContainerPage>
+        // <ContainerPage title="Login" boxed={true}>
+        <div className="ps-page--my-account">
+            {/* <BreadCrumb breacrumb={breadCrumb} /> */}
+            <Login />
+        </div>
+        // </ContainerPage>
     );
 };
 

@@ -17,8 +17,6 @@ import {
     getMarketPlaceLoading,
 } from '~/store/home/selector';
 
-import AuthHoc from '~/repositories/AuthHoc';
-
 const HomepageDefaultPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {

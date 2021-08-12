@@ -15,6 +15,7 @@ import { appName } from '~/repositories/Repository';
 // import { toggleUserInfoLoading } from '../userInfo/action';
 import Router from 'next/router';
 import { addItem } from '../cart/action';
+import { getUserDetails } from '../userInfo/action';
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,6 +45,7 @@ function* signUpSaga(action) {
         for (const key of Object.keys(tokens))
             localStorage.setItem(`${appName}_${key}`, tokens[key]);
         modalSuccess('success');
+
         yield put(loginSuccess(payload.user));
 
         const notAuthCart = JSON.parse(localStorage.getItem('not-auth-cart'));
@@ -75,15 +77,28 @@ function* signUpSaga(action) {
 
 function* loginSaga(action) {
     try {
-        const { payload, tokens } = yield call(
-            AuthService.login,
-            action.payload
-        );
+        let _tokens;
+        let _payload;
+        if (action.payload.tokens) {
+            _tokens = action.payload.tokens;
+        } else {
+            const { payload, tokens } = yield call(
+                AuthService.login,
+                action.payload
+            );
+            _tokens = tokens;
+            _payload = payload;
+        }
 
-        for (const key of Object.keys(tokens))
-            localStorage.setItem(`${appName}_${key}`, tokens[key]);
+        for (const key of Object.keys(_tokens))
+            localStorage.setItem(`${appName}_${key}`, _tokens[key]);
         modalSuccess('success');
-        yield put(loginSuccess(payload.user));
+
+        if (action.payload.tokens) {
+            yield put(getUserDetails());
+        } else {
+            yield put(loginSuccess(_payload.user));
+        }
 
         const notAuthCart = JSON.parse(localStorage.getItem('not-auth-cart'));
 
@@ -118,7 +133,6 @@ function* loginSaga(action) {
 
 function* logOutSaga() {
     try {
-        console.log('LOGOUT');
         yield call(AuthService.logout);
         yield put(logOutSuccess());
         localStorage.removeItem(`${appName}_xAuthToken`);

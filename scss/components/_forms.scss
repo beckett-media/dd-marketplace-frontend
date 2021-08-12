@@ -247,10 +247,14 @@
 }
 
 .ps-form--account {
-    max-width: 430px;
+    max-width: 500px;
     margin: 0 auto !important;
-    padding-top: 130px;
     @extend %list-reset;
+
+    .ps-form__content {
+        border-top: 10px solid $color-1st;
+        height: 100vh;
+    }
 
     .ps-tab-list {
         text-align: center;

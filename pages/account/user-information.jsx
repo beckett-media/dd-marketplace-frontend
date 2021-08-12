@@ -18,8 +18,8 @@ const UserInformationPage = () => {
 
     return (
         <ContainerPage title="User Information" boxed={true}>
+            <div className="profile-cover-image"></div>
             <div className="ps-page--my-account">
-                <BreadCrumb breacrumb={breadCrumb} />
                 <UserInformation />
             </div>
         </ContainerPage>

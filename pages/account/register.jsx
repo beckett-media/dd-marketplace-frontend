@@ -16,12 +16,12 @@ const RegisterPage = () => {
     ];
 
     return (
-        <ContainerPage title="Register" boxed={true}>
-            <div className="ps-page--my-account">
-                {/* <BreadCrumb breacrumb={breadCrumb} /> */}
-                <Register />
-            </div>
-        </ContainerPage>
+        // <ContainerPage title="Register" boxed={true}>
+        <div className="ps-page--my-account">
+            {/* <BreadCrumb breacrumb={breadCrumb} /> */}
+            <Register />
+        </div>
+        // </ContainerPage>
     );
 };
 

@@ -15,9 +15,9 @@ const InvoicePage = () => {
         },
     ];
     return (
-        <ContainerPage title="Invoice" boxed={true}>
+        <ContainerPage title="Orders" boxed={true}>
+            <div className="profile-cover-image"></div>
             <div className="ps-page--my-account">
-                <BreadCrumb breacrumb={breadCrumb} />
                 <Invoices />
             </div>
         </ContainerPage>

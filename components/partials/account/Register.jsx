@@ -5,6 +5,7 @@ import { register } from '../../../store/auth/action';
 
 import { Form, Input } from 'antd';
 import { connect } from 'react-redux';
+import Title from '~/components/elements/Title';
 
 class Register extends Component {
     constructor(props) {
@@ -26,70 +27,71 @@ class Register extends Component {
                         ref={this.ref}
                         className="ps-form--account"
                         onFinish={this.onFinish}>
-                        <ul className="ps-tab-list">
-                            <li>
-                                <Link href="/account/login">
-                                    <a>Login</a>
-                                </Link>
-                            </li>
-                            <li className="active">
-                                <Link href="/account/register">
-                                    <a>Register</a>
-                                </Link>
-                            </li>
-                        </ul>
                         <div className="ps-tab active" id="register">
                             <div className="ps-form__content">
-                                <div className="form-group dark">
-                                    <Form.Item
-                                        name="fullName"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    'Please input your Full Name!',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="string"
-                                            placeholder="Full Name"
-                                        />
-                                    </Form.Item>
-                                </div>
-                                <div className="form-group dark">
-                                    <Form.Item
-                                        name="email"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    'Please input your email!',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="email"
-                                            placeholder="Email address"
-                                        />
-                                    </Form.Item>
-                                </div>
-                                <div className="form-group dark form-forgot">
-                                    <Form.Item
-                                        name="password"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    'Please input your password!',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="password"
-                                            placeholder="Password..."
-                                        />
-                                    </Form.Item>
+                                <a href="/">
+                                    <img
+                                        style={{ maxWidth: 120 }}
+                                        src={'/static/img/logo.png'}
+                                        className="mb-5"
+                                    />
+                                </a>
+                                <Title
+                                    title="Create Account "
+                                    subtitle="Create a Due Dilly Account"
+                                />
+                                <div style={{ paddingTop: 30 }}>
+                                    <div className="form-group dark">
+                                        <Form.Item
+                                            name="fullName"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Please input your Full Name!',
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="string"
+                                                placeholder="Full Name"
+                                            />
+                                        </Form.Item>
+                                    </div>
+                                    <div className="form-group dark">
+                                        <Form.Item
+                                            name="email"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Please input your email!',
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="email"
+                                                placeholder="Email address"
+                                            />
+                                        </Form.Item>
+                                    </div>
+                                    <div className="form-group dark form-forgot">
+                                        <Form.Item
+                                            name="password"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Please input your password!',
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="password"
+                                                placeholder="Password..."
+                                            />
+                                        </Form.Item>
+                                    </div>
                                 </div>
                                 <div className="form-group submit">
                                     <button
@@ -97,6 +99,16 @@ class Register extends Component {
                                         className="ps-btn ps-btn--fullwidth">
                                         Register
                                     </button>
+                                </div>
+                                <div>
+                                    <p
+                                        className="text-center"
+                                        style={{ marginRight: 5 }}>
+                                        Already have an account?{' '}
+                                        <span>
+                                            <a href="/account/login">Sign In</a>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                             {/* <div className="ps-form__footer">
