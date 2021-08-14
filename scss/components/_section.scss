@@ -1466,21 +1466,18 @@
 
 .ps-my-account {
     min-height: 100vh;
-    .ps-form__content {
-        background-color: #43475f !important;
-    }
     label {
-        color: #fff;
+        color: $color-text;
     }
     .ant-input {
         background-color: transparent !important;
-        color: #fff !important;
+        color: $color-text;
     }
     .dark {
         &.form-group {
             .ant-input {
                 background-color: transparent !important;
-                color: #fff !important;
+                color: $color-text;
             }
         }
     }

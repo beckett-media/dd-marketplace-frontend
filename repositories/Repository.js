@@ -4,6 +4,7 @@ export const basePostUrl = 'https://beta.apinouthemes.com'; // API for post
 export const baseStoreURL = 'https://beta.apinouthemes.com'; // API for vendor(store)
 
 const baseDomain = 'https://staging105.botkraft.com'; // API for products
+export const cardFACURL = 'https://quirky-panini-a633e8.netlify.app/fac-report';
 
 const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIsImlhdCI6MTYwNzg2NDcwMX0.F_3ZTAs_7MbboyzrNCkg0oOyV3yIacP81wee8LPTHJw`;
 

@@ -427,12 +427,19 @@ textarea.form-control {
         font-size: 14px;
     }
 }
+.form-control.ant-input {
+    background: #fff;
+    color: $color-text !important;
+    &:focus {
+        color: $color-text;
+    }
+}
 
 .dark.form-group {
     .form-control.ant-input {
-        color: $color-2nd !important;
+        color: $color-text !important;
         &:focus {
-            color: $color-2nd;
+            color: $color-text;
         }
     }
 }

@@ -51,7 +51,7 @@ class Payment extends Component {
                     </div>
                     <div className="ps-section__content">
                         <div className="row">
-                            <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                            <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 order-last order-lg-first">
                                 <div className="ps-block--shipping">
                                     <div className="ps-block__panel">
                                         <figure>
@@ -235,7 +235,7 @@ class Payment extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
+                            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 order-first order-lg-last">
                                 <div className="ps-form__orders">
                                     <ModulePaymentOrderSummary />
                                 </div>

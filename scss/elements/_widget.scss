@@ -1,11 +1,10 @@
 .widget {
     position: relative;
-    margin-bottom: 20px;
 
     .widget-title {
         margin-bottom: 2.5rem;
         padding: 10px;
-        font-weight: 700;
+        font-weight: 800;
     }
 
     &:last-child {
@@ -23,8 +22,8 @@
         font-family: $font-1st;
         display: block;
         margin-bottom: 2.5rem;
-        font-size: 1.6rem;
-        font-weight: 600;
+        font-size: 1.2rem;
+        font-weight: 800;
         color: #222222;
         text-transform: uppercase;
     }
@@ -65,15 +64,15 @@
 }
 
 .widget_shop {
-    padding: 25px 20px;
-    background-color: rgba(0, 0, 0, 0.1);
+    padding: 25px 10px;
+
     @extend %list-reset;
 
     .widget-title {
-        margin-bottom: 25px;
-        font-size: 18px;
+        margin-bottom: 0px;
+        font-size: 14px;
         text-transform: uppercase;
-        font-weight: 400;
+        font-weight: 800;
         color: $color-heading;
     }
 
@@ -675,8 +674,7 @@
                     }
 
                     &:hover {
-                        background-color: $color-1st;
-                        color: #fff;
+                        color: $color-1st;
                     }
                 }
 
@@ -685,7 +683,7 @@
                 }
 
                 &.active {
-                    background-color: $color-1st;
+                    color: $color-1st !important;
 
                     a {
                         color: #fff;

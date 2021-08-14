@@ -196,7 +196,7 @@
                 color: $color-heading;
                 text-align: center;
                 font-weight: 600;
-                background-color: rgba(0, 0, 0, 0.1);
+                background-color: rgba($color-1st, 0.5);
                 border: none;
 
                 &:first-child {
@@ -211,13 +211,11 @@
 
     tbody {
         tr {
-            background-color: rgba(0, 0, 0, 0.1);
-
             td {
                 padding: 20px 10px;
                 vertical-align: middle;
                 font-size: 16px;
-                color: #fff;
+                color: $color-text;
 
                 .form-group--number {
                     max-width: 100px;

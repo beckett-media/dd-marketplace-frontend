@@ -6,6 +6,7 @@ import { forgotpasswordrequests, login } from '../../../store/auth/action';
 import { Col, Layout, Button, Form, Typography, Input, Spin, Row } from 'antd';
 import { connect } from 'react-redux';
 import MaskedInput from 'input-masked-react';
+import Title from '~/components/elements/Title';
 
 class ForgotPassword extends Component {
     constructor(props) {
@@ -176,21 +177,22 @@ const LayoutWrapper = (props) => {
             <Row gutter={[8, 8]} style={{ maxWidth: 400 }}>
                 <Col xs={24}>
                     <Col align="middle" justify="center" className="mb-5">
-                        <Typography.Title>
-                            {forgotpassword
-                                ? 'Enter New Password'
-                                : otp
-                                ? 'Enter OTP'
-                                : 'Forgot Password'}
-                        </Typography.Title>
-                        <Typography className="text-secondary">
-                            {' '}
-                            {forgotpassword
-                                ? 'Set a new secure password.'
-                                : otp
-                                ? 'Enter the OTP you received on your email for verification.'
-                                : 'Enter the email associated with your account and we’ll send an email with instructions to reset your password.'}
-                        </Typography>
+                        <Title
+                            title={
+                                forgotpassword
+                                    ? 'Enter New Password'
+                                    : otp
+                                    ? 'Enter OTP'
+                                    : 'Forgot Password'
+                            }
+                            subtitle={
+                                forgotpassword
+                                    ? 'Set a new secure password.'
+                                    : otp
+                                    ? 'Enter the OTP you received on your email for verification.'
+                                    : 'Enter the email associated with your account and we’ll send an email with instructions to reset your password.'
+                            }
+                        />
                     </Col>
                 </Col>
                 {props.children}

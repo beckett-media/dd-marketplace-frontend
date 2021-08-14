@@ -10,6 +10,7 @@ import {
     UserOutlined,
     ShoppingOutlined,
 } from '@ant-design/icons';
+import WidgetUserWelcome from '~/components/partials/account/WidgetUserWelcome';
 
 const AccountQuickLinks = (props) => {
     const dispatch = useDispatch();
@@ -70,6 +71,9 @@ const AccountQuickLinks = (props) => {
                 <i className="icon-user"></i>
                 <div className="ps-block__content">
                     <ul className="ps-list--arrow">
+                        <li>
+                            <WidgetUserWelcome dark />
+                        </li>
                         {linksView}
                         <li className="ps-block__footer">
                             <i>

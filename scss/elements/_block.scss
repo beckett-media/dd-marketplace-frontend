@@ -2138,7 +2138,7 @@
 .ps-block--shopping-total {
     margin-bottom: 30px;
     padding: 30px 35px;
-    background-color: rgba(#000, 0.1);
+    background-color: rgba($color-1st, 0.1);
     @extend %list-reset;
 
     .ps-block__product {
@@ -2171,7 +2171,7 @@
             a {
                 display: block;
                 font-size: 14px;
-                color: #fff;
+                color: $color-text;
             }
         }
     }
@@ -3347,7 +3347,7 @@
 
             small {
                 font-size: 16px;
-                color: #fff;
+                color: $color-text;
             }
         }
     }
@@ -3363,7 +3363,7 @@
             display: flex;
             justify-content: space-between;
             width: 100%;
-            color: #dbdbdb;
+            color: $color-text;
 
             strong {
                 font-weight: 600;
@@ -3404,7 +3404,7 @@
         padding: 30px 20px;
         margin-bottom: 10px;
         border-radius: 4px;
-        background-color: rgba(#000, 0.1);
+        background-color: rgba($color-1st, 0.1);
     }
 
     .ps-block__payment-methods {
@@ -3443,7 +3443,7 @@
 
         a {
             text-align: right;
-            color: #fff;
+            color: $color-text;
         }
 
         strong {
@@ -3480,7 +3480,7 @@
             small {
                 font-size: 14px;
                 max-width: 10em;
-                color: #fff;
+                color: $color-text;
                 font-weight: 700;
             }
 
@@ -3500,7 +3500,7 @@
 
 .ps-block--payment-method {
     margin-bottom: 50px;
-    padding: 30px 20px;
+    padding: 20px 0px;
     background-color: rgba(#fff, 0.1);
     border-radius: 10px;
 

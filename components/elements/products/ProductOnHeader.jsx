@@ -30,12 +30,11 @@ const ProductOnHeader = ({ product }) => {
                 </div>
                 <div className="ps-product__shopping">
                     {priceView}
-                    <a
-                        className="ps-btn"
-                        href="#"
+                    <button
+                        className="ps-btn ps-btn--black"
                         onClick={(e) => handleAddItemToCart(e)}>
                         Add to Cart
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

@@ -46,8 +46,7 @@ const WidgetShopCategories = () => {
                     style={{
                         ...(productId === item._id
                             ? {
-                                  backgroundColor: '#37c4ce',
-                                  color: '#000',
+                                  color: '#37c4ce',
                               }
                             : {}),
 
@@ -68,7 +67,7 @@ const WidgetShopCategories = () => {
 
     return (
         <aside className="widget widget_shop">
-            <h4 className="widget-title">By Product</h4>
+            <p className="widget-title">By Product</p>
             {categoriesView}
         </aside>
     );

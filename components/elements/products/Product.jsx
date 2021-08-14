@@ -29,25 +29,31 @@ const ProductHorizontal = ({ product }) => {
                             {product.playerNames.join(',')}
                         </p>
                     </>
-
-                    <div className="ps-product__meta">
-                        <div>
-                            <span>Packaging</span>
-                            <p>
-                                <strong className="text-secondary">
-                                    {packaging?.name}
-                                </strong>
-                            </p>
+                    <div
+                        className="ps-product__meta-wrapper"
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}>
+                        <div className="ps-product__meta">
+                            <div>
+                                <span>Packaging</span>
+                                <p>
+                                    <strong className="text-secondary">
+                                        {packaging?.name}
+                                    </strong>
+                                </p>
+                            </div>
+                            <div>
+                                <span>Grade</span>
+                                <p>
+                                    <strong className="text-secondary">
+                                        {grade?.name}
+                                    </strong>
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <span>Grade</span>
-                            <p>
-                                <strong className="text-secondary">
-                                    {grade?.name}
-                                </strong>
-                            </p>
-                        </div>
-                        {StrapiProductPrice(product)}
+                        <div>{StrapiProductPrice(product)}</div>
                     </div>
                 </div>
             </div>

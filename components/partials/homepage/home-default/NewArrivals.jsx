@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
 import ProductHorizontal from '~/components/elements/products/ProductHorizontal';
+import Title from '~/components/elements/Title';
 
 const titles = {
     recommendation: 'Recommended',
@@ -16,7 +17,7 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
         if (list && list.length > 0) {
             productItemView = list.map((item) => (
                 <div
-                    className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 "
+                    className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12"
                     key={item.id}>
                     <ProductHorizontal product={item} />
                 </div>
@@ -31,7 +32,7 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
         <div className="ps-product-list ps-new-arrivals">
             <div className="ps-container">
                 <div className="ps-section__header">
-                    <h3>{titles[id] || ''}</h3>
+                    <Title title={titles[id]} />
                     <ul className="ps-section__links">
                         <li>
                             <Link href="/shop">

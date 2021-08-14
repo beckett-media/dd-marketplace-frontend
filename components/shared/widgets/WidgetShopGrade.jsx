@@ -50,7 +50,7 @@ const WidgetShopBrands = () => {
 
     return (
         <aside className="widget widget_shop widget_shop--brand">
-            <h4 className="widget-title">By Grades</h4>
+            <p className="widget-title">By Grades</p>
             <figure>
                 <Radio.Group
                     defaultValue={slug}
@@ -79,7 +79,7 @@ export const WidgetShopGradesNew = () => {
         if (grades.length) {
             const id = grades[0]._id;
 
-            Router.replace('/shop', '/shop?gradeId=' + 'GradeRaw' || id, {
+            Router.replace('/shop', '/shop?productId=' + 'singleCard' || id, {
                 shallow: true,
             });
             dispatch(getListingsByGrade(id));
@@ -107,8 +107,7 @@ export const WidgetShopGradesNew = () => {
                     style={{
                         ...(productId === item._id
                             ? {
-                                  backgroundColor: '#37c4ce',
-                                  color: '#000',
+                                  color: '#37c4ce',
                                   padding: 10,
                               }
                             : {}),
@@ -118,7 +117,7 @@ export const WidgetShopGradesNew = () => {
                     key={item._id}
                     className={item._id === slug ? 'active' : ''}
                     onClick={() => onProductClick(item)}>
-                    {item._id}&nbsp;({item.name})
+                    {item.name}
                 </li>
             ));
             categoriesView = <ul className="ps-list--categories">{items}</ul>;
@@ -130,7 +129,7 @@ export const WidgetShopGradesNew = () => {
 
     return (
         <aside className="widget widget_shop">
-            <h4 className="widget-title">By Grades</h4>
+            <p className="widget-title">By Grades</p>
             {categoriesView}
         </aside>
     );

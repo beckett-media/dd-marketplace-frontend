@@ -284,7 +284,7 @@
     li {
         position: relative;
         padding: 10px;
-        color: #dddddd;
+        color: $color-text;
         a {
             display: block;
             line-height: 22px;
@@ -455,7 +455,7 @@
             a {
                 color: $color-1st !important;
                 &:hover {
-                    color: #fff !important;
+                    color: $color-1st;
                 }
             }
         }
@@ -466,7 +466,7 @@
 
         a {
             font-weight: 400;
-            color: #fff !important;
+            color: $color-text;
             text-transform: uppercase !important;
         }
         border: none !important;

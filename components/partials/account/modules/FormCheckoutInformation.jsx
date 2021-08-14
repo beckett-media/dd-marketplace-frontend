@@ -119,9 +119,8 @@ class FormCheckoutInformation extends Component {
                         {address && address.length
                             ? address.map((address, index) => (
                                   <div
-                                      className="row"
+                                      className="row border"
                                       style={{
-                                          border: '1px solid',
                                           marginBottom: 10,
                                           padding: 10,
                                       }}>
@@ -141,17 +140,12 @@ class FormCheckoutInformation extends Component {
                                       </div>
                                       <div className="col-sm-4 d-flex justify-content-end">
                                           <span
-                                              style={{
-                                                  ...(address.isDefaultAddress
-                                                      ? {
-                                                            backgroundColor:
-                                                                'green',
-                                                            color: '#fff',
-                                                            padding: '1px 10px',
-                                                            borderRadius: 20,
-                                                        }
-                                                      : { cursor: 'pointer' }),
-                                              }}
+                                              className={
+                                                  address.isDefaultAddress
+                                                      ? `badge badge-pill badge-success`
+                                                      : ``
+                                              }
+                                              style={{ height: 15 }}
                                               onClick={() =>
                                                   address.isDefaultAddress
                                                       ? null
@@ -198,9 +192,8 @@ class FormCheckoutInformation extends Component {
                               ))
                             : null}
                         <div
-                            className="row"
+                            className="row border"
                             style={{
-                                border: '1px solid',
                                 marginBottom: 10,
                                 padding: 10,
                             }}>

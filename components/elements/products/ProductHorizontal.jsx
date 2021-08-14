@@ -30,26 +30,32 @@ const ProductHorizontal = ({ product }) => {
                         </p>
                     </>
                     <hr />
-
-                    <div className="ps-product__meta">
-                        <div>
-                            <span>Packaging</span>
-                            <p>
-                                <strong className="text-secondary">
-                                    {packaging?.name}
-                                </strong>
-                            </p>
+                    <div
+                        className="ps-product__meta-wrapper"
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}>
+                        <div className="ps-product__meta">
+                            <div>
+                                <span>Packaging</span>
+                                <p>
+                                    <strong className="text-secondary">
+                                        {packaging?.name}
+                                    </strong>
+                                </p>
+                            </div>
+                            <div>
+                                <span>Grade</span>
+                                <p>
+                                    <strong className="text-secondary">
+                                        {grade?.name}
+                                    </strong>
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <span>Grade</span>
-                            <p>
-                                <strong className="text-secondary">
-                                    {grade?.name}
-                                </strong>
-                            </p>
-                        </div>
+                        <div>{StrapiProductPrice(product)}</div>
                     </div>
-                    {StrapiProductPrice(product)}
                 </div>
             </div>
         </Link>

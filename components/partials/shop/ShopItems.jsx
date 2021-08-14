@@ -7,6 +7,7 @@ import ModuleShopSortBy from '~/components/partials/shop/modules/ModuleShopSortB
 import { useRouter } from 'next/router';
 import { generateTempArray } from '~/utilities/common-helpers';
 import SkeletonProduct from '~/components/elements/skeletons/SkeletonProduct';
+import { CodeSandboxOutlined } from '@ant-design/icons';
 
 const ShopItems = ({
     columns = 4,
@@ -22,7 +23,7 @@ const ShopItems = ({
     const [total, setTotal] = useState(0);
     // const [loading, setLoading] = useState(false);
     const [classes, setClasses] = useState(
-        'col-xl-4 col-lg-4 col-md-3 col-sm-6 col-6'
+        'col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6'
     );
 
     function handleChangeViewMode(e) {
@@ -41,16 +42,16 @@ const ShopItems = ({
                 return 3;
                 break;
             case 4:
-                setClasses('col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6');
+                setClasses('col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6');
                 return 4;
                 break;
             case 6:
-                setClasses('col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6');
+                setClasses('col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6');
                 return 6;
                 break;
 
             default:
-                setClasses('col-xl-4 col-lg-4 col-md-3 col-sm-6 col-6');
+                setClasses('col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6');
         }
     }
 
@@ -96,7 +97,12 @@ const ShopItems = ({
                 ));
             }
         } else {
-            productItemsView = <p>No product found.</p>;
+            productItemsView = (
+                <div class="text-center p-5">
+                    <CodeSandboxOutlined style={{ fontSize: 30 }} />
+                    <p>No Products Found</p>
+                </div>
+            );
         }
     } else {
         const skeletonItems = generateTempArray(12).map((item) => (
@@ -109,13 +115,8 @@ const ShopItems = ({
 
     return (
         <div className="ps-shopping">
-            <div className="ps-shopping__header">
-                {/* <p>
-                    <strong className="mr-2">{total}</strong>
-                    Products found
-                </p> */}
+            {/* <div className="ps-shopping__header">
                 <div className="ps-shopping__actions">
-                    {/* <ModuleShopSortBy /> */}
                     <div className="ps-shopping__view">
                         <p>View</p>
                         <ul className="ps-tab-list">
@@ -137,6 +138,8 @@ const ShopItems = ({
                     </div>
                 </div>
             </div>
+            */}
+
             <div className="ps-shopping__content">{productItemsView}</div>
             {/* <div className="ps-shopping__footer text-center">
                 <div className="ps-pagination">

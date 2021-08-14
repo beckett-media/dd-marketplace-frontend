@@ -18,12 +18,6 @@ const ModuleDetailActionsMobile = ({ product }) => {
                 onClick={(e) => handleAddItemToCart(e)}>
                 Add to cart
             </a>
-            <a
-                className="ps-btn"
-                href="#"
-                onClick={(e) => handleAddItemToCart(e)}>
-                Buy Now
-            </a>
         </div>
     );
 };

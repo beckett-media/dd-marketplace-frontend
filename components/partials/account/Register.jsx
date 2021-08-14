@@ -32,7 +32,7 @@ class Register extends Component {
                                 <a href="/">
                                     <img
                                         style={{ maxWidth: 120 }}
-                                        src={'/static/img/logo.png'}
+                                        src={'/static/img/logo-dark.png'}
                                         className="mb-5"
                                     />
                                 </a>

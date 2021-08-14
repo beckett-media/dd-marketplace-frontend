@@ -20,6 +20,8 @@ import {
     getListingsByProducts,
 } from '~/store/product/action';
 import Router from 'next/router';
+import Title from '~/components/elements/Title';
+import WidgetUserWelcome from '~/components/partials/account/WidgetUserWelcome';
 
 const ShopDefaultPage = () => {
     const productItems = useSelector(getListings);
@@ -38,31 +40,29 @@ const ShopDefaultPage = () => {
     return (
         <ContainerShop title="Shop">
             <div className="ps-page--shop">
-                <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
+                <div style={{ position: 'absolute', right: 10, top: 10 }}>
+                    <img
+                        style={{ width: 100 }}
+                        src="/static/img/dotted-bg.png"
+                    />
+                </div>
+
                 <div className="ps-container">
                     <ShopBanner />
-                    {/* <ShopBrands />
-                    <ShopCategories /> */}
 
                     <div className="ps-layout--shop">
                         <div className="ps-layout__left">
+                            <WidgetUserWelcome />
                             <WidgetShopCategories />
                             <WidgetShopGradesNew />
                             {/* <WidgetShopFilterByPriceRange /> */}
                         </div>
 
                         <div className="ps-layout__right">
-                            {/* <ProductGroupByCarousel
-                                collectionSlug="shop-best-seller-items"
-                                title="Best Sale Items"
-                                productItems={productItems}
-                                loading={loading}
-                            /> */}
-                            {/* 
-                            <ProductGroupByCarousel
-                                collectionSlug="shop-recommend-items"
-                                title="Recommended Items"
-                            /> */}
+                            <Title
+                                title="Marketplace"
+                                subtitle="Due Dilly Marketplace"
+                            />
 
                             <MobileFilter />
 

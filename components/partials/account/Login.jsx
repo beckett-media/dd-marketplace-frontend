@@ -53,7 +53,7 @@ class Login extends Component {
                                 <a href="/">
                                     <img
                                         style={{ maxWidth: 120 }}
-                                        src={'/static/img/logo.png'}
+                                        src={'/static/img/logo-dark.png'}
                                         className="mb-5"
                                     />
                                 </a>
@@ -106,9 +106,7 @@ class Login extends Component {
                                             justifyContent: 'flex-end',
                                         }}>
                                         <Link href="/account/forgotpassword">
-                                            <a className="text-white">
-                                                Forgot password?
-                                            </a>
+                                            <a>Forgot password?</a>
                                         </Link>
                                     </div>
                                 </Col>
