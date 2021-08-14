@@ -15,18 +15,14 @@ const ModuleProductDetailDescription = ({ product }) => {
     ];
 
     const grade = useSelector(({ home }) =>
-        home?.marketPlace?.grades.find(({ _id }) => product.grade === _id)
+        home?.marketPlace?.grades?.find(({ _id }) => product.grade === _id)
     );
 
     return (
         <div className="ps-product__desc">
             <p>
                 Sold By:
-                <Link href="/shop">
-                    <a>
-                        <strong> {product.seller.fullName}</strong>
-                    </a>
-                </Link>
+                <strong> {product.seller.fullName}</strong>
             </p>
             <ul className="ps-list--dot">
                 <p>

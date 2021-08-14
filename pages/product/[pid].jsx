@@ -7,9 +7,12 @@ import BreadCrumb from '~/components/elements/BreadCrumb';
 import ProductDetailFullwidth from '~/components/elements/detail/ProductDetailFullwidth';
 import HeaderProduct from '~/components/shared/headers/HeaderProduct';
 import HeaderDefault from '~/components/shared/headers/HeaderDefault';
+import { useDispatch } from 'react-redux';
+import { getMarketPlaceDetails } from '~/store/home/action';
 
 const ProductDefaultPage = () => {
     const router = useRouter();
+    const dispatch = useDispatch();
     const { pid } = router.query;
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -28,6 +31,10 @@ const ProductDefaultPage = () => {
             );
         }
     }
+
+    useEffect(() => {
+        dispatch(getMarketPlaceDetails());
+    }, []);
 
     useEffect(() => {
         getProduct(pid);

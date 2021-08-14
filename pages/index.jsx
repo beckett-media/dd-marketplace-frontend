@@ -23,6 +23,7 @@ const HomepageDefaultPage = () => {
     useEffect(() => {
         dispatch(getMarketPlaceDetails());
         dispatch(getUserDetails());
+        dispatch(getMarketPlaceDetails());
     }, []);
 
     const {

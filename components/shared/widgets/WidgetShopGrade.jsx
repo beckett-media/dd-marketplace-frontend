@@ -75,17 +75,6 @@ export const WidgetShopGradesNew = () => {
 
     const { grades = [] } = useSelector(getMarketPlaceData);
 
-    useEffect(() => {
-        if (grades.length) {
-            const id = grades[0]._id;
-
-            Router.replace('/shop', '/shop?productId=' + 'singleCard' || id, {
-                shallow: true,
-            });
-            dispatch(getListingsByGrade(id));
-        }
-    }, [grades.length]);
-
     const onProductClick = (item) => {
         Router.replace('/shop', '/shop?gradeId=' + item._id, {
             shallow: true,
@@ -120,7 +109,9 @@ export const WidgetShopGradesNew = () => {
                     {item.name}
                 </li>
             ));
-            categoriesView = <ul className="ps-list--categories">{items}</ul>;
+            categoriesView = (
+                <ul className="ps-list--categories grades">{items}</ul>
+            );
         } else {
         }
     } else {

@@ -19,6 +19,7 @@ const WidgetShopCategories = () => {
 
     useEffect(() => {
         if (products.length) {
+            console.log('products: ', products);
             const id = products[0]._id;
             Router.replace('/shop', '/shop?productId=' + id, { shallow: true });
             dispatch(getListingsByProducts(id));

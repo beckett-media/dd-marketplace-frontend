@@ -281,6 +281,11 @@
 }
 
 .ps-list--categories {
+    &.grades {
+        li {
+            display: inline-block;
+        }
+    }
     li {
         position: relative;
         padding: 10px;

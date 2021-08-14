@@ -137,7 +137,7 @@ a:link {
     h1.ant-typography {
         position: relative;
         z-index: 1;
-        font-size: 32px;
+        font-size: 25px;
     }
 
     h1.ant-typography.text-shadow {
@@ -157,6 +157,13 @@ a:link {
         background-color: #222;
         left: 0;
         bottom: -20px;
+    }
+    @media (min-width: 768px) {
+        h1.ant-typography {
+            position: relative;
+            z-index: 1;
+            font-size: 32px;
+        }
     }
 }
 
