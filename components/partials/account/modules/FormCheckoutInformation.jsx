@@ -254,6 +254,7 @@ class FormCheckoutInformation extends Component {
                                 </div>
 
                                 <div className="form-group">
+                                    <label>Full Name*</label>
                                     <Form.Item
                                         name="fullName"
                                         rules={[
@@ -276,24 +277,26 @@ class FormCheckoutInformation extends Component {
                         <div className="row">
                             <div className="col-sm-2">
                                 <div className="form-group">
+                                    <label>Area Code*</label>
                                     <Form.Item
                                         name="countryCode"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Enter country code',
+                                                message: 'Enter area code',
                                             },
                                         ]}>
                                         <Input
                                             className="form-control"
                                             type="text"
-                                            placeholder="CountryCode"
+                                            placeholder="Area Code"
                                         />
                                     </Form.Item>
                                 </div>
                             </div>
                             <div className="col-sm-10">
                                 <div className="form-group">
+                                    <label>Mobile Number*</label>
                                     <Form.Item
                                         name="mobile"
                                         rules={[
@@ -313,6 +316,7 @@ class FormCheckoutInformation extends Component {
                         </div>
 
                         <div className="form-group">
+                            <label>Address Line 1*</label>
                             <Form.Item
                                 name="streetAddress"
                                 rules={[
@@ -329,14 +333,8 @@ class FormCheckoutInformation extends Component {
                             </Form.Item>
                         </div>
                         <div className="form-group">
-                            <Form.Item
-                                name="streetAddress2"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Enter an Street addrees2!',
-                                    },
-                                ]}>
+                            <label>Address Line 2</label>
+                            <Form.Item name="streetAddress2">
                                 <Input
                                     className="form-control"
                                     type="text"
@@ -345,12 +343,14 @@ class FormCheckoutInformation extends Component {
                             </Form.Item>
                         </div>
                         <div className="form-group">
+                            <label>State*</label>
                             <Form.Item
                                 name="state"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Enter an State',
+                                        message:
+                                            'Please enter name of the state',
                                     },
                                 ]}>
                                 <Input
@@ -363,12 +363,15 @@ class FormCheckoutInformation extends Component {
                         <div className="row">
                             <div className="col-sm-6">
                                 <div className="form-group">
+                                    <label>City*</label>
+
                                     <Form.Item
                                         name="city"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Enter a city!',
+                                                message:
+                                                    'Please enter the name of city',
                                             },
                                         ]}>
                                         <Input
@@ -381,18 +384,20 @@ class FormCheckoutInformation extends Component {
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-group">
+                                    <label>Zip Code</label>
                                     <Form.Item
                                         name="zipcode"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Enter a postal code!',
+                                                message:
+                                                    'Please enter your zip code.',
                                             },
                                         ]}>
                                         <Input
                                             className="form-control"
                                             type="string"
-                                            placeholder="Postal Code"
+                                            placeholder="Zip Code"
                                         />
                                     </Form.Item>
                                 </div>

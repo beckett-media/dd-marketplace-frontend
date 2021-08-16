@@ -7,6 +7,7 @@ import AvatarUpload from '~/components/shared/upload/AvatharUpload';
 import { baseUrl } from '~/repositories/Repository';
 import { Avatar } from 'antd';
 import { logOut } from '~/store/auth/action';
+import BreadCrumb from '~/components/elements/BreadCrumb';
 
 const UserInformation = (props) => {
     const accountLinks = [
@@ -55,6 +56,16 @@ const UserInformation = (props) => {
         : '/img/user/admin.jpg';
 
     const name = userInfo?.username || userInfo?.fullName || '';
+
+    const breadCrumb = [
+        {
+            text: 'Home',
+            url: '/',
+        },
+        {
+            text: 'Profile',
+        },
+    ];
 
     return (
         <section className="ps-my-account ps-page--account">
@@ -131,6 +142,7 @@ const UserInformation = (props) => {
                     </div>
                     <div className="col-lg-9">
                         <div className="ps-page__content">
+                            <BreadCrumb breacrumb={breadCrumb} />
                             <FormChangeUserInformation
                                 userInfo={props.userInfo}
                             />

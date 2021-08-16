@@ -1,7 +1,8 @@
 .ps-breadcrumb {
     padding: 20px 0;
-    background-color: rgba(0, 0, 0, 0.1);
-
+    .container {
+        padding: 0;
+    }
     .breadcrumb {
         display: inline-block;
         margin: 0;
@@ -15,7 +16,7 @@
             color: $color-text;
 
             &:before {
-                content: '/';
+                content: '>';
                 //font-family: FontAwesome;
                 margin: 0 5px;
             }

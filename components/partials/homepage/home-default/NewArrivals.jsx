@@ -8,7 +8,7 @@ const titles = {
     recommendation: 'Recommended',
     trendingCards: 'Trending Cards',
     trendingPlayers: 'Trending Players',
-    newArrival: 'New Arrival',
+    newArrival: 'New Arrivals',
 };
 
 const NewArrivals = ({ collectionSlug, id, list, loading }) => {
