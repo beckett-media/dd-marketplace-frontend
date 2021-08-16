@@ -6,7 +6,10 @@ const routes = {
 
 class HomeRespository {
     async getmarketPlace() {
-        const request = await Repository.get(`${baseUrl}${routes.marketplace}`);
+        const request = await Repository.get(
+            `${baseUrl}${routes.marketplace}`,
+            { doNotUseAuth: true }
+        );
         return request?.data?.data || {};
     }
 }
@@ -20,5 +23,4 @@ products
 recommendation
 trendingCards
 trendingPlayers
-
 */

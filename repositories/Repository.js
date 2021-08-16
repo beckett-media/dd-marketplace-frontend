@@ -29,9 +29,11 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
     (config) => {
-        const _xAuthToken =
-            localStorage.getItem(`${appName}_xAuthToken`) || null;
-        if (_xAuthToken) config.headers['x-auth-token'] = _xAuthToken;
+        if (!config.doNotUseAuth) {
+            const _xAuthToken =
+                localStorage.getItem(`${appName}_xAuthToken`) || null;
+            if (_xAuthToken) config.headers['x-auth-token'] = _xAuthToken;
+        }
         return config;
     },
     (error) => {

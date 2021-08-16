@@ -428,6 +428,7 @@
 .ps-product__meta {
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
     > div {
         margin-right: 15px;
     }

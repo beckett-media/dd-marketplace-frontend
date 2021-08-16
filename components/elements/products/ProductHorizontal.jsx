@@ -5,6 +5,7 @@ import {
     StrapiProductThumbnail,
 } from '~/utilities/product-helper';
 import { useSelector } from 'react-redux';
+import { cardFACURL } from '~/repositories/Repository';
 
 const ProductHorizontal = ({ product }) => {
     let grade = useSelector(({ home }) =>
@@ -35,6 +36,7 @@ const ProductHorizontal = ({ product }) => {
                         style={{
                             display: 'flex',
                             justifyContent: 'space-between',
+                            alignItems: 'center',
                         }}>
                         <div className="ps-product__meta">
                             <div>
@@ -53,6 +55,13 @@ const ProductHorizontal = ({ product }) => {
                                     </strong>
                                 </p>
                             </div>
+                            {product.card && (
+                                <div>
+                                    <a href={`${cardFACURL}/${product.card}`}>
+                                        View FAC Report
+                                    </a>
+                                </div>
+                            )}
                         </div>
                         <div>{StrapiProductPrice(product)}</div>
                     </div>
