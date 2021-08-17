@@ -66,7 +66,7 @@ const ModuleProductDetailDescription = ({ product }) => {
                         />
                         <a
                             target="_blank"
-                            href={cardFACURL + '/' + product.card}>
+                            href={cardFACURL + '/' + product.card._id}>
                             View FAC Report
                         </a>
                     </span>

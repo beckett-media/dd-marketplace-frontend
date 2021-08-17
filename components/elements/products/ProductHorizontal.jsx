@@ -16,58 +16,66 @@ const ProductHorizontal = ({ product }) => {
     );
 
     return (
-        <Link
-            href="/product/[pid]"
-            as={`/product/${product._id || product.id}`}>
-            <div className="ps-product--horizontal">
+        <div className="ps-product--horizontal">
+            <Link
+                href="/product/[pid]"
+                as={`/product/${product._id || product.id}`}>
                 <div className="ps-product__thumbnail">
                     {StrapiProductThumbnail(product)}
                 </div>
-                <div className="ps-product__content">
+            </Link>
+            <div className="ps-product__content">
+                <Link
+                    href="/product/[pid]"
+                    as={`/product/${product._id || product.id}`}>
                     <>
-                        <span>{product.title}</span>
-                        <p className={'my-3 ps-product__player'}>
-                            {product.playerNames.join(',')}
-                        </p>
+                        <>
+                            <span>{product.title}</span>
+                            <p className={'my-3 ps-product__player'}>
+                                {product.playerNames.join(',')}
+                            </p>
+                        </>
+                        <hr />
                     </>
-                    <hr />
-                    <div
-                        className="ps-product__meta-wrapper"
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                        }}>
-                        <div className="ps-product__meta">
-                            <div>
-                                <span>Packaging</span>
-                                <p>
-                                    <strong className="text-secondary">
-                                        {packaging?.name}
-                                    </strong>
-                                </p>
-                            </div>
-                            <div>
-                                <span>Grade</span>
-                                <p>
-                                    <strong className="text-secondary">
-                                        {grade?.name}
-                                    </strong>
-                                </p>
-                            </div>
-                            {product.card && (
-                                <div>
-                                    <a href={`${cardFACURL}/${product.card}`}>
-                                        View FAC Report
-                                    </a>
-                                </div>
-                            )}
+                </Link>
+                <div
+                    className="ps-product__meta-wrapper"
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}>
+                    <div className="ps-product__meta">
+                        <div>
+                            <span>Packaging</span>
+                            <p>
+                                <strong className="text-secondary">
+                                    {packaging?.name}
+                                </strong>
+                            </p>
                         </div>
-                        <div>{StrapiProductPrice(product)}</div>
+                        <div>
+                            <span>Grade</span>
+                            <p>
+                                <strong className="text-secondary">
+                                    {grade?.name}
+                                </strong>
+                            </p>
+                        </div>
+                        {product.card && (
+                            <div>
+                                <a
+                                    target="_blank"
+                                    href={`${cardFACURL}/${product.card._id}`}>
+                                    View FAC Report
+                                </a>
+                            </div>
+                        )}
                     </div>
+                    <div>{StrapiProductPrice(product)}</div>
                 </div>
             </div>
-        </Link>
+        </div>
     );
 };
 
