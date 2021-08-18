@@ -147,9 +147,9 @@ export function StrapiProductThumbnail(product) {
         view = (
             <Link href="/product/[pid]" as={`/product/${product._id}`}>
                 <a>
-                    <LazyLoad>
+                    {/* <LazyLoad>
                         <img src="/static/img/not-found.jpg" alt="martfury" />
-                    </LazyLoad>
+                    </LazyLoad> */}
                 </a>
             </Link>
         );
