@@ -175,6 +175,7 @@
 
         img {
             width: 100%;
+            
         }
 
         .ps-product__actions {
@@ -497,8 +498,14 @@
         overflow: hidden;
         width: 100%;
         text-align: center;
-        background-color: #f5f5f5;
         padding: 10px;
+        background: url('/static/img/duedilly-outline.png');
+        background-size: contain;
+        background-color: #f5f5f5;
+
+        img{
+            height: 100%;
+        }
     }
 
     .ps-product__content {
