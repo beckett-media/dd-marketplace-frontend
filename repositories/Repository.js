@@ -3,13 +3,18 @@ import axios from 'axios';
 export const basePostUrl = 'https://beta.apinouthemes.com'; // API for post
 export const baseStoreURL = 'https://beta.apinouthemes.com'; // API for vendor(store)
 
-const baseDomain = 'https://staging105.botkraft.com'; // API for products
-export const cardFACURL = 'https://quirky-panini-a633e8.netlify.app/fac-report';
+const baseDomain =
+    'https://api.duedilly.co' || 'https://staging105.botkraft.com'; // API for products
+export const cardFACURL =
+    'https://duedilly.co/fac-report' ||
+    'https://quirky-panini-a633e8.netlify.app/fac-report';
 
 const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIsImlhdCI6MTYwNzg2NDcwMX0.F_3ZTAs_7MbboyzrNCkg0oOyV3yIacP81wee8LPTHJw`;
 
-export const sellerDashboardDomain = 'inspiring-albattani-246423.netlify.app';
+export const sellerDashboardDomain =
+    'seller.duedilly.co' || 'inspiring-albattani-246423.netlify.app';
 export const sellerDashboardURL =
+    'https://seller.duedilly.co' ||
     'https://inspiring-albattani-246423.netlify.app';
 
 export const appName = 'dilly_client';
