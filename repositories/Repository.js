@@ -4,7 +4,8 @@ export const basePostUrl = 'https://beta.apinouthemes.com'; // API for post
 export const baseStoreURL = 'https://beta.apinouthemes.com'; // API for vendor(store)
 
 const baseDomain =
-    'https://api.duedilly.co' || 'https://staging105.botkraft.com'; // API for products
+    'https://api.duedilly.co' || 'https://staging105.botkraft.com';
+
 export const cardFACURL =
     'https://duedilly.co/fac-report' ||
     'https://quirky-panini-a633e8.netlify.app/fac-report';
