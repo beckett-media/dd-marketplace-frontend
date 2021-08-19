@@ -72,8 +72,9 @@ const ProductHorizontal = ({ product }) => {
                             </div>
                         )}
                     </div>
-                    <div>{StrapiProductPrice(product)}</div>
                 </div>
+                <div>{StrapiProductPrice(product)}</div>
+
             </div>
         </div>
     );
