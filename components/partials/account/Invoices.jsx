@@ -150,7 +150,7 @@ class Invoices extends Component {
                                     <div className="ps-section__header">
                                         <h3>Orders</h3>
                                     </div>
-                                    <div className="ps-section__content">
+                                    <div className="ps-section__content orders-table">
                                         <TableInvoices orders={orders} />
                                     </div>
                                 </div>

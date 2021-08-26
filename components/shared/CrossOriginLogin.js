@@ -8,12 +8,17 @@ var simpleCrypto = new SimpleCrypto("myTotalySecretKey");
 const CrossOriginLogin = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  var currentURL=location.protocol + '//' + location.host + location.pathname;
+  console.log('currentURL: ', currentURL);
+
   const { auth } = router.query;
+  console.log('auth: ', auth);
   useEffect(() => {
     if (auth) {
       let tokens = simpleCrypto.decrypt(decodeURIComponent(auth));
+      console.log('tokens: ', tokens);
       dispatch(login({ tokens }));
-      router.replace(router.asPath, undefined, { shallow: true });
+      router.replace(currentURL, undefined, { shallow: true });
     }
   }, [auth]);
 

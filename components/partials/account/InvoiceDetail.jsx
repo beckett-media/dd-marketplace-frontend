@@ -145,7 +145,7 @@ class InvoiceDetail extends Component {
                                                 </figure>
                                             </div>
                                         </div>
-                                        <div className="table-responsive">
+                                        <div className="table-responsive ">
                                             <table className="table ps-table--shopping-cart">
                                                 <thead>
                                                     <tr>

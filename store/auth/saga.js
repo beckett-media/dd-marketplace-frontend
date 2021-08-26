@@ -76,6 +76,7 @@ function* signUpSaga(action) {
 }
 
 function* loginSaga(action) {
+    
     try {
         let _tokens;
         let _payload;
@@ -109,16 +110,16 @@ function* loginSaga(action) {
                 localStorage.setItem('not-auth-cart', null);
 
                 const path = localStorage.getItem('not-auth-cart-path');
-                Router.push(path);
+                if(!action.payload.tokens) Router.push(path);
                 localStorage.setItem('not-auth-cart-path', null);
             } else {
-                Router.push('/');
+               if(!action.payload.tokens) Router.push('/');
             }
         } else {
-            Router.push('/');
+            if(!action.payload.tokens)  Router.push('/');
         }
     } catch (error) {
-        console.log('error: ', error);
+        
         if (action && action.callback) action.callback();
         notification.error({
             message: 'Failed',

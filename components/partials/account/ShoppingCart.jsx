@@ -46,8 +46,8 @@ class ShoppingCart extends Component {
                         <h1>Shopping Cart</h1>
                     </div>
                     <div className="ps-section__content">
-                        <div className="table-responsive">
-                            <table className="table ps-table--shopping-cart">
+                        <div className="cart-table">
+                            <table className="table ps-table--shopping-cart ">
                                 <thead>
                                     <tr>
                                         <th>Product</th>
