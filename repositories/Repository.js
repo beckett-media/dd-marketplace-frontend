@@ -5,18 +5,18 @@ export const baseStoreURL = 'https://beta.apinouthemes.com'; // API for vendor(s
 
 const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIsImlhdCI6MTYwNzg2NDcwMX0.F_3ZTAs_7MbboyzrNCkg0oOyV3yIacP81wee8LPTHJw`;
 
-export const sellerDashboardDomain = 'inspiring-albattani-246423.netlify.app';
-export const sellerDashboardURL =
-    'https://inspiring-albattani-246423.netlify.app';
-export const cardFACURL =
-    'https://duedilly.co/fac-report' ||
-    'https://quirky-panini-a633e8.netlify.app/fac-report';
-const baseDomain = 'https://staging105.botkraft.com';
+// export const sellerDashboardDomain = 'inspiring-albattani-246423.netlify.app';
+// export const sellerDashboardURL =
+//     'https://inspiring-albattani-246423.netlify.app';
+// export const cardFACURL =
+//     'https://duedilly.co/fac-report' ||
+//     'https://quirky-panini-a633e8.netlify.app/fac-report';
+// const baseDomain = 'https://staging105.botkraft.com';
 
-// export const cardFACURL = 'https://duedilly.co/fac-report';
-// export const sellerDashboardDomain = 'seller.duedilly.co';
-// export const sellerDashboardURL = 'https://seller.duedilly.co';
-// const baseDomain = 'https://api.duedilly.co';
+export const cardFACURL = 'https://duedilly.co/fac-report';
+export const sellerDashboardDomain = 'seller.duedilly.co';
+export const sellerDashboardURL = 'https://seller.duedilly.co';
+const baseDomain = 'https://api.duedilly.co';
 
 export const appName = 'dilly_client';
 
