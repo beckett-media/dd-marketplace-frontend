@@ -1,32 +1,23 @@
-import { useDispatch } from 'react-redux';
-import React, { useEffect } from 'react';
-import { login, logOut } from '~/store/auth/action';
-import {
-    sellerDashboardDomain,
-    sellerDashboardURL,
-} from '~/repositories/Repository';
+import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { login } from "~/store/auth/action";
+import { useRouter } from "next/router";
+import SimpleCrypto from "simple-crypto-js";
+var simpleCrypto = new SimpleCrypto("myTotalySecretKey");
 
 const CrossOriginLogin = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { auth } = router.query;
+  useEffect(() => {
+    if (auth) {
+      let tokens = simpleCrypto.decrypt(decodeURIComponent(auth));
+      dispatch(login({ tokens }));
+      router.replace(router.asPath, undefined, { shallow: true });
+    }
+  }, [auth]);
 
-    useEffect(() => {
-        window.addEventListener(
-            'message',
-            (event) => {
-                if (event.origin.startsWith(sellerDashboardURL)) {
-                    var payload = JSON.parse(event.data);
-                    if (payload.action === 'login')
-                        dispatch(login({ tokens: payload.tokens }));
-                    if (payload.action === 'logout') dispatch(logOut());
-                } else {
-                    return;
-                }
-            },
-            []
-        );
-    });
-
-    return null;
+  return null;
 };
 
 export default CrossOriginLogin;

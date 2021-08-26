@@ -3,7 +3,6 @@ import actionTypes from './actionTypes';
 import actionTypesUser from '../userInfo/actionTypes';
 
 export function login(payload, callback) {
-    console.log('payload:login ', payload);
     return { type: actionTypes.LOGIN_REQUEST, payload, callback };
 }
 export function register(payload) {

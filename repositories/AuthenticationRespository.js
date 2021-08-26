@@ -24,17 +24,6 @@ class AuthenticationRepository {
             const xAuthToken = request.headers['x-auth-token'];
             const refreshToken = request.headers['x-refresh-token'];
 
-            if (refreshToken) {
-                var win = document.getElementsByTagName('iframe')[0]
-                    .contentWindow;
-                win.postMessage(
-                    JSON.stringify({
-                        action: 'login',
-                        tokens: { xAuthToken, refreshToken },
-                    }),
-                    '*'
-                );
-            }
             return {
                 tokens: { xAuthToken, refreshToken },
                 payload: request.data,
@@ -53,18 +42,6 @@ class AuthenticationRepository {
             const xAuthToken = request.headers['x-auth-token'];
             const refreshToken = request.headers['x-refresh-token'];
 
-            if (refreshToken) {
-                var win = document.getElementsByTagName('iframe')[0]
-                    .contentWindow;
-                win.postMessage(
-                    JSON.stringify({
-                        action: 'login',
-                        tokens: { xAuthToken, refreshToken },
-                    }),
-                    '*'
-                );
-            }
-
             return {
                 tokens: { xAuthToken, refreshToken },
                 payload: request.data,
@@ -78,9 +55,7 @@ class AuthenticationRepository {
             const val = await Repository.post(`${baseUrl}${routes.logout}`, {
                 deviceToken,
             });
-
-            var win = document.getElementsByTagName('iframe')[0].contentWindow;
-            win.postMessage(JSON.stringify({ action: 'logout' }), '*');
+            
         } catch (error) {
             throw getError(error);
         }

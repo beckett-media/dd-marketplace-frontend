@@ -92,11 +92,11 @@ function* loginSaga(action) {
 
         for (const key of Object.keys(_tokens))
             localStorage.setItem(`${appName}_${key}`, _tokens[key]);
-        modalSuccess('success');
 
         if (action.payload.tokens) {
             yield put(getUserDetails());
         } else {
+            modalSuccess('success');
             yield put(loginSuccess(_payload.user));
         }
 
