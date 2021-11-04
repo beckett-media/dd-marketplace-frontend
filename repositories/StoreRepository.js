@@ -1,16 +1,39 @@
-import Repository, { baseStoreURL, serializeQuery } from './Repository';
+import Repository, {
+    baseStoreURL,
+    baseUrl,
+    serializeQuery,
+} from './Repository';
+
+const routes = {
+    store: '/store',
+    uploadImages: '/store/update-store-images',
+    deleteImage: '/store/image',
+    getSportCard: '/sports-card/card-fac',
+    getClaimStore: '/store/publicunclaimed',
+};
 
 class StoreRepository {
     constructor(callback) {
         this.callback = callback;
     }
 
+    async getSelectedClaimedStore(storeId) {
+        try {
+            const request = await Repository.get(
+                `${baseUrl}${routes.getClaimStore}/${storeId}`
+            );
+            return request.data;
+        } catch (error) {
+            throw getError(error);
+        }
+    }
+
     async getStores(payload) {
-        const endPoint = `stores?${serializeQuery(payload)}`;
-        const reponse = await Repository.get(`${baseStoreURL}/${endPoint}`)
+        const endPoint = `public-stores?${serializeQuery(payload)}`;
+        const reponse = await Repository.get(`${baseUrl}/${endPoint}`)
             .then((response) => {
-                if (response.data.length > 0) {
-                    return response.data;
+                if (response.data.data.stores.length > 0) {
+                    return response.data.data.stores;
                 } else {
                     return null;
                 }
@@ -24,14 +47,10 @@ class StoreRepository {
 
     async getStoreBySlug(payload) {
         const reponse = await Repository.get(
-            `${baseStoreURL}/stores?slug=${payload}`
+            `${baseUrl}/store/public/${payload}`
         )
             .then((response) => {
-                if (response.data.length > 0) {
-                    return response.data[0];
-                } else {
-                    return null;
-                }
+                return response.data.data;
             })
             .catch((error) => ({ error: JSON.stringify(error) }));
         return reponse;

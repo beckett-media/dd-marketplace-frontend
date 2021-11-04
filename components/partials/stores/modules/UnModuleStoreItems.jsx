@@ -8,7 +8,7 @@ import { generateTempArray } from '~/utilities/common-helpers';
 import SkeletonProduct from '~/components/elements/skeletons/SkeletonProduct';
 import StoreRepository from '~/repositories/StoreRepository';
 
-const ModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
+const UnModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
     const Router = useRouter();
     const { slug } = Router.query;
     const [listView, setListView] = useState(true);
@@ -59,7 +59,7 @@ const ModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
             if (listView) {
                 const items = productItems.map((item) => (
                     <div className={classes} key={item.id}>
-                        <Product product={item} />
+                        <Product product={item} unClaimed={true} />
                     </div>
                 ));
                 productItemsView = (
@@ -69,7 +69,7 @@ const ModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
                 );
             } else {
                 productItemsView = productItems.map((item) => (
-                    <ProductWide product={item} />
+                    <ProductWide product={item} unClaimed={true} />
                 ));
             }
         } else {
@@ -118,4 +118,4 @@ const ModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
     );
 };
 
-export default ModuleStoreItems;
+export default UnModuleStoreItems;

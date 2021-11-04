@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ModuleStoreInformation from '~/components/partials/stores/modules/ModuleStoreInformation';
-import ProductGroupByCarousel from '~/components/partials/product/ProductGroupByCarousel';
 import ModuleStoreItems from '~/components/partials/stores/modules/ModuleStoreItems';
 import StoreRepository from '~/repositories/StoreRepository';
 import { useRouter } from 'next/router';
@@ -31,14 +30,10 @@ const StoreDetail = () => {
     //Views
     let storeProductsView;
     if (!loading) {
-        if (store && store.products.length > 0) {
+        if (store && store.listing.length > 0) {
             storeProductsView = (
                 <div className="ps-store-products">
-                    <ProductGroupByCarousel
-                        collectionSlug="best-seller-products"
-                        title="Best Seller Products"
-                    />
-                    <ModuleStoreItems products={store.products} />
+                    <ModuleStoreItems products={store.listing} />
                 </div>
             );
         } else {
@@ -59,7 +54,7 @@ const StoreDetail = () => {
                         )}
                     </div>
                     <div className="ps-section__right">
-                        <div className="ps-block--vendor-filter">
+                        {/* <div className="ps-block--vendor-filter">
                             <div className="ps-block__left"></div>
                             <div className="ps-block__right">
                                 <form
@@ -76,7 +71,7 @@ const StoreDetail = () => {
                                     </button>
                                 </form>
                             </div>
-                        </div>
+                        </div> */}
                         {storeProductsView}
                     </div>
                 </div>

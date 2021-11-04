@@ -20,10 +20,26 @@ const ModuleProductDetailDescription = ({ product }) => {
 
     return (
         <div className="ps-product__desc">
-            <p>
-                Sold By:
-                <strong> {product.seller.fullName}</strong>
-            </p>
+            {product?.storeDetails?.title ? (
+                <span>
+                    <p>
+                        Sold By Store:
+                        <strong> {product.storeDetails.title}</strong>
+                    </p>
+                    <p>
+                        Store Owner:
+                        <strong> {product.seller.fullName}</strong>
+                    </p>
+                </span>
+            ) : (
+                <span>
+                    <p>
+                        Sold By:
+                        <strong> {product.seller.fullName}</strong>
+                    </p>
+                </span>
+            )}
+
             <ul className="ps-list--dot">
                 <p>
                     Condition: <b>{product.condition}</b>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Rating from '~/components/elements/Rating';
+import { baseUrl } from "~/repositories/Repository";
 import Link from 'next/link';
 
 const StoreDefault = ({ source }) => {
@@ -12,15 +12,14 @@ const StoreDefault = ({ source }) => {
                 }}>
                 <figure>
                     <h4>
-                        <Link href="/store/[slug]" as={`/store/${source.slug}`}>
-                            <a>{source.name}</a>
+                        <Link href="/store/[slug]" as={`/store/${source._id}`}>
+                            <a>{source.title}</a>
                         </Link>
                     </h4>
 
-                    <div className="ps-block__rating">
-                        <Rating />
+                    <div className="ps-block__rating mb-4">
                     </div>
-                    <p>{source.address}</p>
+                    <p>{source.desc}</p>
                     {source.phone && (
                         <p>
                             <i className="icon-telephone"></i> {source.phone}
@@ -28,14 +27,20 @@ const StoreDefault = ({ source }) => {
                     )}
                 </figure>
             </div>
-            <div className="ps-block__author">
-                <a className="ps-block__user" href="#">
-                    <img
+            <div className="ps-block__author mt-4">
+                <a className="ps-block__user" href={`/store/${source.id}`}
+                    style={{
+                        backgroundImage: `url('${`${source.images.length > 0 ? `${baseUrl}/${source.images[0]}` : "/static/img/vendor/store/vendor-150x150.jpg"}`}')`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "50% 50%",
+                    }}
+                >
+                    {/* <img
                         src="/static/img/vendor/store/vendor-150x150.jpg"
                         alt="Due Dilly"
-                    />
+                    /> */}
                 </a>
-                <Link href="/store/[slug]" as={`/store/${source.slug}`}>
+                <Link href="/store/[slug]" as={`/store/${source._id}`}>
                     <a className="ps-btn">Visit Store</a>
                 </Link>
             </div>

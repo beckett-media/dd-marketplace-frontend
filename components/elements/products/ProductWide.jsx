@@ -5,7 +5,7 @@ import ModuleProductWideActions from '~/components/elements/products/modules/Mod
 
 import { useSelector } from 'react-redux';
 
-const ProductWide = ({ product }) => {
+const ProductWide = ({ product, unClaimed }) => {
     let grade = useSelector(({ home }) =>
         home?.marketPlace?.grades?.find((grade) => grade._id === product.grade)
     );
@@ -15,7 +15,7 @@ const ProductWide = ({ product }) => {
     return (
         <div className="ps-product ps-product--wide">
             <div className="ps-product__thumbnail">
-                {StrapiProductThumbnail(product)}
+                {StrapiProductThumbnail(product, unClaimed)}
             </div>
             <div className="ps-product__container">
                 <div className="ps-product__content">

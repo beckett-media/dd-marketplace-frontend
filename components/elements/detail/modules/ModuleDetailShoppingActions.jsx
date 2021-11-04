@@ -4,6 +4,7 @@ import { addItemToCompare } from '~/store/compare/action';
 import { addItemToWishlist } from '~/store/wishlist/action';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import Link from "next/link"
 
 const ModuleDetailShoppingActions = ({ product, extended = false }) => {
     const dispatch = useDispatch();
@@ -74,11 +75,19 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
                     </div>
                 </figure> */}
                 <a
-                    className="ps-btn ps-btn--black"
+                    className="ps-btn ps-btn--black mb-2"
                     href="#"
                     onClick={(e) => handleAddItemToCart(e)}>
                     Add to cart
                 </a>
+                {product.store && <a className="ps-btn ps-btn--black mb-2">
+                <Link
+                    className="ps-btn ps-btn--black mb-2"
+                    href={`/store/${product.store}`}
+                >
+                    Visit Store To Explore More
+                </Link>
+                </a>}
                 {/* <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
                     Buy Now
                 </a> */}

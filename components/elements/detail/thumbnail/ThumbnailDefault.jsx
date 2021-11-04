@@ -5,7 +5,7 @@ import { baseUrl } from '~/repositories/Repository';
 import NextArrow from '~/components/elements/carousel/NextArrow';
 import PrevArrow from '~/components/elements/carousel/PrevArrow';
 
-const ThumbnailDefault = ({ product, vertical = true }) => {
+const ThumbnailDefault = ({ product, store, vertical = true }) => {
     const galleryCarousel = useRef(null);
     const variantCarousel = useRef(null);
     const [gallery, setGallery] = useState(null);
@@ -168,8 +168,8 @@ const ThumbnailDefault = ({ product, vertical = true }) => {
                     </Slider>
                 </div>
             </figure>
-            {variantCarouselView}
-            {lightboxView}
+            {!store && variantCarouselView}
+            {!store && lightboxView}
         </div>
     );
 };

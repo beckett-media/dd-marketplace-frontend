@@ -25,7 +25,7 @@ const StoreListPage = () => {
                             <h3>Store list</h3>
                         </div>
                         <div className="ps-section__content">
-                            <div className="ps-section__search row">
+                            {/* <div className="ps-section__search row">
                                 <div className="col-md-4">
                                     <div className="form-group">
                                         <button>
@@ -38,7 +38,7 @@ const StoreListPage = () => {
                                         />
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <StoreItems />
                         </div>
                     </div>

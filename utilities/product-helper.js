@@ -125,24 +125,37 @@ export function StrapiProductPriceExpanded(product) {
     return view;
 }
 
-export function StrapiProductThumbnail(product) {
+export function StrapiProductThumbnail(product, unClaimed) {
     let view;
 
     const [image] = product.images || [];
 
     if (product.thumbnail || image) {
-        view = (
-            <Link href="/product/[pid]" as={`/product/${product._id}`}>
-                <a>
-                    <LazyLoad>
-                        <img
-                            src={`${baseUrl}/${image || product.thumbnail.url}`}
-                            alt={product.title}
-                        />
-                    </LazyLoad>
-                </a>
-            </Link>
-        );
+        if (!unClaimed) {
+            view = (
+                <Link href="/product/[pid]" as={`/product/${product._id}`}>
+                    <a>
+                        <LazyLoad>
+                            <img
+                                src={`${baseUrl}/${
+                                    image || product.thumbnail.url
+                                }`}
+                                alt={product.title}
+                            />
+                        </LazyLoad>
+                    </a>
+                </Link>
+            );
+        } else {
+            view = (
+                <LazyLoad>
+                    <img
+                        src={product.images[0]}
+                        alt={product.title}
+                    />
+                </LazyLoad>
+            );
+        }
     } else {
         view = (
             <Link href="/product/[pid]" as={`/product/${product._id}`}>
