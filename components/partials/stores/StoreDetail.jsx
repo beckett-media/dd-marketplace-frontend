@@ -23,7 +23,7 @@ const StoreDetail = ({slug}) => {
     }
 
     useEffect(() => {
-        getStore(slug);
+        if(slug) getStore(slug);
     }, [slug]);
     //Views
     let storeProductsView;
