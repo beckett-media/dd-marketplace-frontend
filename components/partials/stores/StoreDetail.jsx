@@ -4,9 +4,7 @@ import ModuleStoreItems from '~/components/partials/stores/modules/ModuleStoreIt
 import StoreRepository from '~/repositories/StoreRepository';
 import { useRouter } from 'next/router';
 
-const StoreDetail = () => {
-    const Router = useRouter();
-    const { slug } = Router.query;
+const StoreDetail = ({slug}) => {
     const [store, setStore] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -54,24 +52,6 @@ const StoreDetail = () => {
                         )}
                     </div>
                     <div className="ps-section__right">
-                        {/* <div className="ps-block--vendor-filter">
-                            <div className="ps-block__left"></div>
-                            <div className="ps-block__right">
-                                <form
-                                    className="ps-form--search"
-                                    action="/"
-                                    method="get">
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        placeholder="Search in this shop"
-                                    />
-                                    <button>
-                                        <i className="fa fa-search"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div> */}
                         {storeProductsView}
                     </div>
                 </div>

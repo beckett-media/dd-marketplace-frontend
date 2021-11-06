@@ -31,6 +31,7 @@ const HomepageDefaultPage = () => {
         trendingCards,
         trendingPlayers,
         newArrival,
+        newStores
     } = useSelector(getMarketPlaceData);
 
     const isMarketPlaceLoading = useSelector(getMarketPlaceLoading);
@@ -40,6 +41,7 @@ const HomepageDefaultPage = () => {
         trendingCards,
         trendingPlayers,
         newArrival,
+        newStores
     };
 
     return (

@@ -3,12 +3,14 @@ import Link from 'next/link';
 import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
 import ProductHorizontal from '~/components/elements/products/ProductHorizontal';
 import Title from '~/components/elements/Title';
+import StoreDefault from '~/components/elements/stores/StoreDefault';
 
 const titles = {
     recommendation: 'Recommended',
     trendingCards: 'Trending Cards',
     trendingPlayers: 'Trending Players',
     newArrival: 'New Arrivals',
+    newStores: 'New Stores',
 };
 
 const NewArrivals = ({ collectionSlug, id, list, loading }) => {
@@ -19,7 +21,11 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
                 <div
                     className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12"
                     key={item.id}>
-                    <ProductHorizontal product={item} />
+                    {!item.address ? (
+                        <ProductHorizontal product={item} />
+                    ) : (
+                        <StoreDefault source={item} />
+                    )}
                 </div>
             ));
         } else {
@@ -35,7 +41,8 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
                     <Title title={titles[id]} />
                     <ul className="ps-section__links">
                         <li>
-                            <Link href="/shop">
+                            <Link
+                                href={id !== 'newStores' ? '/shop' : '/stores'}>
                                 <a>View All</a>
                             </Link>
                         </li>
