@@ -45,7 +45,7 @@ const ProductWide = ({ product, unClaimed }) => {
                     </div>
                 </div>
 
-                <ModuleProductWideActions product={product} />
+                <ModuleProductWideActions product={product} unClaimed={unClaimed} />
             </div>
         </div>
     );

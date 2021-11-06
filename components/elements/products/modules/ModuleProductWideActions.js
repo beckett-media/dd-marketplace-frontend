@@ -5,7 +5,7 @@ import { addItemToCompare } from '~/store/compare/action';
 import { addItemToWishlist } from '~/store/wishlist/action';
 import { addItem } from '~/store/cart/action';
 
-const ModuleProductWideActions = ({ product }) => {
+const ModuleProductWideActions = ({ product, unClaimed }) => {
     const dispatch = useDispatch();
 
     const handleAddItemToCompare = (e) => {
@@ -20,6 +20,7 @@ const ModuleProductWideActions = ({ product }) => {
 
     const handleAddItemToCart = (e) => {
         e.preventDefault();
+        if (unClaimed) return;
         dispatch(addItem(product));
     };
 
