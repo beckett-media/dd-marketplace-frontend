@@ -21,7 +21,7 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
                 <div
                     className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12"
                     key={item.id}>
-                    {!item.address ? (
+                    {id !== 'newStores' ? (
                         <ProductHorizontal product={item} />
                     ) : (
                         <StoreDefault source={item} />

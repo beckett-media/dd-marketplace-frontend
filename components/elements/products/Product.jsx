@@ -7,8 +7,6 @@ import {
 import { useSelector } from 'react-redux';
 
 const ProductHorizontal = ({ product, unClaimed }) => {
-    console.log('unClaimed');
-    console.log(unClaimed);
     let grade = useSelector(({ home }) =>
         home?.marketPlace?.grades?.find((grade) => grade._id === product.grade)
     );

@@ -69,7 +69,7 @@ const UnModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
                 );
             } else {
                 productItemsView = productItems.map((item) => (
-                    <ProductWide product={item} unClaimed={true} />
+                    <ProductWide product={item} unClaimed={true} key={item.id} />
                 ));
             }
         } else {

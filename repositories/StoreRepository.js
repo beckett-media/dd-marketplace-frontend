@@ -2,6 +2,7 @@ import Repository, {
     baseStoreURL,
     baseUrl,
     serializeQuery,
+    getError
 } from './Repository';
 
 const routes = {

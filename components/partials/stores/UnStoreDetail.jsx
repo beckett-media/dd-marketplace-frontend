@@ -112,20 +112,23 @@ const UnStoreDetail = () => {
 
     async function getStore(storeId) {
         setLoading(true);
-        const responseData = await StoreRepositery.getSelectedClaimedStore(
-            storeId
-        );
-        console.log(responseData);
-        const payload = responseData?.data?.store;
-        if (payload) {
-            setUnclaimedStore(payload);
-            setTimeout(
-                function () {
-                    setLoading(false);
-                }.bind(this),
-                250
+        try {
+            const responseData = await StoreRepositery.getSelectedClaimedStore(
+                storeId
             );
-        } else {
+            const payload = responseData?.data?.store;
+            if (payload) {
+                setUnclaimedStore(payload);
+                setTimeout(
+                    function () {
+                        setLoading(false);
+                    }.bind(this),
+                    250
+                );
+            } else {
+                router.push('/404');
+            }
+        } catch (error) {
             router.push('/404');
         }
     }
@@ -145,7 +148,7 @@ const UnStoreDetail = () => {
                 </>
             );
         } else {
-            storeProductsView = <p>No product found.</p>;
+            storeProductsView = <SkeletonProductDetail />;
         }
     } else {
         storeProductsView = <SkeletonProductDetail />;

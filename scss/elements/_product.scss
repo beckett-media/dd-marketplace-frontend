@@ -175,7 +175,6 @@
 
         img {
             width: 100%;
-            
         }
 
         .ps-product__actions {
@@ -438,6 +437,7 @@
 .ps-product__player {
     color: $color-2nd;
     font-size: 20px;
+    word-wrap: break-word;
 }
 
 .ps-product--horizontal {
@@ -503,7 +503,7 @@
         background-size: contain;
         background-color: #f5f5f5;
 
-        img{
+        img {
             height: 100%;
         }
     }
@@ -802,7 +802,7 @@
 
     .ps-product__price {
         margin-bottom: 20px;
-        margin-top: 1rem!important;
+        margin-top: 1rem !important;
         font-size: 24px;
         font-weight: 600;
         color: $color-heading;

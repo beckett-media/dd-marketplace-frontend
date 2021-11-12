@@ -88,6 +88,12 @@
     }
 }
 
+.control-width-wrap {
+    width: 100%;
+    word-wrap: break-word;
+    display: block;
+}
+
 .ps-block--category-vertical {
     h4 {
         font-weight: 400;

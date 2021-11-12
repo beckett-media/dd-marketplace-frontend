@@ -27,10 +27,18 @@ const ModuleStoreInformation = ({ store }) => {
 
                     {soresToDisplay.email && (
                         <div className="ps-block__content">
-                            <bold style={{ color: '#000', fontWeight: 'bold' }}>
+                            <bold
+                                style={{
+                                    color: '#000',
+                                    fontWeight: 'bold',
+                                }}>
                                 Email:
                             </bold>
-                            <p>{soresToDisplay.email}</p>
+                            <a
+                                href={`mailto:${soresToDisplay.email}`}
+                                className="control-width-wrap">
+                                {soresToDisplay.email}
+                            </a>
                         </div>
                     )}
 
@@ -39,7 +47,9 @@ const ModuleStoreInformation = ({ store }) => {
                             <bold style={{ color: '#000', fontWeight: 'bold' }}>
                                 Address:
                             </bold>
-                            <p>{soresToDisplay.address}</p>
+                            <address className="control-width-wrap">
+                                {soresToDisplay.address}
+                            </address>
                         </div>
                     )}
 
@@ -48,7 +58,7 @@ const ModuleStoreInformation = ({ store }) => {
                             <bold style={{ color: '#000', fontWeight: 'bold' }}>
                                 Contact #
                             </bold>
-                            <p>{soresToDisplay.phoneNumber}</p>
+                            <address className="control-width-wrap">{soresToDisplay.phoneNumber}</address>
                         </div>
                     )}
                 </div>
