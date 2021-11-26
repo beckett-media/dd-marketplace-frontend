@@ -1,0 +1,358 @@
+@import '~antd/dist/antd.css';
+@import 'vendor/bourbon/bourbon';
+@import 'utils/mixin';
+
+@import 'vendor/media_query';
+
+@import 'utils/variable';
+
+/*1. RESET AND TYPHOGRAPHY */
+
+//1.1 reset
+@import 'base/antdesign_reset';
+@import 'base/reset';
+//1.2 typhography
+@import 'base/typhography';
+
+/*2. ELEMENTS */
+//2.1 grid
+@import 'elements/grid';
+// 2.2 list
+@import 'elements/list';
+// 2.3 button
+@import 'elements/button';
+// 2.4 form
+@import 'elements/form';
+//2.5 post
+@import 'elements/post';
+// 2.6 pagination
+@import 'elements/pagination';
+// 2.7 breadcrumb
+@import 'elements/breadcrumb';
+// 2.8 block
+@import 'elements/block';
+
+@import 'elements/panel';
+// 2.9 widget
+@import 'elements/widget';
+// 2.10 slider
+@import 'elements/slider';
+// 2.11 masonry
+// 2.12 product
+@import 'elements/product';
+// 2.13 banner
+@import 'elements/banner';
+// 2.14 filter
+@import 'elements/filter';
+// 2.15 table
+@import 'elements/table';
+// 2.16 loader
+@import 'elements/loader';
+// 2.17 modal
+@import 'elements/modal';
+// 2.17 accordion
+
+@import 'elements/accordion';
+@import 'elements/skeleton';
+
+// 2.18 modal
+@import 'elements/tabs';
+
+/*3. COMPONENTS */
+// 3.1 Cart
+@import 'components/cart';
+// 3.2 forms
+@import 'components/forms';
+// 3.3 search
+@import 'components/search';
+// 3.4 section
+@import 'components/section';
+// 3.5 pages
+@import 'components/pages';
+
+@import 'components/menu';
+
+/*4. MODULES */
+// 4.1 header
+@import 'modules/navigations';
+@import 'modules/header';
+// 4.2 footer
+@import 'modules/footer';
+
+@import 'themes/effect';
+
+/*5. HELPERS */
+@import 'elements/helpers';
+
+@import 'react/custom';
+
+@font-face {
+    font-family: 'Pti-Improv';
+    src: url('/static/fonts/pti-improv.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+a:link {
+    color: $color-1st;
+}
+a.ps-btn {
+    color: #222;
+}
+.ant-btn {
+    padding: 15px !important;
+    height: 50px !important;
+}
+
+.ant-checkbox-wrapper,
+.ant-result-title,
+.ant-result-subtitle {
+    color: $color-text;
+}
+
+.ant-btn-icon-only {
+    width: 50px !important;
+}
+
+.ant-btn-primary {
+    background: $color-1st;
+    border: none;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.StripeElement {
+    border: 1px solid $color-1st;
+    border-radius: 10px;
+    padding: 20px;
+    background: #fff;
+}
+
+.profile-cover-image {
+    width: 100%;
+    height: 150px;
+    background: url('/static/img/profile-cover-image.png') repeat-x;
+    background-size: cover;
+}
+
+.main-title {
+    position: relative;
+    width: 400px;
+    max-width: 100%;
+    h1.ant-typography {
+        position: relative;
+        z-index: 1;
+        font-size: 25px;
+    }
+
+    h1.ant-typography.text-shadow {
+        -webkit-text-stroke: 0.5px #ccc;
+        color: #fff;
+        position: absolute;
+        top: -45px;
+        left: 5px;
+        z-index: 0;
+    }
+
+    h1.ant-typography:not(.text-shadow)::after {
+        content: '';
+        position: absolute;
+        width: 55px;
+        height: 10px;
+        background-color: #222;
+        left: 0;
+        bottom: -20px;
+    }
+    @media (min-width: 768px) {
+        h1.ant-typography {
+            position: relative;
+            z-index: 1;
+            font-size: 32px;
+        }
+    }
+}
+
+.ps-block--user-wellcome {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding-right: 30px;
+    width: 100%;
+    .ant-avatar-lg {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+    }
+    &.dark {
+        color: #fff !important;
+        p {
+            color: #fff !important;
+            a {
+                color: #fff !important;
+            }
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+        color: $color-text;
+        line-height: 1.4em;
+        font-size: 14px;
+
+        a {
+            display: block;
+            font-weight: 600;
+            color: $color-heading;
+            font-size: 18px;
+        }
+    }
+
+    .ps-block__action {
+        @include vertical-align();
+        right: 0;
+
+        i {
+            font-size: 20px;
+            color: $color-text;
+        }
+    }
+
+    .ps-block__left {
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .ps-block__right {
+        padding-left: 10px;
+    }
+
+    @media screen and (max-width: 1680px) {
+        .ps-block__action {
+            right: 10px;
+        }
+    }
+}
+
+.ps-block--user-wellcome {
+    margin-bottom: 40px;
+    padding: 10px;
+    &.dark {
+        color: #fff !important;
+        p {
+            color: #fff !important;
+        }
+        a {
+            color: #fff !important;
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .ps-block--user-wellcome {
+        margin-bottom: 20px;
+        padding: 10px;
+        &.dark {
+            color: #fff !important;
+            p {
+                color: #fff !important;
+            }
+            a {
+                color: #fff !important;
+            }
+        }
+    }
+    .ps-sidebar__top {
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (min-width: 1680px) {
+    .ps-block--earning-count {
+        padding-bottom: 50px;
+    }
+
+    .ps-block--user-wellcome {
+        margin-bottom: 80px;
+        &.dark {
+            color: #fff !important;
+            p {
+                color: #fff !important;
+            }
+            a {
+                color: #fff !important;
+            }
+        }
+    }
+
+    .ps-sidebar__top {
+        padding-right: 60px;
+        margin-bottom: 70px;
+    }
+}
+
+
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+ .orders-table, .cart-table{
+	/* Force table to not be like tables anymore */
+
+    .ps-table--shopping-cart tbody tr td:first-child{
+        min-width: auto!important
+    }
+
+    .ps-table--shopping-cart tbody tr td:last-child{
+        text-align: left!important;
+    }
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+    }
+
+    td.price{
+        text-align: left!important;
+    }
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 15px!important;
+        padding-top:30px!important;
+        padding-bottom: 10px!important;
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		padding-left: 10px!important; 
+		white-space: nowrap;
+	}
+	
+  }
+  .orders-table{
+    td:nth-of-type(1):before { content: "Order ID"; font-weight: bold; }
+    td:nth-of-type(2):before { content: "Item";  font-weight: bold;}
+    td:nth-of-type(3):before { content: "Amount";  font-weight: bold; }
+    td:nth-of-type(4):before { content: "Order Date";  font-weight: bold;}
+    td:nth-of-type(5):before { content: "Status";  font-weight: bold;}
+  }
+  .cart-table{
+    td:nth-of-type(1):before { content: "Product"; font-weight: bold; }
+    td:nth-of-type(2):before { content: "Price";  font-weight: bold;}
+    td:nth-of-type(3):before { content: "Total";  font-weight: bold; }
+    td:nth-of-type(4):before { content: "Remove?";  font-weight: bold;}
+  }
+}
