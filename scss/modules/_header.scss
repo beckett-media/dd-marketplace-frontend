@@ -58,6 +58,11 @@
         max-width: 300px;
         display: flex;
         align-items: center;
+        .ps-logo {
+            img {
+                width: 200px;
+            }
+        }
 
         .menu--product-categories {
             display: none;
@@ -68,13 +73,16 @@
     }
 
     .header__right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
         max-width: 370px;
     }
 
     .header__top {
-        padding: 25px 0;
+        padding: 15px 0;
         background-color: $color-dark;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        // border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 
         .ps-container,
         .container {
