@@ -29,6 +29,10 @@ class AccountQuickLinks extends Component {
                 text: 'Orders',
                 url: '/account/orders',
             },
+            {
+                text: 'Stores',
+                url: '/stores',
+            },
             // {
             //     text: 'Address',
             //     url: '/account/addresses',

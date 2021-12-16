@@ -11,6 +11,7 @@ import {
     ProfileOutlined,
     UserOutlined,
     ShoppingOutlined,
+    ShopOutlined
 } from '@ant-design/icons';
 
 import WidgetUserWelcome from '~/components/partials/account/WidgetUserWelcome';
@@ -36,6 +37,11 @@ const AccountQuickLinks = (props) => {
             text: 'Orders',
             url: '/account/orders',
             icon: <ProfileOutlined />,
+        },
+        {
+            text: 'Stores',
+            url: '/stores',
+            icon: <ShopOutlined />,
         },
         {
             text: 'Switch to Selling',
