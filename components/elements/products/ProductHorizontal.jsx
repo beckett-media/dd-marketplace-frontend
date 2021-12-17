@@ -67,7 +67,7 @@ const ProductHorizontal = ({ product }) => {
                                 <a
                                     target="_blank"
                                     href={`${cardFACURL}/${product.card._id}`}>
-                                    View Snapscore(TM) Report
+                                    View SNAPSCORE&trade(TM) Report
                                 </a>
                             </div>
                         )}

@@ -1,6 +1,8 @@
 import React from 'react';
-import { baseUrl } from "~/repositories/Repository";
+import { baseUrl } from '~/repositories/Repository';
 import Link from 'next/link';
+import { Avatar } from 'antd';
+import { capitalizeFirstEach, capitalizeFirstLetter } from '~/utilities/string';
 
 const StoreDefault = ({ source }) => {
     return (
@@ -13,13 +15,12 @@ const StoreDefault = ({ source }) => {
                 <figure>
                     <h4>
                         <Link href="/store/[slug]" as={`/store/${source._id}`}>
-                            <a>{source.title}</a>
+                            <a>{capitalizeFirstEach(source.title)}</a>
                         </Link>
                     </h4>
 
-                    <div className="ps-block__rating mb-4">
-                    </div>
-                    <p>{source.desc}</p>
+                    <div className="ps-block__rating mb-4"></div>
+                    <p>{capitalizeFirstLetter(source.desc)}</p>
                     {source.phone && (
                         <p>
                             <i className="icon-telephone"></i> {source.phone}
@@ -28,17 +29,31 @@ const StoreDefault = ({ source }) => {
                 </figure>
             </div>
             <div className="ps-block__author mt-4">
-                <a className="ps-block__user" href={`/store/${source.id}`}
-                    style={{
-                        backgroundImage: `url('${`${source.images.length > 0 ? `${baseUrl}/${source.images[0]}` : "/static/img/vendor/store/vendor-150x150.jpg"}`}')`,
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "50% 50%",
-                    }}
+                <a
+                    className="ps-block__user"
+                    href={`/store/${source._id}`}
+                    // style={{
+                    //     backgroundImage: `url('${`${
+                    //         source.images.length > 0
+                    //             ? `${baseUrl}/${source.images[0]}`
+                    //             : '/static/img/vendor/store/vendor-150x150.jpg'
+                    //     }`}')`,
+                    //     backgroundRepeat: 'no-repeat',
+                    //     backgroundPosition: '50% 50%',
+                    // }}
                 >
-                    {/* <img
-                        src="/static/img/vendor/store/vendor-150x150.jpg"
-                        alt="Due Dilly"
-                    /> */}
+                    <Avatar
+                        size="large"
+                        src={
+                            source.images.length > 0
+                                ? `${baseUrl}/${source.images[0]}`
+                                : '/static/img/vendor/store/vendor-150x150.jpg'
+                        }
+                        style={{
+                            width: '62px',
+                            height: '62px',
+                        }}
+                        alt="store image"></Avatar>
                 </a>
                 <Link href="/store/[slug]" as={`/store/${source._id}`}>
                     <a className="ps-btn">Visit Store</a>

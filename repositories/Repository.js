@@ -66,8 +66,11 @@ export const getError = (error) => {
             return `${error.response.data.data.errorMessage}`;
         } else if (error?.response?.data?.message) {
             return `${error.response.data.message}`;
+        }else{
+            return error.response
         }
     } else if (error.request) {
+        return error.request
     } else {
         return `${error}`;
     }
