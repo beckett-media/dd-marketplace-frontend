@@ -67,14 +67,13 @@ const ProductHorizontal = ({ product }) => {
                                 <a
                                     target="_blank"
                                     href={`${cardFACURL}/${product.card._id}`}>
-                                    View SNAPSCORE&trade(TM) Report
+                                    View SNAPSCORE&trade; Report
                                 </a>
                             </div>
                         )}
                     </div>
                 </div>
                 <div>{StrapiProductPrice(product)}</div>
-
             </div>
         </div>
     );

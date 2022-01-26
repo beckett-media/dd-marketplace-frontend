@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import Lightbox from 'react-image-lightbox';
-import { baseUrl } from '~/repositories/Repository';
+import { baseUrl, s3baseURL } from '~/repositories/Repository';
 import NextArrow from '~/components/elements/carousel/NextArrow';
 import PrevArrow from '~/components/elements/carousel/PrevArrow';
 
@@ -24,7 +24,13 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
         let images = [];
         if (product && product.images && product.images.length > 0) {
             product.images.map((item) => {
-                images.push(`${baseUrl}/${item}`);
+                images.push(
+                    `${
+                        item.startsWith && item.startsWith('card')
+                            ? s3baseURL
+                            : baseUrl
+                    }/${item}`
+                );
             });
 
             setProductImages(images);

@@ -83,7 +83,7 @@ const ModuleProductDetailDescription = ({ product }) => {
                         <a
                             target="_blank"
                             href={cardFACURL + '/' + product.card._id}>
-                            View SNAPSCORE&trade  Report
+                            View SNAPSCORE&trade; Report
                         </a>
                     </span>
                 </div>

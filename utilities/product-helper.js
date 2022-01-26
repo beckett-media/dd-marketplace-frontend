@@ -6,7 +6,7 @@
 
 import React from 'react';
 import LazyLoad from 'react-lazyload';
-import { baseUrl } from '~/repositories/Repository';
+import { baseUrl, s3baseURL } from '~/repositories/Repository';
 import Link from 'next/link';
 
 export function formatCurrency(num) {
@@ -137,9 +137,11 @@ export function StrapiProductThumbnail(product, unClaimed) {
                     <a>
                         <LazyLoad>
                             <img
-                                src={`${baseUrl}/${
-                                    image || product.thumbnail.url
-                                }`}
+                                src={`${
+                                    image.startsWith && image.startsWith('card')
+                                        ? s3baseURL
+                                        : baseUrl
+                                }/${image || product.thumbnail.url}`}
                                 alt={product.title}
                             />
                         </LazyLoad>
@@ -149,10 +151,7 @@ export function StrapiProductThumbnail(product, unClaimed) {
         } else {
             view = (
                 <LazyLoad>
-                    <img
-                        src={product.images[0]}
-                        alt={product.title}
-                    />
+                    <img src={product.images[0]} alt={product.title} />
                 </LazyLoad>
             );
         }
