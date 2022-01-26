@@ -138,7 +138,7 @@ export function StrapiProductThumbnail(product, unClaimed) {
                         <LazyLoad>
                             <img
                                 src={`${
-                                    image.startsWith && image.startsWith('card')
+                                    image?.startsWith && image?.startsWith('card')
                                         ? s3baseURL
                                         : baseUrl
                                 }/${image || product.thumbnail.url}`}

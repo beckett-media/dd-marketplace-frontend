@@ -26,7 +26,7 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
             product.images.map((item) => {
                 images.push(
                     `${
-                        item.startsWith && item.startsWith('card')
+                        item?.startsWith && item?.startsWith('card')
                             ? s3baseURL
                             : baseUrl
                     }/${item}`
