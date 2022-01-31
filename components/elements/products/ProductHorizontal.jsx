@@ -65,6 +65,9 @@ const ProductHorizontal = ({ product }) => {
                         {product.card && (
                             <div>
                                 <a
+                                    style={{
+                                        color: '#37c4ce',
+                                    }}
                                     target="_blank"
                                     href={`${cardFACURL}/${product.card._id}`}>
                                     View SNAPSCORE&trade; Report
