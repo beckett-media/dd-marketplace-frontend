@@ -6,7 +6,6 @@ import {
     takeEvery,
     takeLatest,
     cancel,
-    cancelled,
 } from 'redux-saga/effects';
 import { notification } from 'antd';
 import actionTypes from './actionTypes';
@@ -76,16 +75,17 @@ function* signUpSaga(action) {
 }
 
 function* loginSaga(action) {
-    
     try {
         let _tokens;
         let _payload;
+        let loginParams = { ...action.payload };
+        delete loginParams.bidding;
         if (action.payload.tokens) {
             _tokens = action.payload.tokens;
         } else {
             const { payload, tokens } = yield call(
                 AuthService.login,
-                action.payload
+                loginParams
             );
             _tokens = tokens;
             _payload = payload;
@@ -110,16 +110,17 @@ function* loginSaga(action) {
                 localStorage.setItem('not-auth-cart', null);
 
                 const path = localStorage.getItem('not-auth-cart-path');
-                if(!action.payload.tokens) Router.push(path);
+                if (!action.payload.tokens) Router.push(path);
                 localStorage.setItem('not-auth-cart-path', null);
             } else {
-               if(!action.payload.tokens) Router.push('/');
+                if (!action.payload.tokens && !action.payload.bidding)
+                    Router.push('/');
             }
         } else {
-            if(!action.payload.tokens)  Router.push('/');
+            if (!action.payload.tokens && !action.payload.bidding)
+                Router.push('/');
         }
     } catch (error) {
-        
         if (action && action.callback) action.callback();
         notification.error({
             message: 'Failed',

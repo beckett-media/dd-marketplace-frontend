@@ -13,6 +13,7 @@ import home from './home/reducers';
 import checkout from './checkout/reducer';
 import userInfo from './userInfo/reducer';
 import orders from './invoices/reducer';
+import auction from './auction/reducer';
 
 export default combineReducers({
     auth,
@@ -29,4 +30,5 @@ export default combineReducers({
     checkout,
     userInfo,
     orders,
+    auction
 });

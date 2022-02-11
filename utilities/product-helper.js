@@ -125,7 +125,7 @@ export function StrapiProductPriceExpanded(product) {
     return view;
 }
 
-export function StrapiProductThumbnail(product, unClaimed) {
+export function StrapiProductThumbnail(product, unClaimed, auctionId) {
     let view;
 
     const [image] = product.images || [];
@@ -133,12 +133,21 @@ export function StrapiProductThumbnail(product, unClaimed) {
     if (product.thumbnail || image) {
         if (!unClaimed) {
             view = (
-                <Link href="/product/[pid]" as={`/product/${product._id}`}>
+                <Link
+                    href={
+                        auctionId ? '/auction-product/[pid]' : '/product/[pid]'
+                    }
+                    as={`${
+                        auctionId
+                            ? `/auction-product/${auctionId}`
+                            : `/product/${product._id}`
+                    }`}>
                     <a>
                         <LazyLoad>
                             <img
                                 src={`${
-                                    image?.startsWith && image?.startsWith('card')
+                                    image?.startsWith &&
+                                    image?.startsWith('card')
                                         ? s3baseURL
                                         : baseUrl
                                 }/${image || product.thumbnail.url}`}
