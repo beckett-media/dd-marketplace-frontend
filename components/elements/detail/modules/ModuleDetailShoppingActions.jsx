@@ -4,12 +4,20 @@ import { addItemToCompare } from '~/store/compare/action';
 import { addItemToWishlist } from '~/store/wishlist/action';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import Link from "next/link"
+import Link from 'next/link';
+import LoginModal from '~/components/login';
+import { connect } from 'react-redux';
+import BiddingModal from '~/components/biddingModal';
 
-const ModuleDetailShoppingActions = ({ product, extended = false }) => {
+const ModuleDetailShoppingActions = ({
+    product,
+    extended = false,
+    ...props
+}) => {
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1);
     const Router = useRouter();
+    const [open, setOpen] = useState(false);
 
     const handleAddItemToCart = (e) => {
         e.preventDefault();
@@ -74,20 +82,49 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
                         />
                     </div>
                 </figure> */}
-                <a
-                    className="ps-btn ps-btn--black mb-2"
-                    href="#"
-                    onClick={(e) => handleAddItemToCart(e)}>
-                    Add to cart
-                </a>
-                {product.store && <a className="ps-btn ps-btn--black mb-2">
-                <Link
-                    className="ps-btn ps-btn--black mb-2"
-                    href={`/store/${product.store}`}
-                >
-                    Visit Store To Explore More
-                </Link>
-                </a>}
+                {product.auctionDetails ? (
+                    <>
+                        <button
+                            className="ps-btn ps-btn--black mb-2"
+                            // onClick={(e) => handleAddItemToCart(e)}
+                            onClick={() => setOpen(true)}>
+                            Place Bid
+                        </button>
+                        <div>
+                            <p>No of bids</p>
+                            {props.isLoggedIn ? (
+                                <BiddingModal
+                                    open={open}
+                                    width={700}
+                                    setOpen={setOpen}
+                                />
+                            ) : (
+                                <LoginModal
+                                    width={500}
+                                    open={open}
+                                    setOpen={setOpen}
+                                    bidding={true}
+                                />
+                            )}
+                        </div>
+                    </>
+                ) : (
+                    <a
+                        className="ps-btn ps-btn--black mb-2"
+                        href="#"
+                        onClick={(e) => handleAddItemToCart(e)}>
+                        Add to cart
+                    </a>
+                )}
+                {product.store && (
+                    <a className="ps-btn ps-btn--black mb-2">
+                        <Link
+                            className="ps-btn ps-btn--black mb-2"
+                            href={`/store/${product.store}`}>
+                            Visit Store To Explore More
+                        </Link>
+                    </a>
+                )}
                 {/* <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
                     Buy Now
                 </a> */}
@@ -132,6 +169,28 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
                         onClick={(e) => handleAddItemToCart(e)}>
                         Add to cart
                     </a>
+                    <button
+                        className="ps-btn ps-btn--black mb-2"
+                        // onClick={(e) => handleAddItemToCart(e)}
+                        onClick={() => setOpen(true)}>
+                        Place Bid
+                    </button>
+                    <div>
+                        <p>No of bids</p>
+                        {props.isLoggedIn ? (
+                            <BiddingModal
+                                open={open}
+                                width={700}
+                                setOpen={setOpen}
+                            />
+                        ) : (
+                            <LoginModal
+                                width={500}
+                                open={open}
+                                setOpen={setOpen}
+                            />
+                        )}
+                    </div>
                     <div className="ps-product__actions">
                         {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
                             <i className="icon-heart"></i>
@@ -149,4 +208,7 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
     }
 };
 
-export default ModuleDetailShoppingActions;
+const mapStateToProps = (state) => {
+    return state?.auth || {};
+};
+export default connect(mapStateToProps)(ModuleDetailShoppingActions);

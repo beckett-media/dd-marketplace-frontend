@@ -13,6 +13,7 @@ import HomeSaga from './home/saga';
 import CheckOutSaga from './checkout/saga';
 import UserInfoSaga from './userInfo/saga';
 import InvoiceSaga from './invoices/saga';
+import AuctionSaga from './auction/saga';
 
 export default function* rootSaga() {
     yield all([
@@ -30,5 +31,6 @@ export default function* rootSaga() {
         CheckOutSaga(),
         UserInfoSaga(),
         InvoiceSaga(),
+        AuctionSaga(),
     ]);
 }
