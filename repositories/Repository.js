@@ -12,7 +12,7 @@ const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIs
 //     'https://duedilly.co/fac-report' ||
 //     'https://quirky-panini-a633e8.netlify.app/fac-report';
 // const baseDomain = 'https://staging105.botkraft.com';
-const baseDomain = 'http://13.232.167.2'; //staging
+const baseDomain = 'http://3.139.34.166'; //staging
 
 export const cardFACURL = 'https://duedilly.co/fac-report';
 export const sellerDashboardDomain = 'seller.duedilly.co';
