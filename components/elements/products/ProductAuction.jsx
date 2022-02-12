@@ -22,7 +22,7 @@ const ProductAuctionHorizontal = ({ auction }) => {
         <Link
             href={'/auction-product/[pid]'}
             as={`/auction-product/${
-                auction.listing._id || auction.listing.id
+                auction._id
             }`}>
             <div className="ps-product--horizontal">
                 <div className="ps-product__thumbnail">
