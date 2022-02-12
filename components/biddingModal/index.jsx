@@ -5,7 +5,7 @@ import { Modal, Button } from 'antd';
 import { Form, Input, notification, Row, Spin, Col } from 'antd';
 import Title from '../elements/Title';
 
-const BiddingModal = (props) => {
+const BiddingModal = ({ open, setOpen, auctionDetails }) => {
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
@@ -25,14 +25,14 @@ const BiddingModal = (props) => {
 
     const handleCancel = () => {
         console.log('Clicked cancel button');
-        props.setOpen(false);
+        setOpen(false);
         setVisible(false);
     };
 
     return (
         <div>
             <Modal
-                visible={props.open ? props.open : visible}
+                visible={open ? open : visible}
                 // onOk={handleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
@@ -69,18 +69,14 @@ const BiddingModal = (props) => {
                                         }
                                     />
                                     <div style={{ paddingTop: 30 }}>
-                                        <h4>Last Highest Bid: $100</h4>
+                                        <h4>
+                                            Last Highest Bid: $
+                                            {auctionDetails.bids[0]
+                                                ?.bidAmount ||
+                                                auctionDetails.startingBid}
+                                        </h4>
                                         <div className="form-group dark">
-                                            <Form.Item
-                                            // name="email"
-                                            // rules={[
-                                            //     {
-                                            //         required: true,
-                                            //         message:
-                                            //             'Please input your email!',
-                                            //     },
-                                            // ]}
-                                            >
+                                            <Form.Item>
                                                 <Input
                                                     className="form-control"
                                                     type="text"

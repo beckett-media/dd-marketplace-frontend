@@ -61,27 +61,6 @@ const ModuleDetailShoppingActions = ({
     if (!extended) {
         return (
             <div className="ps-product__shopping">
-                {/* <figure>
-                    <figcaption>Quantity</figcaption>
-                    <div className="form-group--number">
-                        <button
-                            className="up"
-                            onClick={(e) => handleIncreaseItemQty(e)}>
-                            <i className="fa fa-plus"></i>
-                        </button>
-                        <button
-                            className="down"
-                            onClick={(e) => handleDecreaseItemQty(e)}>
-                            <i className="fa fa-minus"></i>
-                        </button>
-                        <input
-                            className="form-control"
-                            type="text"
-                            placeholder={quantity}
-                            disabled
-                        />
-                    </div>
-                </figure> */}
                 {product.auctionDetails ? (
                     <>
                         <button
@@ -97,6 +76,7 @@ const ModuleDetailShoppingActions = ({
                                     open={open}
                                     width={700}
                                     setOpen={setOpen}
+                                    auctionDetails={product.auctionDetails}
                                 />
                             ) : (
                                 <LoginModal
@@ -125,44 +105,14 @@ const ModuleDetailShoppingActions = ({
                         </Link>
                     </a>
                 )}
-                {/* <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
-                    Buy Now
-                </a> */}
-                <div className="ps-product__actions">
-                    {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
-                        <i className="icon-heart"></i>
-                    </a>
-                    <a href="#" onClick={(e) => handleAddItemToCompare(e)}>
-                        <i className="icon-chart-bars"></i>
-                    </a> */}
-                </div>
+
+                <div className="ps-product__actions"></div>
             </div>
         );
     } else {
         return (
             <div className="ps-product__shopping extend">
                 <div className="ps-product__btn-group">
-                    {/* <figure>
-                        <figcaption>Quantity</figcaption>
-                        <div className="form-group--number">
-                            <button
-                                className="up"
-                                onClick={(e) => handleIncreaseItemQty(e)}>
-                                <i className="fa fa-plus"></i>
-                            </button>
-                            <button
-                                className="down"
-                                onClick={(e) => handleDecreaseItemQty(e)}>
-                                <i className="fa fa-minus"></i>
-                            </button>
-                            <input
-                                className="form-control"
-                                type="text"
-                                placeholder={quantity}
-                                disabled
-                            />
-                        </div>
-                    </figure> */}
                     <a
                         className="ps-btn ps-btn--black"
                         href="#"
@@ -171,7 +121,6 @@ const ModuleDetailShoppingActions = ({
                     </a>
                     <button
                         className="ps-btn ps-btn--black mb-2"
-                        // onClick={(e) => handleAddItemToCart(e)}
                         onClick={() => setOpen(true)}>
                         Place Bid
                     </button>
@@ -182,6 +131,7 @@ const ModuleDetailShoppingActions = ({
                                 open={open}
                                 width={700}
                                 setOpen={setOpen}
+                                auctionDetails={product.auctionDetails}
                             />
                         ) : (
                             <LoginModal
@@ -191,18 +141,8 @@ const ModuleDetailShoppingActions = ({
                             />
                         )}
                     </div>
-                    <div className="ps-product__actions">
-                        {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
-                            <i className="icon-heart"></i>
-                        </a>
-                        <a href="#" onClick={(e) => handleAddItemToCompare(e)}>
-                            <i className="icon-chart-bars"></i>
-                        </a> */}
-                    </div>
+                    <div className="ps-product__actions"></div>
                 </div>
-                {/* <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
-                    Buy Now
-                </a> */}
             </div>
         );
     }
