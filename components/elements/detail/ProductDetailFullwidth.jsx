@@ -6,7 +6,7 @@ import ModuleProductDetailSpecification from '~/components/elements/detail/modul
 import ModuleDetailActionsMobile from '~/components/elements/detail/modules/ModuleDetailActionsMobile';
 import ModuleDetailTopInformation from '~/components/elements/detail/modules/ModuleDetailTopInformation';
 
-const ProductDetailFullwidth = ({ product, placeBid }) => {
+const ProductDetailFullwidth = ({ product, placeBid,bidding }) => {
     return (
         <div className="ps-product--detail ps-product--fullwidth">
             <div className="ps-product__header">
@@ -20,7 +20,7 @@ const ProductDetailFullwidth = ({ product, placeBid }) => {
                     />
                     <ModuleProductDetailSpecification product={product} />
 
-                    <ModuleDetailActionsMobile product={product} />
+                    <ModuleDetailActionsMobile product={product} bidding={bidding} />
                 </div>
             </div>
         </div>

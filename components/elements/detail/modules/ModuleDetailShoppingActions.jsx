@@ -8,7 +8,8 @@ import Link from 'next/link';
 import LoginModal from '~/components/login';
 import { connect } from 'react-redux';
 import BiddingModal from '~/components/biddingModal';
-
+import Countdown from '~/components/countDown';
+import moment from 'moment';
 const ModuleDetailShoppingActions = ({
     product,
     extended = false,
@@ -59,25 +60,45 @@ const ModuleDetailShoppingActions = ({
             setQuantity(quantity - 1);
         }
     };
+    const endDate=(moment( product.auctionDetails.bidEnd).format("MM DD YYYY, h:mm a"));
+
     if (!extended) {
         return (
             <div className="ps-product__shopping">
                 {product.auctionDetails ? (
                     <>
-                        <button
-                            className="ps-btn ps-btn--black mb-2"
-                            // onClick={(e) => handleAddItemToCart(e)}
-                            onClick={() => setOpen(true)}>
-                            Place Bid
-                        </button>
                         <div>
-                            <p>
-                                No of bids: {product.auctionDetails.bids.length}
+                            <p style={{ color: '#7A8088' }}>
+                                {product.auctionDetails.bids.length} bids placed
                             </p>
-                            <p>
-                                Current Highest bid:{' '}
-                                {product.auctionDetails.bids[0]?.bidAmount ||
-                                    product.auctionDetails.startingBid}
+                            <p style={{ color: '#7A8088' }}>
+                                CURRENT BID{' '}
+                                <p
+                                    style={{
+                                        color: '#2572E1',
+                                        fontSize: '32px',
+                                        marginTop: '8px',
+                                    }}>
+                                    {`${
+                                        product.auctionDetails.bids[0]
+                                            ?.bidAmount ||
+                                        product.auctionDetails.startingBid
+                                    }$`}
+                                </p>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        color: '#7A8088',
+                                        margin: '5px',
+                                    }}>
+                                    TIME LEFT:{' '}
+                                    {/* <CountDown/> */}
+                                    
+                                    <Countdown
+                                        timeTillDate={endDate}
+                                        timeFormat="MM DD YYYY, h:mm a"
+                                    />
+                                </div>
                             </p>
                             {props.isLoggedIn ? (
                                 <BiddingModal
@@ -95,6 +116,12 @@ const ModuleDetailShoppingActions = ({
                                     bidding={true}
                                 />
                             )}
+                            <button
+                                className="ps-btnBid ps-btnBid--blackBid mb-2"
+                                // onClick={(e) => handleAddItemToCart(e)}
+                                onClick={() => setOpen(true)}>
+                                Place Bid
+                            </button>
                         </div>
                     </>
                 ) : (
@@ -122,17 +149,20 @@ const ModuleDetailShoppingActions = ({
         return (
             <div className="ps-product__shopping extend">
                 <div className="ps-product__btn-group">
-                    <a
-                        className="ps-btn ps-btn--black"
-                        href="#"
-                        onClick={(e) => handleAddItemToCart(e)}>
-                        Add to cart
-                    </a>
-                    <button
-                        className="ps-btn ps-btn--black mb-2"
-                        onClick={() => setOpen(true)}>
-                        Place Bid
-                    </button>
+                    {!bidding ? (
+                        <a
+                            className="ps-btn ps-btn--black"
+                            href="#"
+                            onClick={(e) => handleAddItemToCart(e)}>
+                            Add to cart
+                        </a>
+                    ) : (
+                        <button
+                            className="ps-btnBid  ps-btn--black mb-2"
+                            onClick={() => setOpen(true)}>
+                            Place Bid
+                        </button>
+                    )}
                     <div>
                         <p>No of bids</p>
                         {props.isLoggedIn ? (

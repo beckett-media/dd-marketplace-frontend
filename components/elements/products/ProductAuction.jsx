@@ -1,10 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import moment from 'moment';
 import {
     StrapiProductPrice,
     StrapiProductThumbnail,
 } from '~/utilities/product-helper';
 import { useSelector } from 'react-redux';
+import Countdown from '~/components/countDown.jsx';
 
 const ProductAuctionHorizontal = ({ auction }) => {
     let grade = useSelector(({ home }) =>
@@ -17,13 +19,12 @@ const ProductAuctionHorizontal = ({ auction }) => {
             (p) => p._id === auction.listing.product
         )
     );
-
+   
+  const endDate=(moment(auction.bidEnd).format("MM DD YYYY, h:mm a"));
     return (
         <Link
             href={'/auction-product/[pid]'}
-            as={`/auction-product/${
-                auction._id
-            }`}>
+            as={`/auction-product/${auction._id}`}>
             <div className="ps-product--horizontal">
                 <div className="ps-product__thumbnail">
                     {StrapiProductThumbnail(
@@ -32,8 +33,7 @@ const ProductAuctionHorizontal = ({ auction }) => {
                         auction._id
                     )}
                 </div>
-                <div>timeLeft: {auction.bidEnd}</div>
-                <div>totalBids: {auction.bids.length}</div>
+               
                 <div className="ps-product__content">
                     <>
                         <span>{auction.listing.title}</span>
@@ -68,6 +68,24 @@ const ProductAuctionHorizontal = ({ auction }) => {
                         <div>{StrapiProductPrice(auction.listing)}</div>
                     </div>
                 </div>
+                <div  style={{display:"flex" , alignItems: "center",color: '#7A8088'}}>  <span
+                                style={{
+                                    color: '#7A8088',
+                                    fontSize: '32px',
+                                    marginRight: '8px',
+                                }}>
+                                {`${
+                                    auction.bids[0]?.bidAmount ||
+                                    auction.startingBid
+                                }$`}
+                            </span> {auction.bids.length} Bids</div>
+
+                <hr/>
+               
+                <div style={{display:"flex" ,color: '#7A8088',margin:"5px"}}>TIME LEFT: <Countdown
+                    timeTillDate={endDate}
+                    timeFormat="MM DD YYYY, h:mm a"
+                /></div>
             </div>
         </Link>
     );

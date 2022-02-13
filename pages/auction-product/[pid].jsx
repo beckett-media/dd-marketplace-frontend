@@ -135,7 +135,7 @@ const AuctionProductDefaultPage = () => {
     if (!loading) {
         if (product) {
             productView = (
-                <ProductDetailFullwidth product={product} placeBid={placeBid} />
+                <ProductDetailFullwidth product={product} placeBid={placeBid} bidding={true} />
             );
             headerView = <HeaderProduct product={product} />;
         } else {
