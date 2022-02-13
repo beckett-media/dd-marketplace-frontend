@@ -15,7 +15,6 @@ export const initialState = {
 
 function reducer(state = initialState, action) {
     switch (action.type) {
-        //new
         case actionTypes.GET_AUCTION_LISTING_BY_PRODUCT_AND_GRADE_SUCCESS:
             const obj = {
                 productsLoading:
@@ -31,8 +30,6 @@ function reducer(state = initialState, action) {
                 ...state,
                 ...obj,
             };
-
-        //new
 
         case actionTypes.GET_AUCTION_PRODUCTS_SUCCESS:
             return {

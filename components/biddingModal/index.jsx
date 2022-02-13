@@ -5,23 +5,11 @@ import { Modal, Button } from 'antd';
 import { Form, Input, notification, Row, Spin, Col } from 'antd';
 import Title from '../elements/Title';
 
-const BiddingModal = ({ open, setOpen, auctionDetails }) => {
+const BiddingModal = ({ open, setOpen, auctionDetails, placeBid }) => {
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
     const ref = React.createRef();
-    const showModal = () => {
-        setVisible(true);
-    };
-
-    const handleOk = () => {
-        setModalText('The modal will be closed after two seconds');
-        setConfirmLoading(true);
-        setTimeout(() => {
-            setVisible(false);
-            setConfirmLoading(false);
-        }, 2000);
-    };
 
     const handleCancel = () => {
         console.log('Clicked cancel button');
@@ -33,22 +21,22 @@ const BiddingModal = ({ open, setOpen, auctionDetails }) => {
         <div>
             <Modal
                 visible={open ? open : visible}
-                // onOk={handleOk}
+                // onOk={hanhandleOkdleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
                 footer={null}
                 width={500}
                 closable={false}
-                bodyStyle={{ height: 600 }}
-                // cancelButtonProps={{ disabled: true }}
-            >
+                bodyStyle={{ height: 600 }}>
                 <div className="ps-my-account">
                     <div className="">
                         <Form
                             ref={ref}
                             className="ps-form--account"
-                            // onFinish={this.handleLoginSubmit}
-                        >
+                            onFinish={(values) => {
+                                placeBid(values);
+                                setOpen(false);
+                            }}>
                             <div className="ps-tab active" id="sign-in">
                                 <div
                                     className="ps-form__content"
@@ -76,7 +64,15 @@ const BiddingModal = ({ open, setOpen, auctionDetails }) => {
                                                 auctionDetails.startingBid}
                                         </h4>
                                         <div className="form-group dark">
-                                            <Form.Item>
+                                            <Form.Item
+                                                name="bidAmount"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message:
+                                                            'Please input bid amount!',
+                                                    },
+                                                ]}>
                                                 <Input
                                                     className="form-control"
                                                     type="text"
