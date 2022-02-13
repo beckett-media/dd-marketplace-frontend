@@ -79,7 +79,9 @@ function* loginSaga(action) {
         let _tokens;
         let _payload;
         let loginParams = { ...action.payload };
-        delete loginParams.bidding;
+
+        delete loginParams.bidding; //deleting bidding attribute as it is not allowed in backend
+
         if (action.payload.tokens) {
             _tokens = action.payload.tokens;
         } else {
@@ -98,7 +100,7 @@ function* loginSaga(action) {
             yield put(getUserDetails());
         } else {
             modalSuccess('success');
-            yield put(loginSuccess(_payload.user));
+            yield put(loginSuccess(_payload.data.user));
         }
 
         const notAuthCart = JSON.parse(localStorage.getItem('not-auth-cart'));

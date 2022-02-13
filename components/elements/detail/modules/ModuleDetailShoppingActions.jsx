@@ -12,6 +12,7 @@ import BiddingModal from '~/components/biddingModal';
 const ModuleDetailShoppingActions = ({
     product,
     extended = false,
+    placeBid,
     ...props
 }) => {
     const dispatch = useDispatch();
@@ -70,13 +71,21 @@ const ModuleDetailShoppingActions = ({
                             Place Bid
                         </button>
                         <div>
-                            <p>No of bids</p>
+                            <p>
+                                No of bids: {product.auctionDetails.bids.length}
+                            </p>
+                            <p>
+                                Current Highest bid:{' '}
+                                {product.auctionDetails.bids[0]?.bidAmount ||
+                                    product.auctionDetails.startingBid}
+                            </p>
                             {props.isLoggedIn ? (
                                 <BiddingModal
                                     open={open}
                                     width={700}
                                     setOpen={setOpen}
                                     auctionDetails={product.auctionDetails}
+                                    placeBid={placeBid}
                                 />
                             ) : (
                                 <LoginModal
