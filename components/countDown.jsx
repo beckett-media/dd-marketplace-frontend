@@ -32,19 +32,12 @@ class Countdown extends React.Component {
     render() {
         const { days, hours, minutes, seconds } = this.state;
 
-        // Mapping the date values to radius values
-        const daysRadius = mapNumber(days, 30, 0, 0, 360);
-        const hoursRadius = mapNumber(hours, 24, 0, 0, 360);
-        const minutesRadius = mapNumber(minutes, 60, 0, 0, 360);
-        const secondsRadius = mapNumber(seconds, 60, 0, 0, 360);
-
         if (!seconds) {
             return null;
         }
 
         return (
             <div>
-               
                 <div className="" style={{ display: 'flex' }}>
                     {days && <div className="">{days}</div>}
                     {hours && (
@@ -72,8 +65,4 @@ class Countdown extends React.Component {
 }
 export default Countdown;
 
-function mapNumber(number, in_min, in_max, out_min, out_max) {
-    return (
-        ((number - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
-    );
-}
+

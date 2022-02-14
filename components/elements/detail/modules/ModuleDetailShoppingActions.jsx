@@ -60,7 +60,9 @@ const ModuleDetailShoppingActions = ({
             setQuantity(quantity - 1);
         }
     };
-    const endDate=(moment( product.auctionDetails.bidEnd).format("MM DD YYYY, h:mm a"));
+    const endDate = moment(product?.auctionDetails?.bidEnd).format(
+        'MM DD YYYY, h:mm a'
+    );
 
     if (!extended) {
         return (
@@ -91,9 +93,7 @@ const ModuleDetailShoppingActions = ({
                                         color: '#7A8088',
                                         margin: '5px',
                                     }}>
-                                    TIME LEFT:{' '}
-                                    {/* <CountDown/> */}
-                                    
+                                    TIME LEFT: 
                                     <Countdown
                                         timeTillDate={endDate}
                                         timeFormat="MM DD YYYY, h:mm a"

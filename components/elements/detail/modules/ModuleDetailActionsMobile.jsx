@@ -10,7 +10,6 @@ const ModuleDetailActionsMobile = ({ product, bidding }) => {
         // tmp.quantity = 1;
         dispatch(addItem(tmp));
     };
-    console.log;
     return (
         <div className="ps-product__actions-mobile">
             {bidding ? (

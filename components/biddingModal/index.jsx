@@ -1,18 +1,15 @@
 import React, { useState, Component } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
-import { Modal, Button } from 'antd';
+
+import { Modal} from 'antd';
 import { Form, Input, notification, Row, Spin, Col } from 'antd';
 import Title from '../elements/Title';
 
 const BiddingModal = ({ open, setOpen, auctionDetails, placeBid }) => {
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
     const ref = React.createRef();
 
     const handleCancel = () => {
-        console.log('Clicked cancel button');
         setOpen(false);
         setVisible(false);
     };
@@ -21,7 +18,6 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid }) => {
         <div>
             <Modal
                 visible={open ? open : visible}
-                // onOk={hanhandleOkdleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}
                 footer={null}
