@@ -130,7 +130,7 @@ export function StrapiProductThumbnail(product, unClaimed) {
 
     let productImages = product.images;
     let cardFront;
-    if (productImages.length > 0) {
+    if (productImages?.length > 0) {
         if (productImages[0].startsWith('card')) {
             if (productImages[0].startsWith('cardFront')) {
                 cardFront = `${s3baseURL}/${productImages[0]}`;
