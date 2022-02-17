@@ -128,22 +128,27 @@ export function StrapiProductPriceExpanded(product) {
 export function StrapiProductThumbnail(product, unClaimed) {
     let view;
 
-    const [image] = product.images || [];
+    let productImages = product.images;
+    let cardFront;
+    if (productImages.length > 0) {
+        if (productImages[0].startsWith('card')) {
+            if (productImages[0].startsWith('cardFront')) {
+                cardFront = `${s3baseURL}/${productImages[0]}`;
+            } else {
+                cardFront = `${s3baseURL}/${productImages[1]}`;
+            }
+        } else {
+            cardFront = `${baseUrl}/${productImages[0]}`;
+        }
+    }
 
-    if (product.thumbnail || image) {
+    if (product.thumbnail || cardFront) {
         if (!unClaimed) {
             view = (
                 <Link href="/product/[pid]" as={`/product/${product._id}`}>
                     <a>
                         <LazyLoad>
-                            <img
-                                src={`${
-                                    image?.startsWith && image?.startsWith('card')
-                                        ? s3baseURL
-                                        : baseUrl
-                                }/${image || product.thumbnail.url}`}
-                                alt={product.title}
-                            />
+                            <img src={cardFront} alt={product.title} />
                         </LazyLoad>
                     </a>
                 </Link>
