@@ -12,13 +12,13 @@ const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIs
 //     'https://duedilly.co/fac-report' ||
 //     'https://quirky-panini-a633e8.netlify.app/fac-report';
 // const baseDomain = 'https://staging105.botkraft.com';
-const baseDomain = 'http://3.139.34.166'; //staging
 
 export const cardFACURL = 'https://duedilly.co/fac-report';
 export const sellerDashboardDomain = 'seller.duedilly.co';
 export const sellerDashboardURL = 'https://seller.duedilly.co';
 // const baseDomain = 'https://beta.apinouthemes.com';
 // const baseDomain = 'https://api.duedilly.co';
+export const baseDomain = "https://staging.duedilly.co";
 // const baseDomain = 'http://127.0.0.1:3000';
 
 export const appName = 'dilly_client';
