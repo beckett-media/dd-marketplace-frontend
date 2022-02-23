@@ -28,14 +28,18 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
             if (productImages[0].startsWith('card')) {
                 if (productImages[0].startsWith('cardFront')) {
                     images.push(`${s3baseURL}/${productImages[0]}`);
-                    images.push(`${s3baseURL}/${productImages[1]}`);
+                    if (productImages[1])
+                        images.push(`${s3baseURL}/${productImages[1]}`);
                 } else {
-                    images.push(`${s3baseURL}/${productImages[1]}`);
-                    images.push(`${s3baseURL}/${productImages[0]}`);
+                    if (productImages[1])
+                        images.push(`${s3baseURL}/${productImages[1]}`);
+                    if (productImages[0])
+                        images.push(`${s3baseURL}/${productImages[0]}`);
                 }
             } else {
                 images.push(`${baseUrl}/${productImages[0]}`);
-                images.push(`${baseUrl}/${productImages[1]}`);
+                if (productImages[1])
+                    images.push(`${baseUrl}/${productImages[1]}`);
             }
             setProductImages(images);
         }
