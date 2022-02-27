@@ -8,8 +8,10 @@ import Link from 'next/link';
 import LoginModal from '~/components/login';
 import { connect } from 'react-redux';
 import BiddingModal from '~/components/biddingModal';
+import StripeConnect from '~/components/partials/account/stripeConnectModal';
 import Countdown from '~/components/countDown';
 import moment from 'moment';
+import { getUserStripeId } from '~/store/auth/selectors';
 const ModuleDetailShoppingActions = ({
     product,
     extended = false,
@@ -93,21 +95,29 @@ const ModuleDetailShoppingActions = ({
                                         color: '#7A8088',
                                         margin: '5px',
                                     }}>
-                                    TIME LEFT: 
+                                    TIME LEFT:
                                     <Countdown
                                         timeTillDate={endDate}
                                         timeFormat="MM DD YYYY, h:mm a"
                                     />
                                 </div>
                             </p>
-                            {props.isLoggedIn ? (
-                                <BiddingModal
-                                    open={open}
-                                    width={700}
-                                    setOpen={setOpen}
-                                    auctionDetails={product.auctionDetails}
-                                    placeBid={placeBid}
-                                />
+                            {props.auth.isLoggedIn ? (
+                                props.stripeId ? (
+                                    <BiddingModal
+                                        open={open}
+                                        width={700}
+                                        setOpen={setOpen}
+                                        auctionDetails={product.auctionDetails}
+                                        placeBid={placeBid}
+                                    />
+                                ) : (
+                                    <StripeConnect
+                                        visible={open}
+                                        onOk={setOpen}
+                                        onCancel={setOpen}
+                                    />
+                                )
                             ) : (
                                 <LoginModal
                                     width={500}
@@ -119,7 +129,10 @@ const ModuleDetailShoppingActions = ({
                             <button
                                 className="ps-btnBid ps-btnBid--blackBid mb-2"
                                 // onClick={(e) => handleAddItemToCart(e)}
-                                onClick={() => setOpen(true)}>
+                                onClick={() => {
+                                    console.log(props);
+                                    setOpen(true);
+                                }}>
                                 Place Bid
                             </button>
                         </div>
@@ -159,13 +172,16 @@ const ModuleDetailShoppingActions = ({
                     ) : (
                         <button
                             className="ps-btnBid  ps-btn--black mb-2"
-                            onClick={() => setOpen(true)}>
+                            onClick={() => {
+                                console.log(props);
+                                setOpen(true);
+                            }}>
                             Place Bid
                         </button>
                     )}
                     <div>
                         <p>No of bids</p>
-                        {props.isLoggedIn ? (
+                        {props.auth.isLoggedIn ? (
                             <BiddingModal
                                 open={open}
                                 width={700}
@@ -188,6 +204,9 @@ const ModuleDetailShoppingActions = ({
 };
 
 const mapStateToProps = (state) => {
-    return state?.auth || {};
+    return {
+        auth: state?.auth || {},
+        stripeId: getUserStripeId(state),
+    };
 };
 export default connect(mapStateToProps)(ModuleDetailShoppingActions);
