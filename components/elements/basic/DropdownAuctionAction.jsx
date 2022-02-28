@@ -34,7 +34,7 @@ const DropdownAuctionAction = ({ isUserBidHighest, itemToHandle }) => {
                     onClick={() => {
                         if (paymentAllowed)
                             Router.push({
-                                pathname: `/account/checkout-auction${itemToHandle._id}`,
+                                pathname: '/account/checkout-auction',
                                 state: {
                                     itemToHandle,
                                 },
