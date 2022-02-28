@@ -35,9 +35,7 @@ const DropdownAuctionAction = ({ isUserBidHighest, itemToHandle }) => {
                         if (paymentAllowed)
                             Router.push({
                                 pathname: '/account/checkout-auction',
-                                state: {
-                                    itemToHandle,
-                                },
+                                query: { id_: itemToHandle._id },
                             });
                     }}>
                     <i className="icon-credit-card mr-2"></i>

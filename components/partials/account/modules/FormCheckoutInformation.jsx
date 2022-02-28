@@ -72,7 +72,7 @@ class FormCheckoutInformation extends Component {
     };
 
     onNextButtonClick = () => {
-        Router.push('/account/payment');
+        Router.push('/account/payment-auction');
     };
 
     deleteConfirm(addressId) {
@@ -91,8 +91,7 @@ class FormCheckoutInformation extends Component {
     };
 
     render() {
-        const { address } = this.props;
-
+        const { address, auctionProduct } = this.props;
         const isAddressAvailable = Boolean(address && address.length);
 
         const isSelectedAddressAvailable = address.find((i) => i.selected);
@@ -421,13 +420,14 @@ class FormCheckoutInformation extends Component {
                 )}
 
                 <div className="ps-form__submit">
-                    <Link href="/account/shopping-cart">
-                        <a>
-                            <i className="icon-arrow-left mr-2"></i>
-                            Return to shopping cart
-                        </a>
-                    </Link>
-
+                    {!auctionProduct && (
+                        <Link href="/account/shopping-cart">
+                            <a>
+                                <i className="icon-arrow-left mr-2"></i>
+                                Return to shopping cart
+                            </a>
+                        </Link>
+                    )}
                     <div className="ps-block__footer">
                         <button type="submit" className="ps-btn">
                             Next

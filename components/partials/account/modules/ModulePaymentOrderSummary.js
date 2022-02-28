@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 
-const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
+const ModulePaymentOrderSummary = ({
+    shipping,
+    amount,
+    cartItems,
+    auctionProduct,
+}) => {
     let listItemsView, shippingView, totalView;
-    if (cartItems && cartItems.length > 0) {
+    if (cartItems && cartItems.length > 0 && !auctionProduct) {
         listItemsView = cartItems.map((product) => (
             <Link href="/" key={product.id}>
                 <a>
@@ -16,6 +21,20 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
                 </a>
             </Link>
         ));
+    } else if (auctionProduct) {
+        listItemsView = (
+            <Link href="/">
+                <a>
+                    <strong>
+                        {auctionProduct.title}
+                        <br />
+                        {auctionProduct.id}
+                        {<span>x1</span>}
+                    </strong>
+                    <small>${auctionProduct.price}</small>
+                </a>
+            </Link>
+        );
     } else {
         listItemsView = <p>No Product.</p>;
     }
@@ -32,7 +51,13 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
             <figure className="ps-block__total">
                 <h3>
                     Total
-                    <strong>${parseInt(amount) + 20}.00</strong>
+                    <strong>
+                        $
+                        {auctionProduct
+                            ? auctionProduct.price
+                            : parseInt(amount) + 20}
+                        .00
+                    </strong>
                 </h3>
             </figure>
         );
@@ -41,7 +66,12 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
             <figure className="ps-block__total">
                 <h3>
                     Total
-                    <strong>${Number(amount).toFixed(2)}</strong>
+                    <strong>
+                        $
+                        {auctionProduct
+                            ? auctionProduct.price
+                            : Number(amount).toFixed(2)}
+                    </strong>
                 </h3>
             </figure>
         );
@@ -59,7 +89,9 @@ const ModulePaymentOrderSummary = ({ shipping, amount, cartItems }) => {
                 <figure>
                     <figcaption>
                         <strong>Subtotal</strong>
-                        <small>${amount}</small>
+                        <small>
+                            ${auctionProduct ? auctionProduct.price : amount}
+                        </small>
                     </figcaption>
                 </figure>
                 {shippingView}
