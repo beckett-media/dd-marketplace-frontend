@@ -1,76 +1,32 @@
-import React, { Component } from 'react';
-import Link from 'next/link';
-import FormChangeUserInformation from '~/components/shared/FormChangeUserInformation';
-import { getUserInfo } from '~/store/auth/selectors';
+import React from 'react';
 import { connect } from 'react-redux';
-import AvatarUpload from '~/components/shared/upload/AvatharUpload';
-import { baseUrl } from '~/repositories/Repository';
-import { Avatar } from 'antd';
 import { logOut } from '~/store/auth/action';
-import BreadCrumb from '~/components/elements/BreadCrumb';
+import { getUserInfo } from '~/store/auth/selectors';
+import TableBids from './modules/TableBids';
+import Link from 'next/link';
+import AvatarUpload from '~/components/shared/upload/AvatharUpload';
 
-const UserInformation = (props) => {
+const AuctionInformation = (props) => {
     const accountLinks = [
         {
             text: 'My Profile',
             url: '/account/user-information',
             icon: 'icon-user',
-            active: true,
         },
-        // {
-        //     text: 'Notifications',
-        //     url: '/account/notifications',
-        //     icon: 'icon-alarm-ringing',
-        //     disabled: true,
-        // },
         {
             text: 'Orders',
             url: '/account/orders',
             icon: 'icon-papers',
-            disabled: false,
         },
         {
             text: 'My Bids',
-            icon: 'icon-papers',
             url: '/account/my-bids',
-        },
-        // {
-        //     text: 'Address',
-        //     url: '/account/addresses',
-        //     icon: 'icon-map-marker',
-        //     disabled: true,
-        // },
-        // {
-        //     text: 'Recent Viewed Product',
-        //     url: '/account/recent-viewed-product',
-        //     icon: 'icon-store',
-        //     disabled: true,
-        // },
-        // {
-        //     text: 'Wishlist',
-        //     url: '/account/wishlist',
-        //     icon: 'icon-heart',
-        //     disabled: true,
-        // },
-    ];
-
-    const { userInfo = {} } = props;
-
-    const photo = userInfo?.profilePicture
-        ? `${baseUrl}/${userInfo.profilePicture}`
-        : '/img/user/admin.jpg';
-
-    const name = userInfo?.username || userInfo?.fullName || '';
-
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Profile',
+            icon: 'icon-papers',
+            active: true,
         },
     ];
+
+    const { biddedAuctions, userInfo = {} } = props;
 
     return (
         <section className="ps-my-account ps-page--account">
@@ -79,7 +35,7 @@ const UserInformation = (props) => {
                     <div className="col-lg-3">
                         <div className="ps-section__left">
                             <aside className="ps-widget--account-dashboard">
-                                <div className="ps-widget__header text-center">
+                                <div className="ps-widget__header">
                                     <div>
                                         <AvatarUpload
                                             userInfo={userInfo}
@@ -134,7 +90,9 @@ const UserInformation = (props) => {
                                         <li>
                                             <a
                                                 onClick={() =>
-                                                    props.dispatch(logOut())
+                                                    this.props.dispatch(
+                                                        logOut()
+                                                    )
                                                 }>
                                                 <i className="icon-power-switch"></i>
                                                 Logout
@@ -147,10 +105,17 @@ const UserInformation = (props) => {
                     </div>
                     <div className="col-lg-9">
                         <div className="ps-page__content">
-                            <BreadCrumb breacrumb={breadCrumb} />
-                            <FormChangeUserInformation
-                                userInfo={props.userInfo}
-                            />
+                            <div className="ps-section--account-setting">
+                                <div className="ps-section__header">
+                                    <h3>My Auctions</h3>
+                                </div>
+                                <div className="ps-section__content orders-table">
+                                    <TableBids
+                                        list={biddedAuctions}
+                                        userId={userInfo.id}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -159,10 +124,10 @@ const UserInformation = (props) => {
     );
 };
 
-const connectStateToProps = (state) => {
+const connetStateToProps = (state) => {
     return {
         userInfo: getUserInfo(state),
     };
 };
 
-export default connect(connectStateToProps)(UserInformation);
+export default connect(connetStateToProps)(AuctionInformation);

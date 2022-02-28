@@ -39,6 +39,11 @@ const AccountQuickLinks = (props) => {
             icon: <ProfileOutlined />,
         },
         {
+            text: 'My Bids',
+            url: '/account/my-bids',
+            icon: <ProfileOutlined />,
+        },
+        {
             text: 'Stores',
             url: '/stores',
             icon: <ShopOutlined />,

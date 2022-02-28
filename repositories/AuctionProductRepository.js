@@ -20,6 +20,16 @@ class ProductRepository {
             .catch((error) => ({ error: JSON.stringify(error) }));
         return reponse;
     }
+    async getUserBidsAuction() {
+        const reponse = await Repository.get(
+            `${baseUrl}/auction/list-by-bidder`
+        )
+            .then((response) => {
+                return response.data;
+            })
+            .catch((error) => ({ error: JSON.stringify(error) }));
+        return reponse;
+    }
 }
 
 export default new ProductRepository();
