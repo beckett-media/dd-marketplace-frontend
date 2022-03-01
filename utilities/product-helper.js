@@ -156,15 +156,7 @@ export function StrapiProductThumbnail(product, unClaimed, auctionId) {
                     }`}>
                     <a>
                         <LazyLoad>
-                            <img
-                                src={`${
-                                    image?.startsWith &&
-                                    image?.startsWith('card')
-                                        ? s3baseURL
-                                        : baseUrl
-                                }/${image || product.thumbnail.url}`}
-                                alt={product.title}
-                            />
+                            <img src={cardFront} alt={product.title} />
                         </LazyLoad>
                     </a>
                 </Link>

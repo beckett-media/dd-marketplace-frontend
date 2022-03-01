@@ -31,7 +31,7 @@ export const customHeaders = {
 
 export const baseUrl = `${baseDomain}`;
 export const s3baseURL =
-    'shttps://duedillymobile4ddd12da3ecd4a37ab585dd4904acd7e125824-prod.s3.amazonaws.com/public';
+    'https://duedillymobile4ddd12da3ecd4a37ab585dd4904acd7e125824-prod.s3.amazonaws.com/public';
 
 const instance = axios.create({
     baseUrl,
