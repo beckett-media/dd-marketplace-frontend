@@ -5,6 +5,8 @@ import {
     getSavedAddressSuccess,
     handleCheckoutLoading,
 } from './action';
+import AuctionProductRepository from '~/repositories/AuctionProductRepository';
+
 import actionTypes from './actionTypes';
 import { notification } from 'antd';
 import CartRespository from '~/repositories/CartRespository';
@@ -135,6 +137,44 @@ function* handleCheckoutComplete({ token }) {
         });
     }
 }
+function* handleAuctionCheckoutComplete({ token, auctionId }) {
+    console.log(auctionId)
+    try {
+        yield put(handleCheckoutLoading(true));
+        const address = yield select(getDefaultAddress);
+
+        // in case you need auctionproduct
+        // const cart = yield call(
+        //     AuctionProductRepository.getAuctionProductsById(auctionId)
+        // );
+        // const listingIds = cart.data.carts.map((i) => i.listing._id);
+
+        const request = yield call(CheckoutRespository.checkoutComplete, {
+            addressId: address._id,
+            token,
+            // listingIds,
+            auctionId,
+            // isCardSave: true,
+        });
+        Router.replace('/account/checkoutSuccess');
+
+        notification.success({
+            message: 'Success!!',
+            description: request.message,
+            duration: 20,
+        });
+
+        yield put(handleCheckoutLoading(false));
+        yield put({ type: RESET_AFTER_CHECKOUT });
+    } catch (error) {
+        yield put(handleCheckoutLoading(false));
+        notification.error({
+            message: 'Failed',
+            description: `${error}`,
+            duration: 15,
+        });
+    }
+}
 
 export default function* rootSaga() {
     yield all([takeLatest(actionTypes.ADD_ADDRESS_REQUEST, addAddress)]);
@@ -151,5 +191,11 @@ export default function* rootSaga() {
 
     yield all([
         takeLatest(actionTypes.HANDLE_CHECKOUT_REQUEST, handleCheckoutComplete),
+    ]);
+    yield all([
+        takeLatest(
+            actionTypes.HANDLE_AUCTION_CHECKOUT_REQUEST,
+            handleAuctionCheckoutComplete
+        ),
     ]);
 }

@@ -9,19 +9,7 @@ const ModulePaymentOrderSummary = ({
     auctionProduct,
 }) => {
     let listItemsView, shippingView, totalView;
-    if (cartItems && cartItems.length > 0 && !auctionProduct) {
-        listItemsView = cartItems.map((product) => (
-            <Link href="/" key={product.id}>
-                <a>
-                    <strong>
-                        {product.title}
-                        <span>x{product.cartCount}</span>
-                    </strong>
-                    <small>${product.cartCount * product.price}</small>
-                </a>
-            </Link>
-        ));
-    } else if (auctionProduct) {
+    if (auctionProduct) {
         listItemsView = (
             <Link href="/">
                 <a>
@@ -35,6 +23,18 @@ const ModulePaymentOrderSummary = ({
                 </a>
             </Link>
         );
+    } else if (cartItems && cartItems.length > 0 && !auctionProduct) {
+        listItemsView = cartItems.map((product) => (
+            <Link href="/" key={product.id}>
+                <a>
+                    <strong>
+                        {product.title}
+                        <span>x{product.cartCount}</span>
+                    </strong>
+                    <small>${product.cartCount * product.price}</small>
+                </a>
+            </Link>
+        ));
     } else {
         listItemsView = <p>No Product.</p>;
     }
