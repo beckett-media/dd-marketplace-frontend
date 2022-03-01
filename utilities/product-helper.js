@@ -128,9 +128,21 @@ export function StrapiProductPriceExpanded(product) {
 export function StrapiProductThumbnail(product, unClaimed, auctionId) {
     let view;
 
-    const [image] = product.images || [];
+    let productImages = product.images;
+    let cardFront;
+    if (productImages?.length > 0) {
+        if (productImages[0].startsWith('card')) {
+            if (productImages[0].startsWith('cardFront')) {
+                cardFront = `${s3baseURL}/${productImages[0]}`;
+            } else {
+                cardFront = `${s3baseURL}/${productImages[1]}`;
+            }
+        } else {
+            cardFront = `${baseUrl}/${productImages[0]}`;
+        }
+    }
 
-    if (product.thumbnail || image) {
+    if (product.thumbnail || cardFront) {
         if (!unClaimed) {
             view = (
                 <Link

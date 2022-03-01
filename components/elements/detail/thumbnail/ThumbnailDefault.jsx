@@ -22,17 +22,25 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
 
     useEffect(() => {
         let images = [];
-        if (product && product.images && product.images.length > 0) {
-            product.images.map((item) => {
-                images.push(
-                    `${
-                        item?.startsWith && item?.startsWith('card')
-                            ? s3baseURL
-                            : baseUrl
-                    }/${item}`
-                );
-            });
 
+        let productImages = product?.images;
+        if (productImages?.length > 0) {
+            if (productImages[0].startsWith('card')) {
+                if (productImages[0].startsWith('cardFront')) {
+                    images.push(`${s3baseURL}/${productImages[0]}`);
+                    if (productImages[1])
+                        images.push(`${s3baseURL}/${productImages[1]}`);
+                } else {
+                    if (productImages[1])
+                        images.push(`${s3baseURL}/${productImages[1]}`);
+                    if (productImages[0])
+                        images.push(`${s3baseURL}/${productImages[0]}`);
+                }
+            } else {
+                images.push(`${baseUrl}/${productImages[0]}`);
+                if (productImages[1])
+                    images.push(`${baseUrl}/${productImages[1]}`);
+            }
             setProductImages(images);
         }
         setGallery(galleryCarousel.current);
