@@ -320,7 +320,7 @@ const CheckoutForm = StripeHoc(
                     handleCheckout(token.id);
                 } else {
                     console.log('necche');
-                    handleCheckout(token.id, auctionProduct.auctionId);
+                    handleCheckout(token.id, auctionProduct._id);
                 }
             }
         };
@@ -354,7 +354,9 @@ const CheckoutForm = StripeHoc(
                         ) : (
                             <button className="ps-btn ps-btn--fullwidth">
                                 Pay $
-                                {auctionProduct ? auctionProduct.price : amount}
+                                {auctionProduct
+                                    ? auctionProduct.bids[0].bidAmount
+                                    : amount}
                             </button>
                         )}
                     </div>

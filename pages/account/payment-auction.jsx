@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Router, { withRouter, useRouter } from 'next/router';
+import { withRouter, useRouter } from 'next/router';
 
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import Payment from '~/components/partials/account/Payment';
 import { useDispatch, connect } from 'react-redux';
-import { getCart } from '~/store/cart/action';
 import ContainerPage from '~/components/layouts/ContainerPage';
 import AuthHoc from '~/repositories/AuthHoc';
 import { getSavedAddressRequest } from '~/store/checkout/action';
@@ -21,11 +20,10 @@ const PaymentPage = () => {
         const responseData = await AuctionProductRepository.getAuctionProductsById(
             pid
         );
-        console.log(responseData);
         const payload = responseData?.data?.auction;
 
         if (payload) {
-            setProduct(payload.listing);
+            setProduct(payload);
         }
     }
     const breadCrumb = [
@@ -39,7 +37,7 @@ const PaymentPage = () => {
         },
         {
             text: 'Auction Summary',
-            url: '/checkout-auction',
+            url: `/account/checkout-auction?id_=${router.query?.id_}`,
         },
         {
             text: 'Auction Payment',
@@ -47,10 +45,8 @@ const PaymentPage = () => {
     ];
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getCart());
         dispatch(getSavedAddressRequest());
     }, [dispatch]);
-    console.log(product, 'in payment');
     return (
         <ContainerPage title="Payment" boxed={true}>
             <div className="ps-page--simple">

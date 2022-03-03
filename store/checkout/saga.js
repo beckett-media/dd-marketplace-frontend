@@ -138,24 +138,18 @@ function* handleCheckoutComplete({ token }) {
     }
 }
 function* handleAuctionCheckoutComplete({ token, auctionId }) {
-    console.log(auctionId)
     try {
         yield put(handleCheckoutLoading(true));
         const address = yield select(getDefaultAddress);
-
-        // in case you need auctionproduct
-        // const cart = yield call(
-        //     AuctionProductRepository.getAuctionProductsById(auctionId)
-        // );
-        // const listingIds = cart.data.carts.map((i) => i.listing._id);
-
-        const request = yield call(CheckoutRespository.checkoutComplete, {
-            addressId: address._id,
-            token,
-            // listingIds,
-            auctionId,
-            // isCardSave: true,
-        });
+        const request = yield call(
+            CheckoutRespository.auctionCheckoutComplete,
+            {
+                addressId: address._id,
+                token,
+                auctionId,
+                isCardSave: 'true',
+            }
+        );
         Router.replace('/account/checkoutSuccess');
 
         notification.success({

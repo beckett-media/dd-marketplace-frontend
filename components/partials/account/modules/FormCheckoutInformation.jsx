@@ -78,7 +78,7 @@ class FormCheckoutInformation extends Component {
         } else {
             Router.push({
                 pathname: '/account/payment-auction',
-                query: { id_: this.props.auctionProduct.auctionId },
+                query: { id_: this.props.auctionProduct._id },
             });
         }
     };

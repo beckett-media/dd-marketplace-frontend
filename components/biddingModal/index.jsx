@@ -82,7 +82,7 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid }) => {
                                         <button
                                             type="submit"
                                             className="ps-btn ps-btn--fullwidth">
-                                            Place Bid.{' '}
+                                            Place Bid
                                         </button>
                                     </div>
                                 </div>

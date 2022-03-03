@@ -24,7 +24,7 @@ const CheckoutAuctionPage = () => {
         const payload = responseData?.data?.auction;
 
         if (payload) {
-            setProduct(payload.listing);
+            setProduct(payload);
         }
     }
     const breadCrumb = [
@@ -49,7 +49,7 @@ const CheckoutAuctionPage = () => {
         <ContainerPage title="Checkout" boxed={true}>
             <div className="ps-page--simple">
                 <BreadCrumb breacrumb={breadCrumb} />
-                <Checkout auctionProduct={product}/>
+                <Checkout auctionProduct={product} />
             </div>
         </ContainerPage>
     );

@@ -9,6 +9,7 @@ const ModulePaymentOrderSummary = ({
     auctionProduct,
 }) => {
     let listItemsView, shippingView, totalView;
+    const bidAmount = auctionProduct?.bids?.[0].bidAmount || 0;
     if (auctionProduct) {
         listItemsView = (
             <Link href="/">
@@ -19,7 +20,7 @@ const ModulePaymentOrderSummary = ({
                         {auctionProduct.id}
                         {<span>x1</span>}
                     </strong>
-                    <small>${auctionProduct.price}</small>
+                    <small>${bidAmount}</small>
                 </a>
             </Link>
         );
@@ -52,10 +53,7 @@ const ModulePaymentOrderSummary = ({
                 <h3>
                     Total
                     <strong>
-                        $
-                        {auctionProduct
-                            ? auctionProduct.price
-                            : parseInt(amount) + 20}
+                        ${auctionProduct ? bidAmount : parseInt(amount) + 20}
                         .00
                     </strong>
                 </h3>
@@ -68,9 +66,7 @@ const ModulePaymentOrderSummary = ({
                     Total
                     <strong>
                         $
-                        {auctionProduct
-                            ? auctionProduct.price
-                            : Number(amount).toFixed(2)}
+                        {auctionProduct ? bidAmount : Number(amount).toFixed(2)}
                     </strong>
                 </h3>
             </figure>
@@ -90,7 +86,10 @@ const ModulePaymentOrderSummary = ({
                     <figcaption>
                         <strong>Subtotal</strong>
                         <small>
-                            ${auctionProduct ? auctionProduct.price : amount}
+                            $
+                            {auctionProduct
+                                ? auctionProduct.bids[0].bidAmount
+                                : amount}
                         </small>
                     </figcaption>
                 </figure>
