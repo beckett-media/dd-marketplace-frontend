@@ -1,7 +1,7 @@
 # example netlify.toml
 [build]
   command = "yarn build && yarn export"
-  publish = ".next"
+  publish = "out"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
@@ -10,6 +10,8 @@
   #  to = "/index.html"
   #  status = 200
 
+[build.environment]
+NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 [[redirects]]
   from = "/product/*"
