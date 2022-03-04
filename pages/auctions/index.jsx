@@ -2,27 +2,19 @@ import React from 'react';
 import ContainerShop from '~/components/layouts/ContainerShop';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import ShopAuctionItems from '~/components/partials/shop/ShopAuctionItems';
-import ShopBanner from '~/components/partials/shop/ShopBanner';
-import WidgetAuctionShopCategories from '~/components/shared/widgets/WidgetAuctionShopCategories';
-import { WidgetShopGradesNew } from '~/components/shared/widgets/WidgetShopGrade';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     getAuctionListings,
     getListingsLoading,
 } from '~/store/auction/selectors';
-import { Row, Select } from 'antd';
-import { getMarketPlaceData } from '~/store/home/selector';
-import {
-    getListingsByGrade,
-    getListingsByProducts,
-} from '~/store/product/action';
-import Router from 'next/router';
+import { getAuctionListingsByProducts } from '~/store/auction/action';
 import Title from '~/components/elements/Title';
-import WidgetUserWelcome from '~/components/partials/account/WidgetUserWelcome';
+import { useEffect } from 'react';
 
 const AuctionDefaultPage = () => {
     const productItems = useSelector(getAuctionListings);
     const loading = useSelector(getListingsLoading);
+    const dispatch = useDispatch();
     const breadCrumb = [
         {
             text: 'Home',
@@ -32,6 +24,10 @@ const AuctionDefaultPage = () => {
             text: 'Auctions',
         },
     ];
+
+    useEffect(() => {
+        dispatch(getAuctionListingsByProducts());
+    }, []);
 
     return (
         <ContainerShop title="Shop">
@@ -46,22 +42,12 @@ const AuctionDefaultPage = () => {
                 </div>
 
                 <div className="ps-container">
-                    <ShopBanner />
-
-                    <div className="">
-                        {/* <div className="ps-layout__left"> */}
-                        {/* <WidgetUserWelcome /> */}
-                        {/* <WidgetAuctionShopCategories /> */}
-                        {/* <WidgetShopGradesNew /> */}
-                        {/* </div> */}
-
+                    <div className="ps-container">
                         <div className="">
                             <Title
                                 title="Auctions"
                                 subtitle="Due Dilly Marketplace Auctions"
                             />
-
-                            {/* <MobileFilter /> */}
 
                             <ShopAuctionItems
                                 productItems={productItems}
@@ -77,59 +63,3 @@ const AuctionDefaultPage = () => {
     );
 };
 export default AuctionDefaultPage;
-
-const MobileFilter = () => {
-    const dispatch = useDispatch();
-    const { products = [], grades = [] } = useSelector(getMarketPlaceData);
-
-    const onChange = (id) => {
-        if (grades.includes(id)) {
-            dispatch(getListingsByGrade(id));
-            Router.replace('/auctions', '/auctions?gradeId=' + id, {
-                shallow: true,
-            });
-        } else {
-            Router.replace('/auctions', '/auctions?productId=' + id, {
-                shallow: true,
-            });
-            dispatch(getListingsByProducts(id));
-        }
-    };
-
-    return (
-        <div className="ps-layout__left_mobile" style={{ marginTop: 10 }}>
-            <Row align="stretch">
-                <Selector
-                    onChange={onChange}
-                    options={[...products, ...grades]}
-                />
-            </Row>
-        </div>
-    );
-};
-
-const { Option } = Select;
-
-const Selector = (props) => {
-    const { options = [], value, onChange } = props;
-
-    return (
-        <Select
-            style={{ width: '100%' }}
-            value={value}
-            placeholder="Select a Type"
-            allowClear
-            onChange={onChange}>
-            <Option disabled value="">
-                Choose
-            </Option>
-            {options && options.length
-                ? options.map(({ _id, name }) => (
-                      <Option key={_id} value={_id}>
-                          {name}
-                      </Option>
-                  ))
-                : null}
-        </Select>
-    );
-};

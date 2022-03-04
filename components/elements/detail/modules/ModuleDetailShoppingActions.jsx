@@ -80,16 +80,12 @@ const ModuleDetailShoppingActions = ({
         }
     };
 
-    const { bidEnd, bidStart } = product?.auctionDetails;
-    console.log('days difference', getDifferenceInDays(bidStart));
+    const { bidEnd, bidStart } = product?.auctionDetails || {};
     const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
     const startDate = moment(bidStart).format('dddd, MMMM Do YYYY, h:mm:ss a');
-    const Completionist = () => <span>You are good to go!</span>;
 
     const beforeStartRenderer = (props) => {
         const { hours, minutes, seconds } = props;
-
-        console.log(props);
         return (
             <div
                 style={{
@@ -127,13 +123,7 @@ const ModuleDetailShoppingActions = ({
         );
     };
 
-    const bidEndingRenderer = ({
-        hours,
-        minutes,
-        seconds,
-        milliseconds,
-        completed,
-    }) => {
+    const bidEndingRenderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
             return (
                 <div

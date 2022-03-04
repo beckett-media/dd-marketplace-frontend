@@ -1,12 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 import moment from 'moment';
+import { Tag } from 'antd';
 import {
-    StrapiProductPrice,
-    StrapiProductThumbnail,
-} from '~/utilities/product-helper';
+    CheckCircleOutlined,
+    SyncOutlined,
+    ClockCircleOutlined,
+} from '@ant-design/icons';
+import { StrapiProductThumbnail } from '~/utilities/product-helper';
 import { useSelector } from 'react-redux';
-import Countdown from '~/components/countDown.jsx';
+import Countdown from 'react-countdown';
+import { bidStarted } from '~/utilities/time';
 
 const ProductAuctionHorizontal = ({ auction }) => {
     let grade = useSelector(({ home }) =>
@@ -19,8 +23,54 @@ const ProductAuctionHorizontal = ({ auction }) => {
             (p) => p._id === auction.listing.product
         )
     );
-   
-  const endDate=(moment(auction.bidEnd).format("MM DD YYYY, h:mm a"));
+
+    const { bidEnd, bidStart } = auction || {};
+
+    const beforeStartRenderer = () => {
+        return (
+            <div>
+                <Tag
+                    style={{
+                        fontSize: '15px',
+                    }}
+                    icon={<ClockCircleOutlined />}
+                    color="warning">
+                    Start on: {bidStart}
+                </Tag>
+            </div>
+        );
+    };
+
+    const bidEndingRenderer = ({ completed }) => {
+        if (completed) {
+            return (
+                <div>
+                    <Tag
+                        style={{
+                            fontSize: '15px',
+                        }}
+                        icon={<CheckCircleOutlined />}
+                        color="success">
+                        Bidding Ended
+                    </Tag>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <Tag
+                        style={{
+                            fontSize: '15px',
+                        }}
+                        icon={<SyncOutlined spin />}
+                        color="processing">
+                        Auction ongoing
+                    </Tag>
+                </div>
+            );
+        }
+    };
+
     return (
         <Link
             href={'/auction-product/[pid]'}
@@ -33,7 +83,6 @@ const ProductAuctionHorizontal = ({ auction }) => {
                         auction._id
                     )}
                 </div>
-               
                 <div className="ps-product__content">
                     <>
                         <span>{auction.listing.title}</span>
@@ -65,27 +114,53 @@ const ProductAuctionHorizontal = ({ auction }) => {
                                 </p>
                             </div>
                         </div>
-                        <div>{StrapiProductPrice(auction.listing)}</div>
                     </div>
                 </div>
-                <div  style={{display:"flex" , alignItems: "center",color: '#7A8088'}}>  <span
-                                style={{
-                                    color: '#7A8088',
-                                    fontSize: '32px',
-                                    marginRight: '8px',
-                                }}>
-                                {`${
-                                    auction.bids[0]?.bidAmount ||
-                                    auction.startingBid
-                                }$`}
-                            </span> {auction.bids.length} Bids</div>
+                <div
+                    style={{
+                        alignItems: 'center',
+                        color: '#7A8088',
+                    }}>
+                    <span
+                        style={{
+                            fontSize: '2.5rem',
+                        }}>
+                        {auction.bids.length > 0
+                            ? 'Current Bid:  '
+                            : 'Starting Bid:  '}
+                        <span className="ps-product__price">
+                            {`  $${
+                                auction.bids[0]?.bidAmount ||
+                                auction.startingBid
+                            }`}
+                        </span>
+                    </span>
+                </div>
+                <hr />
 
-                <hr/>
-               
-                <div style={{display:"flex" ,color: '#7A8088',margin:"5px"}}>TIME LEFT: <Countdown
-                    timeTillDate={endDate}
-                    timeFormat="MM DD YYYY, h:mm a"
-                /></div>
+                <div
+                    style={{
+                        fontSize: '16px',
+                        textAlign: 'center',
+                    }}>
+                    {auction.bids.length}
+                    {auction.bids.length > 1 ? ' Bids Placed' : ' Bid Placed'}
+                </div>
+                <hr />
+                <div
+                    style={{
+                        textAlign: 'center',
+                        marginBottom: '6px',
+                    }}>
+                    {bidStarted(bidStart) ? (
+                        <Countdown date={bidEnd} renderer={bidEndingRenderer} />
+                    ) : (
+                        <Countdown
+                            date={bidStart}
+                            renderer={beforeStartRenderer}
+                        />
+                    )}
+                </div>
             </div>
         </Link>
     );
