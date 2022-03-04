@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Tag } from 'antd';
+import { Table, Tag, Badge } from 'antd';
 import moment from 'moment';
 import {
     CheckCircleOutlined,
@@ -31,26 +31,47 @@ const TableAuctionListing = ({ list = [], userId }) => {
         else return 'completed';
     };
 
-    const renderStatus = (bidStart, bidEnd) => {
+    const renderStatus = ({ bidStart, bidEnd, bids }) => {
         const status = checkStatus(bidStart, bidEnd);
+        const isUserBidHighest = bids[0].bidder == userId;
+        const isWinner = isUserBidHighest && status === 'completed';
+
         switch (status) {
             case 'active':
                 return (
-                    <Tag icon={<SyncOutlined spin />} color="processing">
-                        Active
-                    </Tag>
+                    <>
+                        <small className="text-secondary">
+                            {isUserBidHighest
+                                ? 'Your bid is highest'
+                                : 'You are loosing'}
+                        </small>
+                        <Tag icon={<SyncOutlined spin />} color="processing">
+                            Active
+                        </Tag>
+                    </>
                 );
             case 'pending':
                 return (
-                    <Tag icon={<ClockCircleOutlined />} color="default">
-                        pending
-                    </Tag>
+                    <>
+                        <small className="text-secondary">Get ready</small>
+                        <Tag icon={<ClockCircleOutlined />} color="default">
+                            pending
+                        </Tag>
+                    </>
                 );
             case 'completed':
                 return (
-                    <Tag icon={<CheckCircleOutlined />} color="success">
-                        completed
-                    </Tag>
+                    <>
+                        <div className="mx-auto">
+                            <small className="text-secondary">
+                                {isWinner ? 'You won' : 'You Lost'}
+                            </small>
+
+                            <Tag icon={<CheckCircleOutlined />} color="success">
+                                completed
+                            </Tag>
+                        </div>
+                    </>
                 );
         }
     };
@@ -152,6 +173,7 @@ const TableAuctionListing = ({ list = [], userId }) => {
                 let userHighestBid = item.bids.find(
                     (bid) => bid.bidder == userId
                 );
+
                 return <strong>${userHighestBid.bidAmount || 'N/A'}</strong>;
             },
         },
@@ -189,7 +211,7 @@ const TableAuctionListing = ({ list = [], userId }) => {
             rowKey: 'menu',
             dataIndex: 'menu',
             key: 'menu',
-            render: (_text, item) => renderStatus(item.bidStart, item.bidEnd),
+            render: (_text, item) => renderStatus(item),
         },
     ];
     return (

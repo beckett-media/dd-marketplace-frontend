@@ -1,12 +1,10 @@
 import React from 'react';
-import { Tooltip, Popconfirm } from 'antd';
+import { Tooltip } from 'antd';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
 import Router from 'next/router';
 
 const DropdownAuctionAction = ({ isUserBidHighest, itemToHandle }) => {
-    let paymentAllowed =
-        isUserBidHighest && moment(itemToHandle.bidEnd) < moment();
+    const isWinner = isUserBidHighest && moment(itemToHandle.bidEnd) < moment();
 
     return (
         <>
@@ -21,18 +19,22 @@ const DropdownAuctionAction = ({ isUserBidHighest, itemToHandle }) => {
             </Tooltip>
             <Tooltip
                 title={
-                    paymentAllowed
-                        ? 'Pay'
+                    isWinner
+                        ? itemToHandle.orderId
+                            ? 'Already Paid, Visit Orders'
+                            : 'Pay'
                         : 'Paymemt: Bid has not ended yet or you lost'
                 }>
                 <span
                     style={
-                        paymentAllowed
-                            ? { cursor: 'pointer' }
+                        isWinner
+                            ? itemToHandle.orderId
+                                ? { cursor: 'not-allowed' }
+                                : { cursor: 'pointer' }
                             : { cursor: 'not-allowed' }
                     }
                     onClick={() => {
-                        if (paymentAllowed)
+                        if (!itemToHandle.orderId && isWinner)
                             Router.push({
                                 pathname: '/account/checkout-auction',
                                 query: { id_: itemToHandle._id },
