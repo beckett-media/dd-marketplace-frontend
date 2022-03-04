@@ -199,11 +199,11 @@ const ModuleDetailShoppingActions = ({
                                         fontSize: '32px',
                                         marginTop: '8px',
                                     }}>
-                                    {`${
+                                    {`$${
                                         product.auctionDetails.bids[0]
                                             ?.bidAmount ||
                                         product.auctionDetails.startingBid
-                                    }$`}
+                                    }`}
                                 </p>
                                 <div
                                     style={{

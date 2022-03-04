@@ -58,11 +58,9 @@ const AuctionProductDefaultPage = () => {
     }, [pid]);
 
     useEffect(() => {
-        console.log('Joining room');
         socketIo.emit('join auction room', { room: pid });
 
         socketIo.on('new bid', (payload) => {
-            console.log('new bid');
             console.log(payload);
         });
 
@@ -75,7 +73,12 @@ const AuctionProductDefaultPage = () => {
     }, []);
 
     const placeBid = ({ bidAmount }) => {
-        console.log('Placing new bid');
+        if (bidAmount < product.auctionDetails.bids[0]) {
+            return notification.info({
+                message: 'Info',
+                description: 'You bid must be heigher than current bid.',
+            });
+        }
         let newBid = {
             bidAmount: bidAmount,
             jwt: localStorage.getItem(`${appName}_xAuthToken`),
@@ -135,7 +138,11 @@ const AuctionProductDefaultPage = () => {
     if (!loading) {
         if (product) {
             productView = (
-                <ProductDetailFullwidth product={product} placeBid={placeBid} bidding={true} />
+                <ProductDetailFullwidth
+                    product={product}
+                    placeBid={placeBid}
+                    bidding={true}
+                />
             );
             headerView = <HeaderProduct product={product} />;
         } else {

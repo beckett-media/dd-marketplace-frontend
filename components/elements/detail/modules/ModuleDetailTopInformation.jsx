@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Rating from '~/components/elements/Rating';
 
-const ModuleDetailTopInformation = ({ product }) => {
+const ModuleDetailTopInformation = ({ product, bidding }) => {
     // Views
     let priceView;
 
@@ -14,7 +14,11 @@ const ModuleDetailTopInformation = ({ product }) => {
             </h4>
         );
     } else {
-        priceView = <h4 className="ps-product__price">${product.price}</h4>;
+        priceView = bidding ? (
+            ''
+        ) : (
+            <h4 className="ps-product__price">${product.price}</h4>
+        );
     }
     return (
         <header>
