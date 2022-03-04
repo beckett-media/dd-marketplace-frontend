@@ -72,14 +72,13 @@ class FormCheckoutInformation extends Component {
     };
 
     onNextButtonClick = () => {
-        console.log(this.props.auctionProduct);
-        if (!this.props.auctionProduct) {
-            Router.push('/account/payment');
-        } else {
+        if (this.props.auctionProduct) {
             Router.push({
                 pathname: '/account/payment-auction',
                 query: { id_: this.props.auctionProduct._id },
             });
+        } else {
+            Router.push('/account/payment');
         }
     };
 

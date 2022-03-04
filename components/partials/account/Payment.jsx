@@ -31,12 +31,12 @@ class Payment extends Component {
     };
 
     handleCheckout = (stripetoken, auctionId) => {
-        if (!this.props.auctionProduct) {
-            this.props.dispatch(onCheckoutComplete(stripetoken));
-        } else {
+        if (this.props.auctionProduct) {
             this.props.dispatch(
                 onAuctionCheckoutComplete(stripetoken, auctionId)
             );
+        } else {
+            this.props.dispatch(onCheckoutComplete(stripetoken));
         }
     };
 
@@ -51,7 +51,6 @@ class Payment extends Component {
         }
 
         const { userInfo = {}, defaultAddress = {}, cart } = this.props;
-        console.log(this.props.auctionProduct, 'in payment Comp');
         return (
             <div className="ps-checkout ps-section--shopping">
                 <div className="container">
@@ -315,12 +314,10 @@ const CheckoutForm = StripeHoc(
                     description: error.message,
                 });
             } else {
-                if (!auctionProduct) {
-                    console.log('asd');
-                    handleCheckout(token.id);
-                } else {
-                    console.log('necche');
+                if (auctionProduct) {
                     handleCheckout(token.id, auctionProduct._id);
+                } else {
+                    handleCheckout(token.id);
                 }
             }
         };
