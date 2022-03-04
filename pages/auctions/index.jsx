@@ -48,20 +48,20 @@ const AuctionDefaultPage = () => {
                 <div className="ps-container">
                     <ShopBanner />
 
-                    <div className="ps-layout--shop">
-                        <div className="ps-layout__left">
-                            <WidgetUserWelcome />
-                            <WidgetAuctionShopCategories />
-                            <WidgetShopGradesNew />
-                        </div>
+                    <div className="">
+                        {/* <div className="ps-layout__left"> */}
+                        {/* <WidgetUserWelcome /> */}
+                        {/* <WidgetAuctionShopCategories /> */}
+                        {/* <WidgetShopGradesNew /> */}
+                        {/* </div> */}
 
-                        <div className="ps-layout__right">
+                        <div className="">
                             <Title
                                 title="Auctions"
                                 subtitle="Due Dilly Marketplace Auctions"
                             />
 
-                            <MobileFilter />
+                            {/* <MobileFilter /> */}
 
                             <ShopAuctionItems
                                 productItems={productItems}
