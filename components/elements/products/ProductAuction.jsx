@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import moment from 'moment';
 import { Tag } from 'antd';
@@ -6,13 +6,17 @@ import {
     CheckCircleOutlined,
     SyncOutlined,
     ClockCircleOutlined,
+    CheckCircleTwoTone,
+    ClockCircleTwoTone,
 } from '@ant-design/icons';
 import { StrapiProductThumbnail } from '~/utilities/product-helper';
 import { useSelector } from 'react-redux';
 import Countdown from 'react-countdown';
-import { bidStarted } from '~/utilities/time';
+import { bidStarted, getDifferenceInDays } from '~/utilities/time';
 
 const ProductAuctionHorizontal = ({ auction }) => {
+    const [bidActive, setBidActive] = useState(false);
+    const { bidEnd, bidStart } = auction || {};
     let grade = useSelector(({ home }) =>
         home?.marketPlace?.grades?.find(
             (grade) => grade._id === auction.listing.grade
@@ -23,52 +27,71 @@ const ProductAuctionHorizontal = ({ auction }) => {
             (p) => p._id === auction.listing.product
         )
     );
+    useEffect(() => {
+        if (bidStarted(bidStart, bidEnd)) {
+            setBidActive(true);
+        } else {
+            setBidActive(false);
+        }
+    }, []);
 
-    const { bidEnd, bidStart } = auction || {};
-
-    const beforeStartRenderer = () => {
-        return (
-            <div>
-                <Tag
-                    style={{
-                        fontSize: '15px',
-                    }}
-                    icon={<ClockCircleOutlined />}
-                    color="warning">
-                    Start on: {bidStart}
-                </Tag>
-            </div>
+    const beforeStartRenderer = ({ hours, minutes, seconds, completed }) => {
+        const startDate = moment(bidStart).format(
+            'dddd, MMMM Do YYYY, h:mm:ss a'
         );
+
+        if (getDifferenceInDays(bidStart) < 1)
+            return (
+                <>
+                    <ClockCircleTwoTone
+                        style={{
+                            marginTop: -15,
+                            marginRight: 5,
+                            fontSize: '15px',
+                        }}
+                    />
+                    <p style={{ color: '#7A8088' }}>
+                        Time left to start : {hours} : {minutes} : {seconds}
+                    </p>
+                </>
+            );
+        else
+            return <p style={{ color: '#7A8088' }}>Starting in: {startDate}</p>;
     };
 
-    const bidEndingRenderer = ({ completed }) => {
+    const bidEndingRenderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
             return (
-                <div>
-                    <Tag
+                <>
+                    <CheckCircleTwoTone
                         style={{
+                            marginTop: -15,
+                            marginRight: 5,
                             fontSize: '15px',
                         }}
-                        icon={<CheckCircleOutlined />}
-                        color="success">
-                        Bidding Ended
-                    </Tag>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <Tag
-                        style={{
-                            fontSize: '15px',
-                        }}
-                        icon={<SyncOutlined spin />}
-                        color="processing">
-                        Auction ongoing
-                    </Tag>
-                </div>
+                        twoToneColor="#52c41a"
+                    />
+                    <p style={{ color: '#7A8088', alignItems: 'center' }}>
+                        This Auction has been closed.
+                    </p>
+                </>
             );
         }
+        return (
+            <>
+                <SyncOutlined
+                    style={{
+                        marginTop: -15,
+                        marginRight: 5,
+                        fontSize: '15px',
+                    }}
+                    spin
+                />
+                <p style={{ color: '#7A8088' }}>
+                    Ending in: {hours} : {minutes} : {seconds}
+                </p>
+            </>
+        );
     };
 
     return (
@@ -149,15 +172,22 @@ const ProductAuctionHorizontal = ({ auction }) => {
                 <hr />
                 <div
                     style={{
-                        textAlign: 'center',
-                        marginBottom: '6px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#7A8088',
                     }}>
-                    {bidStarted(bidStart) ? (
+                    {bidActive && (
                         <Countdown date={bidEnd} renderer={bidEndingRenderer} />
-                    ) : (
+                    )}
+
+                    {!bidActive && (
                         <Countdown
                             date={bidStart}
                             renderer={beforeStartRenderer}
+                            onComplete={() => {
+                                setBidActive(true);
+                            }}
                         />
                     )}
                 </div>

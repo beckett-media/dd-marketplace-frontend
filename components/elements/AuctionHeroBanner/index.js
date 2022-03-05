@@ -54,10 +54,6 @@ const AuctionBanner = ({ _id, productImage }) => (
                 bottom: '5rem',
                 opacity: 0.2,
             }}
-            imgStyle={{
-                height: '100%',
-                objectFit: '100%',
-            }}
         />
     </div>
 );

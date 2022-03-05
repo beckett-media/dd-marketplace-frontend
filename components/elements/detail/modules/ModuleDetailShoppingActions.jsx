@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { addItem } from '~/store/cart/action';
 import { addItemToCompare } from '~/store/compare/action';
 import { addItemToWishlist } from '~/store/wishlist/action';
@@ -38,7 +38,17 @@ const ModuleDetailShoppingActions = ({
     const [bidActive, setBidActive] = useState(false);
     const Router = useRouter();
     const [open, setOpen] = useState(false);
-    // console.log(product);
+    const [showBtn, setShowBtn] = useState(false);
+    const { bidEnd, bidStart } = product?.auctionDetails;
+
+    useEffect(() => {
+        if (bidStarted(bidStart, bidEnd)) {
+            setBidActive(true);
+        } else {
+            setBidActive(false);
+            setShowBtn(false);
+        }
+    }, []);
 
     const handleAddItemToCart = (e) => {
         e.preventDefault();
@@ -80,23 +90,28 @@ const ModuleDetailShoppingActions = ({
         }
     };
 
-    const { bidEnd, bidStart } = product?.auctionDetails || {};
-    const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
-    const startDate = moment(bidStart).format('dddd, MMMM Do YYYY, h:mm:ss a');
-
-    const beforeStartRenderer = (props) => {
-        const { hours, minutes, seconds } = props;
+    const beforeStartRenderer = ({ hours, minutes, seconds, completed }) => {
+        const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
+        const startDate = moment(bidStart).format(
+            'dddd, MMMM Do YYYY, h:mm:ss a'
+        );
         return (
             <div
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
                     gap: 10,
+                    marginTop: -20,
                 }}>
                 <div style={{ justifyContent: 'flex-start' }}>
                     <Tag
                         style={{
                             fontSize: '15px',
+                            height: 30,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: 180,
                         }}
                         icon={<ClockCircleOutlined />}
                         color="warning">
@@ -131,55 +146,66 @@ const ModuleDetailShoppingActions = ({
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 10,
+                        marginTop: -20,
                     }}>
                     <div style={{ justifyContent: 'flex-start' }}>
                         <Tag
                             style={{
                                 fontSize: '15px',
+                                height: 30,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                width: 180,
                             }}
                             icon={<CheckCircleOutlined />}
                             color="success">
-                            Bidding Ended
+                            Auction Ended
                         </Tag>
                     </div>
                     <p style={{ color: '#7A8088' }}>
-                        You're not able to bid now on this auction.
+                        This Auction has been closed.
                         <br />
                         Stay tuned and hold your money, hot auctions are about
                         to start.
                     </p>
                 </div>
             );
-        } else {
-            setBidActive(true);
-            return (
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 10,
-                    }}>
-                    <div style={{ justifyContent: 'flex-start' }}>
-                        <Tag
-                            style={{
-                                fontSize: '15px',
-                            }}
-                            icon={<SyncOutlined spin />}
-                            color="processing">
-                            Auction ongoing
-                        </Tag>
-                    </div>
-                    <div>
-                        <p style={{ color: '#7A8088' }}>
-                            Place bid Before its going to end
-                        </p>
-                        <p style={{ color: '#7A8088' }}>
-                            Ending in: {hours} : {minutes} : {seconds}
-                        </p>
-                    </div>
-                </div>
-            );
         }
+        setShowBtn(true);
+        return (
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 10,
+                    marginTop: -20,
+                }}>
+                <div style={{ justifyContent: 'flex-start' }}>
+                    <Tag
+                        style={{
+                            fontSize: '15px',
+                            height: 30,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: 180,
+                        }}
+                        icon={<SyncOutlined spin />}
+                        color="processing">
+                        Auction is live
+                    </Tag>
+                </div>
+                <div>
+                    <p style={{ color: '#7A8088' }}>
+                        Place higher bid before you lose your chance
+                    </p>
+                    <p style={{ color: '#7A8088' }}>
+                        Ending in: {hours} : {minutes} : {seconds}
+                    </p>
+                </div>
+            </div>
+        );
     };
 
     if (!extended) {
@@ -211,15 +237,33 @@ const ModuleDetailShoppingActions = ({
                                         color: '#7A8088',
                                         margin: '5px',
                                     }}>
-                                    {bidStarted(bidStart) ? (
+                                    {bidActive && (
                                         <Countdown
                                             date={bidEnd}
                                             renderer={bidEndingRenderer}
+                                            onComplete={() => {
+                                                console.log('Bid ended');
+                                                setShowBtn(false);
+                                            }}
                                         />
-                                    ) : (
+                                    )}
+
+                                    {!bidActive && (
                                         <Countdown
                                             date={bidStart}
                                             renderer={beforeStartRenderer}
+                                            onComplete={() => {
+                                                setShowBtn(true);
+                                                setBidActive(true);
+                                            }}
+                                            onTick={() =>
+                                                console.log('It is ticking')
+                                            }
+                                            onStart={() =>
+                                                console.log(
+                                                    'Counter is going to start'
+                                                )
+                                            }
                                         />
                                     )}
                                 </div>
@@ -248,7 +292,7 @@ const ModuleDetailShoppingActions = ({
                                     bidding={true}
                                 />
                             )}
-                            {bidActive && (
+                            {showBtn && (
                                 <button
                                     className="ps-btnBid ps-btnBid--blackBid mb-2"
                                     // onClick={(e) => handleAddItemToCart(e)}
