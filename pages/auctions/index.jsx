@@ -10,6 +10,7 @@ import {
 import { getAuctionListingsByProducts } from '~/store/auction/action';
 import Title from '~/components/elements/Title';
 import { useEffect } from 'react';
+import AuctionHeroBanner from '~/components/elements/AuctionHeroBanner';
 
 const AuctionDefaultPage = () => {
     const productItems = useSelector(getAuctionListings);
@@ -47,6 +48,12 @@ const AuctionDefaultPage = () => {
                             <Title
                                 title="Auctions"
                                 subtitle="Due Dilly Marketplace Auctions"
+                            />
+                            <AuctionHeroBanner
+                                productImage={
+                                    productItems?.[0]?.listing.images?.[0]
+                                }
+                                _id={productItems?.[0]?._id}
                             />
 
                             <ShopAuctionItems
