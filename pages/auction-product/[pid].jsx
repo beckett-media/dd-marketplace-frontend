@@ -73,7 +73,7 @@ const AuctionProductDefaultPage = () => {
     }, []);
 
     const placeBid = ({ bidAmount }) => {
-        if (bidAmount < product.auctionDetails.bids[0]) {
+        if (bidAmount < product.auctionDetails.bids?.[0]?.bidAmount) {
             return notification.info({
                 message: 'Info',
                 description: 'You bid must be heigher than current bid.',
