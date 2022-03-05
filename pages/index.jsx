@@ -28,20 +28,22 @@ const HomepageDefaultPage = () => {
 
     const {
         recommendation,
+        newAuctions,
         trendingCards,
         trendingPlayers,
         newArrival,
-        newStores
+        newStores,
     } = useSelector(getMarketPlaceData);
 
     const isMarketPlaceLoading = useSelector(getMarketPlaceLoading);
 
     const marketplace = {
         recommendation,
+        newAuctions,
         trendingCards,
         trendingPlayers,
         newArrival,
-        newStores
+        newStores,
     };
 
     return (
