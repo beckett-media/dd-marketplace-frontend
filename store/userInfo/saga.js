@@ -2,7 +2,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import actionTypes from './actionTypes';
 import UserService from '~/repositories/UserRespository';
 import { loginSuccess, logOutSuccess } from '../auth/action';
-import { toggleUserInfoLoading } from './action';
+import { toggleUserInfoLoading, getUserDetails } from './action';
 import { notification } from 'antd';
 import Router from 'next/router';
 
@@ -17,7 +17,7 @@ const showNotification = (type, payload) => {
     notification[type](payload);
 };
 
-function* getUserDetails() {
+function* getUserDetailsSaga() {
     try {
         put(toggleUserInfoLoading(true));
         const userInfo = yield call(UserService.getUserInfo);
@@ -66,7 +66,7 @@ function* stripeCodeVerification(action) {
             description: 'The stripe verifcation has been completed',
         });
         const path = action.redirectPath ? action.redirectPath : '/auctions';
-
+        yield put(getUserDetails());
         Router.replace(path);
     } catch (error) {
         notification.error({
@@ -78,7 +78,7 @@ function* stripeCodeVerification(action) {
 
 export default function* rootSaga() {
     yield all([
-        takeLatest(actionTypes.GET_USER_DETAILS_REQUEST, getUserDetails),
+        takeLatest(actionTypes.GET_USER_DETAILS_REQUEST, getUserDetailsSaga),
     ]);
 
     yield all([
