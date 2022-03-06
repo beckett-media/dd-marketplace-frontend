@@ -39,7 +39,7 @@ const ModuleDetailShoppingActions = ({
     const Router = useRouter();
     const [open, setOpen] = useState(false);
     const [showBtn, setShowBtn] = useState(false);
-    const { bidEnd, bidStart } = product?.auctionDetails;
+    const { bidEnd, bidStart } = product?.auctionDetails || {};
 
     useEffect(() => {
         if (bidStarted(bidStart, bidEnd)) {
