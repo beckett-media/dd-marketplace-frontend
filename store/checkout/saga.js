@@ -17,7 +17,7 @@ import {
 import Router from 'next/router';
 import { RESET_AFTER_CHECKOUT } from '../globalTypes';
 
-function* addAddress({ address, isEdit, callback }) {
+function* addAddress({ address, auctionId, isEdit, callback }) {
     try {
         let request;
         if (isEdit) {
@@ -36,7 +36,11 @@ function* addAddress({ address, isEdit, callback }) {
             duration: 15,
         });
         if (callback) callback();
-        if (!isEdit) Router.push('/account/payment');
+        if (!isEdit && !auctionId) {
+            Router.push('/account/payment');
+        } else {
+            Router.push(`/account/payment-auction?id_=${auctionId}`);
+        }
     } catch (error) {
         notification.error({
             message: 'Failed',

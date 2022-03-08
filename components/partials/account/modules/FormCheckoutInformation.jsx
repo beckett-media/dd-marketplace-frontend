@@ -36,6 +36,7 @@ class FormCheckoutInformation extends Component {
     }
 
     handleLoginSubmit = (values) => {
+        const auctionId=Router.query?.id_;
         const { address } = this.props;
         const isAddressAvailable = Boolean(address && address.length);
 
@@ -47,7 +48,7 @@ class FormCheckoutInformation extends Component {
         if (!isAddressAvailable) values.isDefaultAddress = true;
 
         this.props.dispatch(
-            saveAddressRequest(values, isEdit, () => {
+            saveAddressRequest(values,auctionId, isEdit, () => {
                 this.formRef.current.resetFields();
                 this.setState({ newAddress: false });
             })
