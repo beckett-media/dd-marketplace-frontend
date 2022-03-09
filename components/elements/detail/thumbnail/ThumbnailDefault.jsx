@@ -61,7 +61,7 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: productImages.length,
                     dots: false,
                     arrows: false,
                     vertical: false,
@@ -71,7 +71,7 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: productImages.length,
                     dots: false,
                     arrows: false,
                     vertical: false,
@@ -81,7 +81,7 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: productImages.length,
                     dots: false,
                     arrows: false,
                     vertical: false,
@@ -114,7 +114,7 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
                 ref={(slider) => (variantCarousel.current = slider)}
                 swipeToSlide={true}
                 arrows={false}
-                slidesToShow={3}
+                slidesToShow={productImages.length}
                 vertical={true}
                 infinite={true}
                 focusOnSelect={true}
