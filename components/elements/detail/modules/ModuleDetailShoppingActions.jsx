@@ -14,7 +14,7 @@ import { Tag } from 'antd';
 import {
     getMonthName,
     getDifferenceInDays,
-    bidStarted,
+    isBidStarted,
 } from '~/utilities/time';
 import {
     CheckCircleOutlined,
@@ -24,7 +24,6 @@ import {
     ClockCircleOutlined,
     MinusCircleOutlined,
 } from '@ant-design/icons';
-// import Countdown from '~/components/countDown';
 import moment from 'moment';
 import { getUserStripeId } from '~/store/auth/selectors';
 const ModuleDetailShoppingActions = ({
@@ -42,7 +41,7 @@ const ModuleDetailShoppingActions = ({
     const { bidEnd, bidStart } = product?.auctionDetails || {};
 
     useEffect(() => {
-        if (bidStarted(bidStart, bidEnd)) {
+        if (isBidStarted(bidStart, bidEnd)) {
             setBidActive(true);
         } else {
             setBidActive(false);
@@ -242,7 +241,6 @@ const ModuleDetailShoppingActions = ({
                                             date={bidEnd}
                                             renderer={bidEndingRenderer}
                                             onComplete={() => {
-                                                console.log('Bid ended');
                                                 setShowBtn(false);
                                             }}
                                         />
@@ -256,14 +254,6 @@ const ModuleDetailShoppingActions = ({
                                                 setShowBtn(true);
                                                 setBidActive(true);
                                             }}
-                                            onTick={() =>
-                                                console.log('It is ticking')
-                                            }
-                                            onStart={() =>
-                                                console.log(
-                                                    'Counter is going to start'
-                                                )
-                                            }
                                         />
                                     )}
                                 </div>
@@ -295,9 +285,7 @@ const ModuleDetailShoppingActions = ({
                             {showBtn && (
                                 <button
                                     className="ps-btnBid ps-btnBid--blackBid mb-2"
-                                    // onClick={(e) => handleAddItemToCart(e)}
                                     onClick={() => {
-                                        // console.log(props);
                                         setOpen(true);
                                     }}>
                                     Place Bid
@@ -341,7 +329,6 @@ const ModuleDetailShoppingActions = ({
                         <button
                             className="ps-btnBid  ps-btn--black mb-2"
                             onClick={() => {
-                                // console.log(props);
                                 setOpen(true);
                             }}>
                             Place Bid

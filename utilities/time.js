@@ -22,7 +22,5 @@ export const getDifferenceInDays = (date) => {
     return moment.duration(moment(date).diff(moment())).asDays();
 };
 
-export const bidStarted = (bidStart) => {
-    if (moment(new Date()).isBefore(moment(bidStart))) return false;
-    return true;
-};
+export const isBidStarted = (bidStart) =>
+    !moment(new Date()).isBefore(moment(bidStart));

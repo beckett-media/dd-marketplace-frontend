@@ -12,7 +12,7 @@ import {
 import { StrapiProductThumbnail } from '~/utilities/product-helper';
 import { useSelector } from 'react-redux';
 import Countdown from 'react-countdown';
-import { bidStarted, getDifferenceInDays } from '~/utilities/time';
+import { isBidStarted, getDifferenceInDays } from '~/utilities/time';
 
 const ProductAuctionHorizontal = ({ auction }) => {
     const [bidActive, setBidActive] = useState(false);
@@ -28,7 +28,7 @@ const ProductAuctionHorizontal = ({ auction }) => {
         )
     );
     useEffect(() => {
-        if (bidStarted(bidStart, bidEnd)) {
+        if (isBidStarted(bidStart, bidEnd)) {
             setBidActive(true);
         } else {
             setBidActive(false);
