@@ -22,6 +22,7 @@ import '~/scss/autopart.scss';
 import '~/scss/electronic.scss';
 import '~/scss/custom.scss';
 import CrossOriginLogin from '~/components/shared/CrossOriginLogin';
+import Head from 'next/head';
 
 class MyApp extends App {
     constructor(props) {
@@ -46,10 +47,36 @@ class MyApp extends App {
                 <PersistGate
                     loading={<Component {...pageProps} />}
                     persistor={this.persistor}>
-                        <>
-                            <Component {...pageProps} />
-                            <CrossOriginLogin />
-                        </>
+                    <>
+                        <Head>
+                            <title>Due Dilly</title>
+
+                            <meta
+                                httpEquiv="X-UA-Compatible"
+                                content="IE=edge"
+                            />
+                            <meta
+                                name="viewport"
+                                content="width=device-width, initial-scale=1.0, maximum-scale=1"
+                            />
+                            <meta
+                                name="format-detection"
+                                content="telephone=no"
+                            />
+                            <meta
+                                name="apple-mobile-web-app-capable"
+                                content="yes"
+                            />
+                            <meta name="author" content="nouthemes" />
+                            <meta
+                                name="keywords"
+                                content="Due Dilly, React, eCommerce, Template"
+                            />
+                            <meta name="description" content="Due Dilly" />
+                        </Head>
+                        <Component {...pageProps} />
+                        <CrossOriginLogin />
+                    </>
                 </PersistGate>
             </Provider>
         );
