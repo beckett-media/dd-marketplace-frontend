@@ -15,7 +15,7 @@ class Login extends Component {
     }
 
     static getDerivedStateFromProps(props) {
-        if (props.isLoggedIn === true) {
+        if (props.isLoggedIn === true && !props.bidding) {
             Router.push('/');
         }
         return false;
@@ -36,20 +36,31 @@ class Login extends Component {
 
     handleLoginSubmit = (values) => {
         this.setState({ loading: true });
-        this.props.dispatch(login(values, this.handleLoading));
+        this.props.dispatch(
+            login(
+                { ...values, bidding: this.props.bidding },
+                this.handleLoading
+            )
+        );
         this.ref.current.resetFields();
     };
 
     render() {
         return (
             <div className="ps-my-account">
-                <div className="container">
+                <div className="">
                     <Form
                         ref={this.ref}
                         className="ps-form--account"
                         onFinish={this.handleLoginSubmit}>
                         <div className="ps-tab active" id="sign-in">
-                            <div className="ps-form__content">
+                            <div
+                                className="ps-form__content"
+                                style={{
+                                    height: this.props.height
+                                        ? this.props.height
+                                        : '100vh',
+                                }}>
                                 <a href="/">
                                     <img
                                         style={{ maxWidth: 120 }}
@@ -59,7 +70,11 @@ class Login extends Component {
                                 </a>
                                 <Title
                                     title="WELCOME BACK"
-                                    subtitle="Login to your Due Dilly account"
+                                    subtitle={
+                                        this.props.subtitle
+                                            ? this.props.subtitle
+                                            : 'Login to your Due Dilly account'
+                                    }
                                 />
                                 <div style={{ paddingTop: 30 }}>
                                     <div className="form-group dark">

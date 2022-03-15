@@ -36,6 +36,7 @@ class FormCheckoutInformation extends Component {
     }
 
     handleLoginSubmit = (values) => {
+        const auctionId=Router.query?.id_;
         const { address } = this.props;
         const isAddressAvailable = Boolean(address && address.length);
 
@@ -47,7 +48,7 @@ class FormCheckoutInformation extends Component {
         if (!isAddressAvailable) values.isDefaultAddress = true;
 
         this.props.dispatch(
-            saveAddressRequest(values, isEdit, () => {
+            saveAddressRequest(values,auctionId, isEdit, () => {
                 this.formRef.current.resetFields();
                 this.setState({ newAddress: false });
             })
@@ -72,7 +73,14 @@ class FormCheckoutInformation extends Component {
     };
 
     onNextButtonClick = () => {
-        Router.push('/account/payment');
+        if (this.props.auctionProduct) {
+            Router.push({
+                pathname: '/account/payment-auction',
+                query: { id_: this.props.auctionProduct._id },
+            });
+        } else {
+            Router.push('/account/payment');
+        }
     };
 
     deleteConfirm(addressId) {
@@ -91,8 +99,7 @@ class FormCheckoutInformation extends Component {
     };
 
     render() {
-        const { address } = this.props;
-
+        const { address, auctionProduct } = this.props;
         const isAddressAvailable = Boolean(address && address.length);
 
         const isSelectedAddressAvailable = address.find((i) => i.selected);
@@ -421,13 +428,14 @@ class FormCheckoutInformation extends Component {
                 )}
 
                 <div className="ps-form__submit">
-                    <Link href="/account/shopping-cart">
-                        <a>
-                            <i className="icon-arrow-left mr-2"></i>
-                            Return to shopping cart
-                        </a>
-                    </Link>
-
+                    {!auctionProduct && (
+                        <Link href="/account/shopping-cart">
+                            <a>
+                                <i className="icon-arrow-left mr-2"></i>
+                                Return to shopping cart
+                            </a>
+                        </Link>
+                    )}
                     <div className="ps-block__footer">
                         <button type="submit" className="ps-btn">
                             Next

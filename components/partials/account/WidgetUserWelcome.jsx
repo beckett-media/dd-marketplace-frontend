@@ -11,7 +11,6 @@ const WidgetUserWelcome = ({ dark }) => {
         userInfo?.profilePicture && `${baseUrl}/${userInfo.profilePicture}`;
 
     const name = userInfo?.fullName || userInfo?.username || '';
-    console.log('userInfo: ', userInfo);
 
     return userInfo ? (
         <>

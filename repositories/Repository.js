@@ -17,7 +17,8 @@ export const cardFACURL = 'https://duedilly.co/fac-report';
 export const sellerDashboardDomain = 'seller.duedilly.co';
 export const sellerDashboardURL = 'https://seller.duedilly.co';
 // const baseDomain = 'https://beta.apinouthemes.com';
-const baseDomain = 'https://api.duedilly.co';
+// const baseDomain = 'https://api.duedilly.co';
+export const baseDomain = "https://staging.duedilly.co";
 // const baseDomain = 'http://127.0.0.1:3000';
 
 export const appName = 'dilly_client';
@@ -29,7 +30,8 @@ export const customHeaders = {
 };
 
 export const baseUrl = `${baseDomain}`;
-export const s3baseURL = "https://duedillymobile4ddd12da3ecd4a37ab585dd4904acd7e125824-prod.s3.amazonaws.com/public";
+export const s3baseURL =
+    'https://duedillymobile4ddd12da3ecd4a37ab585dd4904acd7e125824-prod.s3.amazonaws.com/public';
 
 const instance = axios.create({
     baseUrl,
@@ -67,11 +69,11 @@ export const getError = (error) => {
             return `${error.response.data.data.errorMessage}`;
         } else if (error?.response?.data?.message) {
             return `${error.response.data.message}`;
-        }else{
-            return error.response
+        } else {
+            return error.response;
         }
     } else if (error.request) {
-        return error.request
+        return error.request;
     } else {
         return `${error}`;
     }

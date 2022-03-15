@@ -7,6 +7,7 @@ const routes = {
     editAddress: '/address/edit',
     deleteAddress: '/address/remove',
     checkout: '/order/checkout',
+    auctionCheckout: '/order/auction-checkout',
 };
 
 class CheckoutRepository {
@@ -63,11 +64,20 @@ class CheckoutRepository {
     async checkoutComplete(payload) {
         try {
             const { token, ...rest } = payload;
-            console.log('token: checkoutComplete', {
-                ...rest,
-                cardToken: token,
-            });
             const url = `${baseUrl}${routes.checkout}`;
+            const response = await Repository.post(url, {
+                cardToken: token,
+                ...rest,
+            });
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
+    }
+    async auctionCheckoutComplete(payload) {
+        try {
+            const { token, ...rest } = payload;
+            const url = `${baseUrl}${routes.auctionCheckout}`;
             const response = await Repository.post(url, {
                 cardToken: token,
                 ...rest,

@@ -1,7 +1,7 @@
 import React from 'react';
 import FormCheckoutInformation from './modules/FormCheckoutInformation';
 import ModulePaymentOrderSummary from '~/components/partials/account/modules/ModulePaymentOrderSummary';
-const Checkout = () => {
+const Checkout = ({ auctionProduct }) => {
     return (
         <div className="ps-checkout ps-section--shopping">
             <div className="container">
@@ -13,12 +13,16 @@ const Checkout = () => {
                         <div className="ps-form__content">
                             <div className="row">
                                 <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 order-last order-lg-first">
-                                    <FormCheckoutInformation />
+                                    <FormCheckoutInformation
+                                        auctionProduct={auctionProduct}
+                                    />
                                 </div>
                                 <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12  ps-block--checkout-order order-first order-lg-last">
                                     <div className="ps-form__orders">
                                         <h3>Your order</h3>
-                                        <ModulePaymentOrderSummary />
+                                        <ModulePaymentOrderSummary
+                                            auctionProduct={auctionProduct}
+                                        />
                                     </div>
                                 </div>
                             </div>

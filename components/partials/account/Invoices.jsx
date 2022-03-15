@@ -39,6 +39,11 @@ class Invoices extends Component {
                 icon: 'icon-papers',
                 active: true,
             },
+            {
+                text: 'My Bids',
+                url: '/account/my-bids',
+                icon: 'icon-papers',
+            },
             // {
             //     text: 'Address',
             //     url: '/account/addresses',

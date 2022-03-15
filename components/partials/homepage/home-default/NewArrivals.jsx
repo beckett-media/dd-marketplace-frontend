@@ -1,16 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
 import ProductHorizontal from '~/components/elements/products/ProductHorizontal';
 import Title from '~/components/elements/Title';
 import StoreDefault from '~/components/elements/stores/StoreDefault';
+import ProductAuction from '~/components/elements/products/ProductAuction';
 
 const titles = {
     recommendation: 'Recommended',
+    newAuctions: 'New Auctions',
     trendingCards: 'Trending Cards',
     trendingPlayers: 'Trending Players',
     newArrival: 'New Arrivals',
     newStores: 'New Stores',
+};
+
+const titlesUrls = {
+    recommendation: '/shop',
+    newAuctions: '/auctions',
+    trendingCards: '/shop',
+    trendingPlayers: '/shop',
+    newArrival: '/shop',
+    newStores: '/stores',
+};
+
+const getComponentToRender = (id, item) => {
+    switch (id) {
+        case 'newStores':
+            return <StoreDefault source={item} />;
+        case 'newAuctions':
+            return <ProductAuction auction={item} />;
+        default:
+            return <ProductHorizontal product={item} />;
+    }
 };
 
 const NewArrivals = ({ collectionSlug, id, list, loading }) => {
@@ -21,11 +42,7 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
                 <div
                     className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12"
                     key={item.id}>
-                    {id !== 'newStores' ? (
-                        <ProductHorizontal product={item} />
-                    ) : (
-                        <StoreDefault source={item} />
-                    )}
+                    {getComponentToRender(id, item)}
                 </div>
             ));
         } else {
@@ -41,8 +58,7 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
                     <Title title={titles[id]} />
                     <ul className="ps-section__links">
                         <li>
-                            <Link
-                                href={id !== 'newStores' ? '/shop' : '/stores'}>
+                            <Link href={titlesUrls[id]}>
                                 <a>View All</a>
                             </Link>
                         </li>

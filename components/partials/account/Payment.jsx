@@ -11,7 +11,10 @@ import {
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { onCheckoutComplete } from '~/store/checkout/action';
+import {
+    onCheckoutComplete,
+    onAuctionCheckoutComplete,
+} from '~/store/checkout/action';
 
 const { Option } = Select;
 
@@ -27,8 +30,14 @@ class Payment extends Component {
         this.setState({ method: e.target.value });
     };
 
-    handleCheckout = (stripetoken) => {
-        this.props.dispatch(onCheckoutComplete(stripetoken));
+    handleCheckout = (stripetoken, auctionId) => {
+        if (this.props.auctionProduct) {
+            this.props.dispatch(
+                onAuctionCheckoutComplete(stripetoken, auctionId)
+            );
+        } else {
+            this.props.dispatch(onCheckoutComplete(stripetoken));
+        }
     };
 
     render() {
@@ -42,7 +51,6 @@ class Payment extends Component {
         }
 
         const { userInfo = {}, defaultAddress = {}, cart } = this.props;
-
         return (
             <div className="ps-checkout ps-section--shopping">
                 <div className="container">
@@ -111,6 +119,9 @@ class Payment extends Component {
                                                 }
                                                 isCheckoutLoading={
                                                     this.props.isCheckoutLoading
+                                                }
+                                                auctionProduct={
+                                                    this.props.auctionProduct
                                                 }
                                             />
                                             {/* {this.state.method === 1 ? (
@@ -237,7 +248,11 @@ class Payment extends Component {
                             </div>
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 order-first order-lg-last">
                                 <div className="ps-form__orders">
-                                    <ModulePaymentOrderSummary />
+                                    <ModulePaymentOrderSummary
+                                        auctionProduct={
+                                            this.props.auctionProduct
+                                        }
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -271,7 +286,7 @@ const StripeHoc = (WrappedComponent) => (props) => {
 };
 
 const CheckoutForm = StripeHoc(
-    ({ handleCheckout, isCheckoutLoading, amount }) => {
+    ({ handleCheckout, isCheckoutLoading, amount, auctionProduct }) => {
         const stripe = useStripe();
         const elements = useElements();
 
@@ -299,7 +314,11 @@ const CheckoutForm = StripeHoc(
                     description: error.message,
                 });
             } else {
-                handleCheckout(token.id);
+                if (auctionProduct) {
+                    handleCheckout(token.id, auctionProduct._id);
+                } else {
+                    handleCheckout(token.id);
+                }
             }
         };
 
@@ -331,7 +350,10 @@ const CheckoutForm = StripeHoc(
                             </Row>
                         ) : (
                             <button className="ps-btn ps-btn--fullwidth">
-                                Pay ${amount}
+                                Pay $
+                                {auctionProduct
+                                    ? auctionProduct.bids[0].bidAmount
+                                    : amount}
                             </button>
                         )}
                     </div>

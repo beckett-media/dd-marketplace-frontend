@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { addItem } from '~/store/cart/action';
 import { useDispatch } from 'react-redux';
 
-const ModuleDetailActionsMobile = ({ product }) => {
+const ModuleDetailActionsMobile = ({ product, bidding }) => {
     const dispatch = useDispatch();
     const handleAddItemToCart = (e) => {
         e.preventDefault();
@@ -12,12 +12,16 @@ const ModuleDetailActionsMobile = ({ product }) => {
     };
     return (
         <div className="ps-product__actions-mobile">
-            <a
-                className="ps-btn ps-btn--black"
-                href="#"
-                onClick={(e) => handleAddItemToCart(e)}>
-                Add to cart
-            </a>
+            {bidding ? (
+             ""
+            ) : (
+                <a
+                    className="ps-btn ps-btn--black"
+                    href="#"
+                    onClick={(e) => handleAddItemToCart(e)}>
+                    Add to cart
+                </a>
+            )}
         </div>
     );
 };

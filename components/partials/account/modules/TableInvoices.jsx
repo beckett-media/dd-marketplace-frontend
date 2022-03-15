@@ -34,7 +34,19 @@ class TableInvoices extends Component {
                         productTitle += `${title} x ${quantity} \n`;
                     });
 
-                    return productTitle || '';
+                    return (
+                        <>
+                            {record.auctionId && (
+                                <small
+                                    className="text-secondary"
+                                    style={{ opacity: 0.5 }}>
+                                    {'Auction Order '}
+                                    {record.auctionId}
+                                </small>
+                            )}
+                            <p>{productTitle || ''}</p>
+                        </>
+                    );
                 },
             },
             {

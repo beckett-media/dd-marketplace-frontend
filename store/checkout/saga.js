@@ -5,6 +5,8 @@ import {
     getSavedAddressSuccess,
     handleCheckoutLoading,
 } from './action';
+import AuctionProductRepository from '~/repositories/AuctionProductRepository';
+
 import actionTypes from './actionTypes';
 import { notification } from 'antd';
 import CartRespository from '~/repositories/CartRespository';
@@ -15,7 +17,7 @@ import {
 import Router from 'next/router';
 import { RESET_AFTER_CHECKOUT } from '../globalTypes';
 
-function* addAddress({ address, isEdit, callback }) {
+function* addAddress({ address, auctionId, isEdit, callback }) {
     try {
         let request;
         if (isEdit) {
@@ -34,7 +36,11 @@ function* addAddress({ address, isEdit, callback }) {
             duration: 15,
         });
         if (callback) callback();
-        if (!isEdit) Router.push('/account/payment');
+        if (!isEdit && !auctionId) {
+            Router.push('/account/payment');
+        } else {
+            Router.push(`/account/payment-auction?id_=${auctionId}`);
+        }
     } catch (error) {
         notification.error({
             message: 'Failed',
@@ -135,6 +141,38 @@ function* handleCheckoutComplete({ token }) {
         });
     }
 }
+function* handleAuctionCheckoutComplete({ token, auctionId }) {
+    try {
+        yield put(handleCheckoutLoading(true));
+        const address = yield select(getDefaultAddress);
+        const request = yield call(
+            CheckoutRespository.auctionCheckoutComplete,
+            {
+                addressId: address._id,
+                token,
+                auctionId,
+                isCardSave: 'true',
+            }
+        );
+        Router.replace('/account/checkoutSuccess');
+
+        notification.success({
+            message: 'Success!!',
+            description: request.message,
+            duration: 20,
+        });
+
+        yield put(handleCheckoutLoading(false));
+        yield put({ type: RESET_AFTER_CHECKOUT });
+    } catch (error) {
+        yield put(handleCheckoutLoading(false));
+        notification.error({
+            message: 'Failed',
+            description: `${error}`,
+            duration: 15,
+        });
+    }
+}
 
 export default function* rootSaga() {
     yield all([takeLatest(actionTypes.ADD_ADDRESS_REQUEST, addAddress)]);
@@ -151,5 +189,11 @@ export default function* rootSaga() {
 
     yield all([
         takeLatest(actionTypes.HANDLE_CHECKOUT_REQUEST, handleCheckoutComplete),
+    ]);
+    yield all([
+        takeLatest(
+            actionTypes.HANDLE_AUCTION_CHECKOUT_REQUEST,
+            handleAuctionCheckoutComplete
+        ),
     ]);
 }

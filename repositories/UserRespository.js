@@ -19,6 +19,18 @@ class AuthenticationRepository {
         }
     }
 
+    async stripeVerification(code) {
+        try {
+            const request = await Repository.post(
+                `${baseUrl}${routes.stripeCodeVerification}`,
+                { code }
+            );
+            return request.data;
+        } catch (error) {
+            throw getError(error);
+        }
+    }
+
     async updateProfilePhoto(image) {
         try {
             const formData = new FormData();

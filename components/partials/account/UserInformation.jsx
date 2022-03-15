@@ -29,6 +29,11 @@ const UserInformation = (props) => {
             icon: 'icon-papers',
             disabled: false,
         },
+        {
+            text: 'My Bids',
+            icon: 'icon-papers',
+            url: '/account/my-bids',
+        },
         // {
         //     text: 'Address',
         //     url: '/account/addresses',
