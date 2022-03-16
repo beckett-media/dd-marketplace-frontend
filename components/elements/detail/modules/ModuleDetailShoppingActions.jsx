@@ -172,6 +172,10 @@ const ModuleDetailShoppingActions = ({
             );
         }
         setShowBtn(true);
+        const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
+        const startDate = moment(bidStart).format(
+            'dddd, MMMM Do YYYY, h:mm:ss a'
+        );
         return (
             <div
                 style={{
@@ -200,7 +204,14 @@ const ModuleDetailShoppingActions = ({
                         Place higher bid before you lose your chance
                     </p>
                     <p style={{ color: '#7A8088' }}>
-                        Ending in: {hours} : {minutes} : {seconds}
+                        Ending in:
+                        {getDifferenceInDays(bidEnd) < 1 ? (
+                            <span style={{ marginLeft: 7 }}>
+                                {hours} : {minutes} : {seconds}{' '}
+                            </span>
+                        ) : (
+                            <span style={{ marginLeft: 7 }}>{endDate}</span>
+                        )}
                     </p>
                 </div>
             </div>
@@ -217,7 +228,9 @@ const ModuleDetailShoppingActions = ({
                                 {product.auctionDetails.bids.length} bids placed
                             </p>
                             <p style={{ color: '#7A8088' }}>
-                                CURRENT BID{' '}
+                                {product.auctionDetails.bids[0]?.bidAmount
+                                    ? 'CURRENT BID'
+                                    : 'STARTING BID'}
                                 <p
                                     style={{
                                         color: '#2572E1',

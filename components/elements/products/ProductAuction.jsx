@@ -60,6 +60,8 @@ const ProductAuctionHorizontal = ({ auction }) => {
     };
 
     const bidEndingRenderer = ({ hours, minutes, seconds, completed }) => {
+        const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
+
         if (completed) {
             return (
                 <>
@@ -87,9 +89,27 @@ const ProductAuctionHorizontal = ({ auction }) => {
                     }}
                     spin
                 />
-                <p style={{ color: '#7A8088' }}>
-                    Ending in: {hours} : {minutes} : {seconds}
-                </p>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                    }}>
+                    <p style={{ color: '#7A8088' }}>Ending In:</p>
+                    <p style={{ color: '#7A8088' }}>
+                        {getDifferenceInDays(bidEnd) < 1 ? (
+                            <span style={{ marginLeft: 7 }}>
+                                {hours} : {minutes} : {seconds}{' '}
+                            </span>
+                        ) : (
+                            <span style={{ marginLeft: 7 }}>
+                                <br />
+                                {endDate}
+                            </span>
+                        )}
+                    </p>
+                </div>
             </>
         );
     };
@@ -143,6 +163,7 @@ const ProductAuctionHorizontal = ({ auction }) => {
                     style={{
                         alignItems: 'center',
                         color: '#7A8088',
+                        padding: '20px',
                     }}>
                     <span
                         style={{
