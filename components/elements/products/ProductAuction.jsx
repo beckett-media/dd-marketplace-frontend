@@ -163,6 +163,7 @@ const ProductAuctionHorizontal = ({ auction }) => {
                     style={{
                         alignItems: 'center',
                         color: '#7A8088',
+                        padding: '20px',
                     }}>
                     <span
                         style={{
