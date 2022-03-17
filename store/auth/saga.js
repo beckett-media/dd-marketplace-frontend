@@ -99,6 +99,10 @@ function* loginSaga(action) {
         if (action.payload.tokens) {
             yield put(getUserDetails());
         } else {
+            if (action.payload.bidding) {
+                yield put(getUserDetails());
+            }
+
             modalSuccess('success');
             yield put(loginSuccess(_payload.data.user));
         }
