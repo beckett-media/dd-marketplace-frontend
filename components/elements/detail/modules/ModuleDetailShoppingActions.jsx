@@ -11,25 +11,19 @@ import { connect } from 'react-redux';
 import BiddingModal from '~/components/biddingModal';
 import StripeConnect from '~/components/partials/account/stripeConnectModal';
 import { Tag } from 'antd';
-import {
-    getMonthName,
-    getDifferenceInDays,
-    isBidStarted,
-} from '~/utilities/time';
+import { getDifferenceInDays, isBidStarted } from '~/utilities/time';
 import {
     CheckCircleOutlined,
     SyncOutlined,
-    CloseCircleOutlined,
-    ExclamationCircleOutlined,
     ClockCircleOutlined,
-    MinusCircleOutlined,
 } from '@ant-design/icons';
 import moment from 'moment';
-import { getUserStripeId } from '~/store/auth/selectors';
+import { getUserStripeId, getUserInfo } from '~/store/auth/selectors';
 const ModuleDetailShoppingActions = ({
     product,
     extended = false,
     placeBid,
+    user,
     ...props
 }) => {
     const dispatch = useDispatch();
@@ -299,9 +293,13 @@ const ModuleDetailShoppingActions = ({
                                 <button
                                     className="ps-btnBid ps-btnBid--blackBid mb-2"
                                     onClick={() => {
-                                        setOpen(true);
-                                    }}>
-                                    Place Bid
+                                        user?.id != product?.seller?._id &&
+                                            setOpen(true);
+                                    }}
+                                    disabled={user?.id != product?.seller?._id}>
+                                    {user?.id == product?.seller?._id
+                                        ? "You Can't place Bid on your Own Auction"
+                                        : 'Place Bid'}
                                 </button>
                             )}
                         </div>
@@ -375,6 +373,7 @@ const mapStateToProps = (state) => {
     return {
         auth: state?.auth || {},
         stripeId: getUserStripeId(state),
+        user: getUserInfo(state),
     };
 };
 export default connect(mapStateToProps)(ModuleDetailShoppingActions);
