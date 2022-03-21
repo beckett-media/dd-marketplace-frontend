@@ -8,6 +8,7 @@ const routes = {
     deleteAddress: '/address/remove',
     checkout: '/order/checkout',
     auctionCheckout: '/order/auction-checkout',
+    validatePromoCode: '/promo/validate',
 };
 
 class CheckoutRepository {
@@ -82,6 +83,15 @@ class CheckoutRepository {
                 cardToken: token,
                 ...rest,
             });
+            return response.data;
+        } catch (error) {
+            throw getError(error);
+        }
+    }
+    async validatePromo(payload) {
+        try {
+            const url = `${baseUrl}${routes.validatePromoCode}`;
+            const response = await Repository.post(url, payload);
             return response.data;
         } catch (error) {
             throw getError(error);

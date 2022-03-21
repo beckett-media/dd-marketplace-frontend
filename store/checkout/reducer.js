@@ -4,6 +4,7 @@ import actionTypes from './actionTypes';
 const initState = {
     savedAddress: [],
     isCheckoutLoading: false,
+    promo: {},
 };
 
 export default function reducer(state = initState, action) {
@@ -17,6 +18,16 @@ export default function reducer(state = initState, action) {
             return {
                 ...state,
                 isCheckoutLoading: action.value,
+            };
+        case actionTypes.PROMO_VALIDATION_SUCCESS:
+            return {
+                ...state,
+                promo: action.promo,
+            };
+        case actionTypes.RESET_PROMO:
+            return {
+                ...state,
+                promo: {},
             };
 
         case RESET_AFTER_CHECKOUT:

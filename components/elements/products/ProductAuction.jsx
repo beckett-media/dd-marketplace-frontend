@@ -81,32 +81,35 @@ const ProductAuctionHorizontal = ({ auction }) => {
         }
         return (
             <>
-                <SyncOutlined
-                    style={{
-                        marginTop: -15,
-                        marginRight: 5,
-                        fontSize: '15px',
-                    }}
-                    spin
-                />
                 <div
                     style={{
                         display: 'flex',
-                        justifyContent: 'space-around',
                         alignItems: 'center',
-                        flexDirection: 'row',
+                        flexDirection: 'column',
                     }}>
-                    <p style={{ color: '#7A8088' }}>Ending In:</p>
-                    <p style={{ color: '#7A8088' }}>
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                        }}>
+                        <SyncOutlined
+                            style={{
+                                marginTop: -15,
+                                marginRight: 5,
+                                fontSize: '15px',
+                            }}
+                            spin
+                        />
+                        <p style={{ color: '#7A8088' }}>Ending In:</p>
+                    </div>
+                    <p style={{ color: '#7A8088', marginTop: -10 }}>
                         {getDifferenceInDays(bidEnd) < 1 ? (
                             <span style={{ marginLeft: 7 }}>
                                 {hours} : {minutes} : {seconds}{' '}
                             </span>
                         ) : (
-                            <span style={{ marginLeft: 7 }}>
-                                <br />
-                                {endDate}
-                            </span>
+                            <span style={{ marginLeft: 7 }}>{endDate}</span>
                         )}
                     </p>
                 </div>

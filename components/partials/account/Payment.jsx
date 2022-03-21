@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'next/link';
-import { Modal, Select, notification, Spin, Row } from 'antd';
+import { Modal, Select, notification, Spin, Row, Input, Button } from 'antd';
 import ModulePaymentOrderSummary from '~/components/partials/account/modules/ModulePaymentOrderSummary';
 import { getUserInfo } from '~/store/auth/selectors';
 import {
     getCheckoutLoading,
     getDefaultAddress,
+    getPromoPercentage,
 } from '~/store/checkout/selectors';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -14,7 +15,10 @@ import { loadStripe } from '@stripe/stripe-js';
 import {
     onCheckoutComplete,
     onAuctionCheckoutComplete,
+    validatePromoCode,
+    resetPromo,
 } from '~/store/checkout/action';
+import { GiftOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 
@@ -23,11 +27,20 @@ class Payment extends Component {
         super(props);
         this.state = {
             method: 1,
+            promoCode: '',
         };
     }
 
     handleChangePaymentMethod = (e) => {
         this.setState({ method: e.target.value });
+    };
+
+    handleChangePromo = (value) => {
+        this.setState({ promoCode: value });
+    };
+
+    validatePromo = () => {
+        this.props.dispatch(validatePromoCode(this.state.promoCode));
     };
 
     handleCheckout = (stripetoken, auctionId) => {
@@ -36,9 +49,24 @@ class Payment extends Component {
                 onAuctionCheckoutComplete(stripetoken, auctionId)
             );
         } else {
-            this.props.dispatch(onCheckoutComplete(stripetoken));
+            if (this.props.percentage > 0)
+                this.props.dispatch(
+                    onCheckoutComplete(stripetoken, this.state.promoCode)
+                );
+            else this.props.dispatch(onCheckoutComplete(stripetoken, ''));
         }
     };
+
+    getDiscountedCartAmount = () => {
+        const { cart, percentage } = this.props;
+        const percent = percentage || 0;
+        const discountAmount = cart.amount * (percent / 100);
+        return cart.amount - discountAmount;
+    };
+
+    componentWillUnmount() {
+        this.props.dispatch(resetPromo());
+    }
 
     render() {
         let month = [],
@@ -112,8 +140,20 @@ class Payment extends Component {
                                             </Radio.Group>
                                         </div> */}
                                         <div className="ps-block__content">
+                                            <PromoCard
+                                                promoCode={this.state.promoCode}
+                                                setPromoCode={
+                                                    this.handleChangePromo
+                                                }
+                                                promoPercentage={
+                                                    this.state.percentage
+                                                }
+                                                validatePromo={
+                                                    this.validatePromo
+                                                }
+                                            />
                                             <CheckoutForm
-                                                amount={cart.amount}
+                                                amount={this.getDiscountedCartAmount()}
                                                 handleCheckout={
                                                     this.handleCheckout
                                                 }
@@ -269,10 +309,38 @@ const connectStateToProps = (state) => {
         defaultAddress: getDefaultAddress(state),
         isCheckoutLoading: getCheckoutLoading(state),
         cart: state.cart,
+        percentage: getPromoPercentage(state),
     };
 };
 
 export default connect(connectStateToProps)(Payment);
+
+const PromoCard = ({
+    promoCode,
+    setPromoCode,
+    validatePromo,
+    promoPercentage,
+}) => {
+    return (
+        <div className="ps-form--promo">
+            <div className="ps-promo--InputContainer ">
+                <GiftOutlined style={{ fontSize: '23px', color: '#aab7c4' }} />
+                <input
+                    className="ps-promo-input"
+                    placeholder="Promo Code"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                />
+                <Button
+                    size={'small'}
+                    className="ps-promo-inputButton"
+                    onClick={validatePromo}>
+                    Validate
+                </Button>
+            </div>
+        </div>
+    );
+};
 
 const StripeHoc = (WrappedComponent) => (props) => {
     const stripePromise = loadStripe(
@@ -286,7 +354,7 @@ const StripeHoc = (WrappedComponent) => (props) => {
 };
 
 const CheckoutForm = StripeHoc(
-    ({ handleCheckout, isCheckoutLoading, amount, auctionProduct }) => {
+    ({ handleCheckout, isCheckoutLoading, amount, auctionProduct, promo }) => {
         const stripe = useStripe();
         const elements = useElements();
 

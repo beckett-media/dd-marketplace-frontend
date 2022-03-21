@@ -10,4 +10,7 @@ export const getDefaultAddress = (state) => {
     return isDefaultAddress;
 };
 
+export const getPromoPercentage = (state) =>
+    getData(state).promo?.percentage || 0;
+
 export const getCheckoutLoading = (state) => getData(state).isCheckoutLoading;
