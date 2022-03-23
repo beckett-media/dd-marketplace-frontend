@@ -40,6 +40,7 @@ class Payment extends Component {
     };
 
     validatePromo = () => {
+        this.props.dispatch(resetPromo());
         this.props.dispatch(validatePromoCode(this.state.promoCode));
     };
 
@@ -322,23 +323,28 @@ const PromoCard = ({
     promoPercentage,
 }) => {
     return (
-        <div className="ps-form--promo">
-            <div className="ps-promo--InputContainer ">
-                <GiftOutlined style={{ fontSize: '23px', color: '#aab7c4' }} />
-                <input
-                    className="ps-promo-input"
-                    placeholder="Promo Code"
-                    value={promoCode}
-                    onChange={(e) => setPromoCode(e.target.value)}
-                />
-                <Button
-                    size={'small'}
-                    className="ps-promo-inputButton"
-                    onClick={validatePromo}>
-                    Validate
-                </Button>
+        <>
+            <p>To avail Promo, validate it first</p>
+            <div className="ps-form--promo">
+                <div className="ps-promo--InputContainer ">
+                    <GiftOutlined
+                        style={{ fontSize: '23px', color: '#aab7c4' }}
+                    />
+                    <input
+                        className="ps-promo-input"
+                        placeholder="Promo Code"
+                        value={promoCode}
+                        onChange={(e) => setPromoCode(e.target.value)}
+                    />
+                    <Button
+                        size={'small'}
+                        className="ps-promo-inputButton"
+                        onClick={validatePromo}>
+                        Validate
+                    </Button>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
