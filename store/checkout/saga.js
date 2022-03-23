@@ -4,6 +4,7 @@ import {
     getSavedAddressRequest,
     getSavedAddressSuccess,
     handleCheckoutLoading,
+    promoValidationSuccess,
 } from './action';
 import AuctionProductRepository from '~/repositories/AuctionProductRepository';
 
@@ -108,7 +109,7 @@ function* deleteAddress({ addressId }) {
     }
 }
 
-function* handleCheckoutComplete({ token }) {
+function* handleCheckoutComplete({ token, promoCode }) {
     try {
         yield put(handleCheckoutLoading(true));
         const address = yield select(getDefaultAddress);
@@ -120,6 +121,7 @@ function* handleCheckoutComplete({ token }) {
             addressId: address._id,
             token,
             listingIds,
+            promoCode,
             isCardSave: true,
         });
         Router.replace('/account/checkoutSuccess');
@@ -159,13 +161,33 @@ function* handleAuctionCheckoutComplete({ token, auctionId }) {
         notification.success({
             message: 'Success!!',
             description: request.message,
-            duration: 20,
+            duration: 15,
         });
 
         yield put(handleCheckoutLoading(false));
         yield put({ type: RESET_AFTER_CHECKOUT });
     } catch (error) {
         yield put(handleCheckoutLoading(false));
+        notification.error({
+            message: 'Failed',
+            description: `${error}`,
+            duration: 15,
+        });
+    }
+}
+
+function* validatePromoCode(action) {
+    try {
+        const request = yield call(CheckoutRespository.validatePromo, {
+            promoCode: action.promoCode,
+        });
+        yield put(promoValidationSuccess(request.data.promo));
+        notification.success({
+            message: 'Success!!',
+            description: request.message,
+            duration: 20,
+        });
+    } catch (error) {
         notification.error({
             message: 'Failed',
             description: `${error}`,
@@ -196,4 +218,6 @@ export default function* rootSaga() {
             handleAuctionCheckoutComplete
         ),
     ]);
+
+    yield all([takeLatest(actionTypes.VALIDATE_PROMO_CODE, validatePromoCode)]);
 }

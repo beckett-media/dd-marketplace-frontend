@@ -670,3 +670,36 @@
         }
     }
 }
+
+.ps-form--promo {
+    border: none;
+    background-color: white;
+    border: 1px solid #37c4ce;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    .ps-promo--InputContainer {
+        padding: 15px;
+        padding-left: 20px;
+        padding-right: 5;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1;
+    }
+    .ps-promo-input {
+        border: none;
+        width: 100%;
+        margin-left: 10px;
+        font-size: 16px;
+        ::placeholder {
+            color: #aab7c4;
+        }
+    }
+    .ps-promo-inputButton {
+        height: 30px !important;
+        display: flex;
+        justify-content: center;
+        border: none;
+        align-items: center;
+    }
+}
