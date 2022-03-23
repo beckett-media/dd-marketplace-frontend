@@ -104,11 +104,13 @@ class Login extends Component {
                                                         'Please input your password!',
                                                 },
                                             ]}>
-                                            <Input
-                                                className="form-control"
-                                                type="password"
-                                                placeholder="Password..."
-                                            />
+                                            <div className="form-control_password">
+                                                <Input.Password
+                                                    className="form-control"
+                                                    type="password"
+                                                    placeholder="Password..."
+                                                />
+                                            </div>
                                         </Form.Item>
                                     </div>
                                 </div>
