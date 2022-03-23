@@ -128,7 +128,7 @@ export function StrapiProductPriceExpanded(product) {
 export function StrapiProductThumbnail(product, unClaimed, auctionId) {
     let view;
 
-    let productImages = product.images;
+    let productImages = product?.images;
     let cardFront;
     if (productImages?.length > 0) {
         if (productImages[0].startsWith('card')) {
@@ -142,7 +142,7 @@ export function StrapiProductThumbnail(product, unClaimed, auctionId) {
         }
     }
 
-    if (product.thumbnail || cardFront) {
+    if ((product && product.thumbnail) || cardFront) {
         if (!unClaimed) {
             view = (
                 <Link
@@ -170,7 +170,7 @@ export function StrapiProductThumbnail(product, unClaimed, auctionId) {
         }
     } else {
         view = (
-            <Link href="/product/[pid]" as={`/product/${product._id}`}>
+            <Link href="/product/[pid]" as={`/product/${product?._id}`}>
                 <a>
                     {/* <LazyLoad>
                         <img src="/static/img/not-found.jpg" alt="martfury" />

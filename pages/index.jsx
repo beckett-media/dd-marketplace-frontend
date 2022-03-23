@@ -21,7 +21,6 @@ import { getUserDetails } from '~/store/userInfo/action';
 const HomepageDefaultPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getMarketPlaceDetails());
         dispatch(getUserDetails());
         dispatch(getMarketPlaceDetails());
     }, []);

@@ -19,12 +19,12 @@ const ProductAuctionHorizontal = ({ auction }) => {
     const { bidEnd, bidStart } = auction || {};
     let grade = useSelector(({ home }) =>
         home?.marketPlace?.grades?.find(
-            (grade) => grade._id === auction.listing.grade
+            (grade) => grade._id === auction.listing?.grade
         )
     );
     let packaging = useSelector(({ home }) =>
         home?.marketPlace?.products?.find(
-            (p) => p._id === auction.listing.product
+            (p) => p._id === auction.listing?.product
         )
     );
     useEffect(() => {
@@ -128,9 +128,9 @@ const ProductAuctionHorizontal = ({ auction }) => {
                 </div>
                 <div className="ps-product__content">
                     <>
-                        <span>{auction.listing.title}</span>
+                        <span>{auction.listing?.title}</span>
                         <p className={'my-3 ps-product__player'}>
-                            {auction.listing.playerNames.join(',')}
+                            {auction.listing?.playerNames.join(',')}
                         </p>
                     </>
                     <div
