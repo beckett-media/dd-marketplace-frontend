@@ -40,8 +40,15 @@ class Payment extends Component {
     };
 
     validatePromo = () => {
-        this.props.dispatch(resetPromo());
-        this.props.dispatch(validatePromoCode(this.state.promoCode));
+        if (this.state.promoCode.length > 0) {
+            this.props.dispatch(resetPromo());
+            this.props.dispatch(validatePromoCode(this.state.promoCode));
+        } else {
+            notification.error({
+                message: 'Error',
+                description: 'Please, enter promo code to validate',
+            });
+        }
     };
 
     handleCheckout = (stripetoken, auctionId) => {
@@ -316,17 +323,12 @@ const connectStateToProps = (state) => {
 
 export default connect(connectStateToProps)(Payment);
 
-const PromoCard = ({
-    promoCode,
-    setPromoCode,
-    validatePromo,
-    promoPercentage,
-}) => {
+const PromoCard = ({ promoCode, setPromoCode, validatePromo }) => {
     return (
         <>
             <p>To avail Promo, validate it first</p>
             <div className="ps-form--promo">
-                <div className="ps-promo--InputContainer ">
+                <div className="ps-promo--InputContainer">
                     <GiftOutlined
                         style={{ fontSize: '23px', color: '#aab7c4' }}
                     />
