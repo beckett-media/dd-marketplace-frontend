@@ -43,11 +43,11 @@ const HeaderProduct = ({ product }) => {
                 </div>
             </div>
             {/* <NavigationDefault /> */}
-            <nav className="navigation navigation--product">
+            {/* <nav className="navigation navigation--product">
                 <div className="container">
                     <ProductOnHeader product={product} />
                 </div>
-            </nav>
+            </nav> */}
         </header>
     );
 };
