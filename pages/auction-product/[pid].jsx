@@ -21,9 +21,8 @@ const AuctionProductDefaultPage = () => {
     const socketIo = io(baseUrl);
     async function getProduct(pid) {
         setLoading(true);
-        const responseData = await AuctionProductRepository.getAuctionProductsById(
-            pid
-        );
+        const responseData =
+            await AuctionProductRepository.getAuctionProductsById(pid);
         const payload = responseData?.data?.auction;
 
         if (payload) {
@@ -54,7 +53,7 @@ const AuctionProductDefaultPage = () => {
     }, [product]);
 
     useEffect(() => {
-        getProduct(pid);
+        if (pid) getProduct(pid);
     }, [pid]);
 
     useEffect(() => {
