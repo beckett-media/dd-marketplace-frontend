@@ -86,8 +86,18 @@ const SearchHeader = () => {
             <div
                 className={`ps-panel--search-result${
                     isSearch ? ' active ' : ''
-                }`}>
-                <div className="ps-panel__content">{productItemsView}</div>
+                }`}
+                style={{
+                    backgroundColor: '#0B2644',
+                    borderRadius: '0 0 20px 20px',
+                }}>
+                <div
+                    className="ps-panel__content"
+                    style={{
+                        backgroundColor: '#0B2644',
+                    }}>
+                    {productItemsView}
+                </div>
                 {loadMoreView}
             </div>
         </form>
