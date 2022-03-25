@@ -26,10 +26,12 @@ const SearchPage = ({ query }) => {
             title_contains: keyword,
         };
         setLoading(true);
-        const SPProducts = await ProductRepository.getProducts(queries);
+        const SPProducts = await ProductRepository.searchListingElastic(
+            queries
+        );
         if (SPProducts) {
-            if (SPProducts.items.length > 0) {
-                setProductItems(SPProducts);
+            if (SPProducts.data?.listings?.hits?.hits?.length > 0) {
+                setProductItems(SPProducts?.data?.listings?.hits.hits);
             } else {
                 setProductItems(null);
             }
@@ -65,8 +67,8 @@ const SearchPage = ({ query }) => {
             shopItemsView = (
                 <ProductGroupGridItems columns={6} pageSize={pageSize} />
             );
-            if (productItems.items.length > 0) {
-                const items = productItems.items.map((item) => {
+            if (productItems.length > 0) {
+                const items = productItems.map((item) => {
                     return (
                         <div className="col-md-3 col-sm-6 col-6" key={item.id}>
                             <Product product={item} />
@@ -79,7 +81,7 @@ const SearchPage = ({ query }) => {
                 statusView = (
                     <p>
                         <strong style={{ color: '#000' }}>
-                            {productItems.totalItems}
+                            {productItems.length}
                         </strong>{' '}
                         record(s) found.
                     </p>

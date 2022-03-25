@@ -17,6 +17,17 @@ class ProductRepository {
         return reponse;
     }
 
+    async searchListingElastic(params) {
+        const reponse = await Repository.get(
+            `${baseUrl}/listing/search/elastic?search=${params.title_contains}`
+        )
+            .then((response) => {
+                return response.data;
+            })
+            .catch((error) => ({ error: JSON.stringify(error) }));
+        return reponse;
+    }
+
     async getProducts(params) {
         const reponse = await Repository.get(
             `${baseUrl}/products?${serializeQuery(params)}`

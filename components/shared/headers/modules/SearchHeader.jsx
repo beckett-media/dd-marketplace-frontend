@@ -1,6 +1,9 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ProductRepository from '~/repositories/ProductRepository';
+import ProductSearchResult from '~/components/elements/products/ProductSearchResult';
+
+const exampleCategories = ['Listing', 'Stores'];
 
 function useDebounce(value, delay) {
     const [debouncedValue, setDebouncedValue] = useState(value);
@@ -25,6 +28,7 @@ const SearchHeader = () => {
     const debouncedSearchTerm = useDebounce(keyword, 300);
 
     function handleSubmit(e) {
+        setIsSearch(false);
         e.preventDefault();
         Router.push(`/search?keyword=${keyword}`);
     }
@@ -37,10 +41,11 @@ const SearchHeader = () => {
                     _limit: 5,
                     title_contains: keyword,
                 };
-                const products = ProductRepository.getRecords(queries);
+                const products =
+                    ProductRepository.searchListingElastic(queries);
                 products.then((result) => {
-                    console.log(result);
                     setLoading(false);
+                    setResultItems(result?.data?.listings?.hits.hits);
                     setIsSearch(true);
                 });
             } else {
@@ -66,24 +71,24 @@ const SearchHeader = () => {
                 <select className="form-control">{selectOptionView}</select>
             </div> */}
             <div className="ps-form__input">
-                {/* <input
+                <input
                     ref={inputEl}
                     className="form-control"
                     type="text"
                     value={keyword}
-                    placeholder="I'm shopping for..."
+                    placeholder="Search by player, brand, year, grade, sport and more..."
                     onChange={(e) => setKeyword(e.target.value)}
-                /> */}
-                {/* {clearTextView} */}
-                {/* {loadingView} */}
+                />
+                {clearTextView}
+                {loadingView}
             </div>
-            {/* <button onClick={handleSubmit}>Search</button> */}
+            <button onClick={handleSubmit}>Search</button>
             <div
                 className={`ps-panel--search-result${
                     isSearch ? ' active ' : ''
                 }`}>
-                {/* <div className="ps-panel__content">{productItemsView}</div> */}
-                {/* {loadMoreView} */}
+                <div className="ps-panel__content">{productItemsView}</div>
+                {loadMoreView}
             </div>
         </form>
     );
