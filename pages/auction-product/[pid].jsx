@@ -21,9 +21,8 @@ const AuctionProductDefaultPage = () => {
     const socketIo = io(baseUrl);
     async function getProduct(pid) {
         setLoading(true);
-        const responseData = await AuctionProductRepository.getAuctionProductsById(
-            pid
-        );
+        const responseData =
+            await AuctionProductRepository.getAuctionProductsById(pid);
         const payload = responseData?.data?.auction;
 
         if (payload) {
@@ -154,7 +153,7 @@ const AuctionProductDefaultPage = () => {
     return (
         <ContainerProductDetail title={product ? product.title : 'Loading...'}>
             {headerView}
-            <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
+            {/* <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" /> */}
             <div className="ps-page--product">
                 <div className="ps-container">
                     <div className="ps-page__container">

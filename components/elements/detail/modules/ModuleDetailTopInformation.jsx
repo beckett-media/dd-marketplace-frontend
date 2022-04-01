@@ -23,7 +23,7 @@ const ModuleDetailTopInformation = ({ product, bidding }) => {
     return (
         <header>
             <p className="ps-product__main-title">{product.title}</p>
-            <h2>{product?.playerNames.join(', ')}</h2>
+            <h2 style={{ color: '#fff' }}>{product?.playerNames.join(', ')}</h2>
             <div className="ps-product__meta">
                 {/* <p>
                     Seller:

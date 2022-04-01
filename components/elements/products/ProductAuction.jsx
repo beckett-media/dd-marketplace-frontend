@@ -183,17 +183,18 @@ const ProductAuctionHorizontal = ({ auction }) => {
                         </span>
                     </span>
                 </div>
-                <hr />
+                <hr style={{ backgroundColor: '#fff' }} />
 
                 <div
                     style={{
                         fontSize: '16px',
                         textAlign: 'center',
+                        color: '#fff',
                     }}>
                     {auction.bids.length}
                     {auction.bids.length > 1 ? ' Bids Placed' : ' Bid Placed'}
                 </div>
-                <hr />
+                <hr style={{ backgroundColor: '#fff' }} />
                 <div
                     style={{
                         display: 'flex',

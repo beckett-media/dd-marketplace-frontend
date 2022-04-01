@@ -314,6 +314,7 @@
 
     .ps-product__desc {
         position: relative;
+        color: #fff;
 
         li {
             padding-left: 15px;
@@ -441,11 +442,13 @@
 }
 
 .ps-product--horizontal {
-    background: #fff;
+    background: #121634;
+    padding: 20px;
+
     margin-bottom: 30px;
     cursor: pointer;
     border-radius: 0px;
-    border: 1px solid #f5f5f5;
+    // border: 1px solid #f5f5f5;
     box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2) !important;
     .ps-product__rating {
         .ps-rating {
@@ -453,7 +456,7 @@
         }
 
         span {
-            color: $color-text;
+            // color: $color-text;
         }
     }
 
@@ -462,7 +465,8 @@
     }
 
     .ps-product__player {
-        color: $color-2nd;
+        // color: $color-2nd;
+        color: #ffffff;
     }
 
     .ps-product__title {
@@ -510,14 +514,17 @@
 
     .ps-product__content {
         width: 100%;
-        padding: 20px;
+        color: #ffffff;
+        // padding: 20px;
         span {
+            color: #ffffff;
             font-size: 1rem;
             display: block;
             height: 40px;
         }
         .ps-product__meta-wrapper {
             span {
+                color: #ffffff;
                 height: auto;
             }
         }

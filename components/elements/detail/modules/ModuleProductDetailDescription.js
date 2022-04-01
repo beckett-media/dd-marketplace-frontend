@@ -22,35 +22,64 @@ const ModuleProductDetailDescription = ({ product }) => {
         <div className="ps-product__desc">
             {product?.storeDetails?.title ? (
                 <span>
-                    <p>
+                    <p style={{ color: '#fff' }}>
                         Sold By Store:
                         <strong> {product.storeDetails.title}</strong>
                     </p>
-                    <p>
+                    <p style={{ color: '#fff' }}>
                         Store Owner:
                         <strong> {product.seller.fullName}</strong>
                     </p>
                 </span>
             ) : (
-                <span>
-                    <p>
-                        Sold By:
+                <div
+                    style={{
+                        display: 'flex',
+                        gap: 20,
+                        flexDirection: 'row',
+                    }}>
+                    <h6 style={{ color: '#BCBEC5' }}>Sold By </h6>
+                    <p style={{ color: '#fff', marginTop: -4 }}>
                         <strong> {product.seller.fullName}</strong>
                     </p>
-                </span>
+                </div>
             )}
 
-            <ul className="ps-list--dot">
-                <p>
-                    Condition: <b>{product.condition}</b>
-                </p>
-                <p>
-                    Grade: <b>{grade?.name}</b>
-                </p>
-
-                <p>{product.description}</p>
-            </ul>
             <div
+                style={{
+                    display: 'flex',
+                    gap: 20,
+                    flexDirection: 'row',
+                }}>
+                <h6 style={{ color: '#BCBEC5' }}>Condition </h6>
+                <p style={{ color: '#fff', marginTop: -4 }}>
+                    <strong> {product.condition}</strong>
+                </p>
+            </div>
+
+            <div
+                style={{
+                    display: 'flex',
+                    gap: 20,
+                    flexDirection: 'row',
+                }}>
+                <h6 style={{ color: '#BCBEC5' }}>Grade </h6>
+                <p style={{ color: '#fff', marginTop: -4 }}>
+                    <strong> {grade?.name}</strong>
+                </p>
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}>
+                <h6 style={{ color: '#BCBEC5' }}>Features </h6>
+                <p style={{ color: '#fff' }}>
+                    <strong> {product.description}</strong>
+                </p>
+            </div>
+
+            {/* <div
                 className="ps-product__grading"
                 style={{
                     display: 'flex',
@@ -73,7 +102,7 @@ const ModuleProductDetailDescription = ({ product }) => {
                         )}
                     </>
                 ))}
-            </div>
+            </div> */}
             {product.card && (
                 <div className="fac-report-url">
                     <span>

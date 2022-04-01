@@ -310,7 +310,9 @@
 }
 
 .ps-page--product {
-    padding-top: 30px;
+    // padding-top: 30px;
+    padding: 70px 150px;
+    background-color: #121634;
 
     .ps-page__container {
         display: flex;

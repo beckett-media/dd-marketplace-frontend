@@ -218,9 +218,9 @@ const ModuleDetailShoppingActions = ({
                 {product.auctionDetails ? (
                     <>
                         <div>
-                            <p style={{ color: '#7A8088' }}>
+                            {/* <p style={{ color: '#7A8088' }}>
                                 {product.auctionDetails.bids.length} bids placed
-                            </p>
+                            </p> */}
                             <p style={{ color: '#7A8088' }}>
                                 {product.auctionDetails.bids[0]?.bidAmount
                                     ? 'CURRENT BID'
@@ -273,6 +273,7 @@ const ModuleDetailShoppingActions = ({
                                         setOpen={setOpen}
                                         auctionDetails={product.auctionDetails}
                                         placeBid={placeBid}
+                                        product={product}
                                     />
                                 ) : (
                                     <StripeConnect
@@ -296,7 +297,7 @@ const ModuleDetailShoppingActions = ({
                                         user?.id != product?.seller?._id &&
                                             setOpen(true);
                                     }}
-                                    disabled={user?.id != product?.seller?._id}>
+                                    disabled={user?.id == product?.seller?._id}>
                                     {user?.id == product?.seller?._id
                                         ? "You Can't place Bid on your Own Auction"
                                         : 'Place Bid'}
@@ -353,6 +354,7 @@ const ModuleDetailShoppingActions = ({
                                 width={700}
                                 setOpen={setOpen}
                                 auctionDetails={product.auctionDetails}
+                                product={product}
                             />
                         ) : (
                             <LoginModal
