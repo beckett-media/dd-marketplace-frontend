@@ -37,6 +37,11 @@ class MyApp extends App {
 
         this.setState({ open: true });
     }
+
+    componentDidCatch(error) {
+        window.Rollbar?.error(error);
+    }
+
     render() {
         const { Component, pageProps, store, router } = this.props;
         const getLayout =
