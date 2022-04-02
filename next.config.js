@@ -14,6 +14,14 @@ const nextSettings = {
         title: 'Due Dilly',
         titleDescription: 'Due Dilly | Marketplace',
     },
+    serverRuntimeConfig: {
+        // Will only be available on the server side
+        rollbarServerToken: '9d1d02bc6dbe43fa8f1caae0bc78aa42',
+    },
+    publicRuntimeConfig: {
+        // Will be available on both server and client
+        rollbarClientToken: '720effe95cb1484aa6572fa387af3a0f',
+    },
     trailingSlash: true,
 };
 
