@@ -15,7 +15,7 @@ Error.getInitialProps = ({ req, res, err }) => {
     if (!typeof window === 'undefined') {
         console.log('Reporting error to Rollbar...');
         const Rollbar = require('rollbar');
-        const rollbar = new Rollbar("9d1d02bc6dbe43fa8f1caae0bc78aa42");
+        const rollbar = new Rollbar(serverRuntimeConfig.rollbarServerToken);
         rollbar.error(err, req, (rollbarError) => {
             if (rollbarError) {
                 console.error('Rollbar error reporting failed:');
