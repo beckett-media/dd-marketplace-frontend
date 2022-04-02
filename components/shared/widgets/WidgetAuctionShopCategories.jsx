@@ -36,7 +36,7 @@ const WidgetAuctionShopCategories = () => {
     };
 
     let productId = null;
-    if (Boolean(products && products.length)) {
+    if (products && products.length) {
         const urlSearchParams = new URLSearchParams(window.location.search);
         productId = urlSearchParams.get('productId');
     }
