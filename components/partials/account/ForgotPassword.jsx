@@ -82,21 +82,23 @@ class ForgotPassword extends Component {
                                     {...{ otp, forgotpassword, loading }}>
                                     {email && !otp && (
                                         <Col xs={24}>
-                                            <Form.Item
-                                                name="email"
-                                                rules={[
-                                                    {
-                                                        required: true,
-                                                        message:
-                                                            'Please input your email!',
-                                                    },
-                                                ]}>
-                                                <Input
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder="Email address"
-                                                />
-                                            </Form.Item>
+                                            <div className="form-group dark ">
+                                                <Form.Item
+                                                    name="email"
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message:
+                                                                'Please input your email!',
+                                                        },
+                                                    ]}>
+                                                    <Input
+                                                        className="form-control"
+                                                        type="text"
+                                                        placeholder="Email address"
+                                                    />
+                                                </Form.Item>
+                                            </div>
                                         </Col>
                                     )}
                                     {email && otp && !forgotpassword && (
@@ -121,8 +123,7 @@ class ForgotPassword extends Component {
                                                         </span>
                                                     }
                                                     inputStyle={{
-                                                        border:
-                                                            '1px solid #DFE0E3',
+                                                        border: '1px solid #DFE0E3',
                                                         // borderBottom:
                                                         // ,
                                                         width: 30,
@@ -169,14 +170,10 @@ export default connect(mapStateToProps)(ForgotPassword);
 const LayoutWrapper = (props) => {
     const { otp, forgotpassword, loading } = props;
     return (
-        <Col
-            align="middle"
-            justify="center"
-            className="ps-form__content"
-            style={{ backgroundColor: '#fff' }}>
+        <Col className="ps-form__content" style={{ backgroundColor: '#fff' }}>
             <Row gutter={[8, 8]} style={{ maxWidth: 400 }}>
                 <Col xs={24}>
-                    <Col align="middle" justify="center" className="mb-5">
+                    <Col className="mb-5">
                         <Title
                             title={
                                 forgotpassword

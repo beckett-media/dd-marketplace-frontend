@@ -2,8 +2,10 @@
     background: url('/static/img/circle-bg.png') no-repeat;
     background-size: cover;
     .ps-home-banner {
+        background-color: #43475f;
         padding-top: 30px;
-        margin-bottom: 30px;
+        padding-bottom: 30px;
+        display: none;
         .ps-collection {
             display: block;
             margin-bottom: 30px;
@@ -157,7 +159,7 @@
     }
 
     .ps-product-list {
-        padding-bottom: 80px;
+        // padding-bottom: 80px;
         @include media('<md') {
             padding-bottom: 50px;
         }

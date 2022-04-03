@@ -55,9 +55,11 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
         <div className="ps-product-list ps-new-arrivals">
             <div className="ps-container">
                 <div className="ps-section__header">
-                    <Title title={titles[id]} />
+                    {/* <Title title={titles[id]} />
+                     */}
+                    <h3 style={{ color: '#FFFFFF' }}>{titles[id]}</h3>
                     <ul className="ps-section__links">
-                        <li>
+                        <li style={{ color: '#FFFFFF' }}>
                             <Link href={titlesUrls[id]}>
                                 <a>View All</a>
                             </Link>

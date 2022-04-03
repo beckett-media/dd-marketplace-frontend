@@ -40,19 +40,19 @@ const ProductDefaultPage = () => {
         getProduct(pid);
     }, [pid]);
 
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Shop',
-            url: '/shop',
-        },
-        {
-            text: product ? product.title : 'Loading...',
-        },
-    ];
+    // const breadCrumb = [
+    //     {
+    //         text: 'Home',
+    //         url: '/',
+    //     },
+    //     {
+    //         text: 'Shop',
+    //         url: '/shop',
+    //     },
+    //     {
+    //         text: product ? product.title : 'Loading...',
+    //     },
+    // ];
     // Views
     let productView, headerView;
     if (!loading) {
@@ -68,7 +68,7 @@ const ProductDefaultPage = () => {
     return (
         <ContainerProductDetail title={product ? product.title : 'Loading...'}>
             {headerView}
-            <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
+            {/* <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" /> */}
             <div className="ps-page--product">
                 <div className="ps-container">
                     <div className="ps-page__container">

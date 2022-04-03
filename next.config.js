@@ -23,6 +23,15 @@ const nextSettings = {
         rollbarClientToken: '720effe95cb1484aa6572fa387af3a0f',
     },
     trailingSlash: true,
+    eslint: {
+        // Warning: This allows production builds to successfully complete even if
+        // your project has ESLint errors.
+        ignoreDuringBuilds: true,
+    },
+    images: {
+        loader: 'akamai',
+        path: '',
+    },
 };
 
 module.exports = withPlugins([withImages(), nextSettings]);

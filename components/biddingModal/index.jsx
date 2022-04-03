@@ -1,10 +1,12 @@
 import React, { useState, Component } from 'react';
 
-import { Modal} from 'antd';
+import { Modal } from 'antd';
 import { Form, Input, notification, Row, Spin, Col } from 'antd';
 import Title from '../elements/Title';
+import { baseUrl } from '~/repositories/Repository';
+import Image from 'next/image';
 
-const BiddingModal = ({ open, setOpen, auctionDetails, placeBid }) => {
+const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const ref = React.createRef();
@@ -23,7 +25,7 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid }) => {
                 footer={null}
                 width={500}
                 closable={false}
-                bodyStyle={{ height: 600 }}>
+                bodyStyle={{ height: 600, backgroundColor: '#43475F' }}>
                 <div className="ps-my-account">
                     <div className="">
                         <Form
@@ -37,31 +39,75 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid }) => {
                                 <div
                                     className="ps-form__content"
                                     style={{
-                                        height: '500px',
+                                        height: 'auto',
                                     }}>
-                                    <a href="/">
+                                    <h2 style={{ color: '#fff' }}>PLACE BID</h2>
+                                    {/* <a href="/">
                                         <img
                                             style={{ maxWidth: 120 }}
                                             src={'/static/img/logo-dark.png'}
                                             className="mb-5"
                                         />
-                                    </a>
-                                    <Title
+                                    </a> */}
+                                    {/* <Title
                                         title="Bidding Mela"
                                         subtitle={
                                             'Place Your Bid And Try Your LUCK!!'
                                         }
-                                    />
-                                    <div style={{ paddingTop: 30 }}>
-                                        <h4>
-                                            Last Highest Bid: $
-                                            {auctionDetails.bids[0]
-                                                ?.bidAmount ||
-                                                auctionDetails.startingBid}
-                                        </h4>
+                                    /> */}
+                                    <div
+                                        style={{
+                                            backgroundColor: '#121634',
+                                            padding: '25px 40px',
+                                        }}>
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                flexDirection: 'row',
+                                                gap: 15,
+                                            }}>
+                                            <div>
+                                                <img
+                                                    style={{
+                                                        width: 85,
+                                                        height: 120,
+                                                    }}
+                                                    src={`${baseUrl}/${product.images[0]}`}
+                                                />
+                                            </div>
+                                            <div>
+                                                <h6 style={{ color: '#fff' }}>
+                                                    {product?.playerNames[0]}
+                                                </h6>
+                                                <p style={{ fontSize: 10 }}>
+                                                    {product?.title}
+                                                </p>
+                                                <p
+                                                    style={{
+                                                        fontSize: 12,
+                                                        color: 'orange',
+                                                    }}>
+                                                    {product?.brand}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style={{ paddingTop: 5 }}>
+                                        <p
+                                            style={{
+                                                color: '#fff',
+                                                marginBottom: -2,
+                                            }}>
+                                            Bid Amount
+                                        </p>
                                         <div className="form-group dark">
                                             <Form.Item
                                                 name="bidAmount"
+                                                extra={`$${
+                                                    auctionDetails.bids[0]
+                                                        ?.bidAmount ||
+                                                    auctionDetails.startingBid
+                                                } minimum`}
                                                 rules={[
                                                     {
                                                         required: true,
@@ -78,7 +124,37 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid }) => {
                                         </div>
                                     </div>
 
-                                    <div className="form-group submit">
+                                    <div style={{ marginTop: -10 }}>
+                                        <p
+                                            style={{
+                                                color: '#fff',
+                                                marginBottom: -2,
+                                            }}>
+                                            Email to notify if you have been
+                                            outbid or win
+                                        </p>
+                                        <div className="form-group dark">
+                                            <Form.Item
+                                                name="email"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message:
+                                                            'Please input email to notify you!',
+                                                    },
+                                                ]}>
+                                                <Input
+                                                    className="form-control"
+                                                    type="text"
+                                                    placeholder="Enter an email"
+                                                />
+                                            </Form.Item>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        className="form-group submit"
+                                        style={{ marginTop: -10 }}>
                                         <button
                                             type="submit"
                                             className="ps-btn ps-btn--fullwidth">

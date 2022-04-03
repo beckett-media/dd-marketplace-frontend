@@ -1,7 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Head from './modules/Head';
 import { BackTop } from 'antd';
+import React from 'react';
+import Head from './modules/Head';
 const DefaultLayout = ({ children }) => (
     <div className="layout--default">
         <Head />

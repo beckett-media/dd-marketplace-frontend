@@ -17,8 +17,10 @@ const StoreListPage = () => {
 
     return (
         <ContainerPage title="Store list" boxed={true}>
-            <div className="ps-page--single ps-page--vendor">
-                <BreadCrumb breacrumb={breadCrumb} />
+            <div
+                className="ps-page--single ps-page--vendor"
+                style={{ backgroundColor: '#121634', height: '100vh' }}>
+                {/* <BreadCrumb breacrumb={breadCrumb} /> */}
                 <section className="ps-store-list">
                     <div className="container">
                         <div className="ps-section__header">

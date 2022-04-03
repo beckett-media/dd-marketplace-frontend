@@ -141,6 +141,7 @@
 
         .ps-panel__content {
             max-height: 400px;
+
             overflow-y: auto;
         }
 
@@ -252,7 +253,6 @@
     @extend %list-reset;
 
     .ps-form__content {
-        border-top: 10px solid $color-1st;
         height: 100vh;
     }
 
@@ -345,6 +345,7 @@
 
     .ps-form__content {
         padding: 30px 30px;
+        background-color: #43475f !important;
 
         h5 {
             margin: 0 0 25px;
@@ -358,7 +359,6 @@
     }
 
     .ps-tab {
-        background-color: #ffffff;
     }
 }
 
@@ -650,7 +650,6 @@
         padding: 30px;
         border-radius: 4px;
         box-shadow: 0 1px 1px rgba(#ccc, 0.5);
-        background-color: #fff;
     }
 }
 

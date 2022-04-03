@@ -110,8 +110,7 @@ const UserInformation = (props) => {
                                                               pointerEvents:
                                                                   'none',
                                                               opacity: 0.6,
-                                                              cursor:
-                                                                  'not-allowed',
+                                                              cursor: 'not-allowed',
                                                           }
                                                         : {}
                                                 }
@@ -147,7 +146,7 @@ const UserInformation = (props) => {
                     </div>
                     <div className="col-lg-9">
                         <div className="ps-page__content">
-                            <BreadCrumb breacrumb={breadCrumb} />
+                            {/* <BreadCrumb breacrumb={breadCrumb} /> */}
                             <FormChangeUserInformation
                                 userInfo={props.userInfo}
                             />

@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import { Col, Form, Input, notification, Row, Spin } from 'antd';
 import Link from 'next/link';
 import Router from 'next/router';
-import { login } from '../../../store/auth/action';
-
-import { Form, Input, notification, Row, Spin, Col } from 'antd';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Title from '~/components/elements/Title';
+import { login } from '../../../store/auth/action';
 
 class Login extends Component {
     constructor(props) {
@@ -64,20 +62,24 @@ class Login extends Component {
                                 <a href="/">
                                     <img
                                         style={{ maxWidth: 120 }}
-                                        src={'/static/img/logo-dark.png'}
+                                        src={'/static/img/logo.png'}
                                         className="mb-5"
                                     />
                                 </a>
-                                <Title
+                                {/* <Title
                                     title="WELCOME BACK"
                                     subtitle={
                                         this.props.subtitle
                                             ? this.props.subtitle
                                             : 'Login to your Due Dilly account'
                                     }
-                                />
+                                /> */}
+                                <h2 style={{ fontWeight: 'lighter' }}>
+                                    WELCOME BACK
+                                </h2>
+                                <p>Login to your Due Dilly account</p>
                                 <div style={{ paddingTop: 30 }}>
-                                    <div className="form-group dark">
+                                    <div className="form-group dark ">
                                         <Form.Item
                                             name="email"
                                             rules={[
@@ -94,7 +96,7 @@ class Login extends Component {
                                             />
                                         </Form.Item>
                                     </div>
-                                    <div className="form-group dark form-forgot">
+                                    <div className="form-group dark form-forgot ">
                                         <Form.Item
                                             name="password"
                                             rules={[
@@ -106,6 +108,7 @@ class Login extends Component {
                                             ]}>
                                             <div className="form-control_password">
                                                 <Input.Password
+                                                    style={{}}
                                                     className="form-control"
                                                     type="password"
                                                     placeholder="Password..."

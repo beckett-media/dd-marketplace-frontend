@@ -1,8 +1,5 @@
-import React from 'react';
 import Head from 'next/head';
-/*import WPHeaderMobile from '~/wp-components/shared/mobile/WPHeaderMobile';*/
-import FooterDefault from '~/components/shared/footers/FooterDefault';
-import Newsletters from '~/components/partials/commons/Newletters';
+import React from 'react';
 import HeaderDefault from '~/components/shared/headers/HeaderDefault';
 import NavigationList from '~/components/shared/navigation/NavigationList';
 

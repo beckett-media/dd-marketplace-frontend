@@ -35,7 +35,7 @@ const ProductHorizontal = ({ product }) => {
                                 {product.playerNames.join(',')}
                             </p>
                         </>
-                        <hr />
+                        <hr style={{ backgroundColor: '#fff' }} />
                     </>
                 </Link>
                 <div

@@ -18,7 +18,7 @@ const ShoppingCartPage = () => {
     return (
         <ContainerPage title="Shopping Cart" boxed={true} hideScrollEvent>
             <div className="ps-page--simple">
-                <BreadCrumb breacrumb={breadCrumb} />
+                {/* <BreadCrumb breacrumb={breadCrumb} /> */}
                 <ShoppingCart />
             </div>
         </ContainerPage>
