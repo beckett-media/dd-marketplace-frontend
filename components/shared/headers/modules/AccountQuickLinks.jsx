@@ -3,15 +3,15 @@ import { connect, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { logOut } from '~/store/auth/action';
 import { appName, sellerDashboardURL } from '~/repositories/Repository';
-import SimpleCrypto from "simple-crypto-js";
-var simpleCrypto = new SimpleCrypto("myTotalySecretKey");
+import SimpleCrypto from 'simple-crypto-js';
+var simpleCrypto = new SimpleCrypto('myTotalySecretKey');
 
 import {
     PoweroffOutlined,
     ProfileOutlined,
     UserOutlined,
     ShoppingOutlined,
-    ShopOutlined
+    ShopOutlined,
 } from '@ant-design/icons';
 
 import WidgetUserWelcome from '~/components/partials/account/WidgetUserWelcome';
@@ -50,14 +50,18 @@ const AccountQuickLinks = (props) => {
         },
         {
             text: 'Switch to Selling',
-            action:(e)=>{
-              e.preventDefault()
-              let data = JSON.stringify({
-                xAuthToken: localStorage.getItem(`${appName}_xAuthToken`),
-                refreshToken: localStorage.getItem(`${appName}_refreshToken`),
-              })
-              var encryptedData = simpleCrypto.encrypt(data); 
-              window.location.href=`${sellerDashboardURL}/?auth=${encodeURIComponent(encryptedData)}`
+            action: (e) => {
+                e.preventDefault();
+                let data = JSON.stringify({
+                    xAuthToken: localStorage.getItem(`${appName}_xAuthToken`),
+                    refreshToken: localStorage.getItem(
+                        `${appName}_refreshToken`
+                    ),
+                });
+                var encryptedData = simpleCrypto.encrypt(data);
+                window.location.href = `${sellerDashboardURL}/?auth=${encodeURIComponent(
+                    encryptedData
+                )}`;
             },
             icon: <ShoppingOutlined />,
         },
@@ -80,9 +84,15 @@ const AccountQuickLinks = (props) => {
     const linksView = accountLinks.map((item) => (
         <li key={item.text}>
             <i>{item.icon}</i>
-            {item.url ? <Link href={item.url}>
-                <a>{item.text}</a>
-            </Link>: <a href="#" onClick={item.action}>{item.text}</a>}
+            {item.url ? (
+                <Link href={item.url}>
+                    <a>{item.text}</a>
+                </Link>
+            ) : (
+                <a href="#" onClick={item.action}>
+                    {item.text}
+                </a>
+            )}
         </li>
     ));
 

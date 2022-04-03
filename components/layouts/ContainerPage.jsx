@@ -1,11 +1,7 @@
-import React from 'react';
 import Head from 'next/head';
+import React from 'react';
 import HeaderDefault from '~/components/shared/headers/HeaderDefault';
 import HeaderMobile from '~/components/shared/headers/HeaderMobile';
-import NavigationList from '~/components/shared/navigation/NavigationList';
-import Newletters from '~/components/partials/commons/Newletters';
-import FooterFullwidth from '~/components/shared/footers/FooterFullwidth';
-import FooterDefault from '~/components/shared/footers/FooterDefault';
 
 const ContainerPage = ({ children, title, boxed = false }) => {
     let titleView;

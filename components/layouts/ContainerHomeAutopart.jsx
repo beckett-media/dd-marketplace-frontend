@@ -1,10 +1,9 @@
-import React from 'react';
 import Head from 'next/head';
-import NavigationList from '~/components/shared/navigation/NavigationList';
-import HeaderAutoPart from '~/components/shared/headers/HeaderAutoPart';
-import HeaderMobileAutopart from '~/components/shared/headers/HeaderMobileAutopart';
+import React from 'react';
 import SiteFeatures from '~/components/partials/homepage/autopart/SiteFeatures';
 import FooterSecond from '~/components/shared/footers/FooterSecond';
+import HeaderAutoPart from '~/components/shared/headers/HeaderAutoPart';
+import HeaderMobileAutopart from '~/components/shared/headers/HeaderMobileAutopart';
 
 const ContainerHomeAutopart = ({ children, title = 'Home Autopart' }) => {
     let titleView;

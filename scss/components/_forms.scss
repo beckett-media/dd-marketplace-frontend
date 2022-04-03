@@ -141,6 +141,7 @@
 
         .ps-panel__content {
             max-height: 400px;
+
             overflow-y: auto;
         }
 
@@ -344,6 +345,7 @@
 
     .ps-form__content {
         padding: 30px 30px;
+        background-color: #43475f !important;
 
         h5 {
             margin: 0 0 25px;

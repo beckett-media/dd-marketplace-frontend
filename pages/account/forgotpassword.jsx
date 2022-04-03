@@ -1,5 +1,4 @@
 import ForgotPassword from '~/components/partials/account/ForgotPassword';
-import ContainerPage from '~/components/layouts/ContainerPage';
 
 const ForgotPasswordPage = () => {
     return (

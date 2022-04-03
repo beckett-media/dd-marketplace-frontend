@@ -1474,7 +1474,7 @@
 }
 
 .ps-my-account {
-    min-height: 100vh;
+    height: auto;
     background-color: #43475f;
     label {
         color: $color-text;
@@ -1634,6 +1634,8 @@
 
 .ps-vendor-store {
     padding: 40px 0;
+    background-color: #121634;
+    min-height: 100vh;
 
     .ps-section__container {
         display: flex;
@@ -1648,6 +1650,7 @@
         }
 
         .ps-section__right {
+            color: $color-2nd;
             max-width: 75%;
             padding-left: 30px;
         }

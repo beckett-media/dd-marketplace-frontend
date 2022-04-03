@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Link from 'next/link';
-import MiniCart from '~/components/shared/headers/modules/MiniCart';
 import AccountQuickLinks from '~/components/shared/headers/modules/AccountQuickLinks';
+import MiniCart from '~/components/shared/headers/modules/MiniCart';
 
 const HeaderActions = (props) => {
-    const { compare, wishlist, auth } = props;
+    const { auth } = props;
     // views
     let headerAuthView;
     if (auth.isLoggedIn && Boolean(auth.isLoggedIn) === true) {
