@@ -59,10 +59,12 @@ const ShopDefaultPage = () => {
                         </div>
 
                         <div className="ps-layout__right">
-                            <Title
+                            {/* <Title
                                 title="Marketplace"
                                 subtitle="Due Dilly Marketplace"
-                            />
+                            /> */}
+                            <h2>MARKETPLACE</h2>
+                            <p>Due Dilly Marketplace</p>
 
                             <MobileFilter />
 

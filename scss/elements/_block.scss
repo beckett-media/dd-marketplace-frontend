@@ -2282,6 +2282,7 @@
 
     .ps-product--simple {
         .ps-product__price {
+            color: #fff;
             font-size: 16px;
             font-weight: 400;
         }
@@ -3507,7 +3508,6 @@
 .ps-block--payment-method {
     margin-bottom: 50px;
     padding: 20px 0px;
-    background-color: rgba(#fff, 0.1);
     border-radius: 10px;
 
     .ps-block__header {

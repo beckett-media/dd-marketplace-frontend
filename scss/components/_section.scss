@@ -103,6 +103,7 @@
 }
 
 .ps-section--shopping {
+    background-color: #121634;
     padding: 100px 0;
 
     .ps-section__header {
@@ -359,8 +360,6 @@
 }
 
 .ps-layout--shop {
-    padding-top: 30px;
-    padding-bottom: 90px;
     display: flex;
     flex-flow: row nowrap;
 
@@ -369,6 +368,8 @@
     }
 
     .ps-layout__left {
+        padding-top: 30px;
+        padding-left: 30px;
         width: 100%;
         min-width: 320px;
         max-width: 310px;
@@ -376,7 +377,11 @@
     }
 
     .ps-layout__right {
+        padding: 30px;
+
         max-width: calc(100% - 320px);
+
+        background-color: #43475f;
     }
 
     @include media('<lg') {
@@ -1470,11 +1475,12 @@
 
 .ps-my-account {
     min-height: 100vh;
+    background-color: #43475f;
     label {
         color: $color-text;
     }
     .ant-input {
-        background-color: transparent !important;
+        background-color: #fff !important;
         color: $color-text;
     }
     .dark {
@@ -2098,8 +2104,8 @@
     }
 
     .ps-section__content {
-        padding: 20px;
-        background-color: #fff;
+        // padding: 20px;
+        // background-color: #fff;
     }
 }
 

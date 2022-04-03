@@ -57,7 +57,7 @@ class ShoppingCart extends Component {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style={{ backgroundColor: '#43475F' }}>
                                     {currentCartItems.map((product) => (
                                         <tr key={product.id}>
                                             <td>

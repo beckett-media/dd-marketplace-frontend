@@ -218,53 +218,58 @@ const ModuleDetailShoppingActions = ({
                 {product.auctionDetails ? (
                     <>
                         <div>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    color: '#7A8088',
+                                    margin: '5px',
+                                }}>
+                                {bidActive && (
+                                    <Countdown
+                                        date={bidEnd}
+                                        renderer={bidEndingRenderer}
+                                        onComplete={() => {
+                                            setShowBtn(false);
+                                        }}
+                                    />
+                                )}
+
+                                {!bidActive && (
+                                    <Countdown
+                                        date={bidStart}
+                                        renderer={beforeStartRenderer}
+                                        onComplete={() => {
+                                            setShowBtn(true);
+                                            setBidActive(true);
+                                        }}
+                                    />
+                                )}
+                            </div>
                             {/* <p style={{ color: '#7A8088' }}>
                                 {product.auctionDetails.bids.length} bids placed
                             </p> */}
-                            <p style={{ color: '#7A8088' }}>
+                            <h6
+                                style={{
+                                    color: '#636679',
+                                    fontWeight: 'normal',
+                                }}>
                                 {product.auctionDetails.bids[0]?.bidAmount
                                     ? 'CURRENT BID'
                                     : 'STARTING BID'}
-                                <p
-                                    style={{
-                                        color: '#2572E1',
-                                        fontSize: '32px',
-                                        marginTop: '8px',
-                                    }}>
-                                    {`$${
-                                        product.auctionDetails.bids[0]
-                                            ?.bidAmount ||
-                                        product.auctionDetails.startingBid
-                                    }`}
-                                </p>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        color: '#7A8088',
-                                        margin: '5px',
-                                    }}>
-                                    {bidActive && (
-                                        <Countdown
-                                            date={bidEnd}
-                                            renderer={bidEndingRenderer}
-                                            onComplete={() => {
-                                                setShowBtn(false);
-                                            }}
-                                        />
-                                    )}
-
-                                    {!bidActive && (
-                                        <Countdown
-                                            date={bidStart}
-                                            renderer={beforeStartRenderer}
-                                            onComplete={() => {
-                                                setShowBtn(true);
-                                                setBidActive(true);
-                                            }}
-                                        />
-                                    )}
-                                </div>
-                            </p>
+                            </h6>
+                            <h5
+                                style={{
+                                    color: '#fff',
+                                    fontSize: '22px',
+                                    marginTop: '8px',
+                                    marginBottom: '20px',
+                                    fontWeight: 'normal',
+                                }}>
+                                {`USD $${
+                                    product.auctionDetails.bids[0]?.bidAmount ||
+                                    product.auctionDetails.startingBid
+                                }`}
+                            </h5>
                             {props.auth.isLoggedIn ? (
                                 props.stripeId ? (
                                     <BiddingModal

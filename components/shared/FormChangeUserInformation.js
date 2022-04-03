@@ -61,19 +61,25 @@ const FormChangeUserInformation = (props) => {
                                         message: 'Please input your User name',
                                     },
                                 ]}>
-                                <Input
-                                    className="form-control"
-                                    type="text"
-                                    placeholder="Enter User Name..."
-                                    suffix={
-                                        <Button
-                                            onClick={onUserNameSave}
-                                            type="primary"
-                                            icon={
-                                                <i class="fa fa-check"></i>
-                                            }></Button>
-                                    }
-                                />
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        gap: 10,
+                                    }}>
+                                    <Input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Enter User Name..."
+                                    />
+
+                                    <Button
+                                        onClick={onUserNameSave}
+                                        type="primary"
+                                        icon={
+                                            <i class="fa fa-check"></i>
+                                        }></Button>
+                                </div>
                             </Form.Item>
                         </div>
                     </div>

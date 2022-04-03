@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from 'antd';
 import { cardFACURL } from '~/repositories/Repository';
 import { FileProtectOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
+import { getDifferenceInDays, isBidStarted } from '~/utilities/time';
+import Countdown from 'react-countdown';
 
 const ModuleProductDetailDescription = ({ product }) => {
+    const [bidActive, setBidActive] = useState(false);
+
+    const { bidEnd, bidStart } = product?.auctionDetails;
+
     const gradeData = [
         { key: 'cardType', title: 'Type' },
         { key: 'modelNo', title: 'Set Name' },
@@ -14,19 +21,105 @@ const ModuleProductDetailDescription = ({ product }) => {
         { key: 'serialNumber', title: 'Serial Number' },
     ];
 
+    useEffect(() => {
+        console.log(bidActive);
+        console.log(isBidStarted(bidStart, bidEnd));
+        if (isBidStarted(bidStart, bidEnd)) {
+            setBidActive(true);
+        } else {
+            setBidActive(false);
+        }
+    }, []);
+
     const grade = useSelector(({ home }) =>
         home?.marketPlace?.grades?.find(({ _id }) => product.grade === _id)
     );
 
+    const beforeStartRenderer = () => {
+        return (
+            <div
+                className="auction-status"
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 20,
+                }}>
+                <h6 style={{ fontWeight: 'lighter', color: '#BCBEC5' }}>
+                    Auction Pending
+                </h6>
+                <p style={{ marginTop: -4 }}>
+                    {moment(bidStart).format('MM/DD/YYYY')}
+                    {' AT '}
+                    {moment(bidStart).format('hh:mm a')}{' '}
+                </p>
+            </div>
+        );
+    };
+
+    const bidEndingRenderer = ({ completed }) => {
+        if (completed) {
+            return (
+                <div
+                    className="auction-status"
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: 20,
+                        marginBottom: 5,
+                    }}>
+                    <h6 style={{ fontWeight: 'lighter', color: '#BCBEC5' }}>
+                        Auction Closed
+                    </h6>
+                </div>
+            );
+        }
+        return (
+            <div
+                className="auction-status"
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 20,
+                    width: '100%',
+                }}>
+                <h6 style={{ fontWeight: 'lighter', color: '#BCBEC5' }}>
+                    Auction Started
+                </h6>
+                <p style={{ marginTop: -4 }}>
+                    {moment(bidStart).format('MM/DD/YYYY')}
+                    {'  AT  '}
+                    {moment(bidStart).format('hh:mm a')}{' '}
+                </p>
+            </div>
+        );
+    };
+
     return (
         <div className="ps-product__desc">
+            {bidActive && (
+                <Countdown
+                    date={bidEnd}
+                    renderer={bidEndingRenderer}
+                    onComplete={() => {}}
+                />
+            )}
+
+            {!bidActive && (
+                <Countdown
+                    date={bidStart}
+                    renderer={beforeStartRenderer}
+                    onComplete={() => {
+                        setBidActive(true);
+                    }}
+                />
+            )}
             {product?.storeDetails?.title ? (
                 <span>
-                    <p style={{ color: '#fff' }}>
+                    <p style={{ color: '#fff', fontWeight: 'lighter' }}>
                         Sold By Store:
                         <strong> {product.storeDetails.title}</strong>
                     </p>
-                    <p style={{ color: '#fff' }}>
+                    <p style={{ color: '#fff', fontWeight: 'lighter' }}>
                         Store Owner:
                         <strong> {product.seller.fullName}</strong>
                     </p>
@@ -38,7 +131,9 @@ const ModuleProductDetailDescription = ({ product }) => {
                         gap: 20,
                         flexDirection: 'row',
                     }}>
-                    <h6 style={{ color: '#BCBEC5' }}>Sold By </h6>
+                    <h6 style={{ color: '#BCBEC5', fontWeight: 'lighter' }}>
+                        Sold By{' '}
+                    </h6>
                     <p style={{ color: '#fff', marginTop: -4 }}>
                         <strong> {product.seller.fullName}</strong>
                     </p>
@@ -51,7 +146,9 @@ const ModuleProductDetailDescription = ({ product }) => {
                     gap: 20,
                     flexDirection: 'row',
                 }}>
-                <h6 style={{ color: '#BCBEC5' }}>Condition </h6>
+                <h6 style={{ color: '#BCBEC5', fontWeight: 'lighter' }}>
+                    Condition{' '}
+                </h6>
                 <p style={{ color: '#fff', marginTop: -4 }}>
                     <strong> {product.condition}</strong>
                 </p>
@@ -63,7 +160,9 @@ const ModuleProductDetailDescription = ({ product }) => {
                     gap: 20,
                     flexDirection: 'row',
                 }}>
-                <h6 style={{ color: '#BCBEC5' }}>Grade </h6>
+                <h6 style={{ color: '#BCBEC5', fontWeight: 'lighter' }}>
+                    Grade{' '}
+                </h6>
                 <p style={{ color: '#fff', marginTop: -4 }}>
                     <strong> {grade?.name}</strong>
                 </p>
@@ -73,7 +172,9 @@ const ModuleProductDetailDescription = ({ product }) => {
                     display: 'flex',
                     flexDirection: 'column',
                 }}>
-                <h6 style={{ color: '#BCBEC5' }}>Features </h6>
+                <h6 style={{ color: '#BCBEC5', fontWeight: 'lighter' }}>
+                    Features{' '}
+                </h6>
                 <p style={{ color: '#fff' }}>
                     <strong> {product.description}</strong>
                 </p>

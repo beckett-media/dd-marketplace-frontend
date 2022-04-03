@@ -64,20 +64,23 @@ class Login extends Component {
                                 <a href="/">
                                     <img
                                         style={{ maxWidth: 120 }}
-                                        src={'/static/img/logo-dark.png'}
+                                        src={'/static/img/logo.png'}
                                         className="mb-5"
                                     />
                                 </a>
-                                <Title
+                                {/* <Title
                                     title="WELCOME BACK"
                                     subtitle={
                                         this.props.subtitle
                                             ? this.props.subtitle
                                             : 'Login to your Due Dilly account'
                                     }
-                                />
+                                /> */}
+                                <h2 style={{ fontWeight: 'lighter' }}>
+                                    WELCOME BACK
+                                </h2>
                                 <div style={{ paddingTop: 30 }}>
-                                    <div className="form-group dark">
+                                    <div className="form-group ">
                                         <Form.Item
                                             name="email"
                                             rules={[
@@ -94,7 +97,7 @@ class Login extends Component {
                                             />
                                         </Form.Item>
                                     </div>
-                                    <div className="form-group dark form-forgot">
+                                    <div className="form-group  ">
                                         <Form.Item
                                             name="password"
                                             rules={[
@@ -106,6 +109,7 @@ class Login extends Component {
                                             ]}>
                                             <div className="form-control_password">
                                                 <Input.Password
+                                                    style={{}}
                                                     className="form-control"
                                                     type="password"
                                                     placeholder="Password..."
