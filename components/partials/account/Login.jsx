@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import { Col, Form, Input, notification, Row, Spin } from 'antd';
 import Link from 'next/link';
 import Router from 'next/router';
-import { login } from '../../../store/auth/action';
-
-import { Form, Input, notification, Row, Spin, Col } from 'antd';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Title from '~/components/elements/Title';
+import { login } from '../../../store/auth/action';
 
 class Login extends Component {
     constructor(props) {
@@ -79,8 +77,9 @@ class Login extends Component {
                                 <h2 style={{ fontWeight: 'lighter' }}>
                                     WELCOME BACK
                                 </h2>
+                                <p>Login to your Due Dilly account</p>
                                 <div style={{ paddingTop: 30 }}>
-                                    <div className="form-group ">
+                                    <div className="form-group dark ">
                                         <Form.Item
                                             name="email"
                                             rules={[
@@ -97,7 +96,7 @@ class Login extends Component {
                                             />
                                         </Form.Item>
                                     </div>
-                                    <div className="form-group  ">
+                                    <div className="form-group dark form-forgot ">
                                         <Form.Item
                                             name="password"
                                             rules={[

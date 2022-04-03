@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
-import { register } from '../../../store/auth/action';
-
 import { Form, Input } from 'antd';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Title from '~/components/elements/Title';
+import { register } from '../../../store/auth/action';
 
 class Register extends Component {
     constructor(props) {
@@ -32,14 +29,18 @@ class Register extends Component {
                                 <a href="/">
                                     <img
                                         style={{ maxWidth: 120 }}
-                                        src={'/static/img/logo-dark.png'}
+                                        src={'/static/img/logo.png'}
                                         className="mb-5"
                                     />
                                 </a>
-                                <Title
+                                {/* <Title
                                     title="Create Account "
                                     subtitle="Create a Due Dilly Account"
-                                />
+                                /> */}
+                                <h2 style={{ fontWeight: 'lighter' }}>
+                                    Create Account
+                                </h2>
+                                <p>Create a Due Dilly Account</p>
                                 <div style={{ paddingTop: 30 }}>
                                     <div className="form-group dark">
                                         <Form.Item

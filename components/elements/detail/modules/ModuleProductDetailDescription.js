@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Button } from 'antd';
-import { cardFACURL } from '~/repositories/Repository';
 import { FileProtectOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
 import moment from 'moment';
-import { getDifferenceInDays, isBidStarted } from '~/utilities/time';
+import React, { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
+import { useSelector } from 'react-redux';
+import { cardFACURL } from '~/repositories/Repository';
+import { isBidStarted } from '~/utilities/time';
 
 const ModuleProductDetailDescription = ({ product }) => {
     const [bidActive, setBidActive] = useState(false);
 
-    const { bidEnd, bidStart } = product?.auctionDetails;
-
-    const gradeData = [
-        { key: 'cardType', title: 'Type' },
-        { key: 'modelNo', title: 'Set Name' },
-        { key: 'brand', title: 'Brand' },
-        { key: 'year', title: 'Year' },
-        { key: 'serialNumber', title: 'Serial Number' },
-    ];
+    const { bidEnd, bidStart } = product?.auctionDetails || {};
 
     useEffect(() => {
-        console.log(bidActive);
-        console.log(isBidStarted(bidStart, bidEnd));
         if (isBidStarted(bidStart, bidEnd)) {
             setBidActive(true);
         } else {
