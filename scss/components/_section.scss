@@ -161,7 +161,6 @@
             margin-right: 30px;
 
             a {
-                // color: $color-text;
                 color: #ffffff;
 
                 &:hover {
@@ -1662,11 +1661,7 @@
 
     @include media('<sm') {
         .ps-section__container {
-            // flex-flow: column wrap;
-
             .ps-section__left {
-                // max-width: 150px;
-                // margin-bottom: 30px;
                 display: none;
             }
 

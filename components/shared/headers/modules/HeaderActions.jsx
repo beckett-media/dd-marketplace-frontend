@@ -4,7 +4,7 @@ import AccountQuickLinks from '~/components/shared/headers/modules/AccountQuickL
 import MiniCart from '~/components/shared/headers/modules/MiniCart';
 
 const HeaderActions = (props) => {
-    const { auth } = props;
+    const auth = props?.auth;
     // views
     let headerAuthView;
     if (auth.isLoggedIn && Boolean(auth.isLoggedIn) === true) {
@@ -14,22 +14,6 @@ const HeaderActions = (props) => {
     }
     return (
         <div className="header__actions">
-            {/* <Link href="/account/compare">
-                <a className="header__extra">
-                    <i className="icon-chart-bars"></i>
-                    <span>
-                        <i>{compare ? compare.compareTotal : 0}</i>
-                    </span>
-                </a>
-            </Link> */}
-            {/* <Link href="/account/wishlist">
-                <a className="header__extra">
-                    <i className="icon-heart"></i>
-                    <span>
-                        <i>{wishlist ? wishlist.wishlistTotal : 0}</i>
-                    </span>
-                </a>
-            </Link> */}
             {auth.isLoggedIn && Boolean(auth.isLoggedIn) && <MiniCart />}
             {headerAuthView}
         </div>
