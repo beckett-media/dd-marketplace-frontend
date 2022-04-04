@@ -31,6 +31,7 @@ const nextSettings = {
     images: {
         loader: 'akamai',
         path: '',
+        disableStaticImages: true,
     },
 };
 
