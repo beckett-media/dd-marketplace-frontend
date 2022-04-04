@@ -38,20 +38,20 @@ const ShopItems = ({
     function handleSetColumns() {
         switch (columns) {
             case 2:
-                setClasses('col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6');
+                setClasses('col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12');
                 return 3;
                 break;
             case 4:
-                setClasses('col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6');
+                setClasses('col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12');
                 return 4;
                 break;
             case 6:
-                setClasses('col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6');
+                setClasses('col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12');
                 return 6;
                 break;
 
             default:
-                setClasses('col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6');
+                setClasses('col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12');
         }
     }
 
