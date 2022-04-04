@@ -313,6 +313,7 @@
     // padding-top: 30px;
     padding: 70px 150px;
     background-color: #121634;
+    min-height: 100vh;
 
     .ps-page__container {
         display: flex;
@@ -351,6 +352,7 @@
     }
 
     @include media('<lg') {
+        padding: 70px 50px;
         .ps-page__right {
             display: none;
         }
