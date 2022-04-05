@@ -15,7 +15,7 @@ export default function Document() {
                         captureUncaught: true,
                         captureUnhandledRejections: true,
                         payload: {
-                            environment: "production"
+                            environment: "${process.env.NODE_ENV}"
                         }
                     };
                     // Rollbar Snippet
