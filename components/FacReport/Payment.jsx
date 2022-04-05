@@ -85,7 +85,7 @@ class Payment extends Component {
 
     return (
       <div className="ps-checkout ps-section--shopping">
-        <div className="container">
+        <div className="">
           <div className="ps-section__header">
             <h1>Payment</h1>
             <p style={{ color: "#fff" }}>You are purchasing as a guest</p>
@@ -239,10 +239,11 @@ const CheckoutForm = StripeHoc(
                   base: {
                     fontSize: "20px",
                     border: "1px solid red",
-                    iconColor: "#6EE4D6",
-                    color: "#fff",
+                    iconColor: "#121634",
+                   
+                    color: "#121634",
                     "::placeholder": {
-                      color: "#fff",
+                      color: "#121634",
                     },
                   },
                 },

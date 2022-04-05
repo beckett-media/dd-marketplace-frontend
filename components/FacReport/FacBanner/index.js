@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react"
+import { useRouter } from 'next/router'
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -8,24 +9,22 @@ import ReactModal from "react-modal"
 import { toPng } from "html-to-image"
 
 import { message, Button } from "antd"
-// import Share from "../../../public/static/img/facreport/svgs/Share.svg"
-// import Download from "../../../public/static/img/facreport/svgs/Download.svg"
-// import Copy from "../../../public/static/img/facreport/svgs/Copy.svg"
-// import TwitterBlue from "../../../public/static/img/facreport/svgs/TwitterBlue.svg"
-// import FacebookBlue from "../../../public/static/img/facreport/svgs/FacebookBlue.svg"
-// import Email from "../../../public/static/img/facreport/svgs/Email.svg"
-// import Pdf from "../../../public/static/img/facreport/svgs/Pdf.svg"
-// import Camera from "../../../public/static/img/facreport/svgs/Camera.svg"
-// import Instagram from "../../images/svgs/Instagram.svg"
+import Share from "../../../public/static/img/facreport/svgs/Share.svg"
+import Download from "../../../public/static/img/facreport/svgs/Download.svg"
+import Copy from "../../../public/static/img/facreport/svgs/Copy.svg"
+import TwitterBlue from "../../../public/static/img/facreport/svgs/TwitterBlue.svg"
+import FacebookBlue from "../../../public/static/img/facreport/svgs/FacebookBlue.svg"
+import Email from "../../../public/static/img/facreport/svgs/Email.svg"
+import Pdf from "../../../public/static/img/facreport/svgs/Pdf.svg"
+import Camera from "../../../public/static/img/facreport/svgs/Camera.svg"
+import Instagram from "../../../public/static/img/facreport/svgs/Instagram.svg"
 // import html2canvas from "html2canvas"
 // import { jsPDF } from "jspdf"
-// import "./styles.css"
+
 import { CONFIG } from "../Config"
 import Payment from "../Payment"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons"
-
-// ReactModal.setAppElement("#___gatsby")
 
 const customStyles = {
   content: {
@@ -42,6 +41,8 @@ const customStyles = {
 const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
   const [modal, setModal] = React.useState(false)
   const [copied, setCopied] = React.useState(false)
+  const router = useRouter()
+
 
   const copyToClipboard = () => {
     const el = document.createElement("textarea")
@@ -74,7 +75,7 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
           }}
           className="btn btn-primary mx-2"
         >
-          {/* <Pdf width="30px" height="30px" fill="#FFF" /> PDF */}
+          <img src={Pdf} width="30px" height="30px" fill="#FFF" /> PDF
         </button>
         <button
           type="button"
@@ -84,7 +85,7 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
             getImage()
           }}
         >
-          {/* <Camera width="30px" height="30px" fill="#FFF" /> Image */}
+          <img src={Camera} width="30px" height="30px" fill="#FFF" /> Image
         </button>
       </ReactModal>
       <div
@@ -96,17 +97,15 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
           background: "#0092C7",
         }}
       >
-        {/* <Download
-          width="30px"
+
+        <img src={Download} width="30px"
           height="30px"
-          style={{ cursor: "pointer" }}
-          // onClick={() => setModal(true)}
+          style={{ cursor: "pointer", color: "white" }}
           onClick={() => {
             getImage()
             onCloseCall && onCloseCall()
           }}
-          fill="#fff"
-        /> */}
+          fill="#fff" />
       </div>
       <div className="mx-2" style={{ position: "relative" }}>
         <div
@@ -123,51 +122,50 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
         >
           <small className="text-center">URL copied to clipboard!</small>
         </div>
-        {/* <<Copy
-          style={{ cursor: "pointer" }}
+        <img src={Copy} style={{ cursor: "pointer" }}
           onClick={() => {
             copyToClipboard()
             onCloseCall && onCloseCall()
-          }}
-        />> */}
+          }} />
+
       </div>
 
-      {/* <div className="mx-2">
+      <div className="mx-2">
         <TwitterShareButton
-          url={window.location.href}
+          url={`${process.env.marketUrl}${router.asPath}`}
           quote={`Checkout this Card Snapscore ${(
             <span>&trade;</span>
           )} Report from Due Dilly`}
           hashtag="#duedilly"
         >
-          <TwitterBlue />
+          <img src={TwitterBlue} />
         </TwitterShareButton>
-      </div> */}
-      {/* <div className="mx-2">
+      </div>
+      <div className="mx-2">
         <FacebookShareButton
-          url={window.location.href}
+          url={`${process.env.marketUrl}${router.asPath}`}
           quote={`Checkout this Card Snapscore ${(
             <span>&trade;</span>
           )} Report from Due Dilly`}
           hashtag="#duedilly"
         >
-          <FacebookBlue />
+          <img src={FacebookBlue} />
         </FacebookShareButton>
-      </div> */}
-      {/* <div className="mx-2">
+      </div>
+      <div className="mx-2">
         <EmailShareButton
           onClick={() => { }}
-          url={window.location.href}
+          url={`${process.env.marketUrl}${router.asPath}`}
           subject={`Card Snapscore ${(
             <span>&trade;</span>
           )} Report | Due Dilly`}
           body={`Checkout this Card Snapscore ${(
             <span>&trade;</span>
-          )} Report from Due Dilly ${window.location.href}`}
+          )} Report from Due Dilly ${process.env.marketUrl}${router.asPath}`}
         >
-          <Email />
+          <img src={Email} />
         </EmailShareButton>
-      </div> */}
+      </div>
       {/* <div
         className="mx-2"
         style={{
@@ -178,7 +176,7 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
           padding: 7.5,
         }}
       >
-        <Instagram fill="#fff" />
+        <img src={Instagram} fill="#fff" />
       </div> */}
     </div>
   )
@@ -195,35 +193,7 @@ const MarketValueBox = ({ gradeData = [], loading }) => {
       <p className="text-white mt-3 text-center font-weight-bold py-3">
         Coming soon...
       </p>
-      {/* {loading ? (
-        <div className="d-flex justify-content-center p-5 align-items-center h-100">
-          <Loader />
-        </div>
-      ) : !gradeData.length ? (
-        <p className="text-white mt-3 text-center font-weight-bold py-3">
-          No grading data available
-        </p>
-      ) : (
-        <>
-          <p className="text-white text-center font-weight-bold py-3">
-            Place in the top 5 grading prices:
-          </p>
-          <div className="d-flex flex-wrap ">
-            {gradeData
-              .filter(item => item._id.grade >= 6 && item._id.grader == "PSA")
-              .map(({ _id: { grade }, avgValue }) => (
-                <div className="col-4 col-xl-2 py-4 py-xl-2">
-                  <p className="text-white  text-nowrap text-center">
-                    GRD - {grade}
-                  </p>
-                  <p className="text-cyan font-weight-bolder m-0 text-nowrap text-center">
-                    ${avgValue.toFixed()}
-                  </p>
-                </div>
-              ))}
-          </div>
-        </>
-      )} */}
+
     </div>
   )
 }
@@ -279,10 +249,12 @@ const FacBanner = ({
   const [shareModal, setShareModal] = React.useState(false)
   const [gallery, setGallery] = React.useState([])
   const [orientation, setOrientation] = React.useState("portrait")
+
   const handleHideModal = () => {
     setShareModal(false)
   }
   React.useEffect(() => {
+
     if (card)
       setGallery([
         {
@@ -422,24 +394,6 @@ const FacBanner = ({
       })
   }, [currentPageRef])
 
-  //old code by rashin and dev7
-  // const getImagex = () => {
-  //   html2canvas(currentPageRef.current, {
-  //     allowTaint: true,
-  //     useCORS: true,
-  //     scrollY: -window.scrollY,
-  //   }).then(canvas => {
-  //     var image = canvas.toDataURL()
-  //     // create temporary link
-  //     var tmpLink = document.createElement("a")
-  //     tmpLink.download = `${cardId}-report.png` // set the name of the download file
-  //     tmpLink.href = image
-  //     // temporarily add link to body and initiate the download
-  //     document.body.appendChild(tmpLink)
-  //     tmpLink.click()
-  //     document.body.removeChild(tmpLink)
-  //   })
-  // }
 
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -474,7 +428,7 @@ const FacBanner = ({
               className="d-flex d-lg-none"
               onClick={() => setShareModal(true)}
             >
-              {/* <Share fill="#fff" width="40" /> */}
+              <img src={Share} fill="#fff" width="40" />
             </div>
             <ReactModal
               isOpen={Boolean(shareModal)}
@@ -521,22 +475,14 @@ const FacBanner = ({
               <p className="text-white h5">{card?.year}</p>
               <ReactModal
                 isOpen={isModalVisible}
-                shouldCloseOnOverlayClick={false}
+                shouldCloseOnOverlayClick={true}
                 onRequestClose={() => {
                   handleCancel()
                 }}
                 className="payment-modal-card"
                 overlayClassName="payment-modal-card-overlay"
               >
-                <FontAwesomeIcon
-                  icon={faTimesCircle}
-                  color="#fff"
-                  style={{
-                    float: "right",
-                    cursor: "pointer",
-                  }}
-                  onClick={handleCancel}
-                />
+
                 <Payment
                   cardId={cardId}
                   price={price}
