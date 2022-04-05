@@ -360,6 +360,7 @@
 
 .ps-layout--shop {
     display: flex;
+    min-height: 100vh;
     flex-flow: row nowrap;
 
     > * {

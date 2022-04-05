@@ -6,7 +6,8 @@
         "dev": "next dev -p 3001",
         "build": "next build",
         "start": "next start -p 3003",
-        "export": "next export"
+        "export": "next export",
+        "lint": "next lint"
     },
     "dependencies": {
         "@ant-design/icons": "^4.6.2",
@@ -50,6 +51,7 @@
         "webpack": "^5.70.0"
     },
     "devDependencies": {
+        "@next/eslint-plugin-next": "^12.1.4",
         "eslint": "^8.12.0",
         "eslint-plugin-react": "^7.17.0"
     }
