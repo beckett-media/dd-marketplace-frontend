@@ -122,7 +122,7 @@ const FacReport = ({ id }) => {
 
     React.useEffect(() => {
         if (id) initFetch();
-    }, []);
+    }, [id]);
     return (
         <div ref={currentPage}>
             <FacBanner
