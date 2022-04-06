@@ -116,7 +116,7 @@ const StoreList = () => (
                                                 </a>
                                             </div>
                                             <h4>GoPro</h4>
-
+                                            <Rating />
                                             <p>
                                                 325 Orchard, Buenos Aires,
                                                 Formosa Argentina
@@ -163,7 +163,8 @@ const StoreList = () => (
                                                     Visit Store
                                                 </a>
                                             </div>
-                                            <h4>Robert&apos;s Store</h4>
+                                            <h4>Robert's Store</h4>
+                                            <Rating />
                                             <p>
                                                 325 Orchard, Buenos Aires,
                                                 Formosa Argentina
@@ -211,6 +212,7 @@ const StoreList = () => (
                                                 </a>
                                             </div>
                                             <h4>Youngshop</h4>
+                                            <Rating />
                                             <p>
                                                 325 Orchard, Buenos Aires,
                                                 Formosa Argentina
@@ -258,6 +260,7 @@ const StoreList = () => (
                                                 </a>
                                             </div>
                                             <h4>Global Offical</h4>
+                                            <Rating />
                                             <p>
                                                 325 Orchard, Buenos Aires,
                                                 Formosa Argentina

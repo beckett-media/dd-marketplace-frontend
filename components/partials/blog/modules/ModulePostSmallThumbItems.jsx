@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import PostRepository from '~/repositories/PostRepository';
+import PostGrid from '~/components/elements/post/PostGrid';
 import CustomPagination from '~/components/elements/common/CustomPagination';
 import PostSmallThumbnail from '~/components/elements/post/PostSmallThumbnail';
-import PostRepository from '~/repositories/PostRepository';
 
-const ModulePostSmallThumbItems = ({ collectionSlug }) => {
+const ModulePostSmallThumbItems = ({ collectionSlug, columns }) => {
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState(null);
 

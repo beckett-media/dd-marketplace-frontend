@@ -1,7 +1,10 @@
-import Link from 'next/link';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import Link from 'next/link';
+import Slider from 'react-slick';
+import Product from '../../../elements/products/Product';
+import { carouselFullwidth } from '../../../../utilities/carousel-helpers';
 import { getColletionBySlug } from '../../../../utilities/product-helper';
+import { connect } from 'react-redux';
 import CollectionProducts from './modules/CollectionProducts';
 
 class Clothings extends Component {
