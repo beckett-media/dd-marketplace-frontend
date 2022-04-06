@@ -207,7 +207,7 @@ class ShoppingCart extends Component {
                                 </div>
                                 <Link href="/account/checkout">
                                     <a className="ps-btn ps-btn--fullwidth"
-                                    style={{display:`${cartItems && cartItems.length > 0?"block":"none"}`}}>
+                                        style={{ display: `${cartItems && cartItems.length > 0 ? "block" : "none"}` }}>
                                         Proceed to checkout
                                     </a>
                                 </Link>
