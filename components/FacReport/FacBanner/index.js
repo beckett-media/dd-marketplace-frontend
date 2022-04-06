@@ -37,6 +37,20 @@ const customStyles = {
     },
     overlay: { zIndex: 999999 },
 };
+const shareStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        overflow: "hidden !important",
+        height: "fit-content"
+    },
+    overlay: { zIndex: 999999 },
+};
+
 
 const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
     const [modal, setModal] = React.useState(false);
@@ -107,9 +121,8 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
             </div>
             <div className="mx-2" style={{ position: 'relative' }}>
                 <div
-                    className={`alert alert-primary p-2 text-center alert-dismissible fade ${
-                        copied ? 'show' : ''
-                    }`}
+                    className={`alert alert-primary p-2 text-center alert-dismissible fade ${copied ? 'show' : ''
+                        }`}
                     style={{
                         position: 'absolute',
                         width: 150,
@@ -154,16 +167,15 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
             </div>
             <div className="mx-2">
                 <EmailShareButton
-                    onClick={() => {}}
+                    onClick={() => { }}
                     url={`${process.env.marketUrl}${router.asPath}`}
                     subject={`Card Snapscore ${(
                         <span>&trade;</span>
                     )} Report | Due Dilly`}
                     body={`Checkout this Card Snapscore ${(
                         <span>&trade;</span>
-                    )} Report from Due Dilly ${process.env.marketUrl}${
-                        router.asPath
-                    }`}>
+                    )} Report from Due Dilly ${process.env.marketUrl}${router.asPath
+                        }`}>
                     <img src={Email} />
                 </EmailShareButton>
             </div>
@@ -431,7 +443,7 @@ const FacBanner = ({
                             onRequestClose={() => {
                                 setShareModal(false);
                             }}
-                            style={customStyles}>
+                            style={shareStyles}>
                             <div className="d-flex">
                                 <ShareContainer
                                     // getPDF={getPDF}
@@ -444,9 +456,8 @@ const FacBanner = ({
 
                     <div className="row g-0 py-5 d-flex">
                         <div
-                            className={`col-12 col-lg-${
-                                orientation === 'portrait' ? '4' : '7'
-                            } fac-banner-img-container position-relative`}>
+                            className={`col-12 col-lg-${orientation === 'portrait' ? '4' : '7'
+                                } fac-banner-img-container position-relative`}>
                             {gallery.length > 0 && (
                                 <ImageGallery
                                     gallery={gallery}
@@ -456,9 +467,8 @@ const FacBanner = ({
                             )}
                         </div>
                         <div
-                            className={`col-12 col-lg-${
-                                orientation === 'portrait' ? '8' : '5'
-                            }`}>
+                            className={`col-12 col-lg-${orientation === 'portrait' ? '8' : '5'
+                                }`}>
                             <p className="h1 m-0 text-uppercase font-weight-bolder text-white pti-font">
                                 {card?.playerNames.join(' ')}
                             </p>
@@ -487,13 +497,20 @@ const FacBanner = ({
                                 <Button
                                     type="primary"
                                     style={{
-                                        fontSize: 'large',
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center"
                                     }}
                                     className="gradient-link bold text-center buttonstyle"
                                     onClick={quantity ? showModal : null}>
-                                    {quantity
-                                        ? `Buy This Card $${price}`
-                                        : 'Sold'}
+                                    <span style={{
+                                        fontSize: 'large',
+                                        fontWeight: "bold"
+                                    }}>
+                                        {quantity
+                                            ? `Buy This Card $${price}`
+                                            : 'Sold'}
+                                    </span>
                                 </Button>
                             )}
                             <p className="text-white h3 fond-weight-bolder font-poppins mt-5">
