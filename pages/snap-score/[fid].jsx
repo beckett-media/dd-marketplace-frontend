@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 const facReport = () => {
     const router = useRouter();
     const { fid } = router.query;
+    console.log(router.query);
     return (
 
         <ContainerPage title="Snap Score" boxed={true}>
