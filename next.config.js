@@ -13,6 +13,7 @@ const nextSettings = {
     env: {
         title: 'Due Dilly',
         titleDescription: 'Due Dilly | Marketplace',
+        marketUrl:"https://marketplace.duedilly.co"
     },
     serverRuntimeConfig: {
         // Will only be available on the server side
@@ -31,6 +32,7 @@ const nextSettings = {
     images: {
         loader: 'akamai',
         path: '',
+        disableStaticImages: true,
     },
 };
 

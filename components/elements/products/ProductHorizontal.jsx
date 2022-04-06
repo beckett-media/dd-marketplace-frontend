@@ -5,7 +5,7 @@ import {
     StrapiProductThumbnail,
 } from '~/utilities/product-helper';
 import { useSelector } from 'react-redux';
-import { cardFACURL } from '~/repositories/Repository';
+import {  basedomain } from '~/repositories/Repository';
 
 const ProductHorizontal = ({ product }) => {
     let grade = useSelector(({ home }) =>
@@ -69,7 +69,7 @@ const ProductHorizontal = ({ product }) => {
                                         color: '#37c4ce',
                                     }}
                                     target="_blank"
-                                    href={`${cardFACURL}/${product.card._id}`}>
+                                    href={`/snap-score/${product.card._id}`}>
                                     View SNAPSCORE&trade; Report
                                 </a>
                             </div>

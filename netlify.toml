@@ -31,6 +31,12 @@ NETLIFY_NEXT_PLUGIN_SKIP = "true"
   status = 200
   force = true
 
+[[redirects]]
+  from = "/snap-score/*"
+  to = "/snap-score/[fid]"
+  status = 200
+  force = true
+
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
   #[dev]
