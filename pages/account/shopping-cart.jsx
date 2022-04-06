@@ -1,24 +1,12 @@
 import React from 'react';
-
-import BreadCrumb from '~/components/elements/BreadCrumb';
-import ShoppingCart from '~/components/partials/account/ShoppingCart';
 import ContainerPage from '~/components/layouts/ContainerPage';
+import ShoppingCart from '~/components/partials/account/ShoppingCart';
 import AuthHoc from '~/repositories/AuthHoc';
 
 const ShoppingCartPage = () => {
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Shopping Cart',
-        },
-    ];
     return (
         <ContainerPage title="Shopping Cart" boxed={true} hideScrollEvent>
             <div className="ps-page--simple">
-                {/* <BreadCrumb breacrumb={breadCrumb} /> */}
                 <ShoppingCart />
             </div>
         </ContainerPage>

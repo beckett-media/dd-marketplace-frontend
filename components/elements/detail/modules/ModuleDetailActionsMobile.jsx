@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { addItem } from '~/store/cart/action';
 import { useDispatch } from 'react-redux';
 
@@ -13,7 +13,7 @@ const ModuleDetailActionsMobile = ({ product, bidding }) => {
     return (
         <div className="ps-product__actions-mobile">
             {bidding ? (
-             ""
+                ''
             ) : (
                 <a
                     className="ps-btn ps-btn--black"

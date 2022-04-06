@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
-import ContainerProductDetail from '~/components/layouts/ContainerProductDetail';
-import ProductRepository from '~/repositories/ProductRepository';
-import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
-import BreadCrumb from '~/components/elements/BreadCrumb';
-import ProductWidgets from '~/components/partials/product/ProductWidgets';
-import ProductDetailFullwidth from '~/components/elements/detail/ProductDetailFullwidth';
+import React, { useEffect, useState } from 'react';
 import ProductDetailFullContent from '~/components/elements/detail/ProductDetailFullContent';
+import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
+import ContainerPage from '~/components/layouts/ContainerPage';
 import CustomerBought from '~/components/partials/product/CustomerBought';
 import RelatedProduct from '~/components/partials/product/RelatedProduct';
-import ContainerPage from '~/components/layouts/ContainerPage';
+import ProductRepository from '~/repositories/ProductRepository';
 
 const ProductDefaultPage = () => {
     const router = useRouter();
@@ -36,32 +31,17 @@ const ProductDefaultPage = () => {
         getProduct(pid);
     }, [pid]);
 
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Shop',
-            url: '/shop',
-        },
-        {
-            text: product ? product.title : 'Loading...',
-        },
-    ];
     // Views
     let productView;
     if (!loading) {
         if (product) {
             productView = <ProductDetailFullContent product={product} />;
-        } else {
         }
     } else {
         productView = <SkeletonProductDetail />;
     }
     return (
         <ContainerPage title={product ? product.title : 'Loading...'}>
-            <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
             <div className="ps-page--product">
                 <div className="container">
                     {productView}

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Slider from 'react-slick';
 import Link from 'next/link';
+import React from 'react';
+import Slider from 'react-slick';
 import NextArrow from '~/components/elements/carousel/NextArrow';
 import PrevArrow from '~/components/elements/carousel/PrevArrow';
 

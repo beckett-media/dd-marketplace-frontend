@@ -13,11 +13,6 @@ const Logo = ({ type }) => {
             url: '/home/technology',
             img: 'static/img/logo-technology.png',
         };
-    } else if (type === 'technology') {
-        data = {
-            url: '/home/technology',
-            img: 'static/img/logo-technology.png',
-        };
     } else if (type === 'electronic') {
         data = {
             url: '/home/electronic',

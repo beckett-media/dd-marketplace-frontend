@@ -15,7 +15,7 @@ const ShopAuctionItems = ({
     const Router = useRouter();
     const { page } = Router.query;
     const { query } = Router;
-    const [listView, setListView] = useState(true);
+    const listView = true;
     const [classes, setClasses] = useState(
         'col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6'
     );
@@ -73,8 +73,8 @@ const ShopAuctionItems = ({
                     </div>
                 );
             } else {
-                productItemsView = productItems.map((item) => (
-                    <ProductAuctionWide product={item.listing} />
+                productItemsView = productItems.map((item, index) => (
+                    <ProductAuctionWide product={item.listing} key={index} />
                 ));
             }
         } else {

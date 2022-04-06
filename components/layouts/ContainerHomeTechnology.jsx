@@ -1,10 +1,9 @@
-import React from 'react';
 import Head from 'next/head';
-import NavigationList from '~/components/shared/navigation/NavigationList';
+import React from 'react';
 import SiteFeatures from '~/components/partials/homepage/autopart/SiteFeatures';
-import HeaderTechnology from '~/components/shared/headers/HeaderTechnology';
-import HeaderMobileTechnology from '~/components/shared/headers/HeaderMobileTechnology';
 import FooterSecond from '~/components/shared/footers/FooterSecond';
+import HeaderMobileTechnology from '~/components/shared/headers/HeaderMobileTechnology';
+import HeaderTechnology from '~/components/shared/headers/HeaderTechnology';
 
 const ContainerHomeTechnology = ({ children, title = 'Home Technology' }) => {
     let titleView;

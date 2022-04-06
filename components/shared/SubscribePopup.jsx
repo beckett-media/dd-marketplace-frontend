@@ -31,7 +31,7 @@ class SubscribePopup extends Component {
                         <a
                             className="ps-popup__close"
                             href="#"
-                            onClick={e => this.handleCloseSubscribePopup(e)}>
+                            onClick={(e) => this.handleCloseSubscribePopup(e)}>
                             <i className="icon-cross"></i>
                         </a>
                         <form
@@ -67,7 +67,7 @@ class SubscribePopup extends Component {
                                         name="not-show"
                                     />
                                     <label htmlFor="not-show">
-                                        Don't show this popup again
+                                        Don&apos;t show this popup again
                                     </label>
                                 </div>
                             </div>

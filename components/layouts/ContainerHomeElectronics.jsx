@@ -1,8 +1,6 @@
-import React from 'react';
 import Head from 'next/head';
-import NavigationList from '~/components/shared/navigation/NavigationList';
+import React from 'react';
 import SiteFeatures from '~/components/partials/homepage/autopart/SiteFeatures';
-import FooterDefault from '~/components/shared/footers/FooterDefault';
 import HeaderElectronic from '~/components/shared/headers/HeaderElectronic';
 import HeaderMobileElectronic from '~/components/shared/headers/HeaderMobileElectronic';
 

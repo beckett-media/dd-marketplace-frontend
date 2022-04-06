@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
-import ContainerProductDetail from '~/components/layouts/ContainerProductDetail';
-import ProductRepository from '~/repositories/ProductRepository';
-import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
+import React, { useEffect, useState } from 'react';
 import BreadCrumb from '~/components/elements/BreadCrumb';
-import ProductWidgets from '~/components/partials/product/ProductWidgets';
-import ProductDetailFullwidth from '~/components/elements/detail/ProductDetailFullwidth';
-import CustomerBought from '~/components/partials/product/CustomerBought';
-import RelatedProduct from '~/components/partials/product/RelatedProduct';
-import ContainerPage from '~/components/layouts/ContainerPage';
 import ProductDetailGroupped from '~/components/elements/detail/ProductDetailGroupped';
+import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
+import ContainerPage from '~/components/layouts/ContainerPage';
+import CustomerBought from '~/components/partials/product/CustomerBought';
+import ProductWidgets from '~/components/partials/product/ProductWidgets';
+import RelatedProduct from '~/components/partials/product/RelatedProduct';
+import ProductRepository from '~/repositories/ProductRepository';
 
 const ProductGrouppedPage = () => {
     const router = useRouter();

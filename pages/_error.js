@@ -1,3 +1,4 @@
+import React from 'react';
 import getConfig from 'next/config';
 const { serverRuntimeConfig } = getConfig();
 function Error({ statusCode }) {
@@ -12,7 +13,7 @@ function Error({ statusCode }) {
 Error.getInitialProps = ({ req, res, err }) => {
     const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
     // Only require Rollbar and report error if we're on the server
-    if (!typeof window === 'undefined') {
+    if (!(typeof window === 'undefined')) {
         console.log('Reporting error to Rollbar...');
         const Rollbar = require('rollbar');
         const rollbar = new Rollbar(serverRuntimeConfig.rollbarServerToken);
@@ -22,7 +23,6 @@ Error.getInitialProps = ({ req, res, err }) => {
                 console.error(rollbarError);
                 return;
             }
-            console.log('Reported error to Rollbar');
         });
     }
     return { statusCode };

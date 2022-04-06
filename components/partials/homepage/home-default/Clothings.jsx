@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
 import Link from 'next/link';
-import Slider from 'react-slick';
-import Product from '../../../elements/products/Product';
-import { carouselFullwidth } from '../../../../utilities/carousel-helpers';
-import { getColletionBySlug } from '../../../../utilities/product-helper';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getColletionBySlug } from '../../../../utilities/product-helper';
 import CollectionProducts from './modules/CollectionProducts';
 
 class Clothings extends Component {
@@ -63,7 +60,7 @@ class Clothings extends Component {
                     <div className="ps-section__header">
                         <h3>Apparels & Clothings</h3>
                         <ul className="ps-section__links">
-                            {sectionLinks.map(link => (
+                            {sectionLinks.map((link) => (
                                 <li
                                     className={
                                         currentCollection === link.name
@@ -72,7 +69,7 @@ class Clothings extends Component {
                                     }
                                     key={link.name}>
                                     <a
-                                        onClick={e =>
+                                        onClick={(e) =>
                                             this.handleChangeProduct(
                                                 e,
                                                 link.name,
@@ -97,4 +94,4 @@ class Clothings extends Component {
     }
 }
 
-export default connect(state => state.collection)(Clothings);
+export default connect((state) => state.collection)(Clothings);

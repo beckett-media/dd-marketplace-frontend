@@ -30,17 +30,9 @@ const Market3ProductGroup = ({ categorySlug, banners, links, heading }) => {
     }, []);
 
     // Views
-    let productItemsView,
-        recommendView,
-        tab1View,
-        tab2View,
-        tab3View,
-        linksView;
+    let recommendView, tab1View, tab2View, tab3View, linksView;
     if (!loading) {
         if (productItems && productItems.length > 0) {
-            const carouselItems = productItems.map((item) => {
-                return <Product product={item} key={item.id} />;
-            });
             tab1View = productItems.map((item, index) => {
                 if (index < 4) {
                     return (
@@ -80,10 +72,7 @@ const Market3ProductGroup = ({ categorySlug, banners, links, heading }) => {
                     </Link>
                 </li>
             ));
-        } else {
         }
-    } else {
-        productItemsView = <p>Loading...</p>;
     }
 
     return (

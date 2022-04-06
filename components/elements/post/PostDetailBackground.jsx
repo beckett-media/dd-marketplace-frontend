@@ -1,5 +1,4 @@
 import React from 'react';
-import RecommendProducts from './RecommendProducts';
 
 const PostDetailBackground = () => (
     <div className="ps-post--detail ps-post--parallax">

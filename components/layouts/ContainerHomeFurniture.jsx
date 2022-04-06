@@ -1,9 +1,7 @@
-import React from 'react';
 import Head from 'next/head';
-import NavigationList from '~/components/shared/navigation/NavigationList';
+import React from 'react';
 import HeaderFurniture from '~/components/shared/headers/HeaderFurniture';
 import HeaderMobileFurniture from '~/components/shared/headers/HeaderMobileFurniture';
-import FooterSecond from '~/components/shared/footers/FooterSecond';
 
 const ContainerHomeFurniture = ({ children, title = 'Home Furniture' }) => {
     let titleView;

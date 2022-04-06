@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import ProductRepository from '~/repositories/ProductRepository';
-import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
-import BreadCrumb from '~/components/elements/BreadCrumb';
-import ProductWidgets from '~/components/partials/product/ProductWidgets';
+import React, { useEffect, useState } from 'react';
 import ProductDetailAffiliate from '~/components/elements/detail/ProductDetailAffiliate';
-import CustomerBought from '~/components/partials/product/CustomerBought';
-import RelatedProduct from '~/components/partials/product/RelatedProduct';
+import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
 import ContainerPage from '~/components/layouts/ContainerPage';
+import CustomerBought from '~/components/partials/product/CustomerBought';
+import ProductWidgets from '~/components/partials/product/ProductWidgets';
+import RelatedProduct from '~/components/partials/product/RelatedProduct';
+import ProductRepository from '~/repositories/ProductRepository';
 
 const ProductDefaultPage = () => {
     const router = useRouter();
@@ -33,25 +32,11 @@ const ProductDefaultPage = () => {
         getProduct(pid);
     }, [pid]);
 
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Shop',
-            url: '/shop',
-        },
-        {
-            text: product ? product.title : 'Loading...',
-        },
-    ];
     // Views
     let productView;
     if (!loading) {
         if (product) {
             productView = <ProductDetailAffiliate product={product} />;
-        } else {
         }
     } else {
         productView = <SkeletonProductDetail />;
@@ -59,7 +44,6 @@ const ProductDefaultPage = () => {
 
     return (
         <ContainerPage title="Product Afilliate" boxed={true}>
-            <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
             <div className="ps-page--product">
                 <div className="ps-container">
                     <div className="ps-page__container">

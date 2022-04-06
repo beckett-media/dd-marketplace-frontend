@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import AccountMenuSidebar from './modules/AccountMenuSidebar';
-import TableNotifications from './modules/TableNotifications';
 import Link from 'next/link';
+import React, { Component } from 'react';
 import ProductCart from '../../elements/products/ProductCart';
+import AccountMenuSidebar from './modules/AccountMenuSidebar';
 
 class InvoiceDetail extends Component {
     constructor(props) {

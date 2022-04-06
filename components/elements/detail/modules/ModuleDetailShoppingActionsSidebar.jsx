@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { addItem } from '~/store/cart/action';
-import { addItemToCompare } from '~/store/compare/action';
-import { addItemToWishlist } from '~/store/wishlist/action';
 import { useDispatch } from 'react-redux';
 
 const ModuleDetailShoppingActionsSidebar = ({ product }) => {
@@ -13,17 +11,6 @@ const ModuleDetailShoppingActionsSidebar = ({ product }) => {
         let tmp = product;
         tmp.quantity = quantity;
         dispatch(addItem(tmp));
-    };
-
-    const handleAddItemToCompare = (e) => {
-        e.preventDefault();
-        dispatch(addItemToCompare(product));
-    };
-
-    const handleAddItemToWishlist = (e) => {
-        e.preventDefault();
-        const { product } = this.props;
-        dispatch(addItemToWishlist(product));
     };
 
     const handleIncreaseItemQty = (e) => {

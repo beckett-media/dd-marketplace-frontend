@@ -1,21 +1,9 @@
 import React from 'react';
-
-import BreadCrumb from '~/components/elements/BreadCrumb';
-import UserInformation from '~/components/partials/account/UserInformation';
 import ContainerPage from '~/components/layouts/ContainerPage';
+import UserInformation from '~/components/partials/account/UserInformation';
 import AuthHoc from '~/repositories/AuthHoc';
 
 const UserInformationPage = () => {
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'User Information',
-        },
-    ];
-
     return (
         <ContainerPage title="User Information" boxed={true}>
             <div className="profile-cover-image"></div>

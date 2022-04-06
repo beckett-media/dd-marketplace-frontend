@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
 import { Tabs } from 'antd';
 import Link from 'next/link';
+import React from 'react';
 
 const { TabPane } = Tabs;
 const MarketPlace3SearchTrending = () => {

@@ -1,9 +1,7 @@
-import React from 'react';
 import Head from 'next/head';
-import FooterFullwidth from '~/components/shared/footers/FooterFullwidth';
+import React from 'react';
 import HeaderDefault from '~/components/shared/headers/HeaderDefault';
 import HeaderMobile from '~/components/shared/headers/HeaderMobile';
-import NavigationList from '~/components/shared/navigation/NavigationList';
 
 const ContainerHomeDefault = ({ children, title }) => {
     let titleView;

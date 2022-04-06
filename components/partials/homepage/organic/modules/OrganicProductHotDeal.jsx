@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Rate, Progress } from 'antd';
+import { Progress } from 'antd';
 import OrganicThumbnailDealHot from './OrganicThumbnailHotDeal';
 import CountDown from '../../../../elements/CountDown';
 import Rating from '../../../../elements/Rating';
@@ -8,7 +8,7 @@ import Rating from '../../../../elements/Rating';
 const OrganicProductHotDeal = () => (
     <div className="ps-product--detail ps-product--hot-deal">
         <div className="ps-product__header">
-            <OrganicThumbnailDealHot/>
+            <OrganicThumbnailDealHot />
             <div className="ps-product__info">
                 <h5>Investor</h5>
                 <h3 className="ps-product__name">
@@ -19,7 +19,7 @@ const OrganicProductHotDeal = () => (
                         $36.78 <del> $56.99</del>
                     </h4>
                     <div className="ps-product__rating">
-                        <Rating/>
+                        <Rating />
                         <span>(1 review)</span>
                     </div>
                     <div className="ps-product__specification">
@@ -37,7 +37,7 @@ const OrganicProductHotDeal = () => (
                     />
                 </div>
                 <div className="ps-product__processs-bar">
-                    <Progress percent={60} showInfo={false}/>
+                    <Progress percent={60} showInfo={false} />
                     <p>
                         <strong>4/79</strong> Sold
                     </p>

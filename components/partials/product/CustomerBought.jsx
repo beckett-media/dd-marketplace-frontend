@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Slider from 'react-slick';
-import {
-    carouselFullwidth,
-    carouselStandard,
-} from '~/utilities/carousel-helpers';
-import Product from '~/components/elements/products/Product';
 import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
 
-const CustomerBought = ({ collectionSlug, boxed, layout }) => {
-    const [productItems, setProductItems] = useState(null);
+const CustomerBought = ({ collectionSlug, boxed }) => {
     const [loading, setLoading] = useState(true);
 
     async function getProducts() {
         setLoading(true);
-        const responseData = await getProductsByCollectionHelper(collectionSlug);
+        const responseData = await getProductsByCollectionHelper(
+            collectionSlug
+        );
         if (responseData) {
-            setProductItems(responseData.items);
             setTimeout(
                 function () {
                     setLoading(false);
@@ -32,35 +26,9 @@ const CustomerBought = ({ collectionSlug, boxed, layout }) => {
     // Views
     let carouselView;
     if (!loading) {
-        if (productItems) {
-            if ((layout = 'fullwidth')) {
-                carouselView = (
-                    <Slider {...carouselFullwidth} className="ps-carousel outside">
-                        {productItems.map((item, index) => {
-                            if (index < 8) {
-                                return <Product product={item} key={item.id} />;
-                            }
-                        })}
-                    </Slider>
-                );
-            } else {
-                carouselView = (
-                    <Slider {...carouselStandard} className="ps-carousel outside">
-                        {productItems.map((item, index) => {
-                            if (index < 8) {
-                                return <Product product={item} key={item.id} />;
-                            }
-                        })}
-                    </Slider>
-                );
-            }
-        }
-        else {
-            carouselView = <p>No product found.</p>
-        }
-    }
-    else {
-        carouselView = <p>Loading...</p>
+        carouselView = <p>No product found.</p>;
+    } else {
+        carouselView = <p>Loading...</p>;
     }
 
     return (

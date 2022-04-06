@@ -12,8 +12,9 @@ const Page404 = () => {
                             <img src="/static/img/404.jpg" alt="" />
                             <h3>Ohh! Page not found</h3>
                             <p>
-                                It seems we can't find what you're looking for.
-                                Perhaps searching can help or go back to
+                                It seems we can&apos;t find what you&apos;re
+                                looking for. Perhaps searching can help or go
+                                back to
                                 <Link href="/">
                                     <a> Homepage</a>
                                 </Link>

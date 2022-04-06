@@ -1,13 +1,8 @@
+import { CodeSandboxOutlined } from '@ant-design/icons';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { Pagination } from 'antd';
 import Product from '~/components/elements/products/Product';
 import ProductWide from '~/components/elements/products/ProductWide';
-import ProductRepository from '~/repositories/ProductRepository';
-import ModuleShopSortBy from '~/components/partials/shop/modules/ModuleShopSortBy';
-import { useRouter } from 'next/router';
-import { generateTempArray } from '~/utilities/common-helpers';
-import SkeletonProduct from '~/components/elements/skeletons/SkeletonProduct';
-import { CodeSandboxOutlined } from '@ant-design/icons';
 
 const ShopItems = ({
     columns = 4,
@@ -18,37 +13,22 @@ const ShopItems = ({
     const Router = useRouter();
     const { page } = Router.query;
     const { query } = Router;
-    const [listView, setListView] = useState(true);
-    // const [productItems, setProductItems] = useState(null);
-    const [total, setTotal] = useState(0);
-    // const [loading, setLoading] = useState(false);
+    const listView = true;
     const [classes, setClasses] = useState(
         'col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6'
     );
-
-    function handleChangeViewMode(e) {
-        e.preventDefault();
-        setListView(!listView);
-    }
-
-    function handlePagination(page, pageSize) {
-        Router.push(`/shop?page=${page}`);
-    }
 
     function handleSetColumns() {
         switch (columns) {
             case 2:
                 setClasses('col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12');
                 return 3;
-                break;
             case 4:
                 setClasses('col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12');
                 return 4;
-                break;
             case 6:
                 setClasses('col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12');
                 return 6;
-                break;
 
             default:
                 setClasses('col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12');
@@ -92,25 +72,20 @@ const ShopItems = ({
                     </div>
                 );
             } else {
-                productItemsView = productItems.map((item) => (
-                    <ProductWide product={item} />
+                productItemsView = productItems.map((item, index) => (
+                    <ProductWide product={item} key={index} />
                 ));
             }
         } else {
             productItemsView = (
-                <div class="text-center p-5">
+                <div className="text-center p-5">
                     <CodeSandboxOutlined style={{ fontSize: 30 }} />
                     <p>No Products Found</p>
                 </div>
             );
         }
     } else {
-        const skeletonItems = generateTempArray(12).map((item) => (
-            <div className={classes} key={item}>
-                <SkeletonProduct />
-            </div>
-        ));
-        productItemsView = <div className="row">{skeletonItems}</div>;
+        productItemsView = <div className="row"></div>;
     }
 
     return (

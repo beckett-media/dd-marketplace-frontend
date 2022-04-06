@@ -1,7 +1,7 @@
 import React from 'react';
 import ModuleUnStoreButtonClaim from '~/components/elements/detail/modules/ModuleUnStoreButtonClaim';
 
-const ModuleUnStoreDetailDescription = ({storeId}) => {
+const ModuleUnStoreDetailDescription = ({ storeId }) => {
     return (
         <div className="ps-product__desc">
             <div className="ps-product__desc" />
@@ -10,7 +10,10 @@ const ModuleUnStoreDetailDescription = ({storeId}) => {
             <ul className="ps-list--dot">
                 <p>
                     Step 1:
-                    <b>Click on "Claim this store" button showing below</b>
+                    <b>
+                        Click on &quot;Claim this store&quot; button showing
+                        below
+                    </b>
                 </p>
                 <p>
                     Step 2:

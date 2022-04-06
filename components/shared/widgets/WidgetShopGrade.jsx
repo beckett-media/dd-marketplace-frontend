@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import ProductRepository from '~/repositories/ProductRepository';
-import Link from 'next/link';
-import { Checkbox } from 'antd';
-import { Radio, Input } from 'antd';
+import { Radio } from 'antd';
 import { useRouter } from 'next/router';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMarketPlaceData } from '~/store/home/selector';
 import { getListingsByGrade } from '~/store/product/action';
@@ -12,8 +9,6 @@ const WidgetShopBrands = () => {
     const Router = useRouter();
     const dispatch = useDispatch();
     const { slug } = Router.query;
-
-    const [loading, setLoading] = useState(false);
 
     const { grades = [] } = useSelector(getMarketPlaceData);
 
@@ -24,22 +19,6 @@ const WidgetShopBrands = () => {
             shallow: true,
         });
         dispatch(getListingsByGrade(value));
-    }
-
-    // Views
-    let brandsView;
-    if (!loading) {
-        if (grades && grades.length > 0) {
-            const items = grades.map((item) => (
-                <li key={item._id}>
-                    <Link href={`shop/${item._id}`}>{item.name}</Link>
-                </li>
-            ));
-            brandsView = <ul className="ps-list--brands">{items}</ul>;
-        } else {
-        }
-    } else {
-        brandsView = <p>Loading...</p>;
     }
 
     const formatedBrands = grades.map((i) => ({
@@ -69,7 +48,7 @@ export const WidgetShopGradesNew = () => {
 
     const dispatch = useDispatch();
 
-    const [loading, setLoading] = useState(false);
+    const loading = false;
 
     const { slug } = Router.query;
 
@@ -112,7 +91,6 @@ export const WidgetShopGradesNew = () => {
             categoriesView = (
                 <ul className="ps-list--categories grades">{items}</ul>
             );
-        } else {
         }
     } else {
         categoriesView = <p>Loading...</p>;

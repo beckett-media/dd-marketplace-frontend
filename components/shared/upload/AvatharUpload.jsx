@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Upload, Spin, Row } from 'antd';
+import { Avatar, Upload, Spin } from 'antd';
 import { useDispatch } from 'react-redux';
 import { updateProfilePhoto } from '~/store/userInfo/action';
 import { baseUrl } from '~/repositories/Repository';

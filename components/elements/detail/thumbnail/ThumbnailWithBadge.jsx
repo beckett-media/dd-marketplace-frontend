@@ -1,17 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
-import Lightbox from 'react-image-lightbox';
-import { baseUrl } from '~/repositories/Repository';
 import NextArrow from '~/components/elements/carousel/NextArrow';
 import PrevArrow from '~/components/elements/carousel/PrevArrow';
+import { baseUrl } from '~/repositories/Repository';
 
 const ThumbnailWithBadge = ({ product, vertical = true }) => {
     const galleryCarousel = useRef(null);
     const variantCarousel = useRef(null);
     const [gallery, setGallery] = useState(null);
     const [variant, setVariant] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
-    const [photoIndex, setPhotoIndex] = useState(0);
     const [productImages, setProductImages] = useState([]);
 
     useEffect(() => {
@@ -71,14 +68,14 @@ const ThumbnailWithBadge = ({ product, vertical = true }) => {
     };
 
     //Views
-    let lightboxView, variantCarouselView, imagesView, galleryImagesView;
+    let variantCarouselView, imagesView, galleryImagesView;
     if (productImages.length > 0) {
         imagesView = productImages.map((item) => (
             <div className="item" key={item}>
                 <img src={item} alt={item} />
             </div>
         ));
-        galleryImagesView = productImages.map((item, index) => (
+        galleryImagesView = productImages.map((item) => (
             <div className="item" key={item}>
                 <a href="#" onClick={(e) => e.preventDefault()}>
                     <img src={item} alt={item} />
@@ -117,32 +114,6 @@ const ThumbnailWithBadge = ({ product, vertical = true }) => {
                 className="ps-product__variants">
                 {imagesView}
             </Slider>
-        );
-    }
-    if (isOpen) {
-        lightboxView = (
-            <Lightbox
-                mainSrc={productImages[photoIndex]}
-                nextSrc={productImages[(photoIndex + 1) % productImages.length]}
-                prevSrc={
-                    productImages[
-                        (photoIndex + productImages.length - 1) %
-                            productImages.length
-                    ]
-                }
-                onCloseRequest={() => {
-                    setIsOpen(false);
-                }}
-                onMovePrevRequest={() => {
-                    setPhotoIndex(
-                        (photoIndex + productImages.length - 1) %
-                            productImages.length
-                    );
-                }}
-                onMoveNextRequest={() => {
-                    setPhotoIndex((photoIndex + 1) % productImages.length);
-                }}
-            />
         );
     }
 
