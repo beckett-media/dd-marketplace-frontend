@@ -85,7 +85,7 @@ const CategoriesBoxClothings = () => (
                     src="/static/img/categories/clothing/7.jpg"
                     alt="martfury"
                 />
-                <p>Kid's Fashion</p>
+                <p>Kid&apos;s Fashion</p>
                 <span>3 Items</span>
             </div>
         </div>

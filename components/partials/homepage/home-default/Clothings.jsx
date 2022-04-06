@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
 import Link from 'next/link';
-import Slider from 'react-slick';
-import Product from '../../../elements/products/Product';
-import { carouselFullwidth } from '../../../../utilities/carousel-helpers';
-import { getColletionBySlug } from '../../../../utilities/product-helper';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getColletionBySlug } from '../../../../utilities/product-helper';
 import CollectionProducts from './modules/CollectionProducts';
 
 class Clothings extends Component {
