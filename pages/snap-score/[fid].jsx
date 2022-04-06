@@ -7,7 +7,7 @@ const facReport = () => {
     const router = useRouter();
     const { fid } = router.query;
     return (
-        <ContainerPage title="Snap Score" boxed={true}>
+        <ContainerPage title="Snap Score" boxed={true} noHeader={true}>
             <FacReport id={fid} />
         </ContainerPage>
     );
