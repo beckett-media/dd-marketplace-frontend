@@ -1,9 +1,9 @@
-import React, { Component, useEffect, useState } from 'react';
 import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
+import ProductSimple from '~/components/elements/products/ProductSimple';
 import { carouselSingle } from '~/utilities/carousel-helpers';
 import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
-import ProductSimple from '~/components/elements/products/ProductSimple';
 
 const MarketGardenAndKitchen = ({ collectionSlug }) => {
     const [productItems, setProductItems] = useState(null);

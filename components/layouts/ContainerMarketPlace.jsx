@@ -1,13 +1,9 @@
-import React from 'react';
 import Head from 'next/head';
-
-import HeaderDefault from '~/components/shared/headers/HeaderDefault';
-import HeaderMobile from '~/components/shared/headers/HeaderMobile';
-import NavigationList from '~/components/shared/navigation/NavigationList';
-import FooterDefault from '~/components/shared/footers/FooterDefault';
+import React from 'react';
 import Newsletters from '~/components/partials/commons/Newletters';
 import MarketPlacePromotionHeader from '~/components/partials/homepage/marketplace/MarketPlacePromotionHeader';
 import HeaderMarketPlace from '~/components/shared/headers/HeaderMarketPlace';
+import HeaderMobile from '~/components/shared/headers/HeaderMobile';
 
 const ContainerMarketPlace = ({ children, title }) => {
     let titleView;

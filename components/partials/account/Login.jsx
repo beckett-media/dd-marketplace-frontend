@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Title from '~/components/elements/Title';
 import { login } from '../../../store/auth/action';
 
 class Login extends Component {
@@ -52,13 +53,7 @@ class Login extends Component {
                         className="ps-form--account"
                         onFinish={this.handleLoginSubmit}>
                         <div className="ps-tab active" id="sign-in">
-                            <div
-                                className="ps-form__content"
-                                style={{
-                                    height: this.props.height
-                                        ? this.props.height
-                                        : '100vh',
-                                }}>
+                            <div className="ps-form__content">
                                 <a href="/">
                                     <img
                                         style={{ maxWidth: 120 }}
@@ -66,18 +61,14 @@ class Login extends Component {
                                         className="mb-5"
                                     />
                                 </a>
-                                {/* <Title
+                                <Title
                                     title="WELCOME BACK"
                                     subtitle={
                                         this.props.subtitle
                                             ? this.props.subtitle
                                             : 'Login to your Due Dilly account'
                                     }
-                                /> */}
-                                <h2 style={{ fontWeight: 'lighter' }}>
-                                    WELCOME BACK
-                                </h2>
-                                <p>Login to your Due Dilly account</p>
+                                />
                                 <div style={{ paddingTop: 30 }}>
                                     <div className="form-group dark ">
                                         <Form.Item

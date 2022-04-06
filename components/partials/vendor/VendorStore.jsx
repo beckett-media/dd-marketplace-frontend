@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { relatedProduct } from '../../../public/static/data/product';
-import Product from '../../elements/products/Product';
-import VendorProducts from './modules/VendorProducts';
-import NextArrow from '../../elements/carousel/NextArrow';
-import PrevArrow from '../../elements/carousel/PrevArrow';
-import Rating from '../../elements/Rating';
 import { carouselStandard } from '../../../utilities/carousel-helpers';
 import ProductOffline from '../../elements/products/ProductOffline';
+import Rating from '../../elements/Rating';
+import VendorProducts from './modules/VendorProducts';
 
 class VendorStore extends Component {
     render() {

@@ -5,7 +5,7 @@ import MediaRepository from '~/repositories/MediaRepository';
 import { getItemBySlug } from '~/utilities/product-helper';
 import Promotion from '~/components/elements/media/Promotion';
 
-const HomeAds = (props) => {
+const HomeAds = () => {
     const [promotion1, setPromotion1] = useState(null);
     const [promotion2, setPromotion2] = useState(null);
 

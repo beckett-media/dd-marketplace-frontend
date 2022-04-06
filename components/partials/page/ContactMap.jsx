@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 
 const ContactMap = () => (
     <div className="ps-contact-map">

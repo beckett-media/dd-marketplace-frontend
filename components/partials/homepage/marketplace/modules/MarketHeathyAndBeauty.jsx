@@ -1,13 +1,9 @@
-import React, { Component, useEffect, useState } from 'react';
 import Link from 'next/link';
-
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { carouselSingle } from '~/utilities/carousel-helpers';
-import {
-    getProductsByCategoriesHelper,
-    getProductsByCollectionHelper,
-} from '~/utilities/strapi-fetch-data-helpers';
 import ProductSimple from '~/components/elements/products/ProductSimple';
+import { carouselSingle } from '~/utilities/carousel-helpers';
+import { getProductsByCategoriesHelper } from '~/utilities/strapi-fetch-data-helpers';
 
 const MarketHeathyAndBeauty = ({ collectionSlug }) => {
     const [productItems, setProductItems] = useState(null);
@@ -20,6 +16,7 @@ const MarketHeathyAndBeauty = ({ collectionSlug }) => {
         );
         if (responseData) {
             setProductItems(responseData.items);
+
             setTimeout(
                 function () {
                     setLoading(false);

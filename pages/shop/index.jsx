@@ -1,41 +1,24 @@
-import React from 'react';
-import ContainerShop from '~/components/layouts/ContainerShop';
-import BreadCrumb from '~/components/elements/BreadCrumb';
-import ShopItems from '~/components/partials/shop/ShopItems';
-import ProductGroupByCarousel from '~/components/partials/product/ProductGroupByCarousel';
-import ShopCategories from '~/components/partials/shop/ShopCategories';
-import ShopBrands from '~/components/partials/shop/ShopBrands';
-import ShopBanner from '~/components/partials/shop/ShopBanner';
-import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
-import WidgetShopGrade, {
-    WidgetShopGradesNew,
-} from '~/components/shared/widgets/WidgetShopGrade';
-import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
-import { useDispatch, useSelector } from 'react-redux';
-import { getListings, getListingsLoading } from '~/store/product/selectors';
 import { Row, Select } from 'antd';
+import Router from 'next/router';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Title from '~/components/elements/Title';
+import ContainerShop from '~/components/layouts/ContainerShop';
+import WidgetUserWelcome from '~/components/partials/account/WidgetUserWelcome';
+import ShopBanner from '~/components/partials/shop/ShopBanner';
+import ShopItems from '~/components/partials/shop/ShopItems';
+import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
+import { WidgetShopGradesNew } from '~/components/shared/widgets/WidgetShopGrade';
 import { getMarketPlaceData } from '~/store/home/selector';
 import {
     getListingsByGrade,
     getListingsByProducts,
 } from '~/store/product/action';
-import Router from 'next/router';
-import Title from '~/components/elements/Title';
-import WidgetUserWelcome from '~/components/partials/account/WidgetUserWelcome';
+import { getListings, getListingsLoading } from '~/store/product/selectors';
 
 const ShopDefaultPage = () => {
     const productItems = useSelector(getListings);
     const loading = useSelector(getListingsLoading);
-
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Shop',
-        },
-    ];
 
     return (
         <ContainerShop title="Shop">
@@ -55,16 +38,13 @@ const ShopDefaultPage = () => {
                             <WidgetUserWelcome />
                             <WidgetShopCategories />
                             <WidgetShopGradesNew />
-                            {/* <WidgetShopFilterByPriceRange /> */}
                         </div>
 
                         <div className="ps-layout__right">
-                            {/* <Title
+                            <Title
                                 title="Marketplace"
                                 subtitle="Due Dilly Marketplace"
-                            /> */}
-                            <h2>MARKETPLACE</h2>
-                            <p>Due Dilly Marketplace</p>
+                            />
 
                             <MobileFilter />
 

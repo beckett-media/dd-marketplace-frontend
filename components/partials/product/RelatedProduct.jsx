@@ -1,14 +1,12 @@
-import React, { Component, useEffect, useState } from 'react';
-import Slider from 'react-slick';
-
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
-import Product from '~/components/elements/products/Product';
-import { carouselStandard } from '~/utilities/carousel-helpers';
+import Slider from 'react-slick';
 import NextArrow from '~/components/elements/carousel/NextArrow';
 import PrevArrow from '~/components/elements/carousel/PrevArrow';
+import Product from '~/components/elements/products/Product';
+import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
 
-const RelatedProduct = ({ collectionSlug, boxed, layout }) => {
+const RelatedProduct = ({ collectionSlug, boxed }) => {
     const [productItems, setProductItems] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -105,31 +103,15 @@ const RelatedProduct = ({ collectionSlug, boxed, layout }) => {
     let carouselView;
     if (!loading) {
         if (productItems) {
-            if ((layout = 'fullwidth')) {
-                carouselView = (
-                    <Slider
-                        {...carouselFullwidth}
-                        className="ps-carousel outside">
-                        {productItems.map((item, index) => {
-                            if (index < 8) {
-                                return <Product product={item} key={item.id} />;
-                            }
-                        })}
-                    </Slider>
-                );
-            } else {
-                carouselView = (
-                    <Slider
-                        {...carouselStandard}
-                        className="ps-carousel outside">
-                        {productItems.map((item, index) => {
-                            if (index < 8) {
-                                return <Product product={item} key={item.id} />;
-                            }
-                        })}
-                    </Slider>
-                );
-            }
+            carouselView = (
+                <Slider {...carouselFullwidth} className="ps-carousel outside">
+                    {productItems.map((item, index) => {
+                        if (index < 8) {
+                            return <Product product={item} key={item.id} />;
+                        }
+                    })}
+                </Slider>
+            );
         } else {
             carouselView = <p>No product found.</p>;
         }

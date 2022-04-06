@@ -48,12 +48,6 @@ const BlogItemsGridView = ({ collectionSlug, columns }) => {
                         <PostGrid post={item} />
                     </div>
                 );
-            } else if (columns === 4) {
-                return (
-                    <div className="col-lg-3 col-md-4 col-sm-6" key={item.id}>
-                        <PostGrid post={item} />
-                    </div>
-                );
             } else {
                 return (
                     <div className="col-md-6" key={item.id}>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'next/link';
-import { getCart, removeItem } from '~/store/cart/action';
+import { getCart } from '~/store/cart/action';
 import ProductOnCart from '~/components/elements/products/ProductOnCart';
 
 class MiniCart extends Component {

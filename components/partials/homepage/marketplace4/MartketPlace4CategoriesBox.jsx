@@ -8,11 +8,7 @@ class MartketPlace4CategoriesBox extends Component {
     render() {
         return (
             <div className="ps-categories-box">
-                <div className="container">
-                    <CategoriesBoxConsumerElectronics />
-                    <CategoriesBoxClothings />
-                    <CategoriesBoxGardenAndKitchen />
-                </div>
+                <div className="container"></div>
             </div>
         );
     }

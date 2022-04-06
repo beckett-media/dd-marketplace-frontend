@@ -1,5 +1,6 @@
+import React from 'react';
 import Head from 'next/head';
-import { Modal, Button, Row, Col, Typography, Spin, Divider } from 'antd';
+import { Modal, Button, Row, Col, Typography, Spin } from 'antd';
 import { useEffect, useState } from 'react';
 import { getUserStripeId } from '~/store/auth/selectors';
 import { useSelector } from 'react-redux';

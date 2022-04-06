@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
 import { Modal } from 'antd';
-import { addItem } from '~/store/cart/action';
-import { addItemToCompare } from '~/store/compare/action';
-import { addItemToWishlist } from '~/store/wishlist/action';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ProductDetailQuickView from '~/components/elements/detail/ProductDetailQuickView';
+import { addItem } from '~/store/cart/action';
 
 const ModuleProductActions = ({ product }) => {
     const dispatch = useDispatch();
@@ -13,15 +11,6 @@ const ModuleProductActions = ({ product }) => {
     const handleAddItemToCart = (e) => {
         e.preventDefault();
         dispatch(addItem(product));
-    };
-
-    const handleAddItemToCompare = (e) => {
-        e.preventDefault();
-        dispatch(addItemToCompare(product));
-    };
-
-    const handleAddItemToWishlist = (e) => {
-        dispatch(addItemToWishlist(product));
     };
 
     const handleShowQuickView = (e) => {

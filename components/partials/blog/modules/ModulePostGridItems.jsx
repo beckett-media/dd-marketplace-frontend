@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import PostRepository from '~/repositories/PostRepository';
 import PostGrid from '~/components/elements/post/PostGrid';
 import CustomPagination from '~/components/elements/common/CustomPagination';
@@ -44,12 +43,6 @@ const ModulePostGridItems = ({ collectionSlug, columns }) => {
             if (columns === 4) {
                 return (
                     <div className=" col-md-4 col-sm-6" key={item.id}>
-                        <PostGrid post={item} />
-                    </div>
-                );
-            } else if (columns === 4) {
-                return (
-                    <div className="col-lg-3 col-md-4 col-sm-6" key={item.id}>
                         <PostGrid post={item} />
                     </div>
                 );

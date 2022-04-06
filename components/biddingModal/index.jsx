@@ -1,14 +1,10 @@
-import React, { useState, Component } from 'react';
-
-import { Modal } from 'antd';
-import { Form, Input, notification, Row, Spin, Col } from 'antd';
-import Title from '../elements/Title';
+import { Form, Input, Modal } from 'antd';
+import React, { useState } from 'react';
 import { baseUrl } from '~/repositories/Repository';
-import Image from 'next/image';
 
 const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
     const [visible, setVisible] = useState(false);
-    const [confirmLoading, setConfirmLoading] = useState(false);
+    const confirmLoading = false;
     const ref = React.createRef();
 
     const handleCancel = () => {
@@ -42,19 +38,7 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
                                         height: 'auto',
                                     }}>
                                     <h2 style={{ color: '#fff' }}>PLACE BID</h2>
-                                    {/* <a href="/">
-                                        <img
-                                            style={{ maxWidth: 120 }}
-                                            src={'/static/img/logo-dark.png'}
-                                            className="mb-5"
-                                        />
-                                    </a> */}
-                                    {/* <Title
-                                        title="Bidding Mela"
-                                        subtitle={
-                                            'Place Your Bid And Try Your LUCK!!'
-                                        }
-                                    /> */}
+
                                     <div
                                         style={{
                                             backgroundColor: '#121634',

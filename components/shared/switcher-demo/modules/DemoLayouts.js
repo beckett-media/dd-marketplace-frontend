@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import DemoItem from '~/components/elements/DemoItem';
 
 const DemoLayouts = () => {
@@ -59,7 +58,7 @@ const DemoLayouts = () => {
     return (
         <div className="ps-section__items">
             <div className="row">
-                {pages.map(item => (
+                {pages.map((item) => (
                     <div className="col-xl-2 col-lg-3" key={item.text}>
                         <DemoItem data={item} />
                     </div>

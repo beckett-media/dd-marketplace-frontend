@@ -32,8 +32,8 @@ const WidgetBlogRecentPosts = () => {
     let postsView;
     if (!loading) {
         if (posts && posts.length > 0) {
-            postsView = posts.map((item) => (
-                <Link href="/post/[pid]" as={`/post/${item.id}`}>
+            postsView = posts.map((item, index) => (
+                <Link key={index} href="/post/[pid]" as={`/post/${item.id}`}>
                     <a>{item.title}</a>
                 </Link>
             ));

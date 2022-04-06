@@ -1,10 +1,7 @@
-import React from 'react';
 import Head from 'next/head';
-import HeaderMobile from '~/components/shared/headers/HeaderMobile';
-import NavigationList from '~/components/shared/navigation/NavigationList';
-import Newsletters from '~/components/partials/commons/Newletters';
+import React from 'react';
 import HeaderMarketPlace2 from '~/components/shared/headers/HeaderMarketPlace2';
-import FooterMarketPlace2 from '~/components/shared/footers/FooterMarketPlace2';
+import HeaderMobile from '~/components/shared/headers/HeaderMobile';
 
 const ContainerMarketPlace2 = ({ children, title }) => {
     let titleView;

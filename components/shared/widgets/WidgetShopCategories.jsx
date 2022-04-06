@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import ProductRepository from '~/repositories/ProductRepository';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMarketPlaceData } from '~/store/home/selector';
 import { getListingsByProducts } from '~/store/product/action';
 
@@ -10,8 +8,7 @@ const WidgetShopCategories = () => {
     const Router = useRouter();
 
     const dispatch = useDispatch();
-    const [categories, setCategories] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const loading = false;
 
     const { slug } = Router.query;
 
@@ -60,7 +57,6 @@ const WidgetShopCategories = () => {
                 </li>
             ));
             categoriesView = <ul className="ps-list--categories">{items}</ul>;
-        } else {
         }
     } else {
         categoriesView = <p>Loading...</p>;

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import Product from '~/components/elements/products/Product';
 import { getProductsByCollectionHelper } from '~/utilities/strapi-fetch-data-helpers';
-import ProductHorizontal from '~/components/elements/products/ProductHorizontal';
 
 const ShopCarouselTopDeal = ({ collectionSlug }) => {
     const [productItems, setProductItems] = useState(null);
@@ -11,15 +9,15 @@ const ShopCarouselTopDeal = ({ collectionSlug }) => {
     async function getProducts() {
         setLoading(true);
         const responseData = await getProductsByCollectionHelper(
-            collectionSlug,
+            collectionSlug
         );
         if (responseData) {
             setProductItems(responseData.items);
             setTimeout(
-                function() {
+                function () {
                     setLoading(false);
                 }.bind(this),
-                250,
+                250
             );
         }
     }
@@ -51,9 +49,7 @@ const ShopCarouselTopDeal = ({ collectionSlug }) => {
                 <h3>Top Deals Super Hot Today</h3>
             </div>
             <div className="ps-section__content">
-                <div className="row">
-                    {productItemView}
-                </div>
+                <div className="row">{productItemView}</div>
             </div>
         </div>
     );

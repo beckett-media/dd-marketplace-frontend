@@ -4,7 +4,7 @@ import Login from '~/components/partials/account/Login';
 
 const LoginModal = (props) => {
     const [visible, setVisible] = useState(false);
-    const [confirmLoading, setConfirmLoading] = useState(false);
+    const confirmLoading = false;
 
     const handleCancel = () => {
         console.log('Clicked cancel button');
@@ -22,7 +22,6 @@ const LoginModal = (props) => {
                 footer={null}
                 width={500}
                 closable={false}
-                bodyStyle={{ height: 650 }}
                 // cancelButtonProps={{ disabled: true }}
             >
                 <div>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
-import Slider from 'react-slick';
 import { connect } from 'react-redux';
+import Slider from 'react-slick';
+import Product from '../../../components/elements/products/Product';
 import { carouselStandard } from '../../../utilities/carousel-helpers';
 
-import Product from '../../../components/elements/products/Product';
 class CategoriesRecommendItems extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +14,7 @@ class CategoriesRecommendItems extends Component {
         const { collections } = this.props;
         if (collections.length > 0) {
             products = collections.find(
-                collection => collection.slug === 'shop-recommend-items'
+                (collection) => collection.slug === 'shop-recommend-items'
             ).products;
         }
         return (
@@ -27,7 +26,7 @@ class CategoriesRecommendItems extends Component {
                     <Slider {...carouselStandard} className="ps-carousel">
                         {products &&
                             products.length > 0 &&
-                            products.map(product => (
+                            products.map((product) => (
                                 <Product product={product} key={product.id} />
                             ))}
                     </Slider>
@@ -37,4 +36,4 @@ class CategoriesRecommendItems extends Component {
     }
 }
 
-export default connect(state => state.collection)(CategoriesRecommendItems);
+export default connect((state) => state.collection)(CategoriesRecommendItems);

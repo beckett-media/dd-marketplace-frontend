@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import ContainerPage from '~/components/layouts/ContainerPage';
 import BreadCrumb from '~/components/elements/BreadCrumb';
-import ProductRepository from '~/repositories/ProductRepository.js';
 import Product from '~/components/elements/products/Product';
+import ContainerPage from '~/components/layouts/ContainerPage';
 import ProductGroupGridItems from '~/components/partials/product/ProductGroupGridItems';
+import ProductRepository from '~/repositories/ProductRepository.js';
 
 const SearchPage = ({ query }) => {
     const [pageSize] = useState(100);
@@ -104,7 +104,8 @@ const SearchPage = ({ query }) => {
                     <div className="container">
                         <div className="ps-shop__header">
                             <h1>
-                                Search result for: "<strong>{keyword}</strong>"
+                                Search result for: &quot;
+                                <strong>{keyword}</strong>&quot;
                             </h1>
                         </div>
                         <div className="ps-shop__content">

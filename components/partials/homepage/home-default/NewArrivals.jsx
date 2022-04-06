@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import ProductHorizontal from '~/components/elements/products/ProductHorizontal';
 import Title from '~/components/elements/Title';
@@ -34,7 +34,7 @@ const getComponentToRender = (id, item) => {
     }
 };
 
-const NewArrivals = ({ collectionSlug, id, list, loading }) => {
+const NewArrivals = ({ id, list, loading }) => {
     let productItemView;
     if (!loading) {
         if (list && list.length > 0) {
@@ -55,9 +55,8 @@ const NewArrivals = ({ collectionSlug, id, list, loading }) => {
         <div className="ps-product-list ps-new-arrivals">
             <div className="ps-container">
                 <div className="ps-section__header">
-                    {/* <Title title={titles[id]} />
-                     */}
-                    <h3 style={{ color: '#FFFFFF' }}>{titles[id]}</h3>
+                    <Title title={titles[id]} />
+
                     <ul className="ps-section__links">
                         <li style={{ color: '#FFFFFF' }}>
                             <Link href={titlesUrls[id]}>

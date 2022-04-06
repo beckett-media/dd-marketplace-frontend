@@ -1,10 +1,9 @@
-import React from 'react';
 import Head from 'next/head';
-import NavigationList from '~/components/shared/navigation/NavigationList';
-
-import HeaderOrganic from '~/components/shared/headers/HeaderOrganic';
-import HeaderMobileOrganic from '~/components/shared/headers/HeaderMobileOrganic';
+import React from 'react';
 import FooterSecond from '~/components/shared/footers/FooterSecond';
+import HeaderMobileOrganic from '~/components/shared/headers/HeaderMobileOrganic';
+import HeaderOrganic from '~/components/shared/headers/HeaderOrganic';
+
 
 const ContainerHomeOrganic = ({ children, title = 'Home Organic' }) => {
     let titleView;

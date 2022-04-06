@@ -1,22 +1,10 @@
 import React from 'react';
-import { StrapiProductPrice } from '~/utilities/product-helper';
 import { useDispatch } from 'react-redux';
-import { addItemToCompare } from '~/store/compare/action';
-import { addItemToWishlist } from '~/store/wishlist/action';
 import { addItem } from '~/store/cart/action';
+import { StrapiProductPrice } from '~/utilities/product-helper';
 
 const ModuleProductWideActions = ({ product, unClaimed }) => {
     const dispatch = useDispatch();
-
-    const handleAddItemToCompare = (e) => {
-        e.preventDefault();
-        dispatch(addItemToCompare(product));
-    };
-
-    const handleAddItemToWishlist = (e) => {
-        e.preventDefault();
-        dispatch(addItemToWishlist(product));
-    };
 
     const handleAddItemToCart = (e) => {
         e.preventDefault();

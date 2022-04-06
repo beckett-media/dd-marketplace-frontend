@@ -19,7 +19,8 @@ const ProductDetailAffiliate = ({ product }) => {
                         <a
                             className="ps-btn"
                             href="https://www.amazon.com/Premium-Military-Sunglasses-Polarized-protection/dp/B01GVRZ1BS/"
-                            target="_blank">
+                            target="_blank"
+                            rel="noreferrer">
                             Purchase on Amazon
                         </a>
                         <div className="ps-product__actions">

@@ -11,11 +11,16 @@
     },
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "jsx": true,
+            "modules": true
         },
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": ["react"],
-    "rules": {}
+    "rules": {
+        "react/prop-types": "off",
+        "no-extra-boolean-cast": 0,
+        "no-empty": 0
+    }
 }

@@ -14,7 +14,7 @@ const ProductItems = ({ products, columns = 4 }) => {
     const [listView, setListView] = useState(true);
     const [productItems, setProductItems] = useState(null);
     const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(false);
+    const loading = false;
     const [classes, setClasses] = useState(
         'col-xl-4 col-lg-4 col-md-3 col-sm-6 col-6'
     );
@@ -29,15 +29,12 @@ const ProductItems = ({ products, columns = 4 }) => {
             case 2:
                 setClasses('col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6');
                 return 3;
-                break;
             case 4:
                 setClasses('col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6');
                 return 4;
-                break;
             case 6:
                 setClasses('col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6');
                 return 6;
-                break;
 
             default:
                 setClasses('col-xl-4 col-lg-4 col-md-3 col-sm-6 col-6');
@@ -66,8 +63,8 @@ const ProductItems = ({ products, columns = 4 }) => {
                     </div>
                 );
             } else {
-                productItemsView = productItems.map((item) => (
-                    <ProductWide product={item} />
+                productItemsView = productItems.map((item, index) => (
+                    <ProductWide product={item} key={index} />
                 ));
             }
         } else {

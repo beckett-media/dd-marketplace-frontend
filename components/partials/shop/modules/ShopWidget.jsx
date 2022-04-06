@@ -1,20 +1,16 @@
-import React, { Component } from 'react';
 import Router from 'next/router';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Slider, Checkbox } from 'antd';
-
 import {
-    getProducts,
-    getTotalProducts,
-    getProductsByPrice,
     getBrands,
-    getProductsByBrand,
     getProductCategories,
+    getProducts,
+    getProductsByBrand,
     getProductsByCategory,
+    getProductsByPrice,
+    getTotalProducts,
 } from '../../../../store/product/action';
-import WidgetShopCategories from '~/components/shared/widgets/WidgetShopCategories';
-import WidgetShopBrands from '~/components/shared/widgets/WidgetShopGrade';
-import WidgetShopFilterByPriceRange from '~/components/shared/widgets/WidgetShopFilterByPriceRange';
+
 class ShopWidget extends Component {
     constructor(props) {
         super(props);
@@ -73,7 +69,7 @@ class ShopWidget extends Component {
     }
 
     render() {
-        const { brands, categories } = this.props;
+        const { brands } = this.props;
         const brandsGroup = [];
         if (brands.length > 0) {
             brands.forEach((brand) => {

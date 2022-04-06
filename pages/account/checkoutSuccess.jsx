@@ -1,5 +1,5 @@
+import { Result, Row } from 'antd';
 import React from 'react';
-import { Result, Button, Row } from 'antd';
 import ContainerPage from '~/components/layouts/ContainerPage';
 
 const CheckoutSuccess = () => {

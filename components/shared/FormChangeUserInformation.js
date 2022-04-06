@@ -1,8 +1,7 @@
+import { Button, Form, Input } from 'antd';
 import React from 'react';
-import { Input, Form, Row, Button } from 'antd';
-import AvatarUpload from './upload/AvatharUpload';
-import { updateUserName } from '~/store/userInfo/action';
 import { useDispatch } from 'react-redux';
+import { updateUserName } from '~/store/userInfo/action';
 
 const FormChangeUserInformation = (props) => {
     const dispatch = useDispatch();
@@ -77,7 +76,7 @@ const FormChangeUserInformation = (props) => {
                                         onClick={onUserNameSave}
                                         type="primary"
                                         icon={
-                                            <i class="fa fa-check"></i>
+                                            <i className="fa fa-check"></i>
                                         }></Button>
                                 </div>
                             </Form.Item>

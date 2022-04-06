@@ -1,25 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import ContainerShop from '~/components/layouts/ContainerShop';
-import { getCollections } from '~/store/collection/action';
-import BreadCrumb from '~/components/elements/BreadCrumb';
+import ProductGroupByCarousel from '~/components/partials/product/ProductGroupByCarousel';
 import ShopCarouselBanner from '~/components/partials/shop/ShopCarouselBanner';
 import ShopCarouselTopDeal from '~/components/partials/shop/ShopCarouselTopDeal';
-import ProductGroupByCarousel from '~/components/partials/product/ProductGroupByCarousel';
 
 const ShopCategoriesPage = () => {
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Shop Carousel',
-        },
-    ];
     return (
         <ContainerShop title="Shop Carousel" boxed={true}>
-            <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
             <div className="ps-page--shop" id="shop-carousel">
                 <div className="container">
                     <ShopCarouselBanner />

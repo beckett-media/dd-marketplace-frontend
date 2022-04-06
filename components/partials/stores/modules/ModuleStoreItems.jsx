@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Product from '~/components/elements/products/Product';
 import ProductWide from '~/components/elements/products/ProductWide';
-import ProductRepository from '~/repositories/ProductRepository';
-import ModuleShopSortBy from '~/components/partials/shop/modules/ModuleShopSortBy';
-import { useRouter } from 'next/router';
-import { generateTempArray } from '~/utilities/common-helpers';
 import SkeletonProduct from '~/components/elements/skeletons/SkeletonProduct';
-import StoreRepository from '~/repositories/StoreRepository';
+import { generateTempArray } from '~/utilities/common-helpers';
 
-const ModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
-    const Router = useRouter();
-    const { slug } = Router.query;
+const ModuleStoreItems = ({ products, columns = 4 }) => {
     const [listView, setListView] = useState(true);
     const [productItems, setProductItems] = useState(null);
     const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(false);
+    const loading = false;
     const [classes, setClasses] = useState(
         'col-xl-4 col-lg-4 col-md-3 col-sm-6 col-6'
     );
@@ -29,15 +23,12 @@ const ModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
             case 2:
                 setClasses('col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6');
                 return 3;
-                break;
             case 4:
                 setClasses('col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6');
                 return 4;
-                break;
             case 6:
                 setClasses('col-xl-2 col-lg-4 col-md-6 col-sm-6 col-6');
                 return 6;
-                break;
 
             default:
                 setClasses('col-xl-4 col-lg-4 col-md-3 col-sm-6 col-6');
@@ -68,8 +59,8 @@ const ModuleStoreItems = ({ products, columns = 4, pageSize = 12 }) => {
                     </div>
                 );
             } else {
-                productItemsView = productItems.map((item) => (
-                    <ProductWide product={item} />
+                productItemsView = productItems.map((item, index) => (
+                    <ProductWide product={item} key={index} />
                 ));
             }
         } else {
