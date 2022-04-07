@@ -32,7 +32,9 @@ const ProductSearchResult = ({ product }) => {
                             <span>Players</span>
                             <p>
                                 <strong className="text-secondary">
-                                    <p>{product.playerNames.join(',')}</p>
+                                    <p className="text-secondary">
+                                        {product.playerNames.join(',')}
+                                    </p>
                                 </strong>
                             </p>
                         </div>
