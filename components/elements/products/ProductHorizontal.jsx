@@ -5,7 +5,6 @@ import {
     StrapiProductThumbnail,
 } from '~/utilities/product-helper';
 import { useSelector } from 'react-redux';
-import {  basedomain } from '~/repositories/Repository';
 
 const ProductHorizontal = ({ product }) => {
     let grade = useSelector(({ home }) =>

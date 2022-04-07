@@ -20,7 +20,12 @@ const StoreDefault = ({ source }) => {
                     </h4>
 
                     <div className="ps-block__rating mb-4"></div>
-                    <p>{capitalizeFirstLetter(source.desc)}</p>
+                    <p
+                        style={{
+                            color: '#000',
+                        }}>
+                        {capitalizeFirstLetter(source.desc)}
+                    </p>
                     {source.phone && (
                         <p>
                             <i className="icon-telephone"></i> {source.phone}
