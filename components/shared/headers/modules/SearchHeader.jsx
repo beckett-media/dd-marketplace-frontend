@@ -28,7 +28,7 @@ const SearchHeader = () => {
     const [isSearch, setIsSearch] = useState(false);
     const [keyword, setKeyword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [resultItems, setResultItems] = useState(null);
+    const [resultItems, setResultItems] = useState([]);
     const debouncedSearchTerm = useDebounce(keyword, 300);
 
     function handleClearKeyword() {
@@ -77,7 +77,7 @@ const SearchHeader = () => {
         loadingView,
         loadMoreView;
     if (!loading) {
-        if (resultItems && resultItems.length > 0) {
+        if (resultItems.length > 0) {
             if (resultItems.length > 5) {
                 loadMoreView = (
                     <div className="ps-panel__footer text-center">
