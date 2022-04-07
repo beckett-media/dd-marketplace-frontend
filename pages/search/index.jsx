@@ -80,14 +80,13 @@ const SearchPage = ({ query }) => {
                 );
                 statusView = (
                     <p>
-                        <strong style={{ color: '#000' }}>
-                            {productItems.length}
-                        </strong>{' '}
-                        record(s) found.
+                        <strong>{productItems.length}</strong> record(s) found.
                     </p>
                 );
             } else {
-                shopItemsView = <p>No product(s) found.</p>;
+                shopItemsView = (
+                    <p style={{ color: '#fff' }}>No product(s) found.</p>
+                );
             }
         } else {
             shopItemsView = <p>No product(s) found.</p>;
@@ -101,13 +100,12 @@ const SearchPage = ({ query }) => {
             <div className="ps-page">
                 <BreadCrumb breacrumb={breadcrumb} />
             </div>
-            <div className="container">
+            <div>
                 <div className="ps-shop ps-shop--search">
                     <div className="container">
                         <div className="ps-shop__header">
                             <h1>
-                                Search result for: &quot;
-                                <strong>{keyword}</strong>&quot;
+                                Search result for: <strong>{keyword}</strong>
                             </h1>
                         </div>
                         <div className="ps-shop__content">
