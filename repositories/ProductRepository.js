@@ -19,7 +19,7 @@ class ProductRepository {
 
     async searchListingElastic(params) {
         const reponse = await Repository.get(
-            `${baseUrl}/listing/search/elastic?search=${params.title_contains}`
+            `${baseUrl}/listing/search/elastic?search=${params.title_contains}&limit=${params._limit}`
         )
             .then((response) => {
                 return response.data;

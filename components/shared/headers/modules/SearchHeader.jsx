@@ -45,7 +45,7 @@ const SearchHeader = () => {
                     ProductRepository.searchListingElastic(queries);
                 products.then((result) => {
                     setLoading(false);
-                    setResultItems(result?.data?.listings?.hits.hits);
+                    setResultItems(result?.data?.listings);
                     setIsSearch(true);
                 });
             } else {

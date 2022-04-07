@@ -6,7 +6,7 @@ import ProductGroupGridItems from '~/components/partials/product/ProductGroupGri
 import ProductRepository from '~/repositories/ProductRepository.js';
 
 const SearchPage = ({ query }) => {
-    const [pageSize] = useState(100);
+    const [pageSize] = useState(50);
     const [keyword, setKeyword] = useState('');
     const [loading, setLoading] = useState(true);
     const [productItems, setProductItems] = useState(null);
@@ -30,8 +30,8 @@ const SearchPage = ({ query }) => {
             queries
         );
         if (SPProducts) {
-            if (SPProducts.data?.listings?.hits?.hits?.length > 0) {
-                setProductItems(SPProducts?.data?.listings?.hits.hits);
+            if (SPProducts.data?.listings.length > 0) {
+                setProductItems(SPProducts?.data?.listings);
             } else {
                 setProductItems(null);
             }
