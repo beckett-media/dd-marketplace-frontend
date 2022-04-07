@@ -1,11 +1,11 @@
 import * as React from "react"
 // import Chart from ""
 import loadable from "@loadable/component"
-// import Instagram from "../../../images/svgs/Instagram.svg"
-// import Facebook from "../../../images/svgs/Facebook.svg"
-// import Youtube from "../../../images/svgs/Youtube.svg"
-// import Twitter from "../../../images/svgs/Twitter.svg"
-// import VerifiedBadge from "../../../images/verified-badge.png"
+import Instagram from "../../../public/static/img/facreport/svgs/Instagram.svg"
+import Facebook from "../../../public/static/img/facreport/svgs/Facebook.svg"
+import Youtube from "../../../public/static/img/facreport/svgs/Youtube.svg"
+import Twitter from "../../../public/static/img/facreport/svgs/Twitter.svg"
+import VerifiedBadge from "../../../public/static/img/facreport/svgs/verifiedbBadge.jpg"
 
 import { CONFIG } from "../Config"
 // import Loader from "../../Loader"
@@ -146,27 +146,27 @@ const InfoSection = ({ priceData, user, loading }) => {
                 <div className="px-2 m-1">
                   <p className="text-white m-0 h4 font-weight-bold">
                     {user?.fullName}{" "}
-                    {/* <img align="middle" width="30px" src={VerifiedBadge}></img> */}
+                    <img align="middle" width="30px" src={VerifiedBadge}></img>
                   </p>
                   {user?.username && (
                     <p className="text-white m-0 font-weight-bold">
                       @{user.username}
                     </p>
                   )}
-                  {/* <div className="d-flex py-2">
+                  <div className="d-flex py-2">
                     <div className="social-media-wrapper">
-                      <Instagram width="24px" height="24px" fill="#fff" />
+                      <img src={Instagram} width="24px" height="24px" fill="#fff" />
                     </div>
                     <div className="social-media-wrapper">
-                      <Facebook width="24px" height="24px" />
+                      <img src={Facebook} width="24px" height="24px" />
                     </div>
                     <div className="social-media-wrapper">
-                      <Youtube width="24px" height="24px" />
+                      <img src={Youtube} width="24px" height="24px" />
                     </div>
                     <div className="social-media-wrapper">
-                      <Twitter width="24px" height="24px" />
+                      <img src={Twitter} width="24px" height="24px" />
                     </div>
-                  </div> */}
+                  </div>
                 </div>
               </div>
               <div className="col-12 align-items-center">
