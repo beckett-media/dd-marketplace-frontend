@@ -25,10 +25,16 @@ const ProductHorizontal = ({ product, unClaimed }) => {
                     </div>
                     <div className="ps-product__content">
                         <>
-                            <span>{product.title}</span>
-                            <p className={'my-3 ps-product__player'}>
-                                {product.playerNames.join(',')}
-                            </p>
+                            <p className={'product_title'}>{product.title}</p>
+                            <div className={'playerName__price'}>
+                                <p className={'my-3 ps-product__player'}>
+                                    {product.playerNames.join(',')}
+                                </p>
+
+                                <div>{StrapiProductPrice(product)}</div>
+                            </div>
+
+                            <hr style={{ backgroundColor: '#fff' }} />
                         </>
                         <div
                             className="ps-product__meta-wrapper"
@@ -41,7 +47,7 @@ const ProductHorizontal = ({ product, unClaimed }) => {
                                     <span>Packaging</span>
                                     <p>
                                         <strong className="text-secondary">
-                                            {packaging?.name}
+                                            {packaging?.name || 'NA'}
                                         </strong>
                                     </p>
                                 </div>
@@ -54,7 +60,6 @@ const ProductHorizontal = ({ product, unClaimed }) => {
                                     </p>
                                 </div>
                             </div>
-                            <div>{StrapiProductPrice(product)}</div>
                         </div>
                     </div>
                 </div>
@@ -68,10 +73,17 @@ const ProductHorizontal = ({ product, unClaimed }) => {
                 </div>
                 <div className="ps-product__content">
                     <>
-                        <span>{product.title}</span>
-                        <p className={'my-3 ps-product__player'}>
-                            {product.playerNames.join(',')}
-                        </p>
+                        <>
+                            <p className={'product_title'}>{product.title}</p>
+                            <div className={'playerName__price'}>
+                                <p className={'my-3 ps-product__player'}>
+                                    {product.playerNames.join(',')}
+                                </p>
+
+                                <div>{StrapiProductPrice(product)}</div>
+                            </div>
+                        </>
+                        <hr style={{ backgroundColor: '#fff' }} />
                     </>
                     <div
                         className="ps-product__meta-wrapper"
@@ -97,7 +109,6 @@ const ProductHorizontal = ({ product, unClaimed }) => {
                                 </p>
                             </div>
                         </div>
-                        <div>{StrapiProductPrice(product)}</div>
                     </div>
                 </div>
             </div>

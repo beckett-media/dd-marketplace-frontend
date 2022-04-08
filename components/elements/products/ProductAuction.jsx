@@ -35,48 +35,28 @@ const ProductAuctionHorizontal = ({ auction }) => {
         }
     }, []);
 
-    const beforeStartRenderer = ({ hours, minutes, seconds, completed }) => {
-        const startDate = moment(bidStart).format(
-            'dddd, MMMM Do YYYY, h:mm:ss a'
+    const beforeStartRenderer = () => {
+        return (
+            <div
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                }}>
+                <h5>Auction pending</h5>
+            </div>
         );
-
-        if (getDifferenceInDays(bidStart) < 1)
-            return (
-                <>
-                    <ClockCircleTwoTone
-                        style={{
-                            marginTop: -15,
-                            marginRight: 5,
-                            fontSize: '15px',
-                        }}
-                    />
-                    <p style={{ color: '#7A8088' }}>
-                        Time left to start : {hours} : {minutes} : {seconds}
-                    </p>
-                </>
-            );
-        else
-            return <p style={{ color: '#7A8088' }}>Starting in: {startDate}</p>;
     };
 
-    const bidEndingRenderer = ({ hours, minutes, seconds, completed }) => {
-        const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
-
+    const bidEndingRenderer = ({ completed }) => {
         if (completed) {
             return (
-                <>
-                    <CheckCircleTwoTone
-                        style={{
-                            marginTop: -15,
-                            marginRight: 5,
-                            fontSize: '15px',
-                        }}
-                        twoToneColor="#52c41a"
-                    />
-                    <p style={{ color: '#7A8088', alignItems: 'center' }}>
-                        This Auction has been closed.
-                    </p>
-                </>
+                <div
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}>
+                    <h5>Auction closed</h5>
+                </div>
             );
         }
         return (
@@ -85,33 +65,8 @@ const ProductAuctionHorizontal = ({ auction }) => {
                     style={{
                         display: 'flex',
                         alignItems: 'center',
-                        flexDirection: 'column',
                     }}>
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            flexDirection: 'row',
-                        }}>
-                        <SyncOutlined
-                            style={{
-                                marginTop: -15,
-                                marginRight: 5,
-                                fontSize: '15px',
-                            }}
-                            spin
-                        />
-                        <p style={{ color: '#7A8088' }}>Ending In:</p>
-                    </div>
-                    <p style={{ color: '#7A8088', marginTop: -10 }}>
-                        {getDifferenceInDays(bidEnd) < 1 ? (
-                            <span style={{ marginLeft: 7 }}>
-                                {hours} : {minutes} : {seconds}{' '}
-                            </span>
-                        ) : (
-                            <span style={{ marginLeft: 7 }}>{endDate}</span>
-                        )}
-                    </p>
+                    <h5>Auction is live</h5>
                 </div>
             </>
         );

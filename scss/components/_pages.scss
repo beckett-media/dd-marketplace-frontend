@@ -335,6 +335,15 @@
         }
     }
 
+    .ps-page__back {
+        color: #fff;
+        font-size: 30px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        cursor: pointer;
+    }
     .ps-page__right {
         .widget_same-brand {
             border-bottom: 1px solid #eaeaea;
@@ -464,4 +473,9 @@
     .navigation--list {
         @include hidden;
     }
+}
+
+.ps-page--my-account {
+    min-height: 100vh;
+    background-color: #43475f;
 }

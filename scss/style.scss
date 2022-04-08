@@ -14,7 +14,7 @@
 //1.2 typhography
 @import 'base/typhography';
 
-@import "./facreport.scss";
+@import './facreport.scss';
 
 /*2. ELEMENTS */
 //2.1 grid
@@ -137,7 +137,7 @@ a.ps-btn {
 
 .main-title {
     position: relative;
-    width: 400px;
+    width: auto;
     max-width: 100%;
     h1.ant-typography {
         position: relative;

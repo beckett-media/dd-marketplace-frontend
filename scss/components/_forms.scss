@@ -344,7 +344,20 @@
 
     .ps-form__content {
         padding: 30px 30px;
-        background-color: #43475f !important;
+        background-color: #121634 !important;
+        height: 100vh;
+        border: 20px solid white;
+
+        h5 {
+            margin: 0 0 25px;
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+
+    .ps-form__content-modal {
+        padding: 30px 30px;
+        background-color: #121634 !important;
 
         h5 {
             margin: 0 0 25px;

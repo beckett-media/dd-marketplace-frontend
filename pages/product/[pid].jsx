@@ -1,3 +1,4 @@
+import { LeftOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -55,6 +56,17 @@ const ProductDefaultPage = () => {
             {headerView}
             <div className="ps-page--product">
                 <div className="ps-container">
+                    <div
+                        className={'ps-page__back'}
+                        onClick={() => {
+                            router.back();
+                        }}>
+                        <LeftOutlined />
+                        <p style={{ color: '#fff', fontSize: '20px' }}>
+                            Back to MarketPlace
+                        </p>
+                    </div>
+
                     <div className="ps-page__container">
                         <div className="ps-page__left">{productView}</div>
                     </div>

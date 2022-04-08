@@ -1,24 +1,19 @@
+import { CheckCircleOutlined } from '@ant-design/icons';
+import { Tag } from 'antd';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import Countdown from 'react-countdown';
+import { connect, useDispatch } from 'react-redux';
+import BiddingModal from '~/components/biddingModal';
+import LoginModal from '~/components/login';
+import StripeConnect from '~/components/partials/account/stripeConnectModal';
+import { getUserInfo, getUserStripeId } from '~/store/auth/selectors';
 import { addItem } from '~/store/cart/action';
 import { addItemToCompare } from '~/store/compare/action';
 import { addItemToWishlist } from '~/store/wishlist/action';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import LoginModal from '~/components/login';
-import Countdown from 'react-countdown';
-import { connect } from 'react-redux';
-import BiddingModal from '~/components/biddingModal';
-import StripeConnect from '~/components/partials/account/stripeConnectModal';
-import { Tag } from 'antd';
 import { getDifferenceInDays, isBidStarted } from '~/utilities/time';
-import {
-    CheckCircleOutlined,
-    SyncOutlined,
-    ClockCircleOutlined,
-} from '@ant-design/icons';
-import moment from 'moment';
-import { getUserStripeId, getUserInfo } from '~/store/auth/selectors';
+import Timer from '../../common/Timer';
 const ModuleDetailShoppingActions = ({
     product,
     extended = false,
@@ -84,49 +79,14 @@ const ModuleDetailShoppingActions = ({
     };
 
     const beforeStartRenderer = ({ hours, minutes, seconds, completed }) => {
-        const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
-        const startDate = moment(bidStart).format(
-            'dddd, MMMM Do YYYY, h:mm:ss a'
-        );
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 10,
-                    marginTop: -20,
-                }}>
-                <div style={{ justifyContent: 'flex-start' }}>
-                    <Tag
-                        style={{
-                            fontSize: '15px',
-                            height: 30,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: 180,
-                        }}
-                        icon={<ClockCircleOutlined />}
-                        color="warning">
-                        About to Start
-                    </Tag>
-                </div>
-                {getDifferenceInDays(bidStart) < 1 ? (
-                    <div>
-                        <p style={{ color: '#7A8088' }}>
-                            Time left to start : {hours} : {minutes} : {seconds}
-                        </p>
-                    </div>
-                ) : (
-                    <div>
-                        <p style={{ color: '#7A8088' }}>
-                            Starting in: {startDate}
-                        </p>
-                        <p style={{ color: '#7A8088', marginTop: 2 }}>
-                            Ending in: {endDate}
-                        </p>
-                    </div>
-                )}
+            <div>
+                <Timer
+                    days={getDifferenceInDays(bidStart)}
+                    hrs={hours}
+                    mins={minutes}
+                    sec={seconds}
+                />
             </div>
         );
     };
@@ -139,7 +99,7 @@ const ModuleDetailShoppingActions = ({
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 10,
-                        marginTop: -20,
+                        marginTop: 10,
                     }}>
                     <div style={{ justifyContent: 'flex-start' }}>
                         <Tag
@@ -166,48 +126,15 @@ const ModuleDetailShoppingActions = ({
             );
         }
         setShowBtn(true);
-        const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
-        const startDate = moment(bidStart).format(
-            'dddd, MMMM Do YYYY, h:mm:ss a'
-        );
+
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 10,
-                    marginTop: -20,
-                }}>
-                <div style={{ justifyContent: 'flex-start' }}>
-                    <Tag
-                        style={{
-                            fontSize: '15px',
-                            height: 30,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: 180,
-                        }}
-                        icon={<SyncOutlined spin />}
-                        color="processing">
-                        Auction is live
-                    </Tag>
-                </div>
-                <div>
-                    <p style={{ color: '#7A8088' }}>
-                        Place higher bid before you lose your chance
-                    </p>
-                    <p style={{ color: '#7A8088' }}>
-                        Ending in:
-                        {getDifferenceInDays(bidEnd) < 1 ? (
-                            <span style={{ marginLeft: 7 }}>
-                                {hours} : {minutes} : {seconds}{' '}
-                            </span>
-                        ) : (
-                            <span style={{ marginLeft: 7 }}>{endDate}</span>
-                        )}
-                    </p>
-                </div>
+            <div>
+                <Timer
+                    days={getDifferenceInDays(bidEnd)}
+                    hrs={hours}
+                    mins={minutes}
+                    sec={seconds}
+                />
             </div>
         );
     };

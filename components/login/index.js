@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
-import Login from '~/components/partials/account/Login';
+import Login from '~/components/partials/account/Login-Modal';
 
 const LoginModal = (props) => {
     const [visible, setVisible] = useState(false);
@@ -26,7 +26,7 @@ const LoginModal = (props) => {
             >
                 <div>
                     <Login
-                        height={'600px'}
+                        height={'80%'}
                         subtitle={'You have to login to Place Your Bid!!'}
                         bidding={props.bidding}
                     />

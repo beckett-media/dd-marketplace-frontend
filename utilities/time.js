@@ -19,7 +19,7 @@ export const getMonthName = (month) => {
 };
 
 export const getDifferenceInDays = (date) => {
-    return moment.duration(moment(date).diff(moment())).asDays();
+    return parseInt(moment.duration(moment(date).diff(moment())).asDays());
 };
 
 export const isBidStarted = (bidStart) =>

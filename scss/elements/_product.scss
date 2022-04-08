@@ -461,8 +461,10 @@
     }
 
     .ps-product__price {
-        color: #fff;
-        padding-right: 20px;
+        // color: #fff;
+
+        padding-left: 10px;
+        word-wrap: break-word;
     }
 
     .ps-product__player {
@@ -517,6 +519,16 @@
         width: 100%;
         color: #ffffff;
         // padding: 20px;
+
+        .playerName__price {
+            margin-top: -10px;
+            margin-bottom: -10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         span {
             color: #ffffff;
             font-size: 1rem;
@@ -528,6 +540,9 @@
                 color: #ffffff;
                 height: auto;
             }
+        }
+        .product-snapscore__button {
+            margin-top: 10px;
         }
     }
 
@@ -847,7 +862,7 @@
 
     .ps-product__desc {
         margin-bottom: 20px;
-        border-bottom: 1px solid #e1e1e1;
+        // border-bottom: 1px solid #e1e1e1;
         .ps-product__grading {
             background: rgba($color-1st, 0.2);
             padding: 10px;
@@ -953,6 +968,7 @@
             vertical-align: top;
             max-height: 50px;
             font-size: 18px;
+            width: 100%;
 
             &.ps-btnBid--blackBid {
                 color: #fff;

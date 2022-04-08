@@ -1,15 +1,47 @@
 import { Form, Input, Modal } from 'antd';
 import React, { useState } from 'react';
+import Countdown from 'react-countdown';
 import { baseUrl } from '~/repositories/Repository';
+import { getDifferenceInDays } from '~/utilities/time';
 
 const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
     const [visible, setVisible] = useState(false);
     const confirmLoading = false;
+    const { bidEnd, bidStart } = product?.auctionDetails || {};
     const ref = React.createRef();
 
     const handleCancel = () => {
         setOpen(false);
         setVisible(false);
+    };
+
+    const Timer = ({ days, hrs, mins, sec }) => {
+        return (
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 10,
+                }}>
+                <p style={{ color: 'orange' }}>{days}D</p>
+                <p style={{ color: 'orange' }}>{hrs}M</p>
+                <p style={{ color: 'orange' }}>{mins}M</p>
+                <p style={{ color: 'orange' }}>{sec}S</p>
+            </div>
+        );
+    };
+
+    const bidEndingRenderer = ({ hours, minutes, seconds, completed }) => {
+        return (
+            <div>
+                <Timer
+                    days={getDifferenceInDays(bidEnd)}
+                    hrs={hours}
+                    mins={minutes}
+                    sec={seconds}
+                />
+            </div>
+        );
     };
 
     return (
@@ -21,9 +53,9 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
                 footer={null}
                 width={500}
                 closable={false}
-                bodyStyle={{ height: 600, backgroundColor: '#43475F' }}>
+                bodyStyle={{ height: 600, backgroundColor: 'transparent' }}>
                 <div className="ps-my-account">
-                    <div className="">
+                    <div>
                         <Form
                             ref={ref}
                             className="ps-form--account"
@@ -73,6 +105,14 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
                                                     }}>
                                                     {product?.brand}
                                                 </p>
+
+                                                <Countdown
+                                                    date={bidEnd}
+                                                    renderer={bidEndingRenderer}
+                                                    onComplete={() => {
+                                                        setShowBtn(false);
+                                                    }}
+                                                />
                                             </div>
                                         </div>
                                     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import Product from '~/components/elements/products/Product';
+import Title from '~/components/elements/Title';
 import ContainerPage from '~/components/layouts/ContainerPage';
 import ProductGroupGridItems from '~/components/partials/product/ProductGroupGridItems';
 import ProductRepository from '~/repositories/ProductRepository.js';
@@ -70,13 +71,17 @@ const SearchPage = ({ query }) => {
             if (productItems.length > 0) {
                 const items = productItems.map((item) => {
                     return (
-                        <div className="col-md-3 col-sm-6 col-6" key={item.id}>
+                        <div
+                            className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12"
+                            key={item.id}>
                             <Product product={item} />
                         </div>
                     );
                 });
                 shopItemsView = (
-                    <div className="ps-product-items row">{items}</div>
+                    <div className="ps-product-items row ps-product-list ps-new-arrivals">
+                        {items}
+                    </div>
                 );
                 statusView = (
                     <p>
@@ -97,18 +102,15 @@ const SearchPage = ({ query }) => {
 
     return (
         <ContainerPage title={`Search results for: "${keyword}" `} boxed={true}>
-            <div className="ps-page">
-                <BreadCrumb breacrumb={breadcrumb} />
-            </div>
-            <div>
-                <div className="ps-shop ps-shop--search">
-                    <div className="container">
+            <div className="ps-shop--search ps-search-page-responsive">
+                <div className="ps-container">
+                    <div className="ps-section__header">
                         <div className="ps-shop__header">
-                            <h1>
-                                Search result for: <strong>{keyword}</strong>
-                            </h1>
+                            <Title title={`Search result for: ${keyword}`} />
                         </div>
-                        <div className="ps-shop__content">
+                    </div>
+                    <div className="ps-section__content">
+                        <div className="row">
                             {statusView}
                             {shopItemsView}
                         </div>
