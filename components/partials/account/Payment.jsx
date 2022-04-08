@@ -100,7 +100,7 @@ class Payment extends Component {
                                     <div className="ps-block__panel">
                                         <figure>
                                             <small>Contact</small>
-                                            <p>
+                                            <p style={{ color: "white" }}>
                                                 {userInfo?.email || ''},{' '}
                                                 {defaultAddress?.mobile || ''}
                                             </p>
@@ -111,7 +111,7 @@ class Payment extends Component {
                                         </figure>
                                         <figure>
                                             <small>Ship to</small>
-                                            <p>
+                                            <p style={{ color: "white" }}>
                                                 {defaultAddress.streetAddress ||
                                                     ''}
                                                 , {defaultAddress.state || ''},
@@ -326,7 +326,7 @@ export default connect(connectStateToProps)(Payment);
 const PromoCard = ({ promoCode, setPromoCode, validatePromo }) => {
     return (
         <>
-            <p>To avail Promo, validate it first</p>
+            <p style={{ color: "white" }}>To avail Promo, validate it first</p>
             <div className="ps-form--promo">
                 <div className="ps-promo--InputContainer">
                     <GiftOutlined
