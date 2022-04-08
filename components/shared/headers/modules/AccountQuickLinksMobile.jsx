@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 import { logOut } from '../../../../store/auth/action';
 import { Dropdown, Menu } from 'antd';
+import { appName, sellerDashboardURL } from '~/repositories/Repository';
+import SimpleCrypto from 'simple-crypto-js';
+var simpleCrypto = new SimpleCrypto('myTotalySecretKey');
+
 class AccountQuickLinks extends Component {
     constructor(props) {
         super(props);
@@ -37,6 +41,24 @@ class AccountQuickLinks extends Component {
                 text: 'Stores',
                 url: '/stores',
             },
+            {
+                text: 'Switch to Selling',
+                action: (e) => {
+                    e.preventDefault();
+                    let data = JSON.stringify({
+                        xAuthToken: localStorage.getItem(
+                            `${appName}_xAuthToken`
+                        ),
+                        refreshToken: localStorage.getItem(
+                            `${appName}_refreshToken`
+                        ),
+                    });
+                    var encryptedData = simpleCrypto.encrypt(data);
+                    window.location.href = `${sellerDashboardURL}/?auth=${encodeURIComponent(
+                        encryptedData
+                    )}`;
+                },
+            },
             // {
             //     text: 'Address',
             //     url: '/account/addresses',
@@ -52,11 +74,17 @@ class AccountQuickLinks extends Component {
         ];
         const menu = (
             <Menu>
-                {accountLinks.map((link) => (
-                    <Menu.Item key={link.url}>
-                        <Link href={link.url}>
-                            <a>{link.text}</a>
-                        </Link>
+                {accountLinks.map((item) => (
+                    <Menu.Item key={item.url}>
+                        {item.url ? (
+                            <Link href={item.url}>
+                                <a>{item.text}</a>
+                            </Link>
+                        ) : (
+                            <a href="#" className="hover" onClick={item.action}>
+                                {item.text}
+                            </a>
+                        )}
                     </Menu.Item>
                 ))}
 

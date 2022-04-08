@@ -82,14 +82,20 @@ const AccountQuickLinks = (props) => {
 
     // View
     const linksView = accountLinks.map((item) => (
-        <li key={item.text}>
+        <li
+            key={item.text}
+            className="hover"
+            onClick={(e) => {
+                if (item.url) window.location.href = item.url;
+                else item.action(e);
+            }}>
             <i>{item.icon}</i>
             {item.url ? (
                 <Link href={item.url}>
                     <a>{item.text}</a>
                 </Link>
             ) : (
-                <a href="#" onClick={item.action}>
+                <a href="#" className="hover" onClick={item.action}>
                     {item.text}
                 </a>
             )}
