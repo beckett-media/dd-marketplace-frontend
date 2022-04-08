@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Timer = ({ days, hrs, mins, sec }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row', gap: 20 }}>
