@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
-import Login from '~/components/partials/account/Login-modal';
+import Login from '~/components/partials/account/Login-Modal';
 
 const LoginModal = (props) => {
     const [visible, setVisible] = useState(false);
