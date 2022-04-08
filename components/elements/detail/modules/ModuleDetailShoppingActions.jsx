@@ -1,24 +1,19 @@
+import { CheckCircleOutlined } from '@ant-design/icons';
+import { Tag } from 'antd';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import Countdown from 'react-countdown';
+import { connect, useDispatch } from 'react-redux';
+import BiddingModal from '~/components/biddingModal';
+import LoginModal from '~/components/login';
+import StripeConnect from '~/components/partials/account/stripeConnectModal';
+import { getUserInfo, getUserStripeId } from '~/store/auth/selectors';
 import { addItem } from '~/store/cart/action';
 import { addItemToCompare } from '~/store/compare/action';
 import { addItemToWishlist } from '~/store/wishlist/action';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import LoginModal from '~/components/login';
-import Countdown from 'react-countdown';
-import { connect } from 'react-redux';
-import BiddingModal from '~/components/biddingModal';
-import StripeConnect from '~/components/partials/account/stripeConnectModal';
-import { Tag } from 'antd';
 import { getDifferenceInDays, isBidStarted } from '~/utilities/time';
-import {
-    CheckCircleOutlined,
-    SyncOutlined,
-    ClockCircleOutlined,
-} from '@ant-design/icons';
-import moment from 'moment';
-import { getUserStripeId, getUserInfo } from '~/store/auth/selectors';
+import Timer from '../../common/Timer';
 const ModuleDetailShoppingActions = ({
     product,
     extended = false,
@@ -83,62 +78,7 @@ const ModuleDetailShoppingActions = ({
         }
     };
 
-    const Timer = ({ days, hrs, mins, sec }) => {
-        return (
-            <div style={{ display: 'flex', flexDirection: 'row', gap: 20 }}>
-                <div>
-                    {' '}
-                    <h4>{days}</h4>
-                    <p>Days</p>
-                </div>{' '}
-                <p
-                    style={{
-                        fontSize: '15px',
-                        color: '#fff',
-                        fontWeight: 'bold',
-                    }}>
-                    :
-                </p>
-                <div>
-                    {' '}
-                    <h4>{hrs}</h4>
-                    <p>Hrs</p>
-                </div>{' '}
-                <p
-                    style={{
-                        fontSize: '15px',
-                        color: '#fff',
-                        fontWeight: 'bold',
-                    }}>
-                    :
-                </p>
-                <div>
-                    {' '}
-                    <h4>{mins}</h4>
-                    <p>Mins</p>
-                </div>{' '}
-                <p
-                    style={{
-                        fontSize: '15px',
-                        color: '#fff',
-                        fontWeight: 'bold',
-                    }}>
-                    :
-                </p>
-                <div>
-                    {' '}
-                    <h4>{sec}</h4>
-                    <p>Sec</p>
-                </div>{' '}
-            </div>
-        );
-    };
-
     const beforeStartRenderer = ({ hours, minutes, seconds, completed }) => {
-        const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
-        const startDate = moment(bidStart).format(
-            'dddd, MMMM Do YYYY, h:mm:ss a'
-        );
         return (
             <div>
                 <Timer
@@ -186,10 +126,7 @@ const ModuleDetailShoppingActions = ({
             );
         }
         setShowBtn(true);
-        const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
-        const startDate = moment(bidStart).format(
-            'dddd, MMMM Do YYYY, h:mm:ss a'
-        );
+
         return (
             <div>
                 <Timer

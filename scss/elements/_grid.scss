@@ -60,7 +60,7 @@ body {
         max-width: 100%;
     }
     @include media('<xs') {
-        padding: 0 15px;
+        padding: 0 0;
     }
 }
 

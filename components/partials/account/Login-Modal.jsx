@@ -54,7 +54,7 @@ class Login extends Component {
                         className="ps-form--account"
                         onFinish={this.handleLoginSubmit}>
                         <div className="ps-tab active" id="sign-in">
-                            <div className="ps-form__content">
+                            <div className="ps-form__content-modal">
                                 <a href="/">
                                     <img
                                         style={{ maxWidth: 120 }}

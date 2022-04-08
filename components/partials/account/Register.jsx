@@ -1,3 +1,4 @@
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Form, Input } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -88,6 +89,25 @@ class Register extends Component {
                                             ]}>
                                             <div className="form-control_password">
                                                 <Input.Password
+                                                    style={{
+                                                        backgroundColor:
+                                                            '#121634',
+                                                    }}
+                                                    iconRender={(visible) =>
+                                                        visible ? (
+                                                            <EyeTwoTone
+                                                                style={{
+                                                                    color: '#fff',
+                                                                }}
+                                                            />
+                                                        ) : (
+                                                            <EyeInvisibleOutlined
+                                                                style={{
+                                                                    color: '#fff',
+                                                                }}
+                                                            />
+                                                        )
+                                                    }
                                                     className="form-control"
                                                     type="password"
                                                     placeholder="Password..."

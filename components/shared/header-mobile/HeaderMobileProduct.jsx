@@ -33,7 +33,10 @@ const HeaderMobileProduct = () => {
                 <div className="navigation__left">
                     <Link href="/shop">
                         <a href="/" className="header__back">
-                            <i className="icon-chevron-left"></i>
+                            <img
+                                style={{ maxWidth: 120 }}
+                                src={'/static/img/logo.png'}
+                            />
                         </a>
                     </Link>
                 </div>
