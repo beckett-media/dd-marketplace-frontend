@@ -83,50 +83,70 @@ const ModuleDetailShoppingActions = ({
         }
     };
 
+    const Timer = ({ days, hrs, mins, sec }) => {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'row', gap: 20 }}>
+                <div>
+                    {' '}
+                    <h4>{days}</h4>
+                    <p>Days</p>
+                </div>{' '}
+                <p
+                    style={{
+                        fontSize: '15px',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                    }}>
+                    :
+                </p>
+                <div>
+                    {' '}
+                    <h4>{hrs}</h4>
+                    <p>Hrs</p>
+                </div>{' '}
+                <p
+                    style={{
+                        fontSize: '15px',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                    }}>
+                    :
+                </p>
+                <div>
+                    {' '}
+                    <h4>{mins}</h4>
+                    <p>Mins</p>
+                </div>{' '}
+                <p
+                    style={{
+                        fontSize: '15px',
+                        color: '#fff',
+                        fontWeight: 'bold',
+                    }}>
+                    :
+                </p>
+                <div>
+                    {' '}
+                    <h4>{sec}</h4>
+                    <p>Sec</p>
+                </div>{' '}
+            </div>
+        );
+    };
+
     const beforeStartRenderer = ({ hours, minutes, seconds, completed }) => {
         const endDate = moment(bidEnd).format('dddd, MMMM Do YYYY, h:mm:ss a');
         const startDate = moment(bidStart).format(
             'dddd, MMMM Do YYYY, h:mm:ss a'
         );
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 10,
-                    marginTop: -20,
-                }}>
-                <div style={{ justifyContent: 'flex-start' }}>
-                    <Tag
-                        style={{
-                            fontSize: '15px',
-                            height: 30,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: 180,
-                        }}
-                        icon={<ClockCircleOutlined />}
-                        color="warning">
-                        About to Start
-                    </Tag>
-                </div>
-                {getDifferenceInDays(bidStart) < 1 ? (
-                    <div>
-                        <p style={{ color: '#7A8088' }}>
-                            Time left to start : {hours} : {minutes} : {seconds}
-                        </p>
-                    </div>
-                ) : (
-                    <div>
-                        <p style={{ color: '#7A8088' }}>
-                            Starting in: {startDate}
-                        </p>
-                        <p style={{ color: '#7A8088', marginTop: 2 }}>
-                            Ending in: {endDate}
-                        </p>
-                    </div>
-                )}
+            <div>
+                <Timer
+                    days={getDifferenceInDays(bidStart)}
+                    hrs={hours}
+                    mins={minutes}
+                    sec={seconds}
+                />
             </div>
         );
     };
@@ -139,7 +159,7 @@ const ModuleDetailShoppingActions = ({
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 10,
-                        marginTop: -20,
+                        marginTop: 10,
                     }}>
                     <div style={{ justifyContent: 'flex-start' }}>
                         <Tag
@@ -171,43 +191,13 @@ const ModuleDetailShoppingActions = ({
             'dddd, MMMM Do YYYY, h:mm:ss a'
         );
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 10,
-                    marginTop: -20,
-                }}>
-                <div style={{ justifyContent: 'flex-start' }}>
-                    <Tag
-                        style={{
-                            fontSize: '15px',
-                            height: 30,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: 180,
-                        }}
-                        icon={<SyncOutlined spin />}
-                        color="processing">
-                        Auction is live
-                    </Tag>
-                </div>
-                <div>
-                    <p style={{ color: '#7A8088' }}>
-                        Place higher bid before you lose your chance
-                    </p>
-                    <p style={{ color: '#7A8088' }}>
-                        Ending in:
-                        {getDifferenceInDays(bidEnd) < 1 ? (
-                            <span style={{ marginLeft: 7 }}>
-                                {hours} : {minutes} : {seconds}{' '}
-                            </span>
-                        ) : (
-                            <span style={{ marginLeft: 7 }}>{endDate}</span>
-                        )}
-                    </p>
-                </div>
+            <div>
+                <Timer
+                    days={getDifferenceInDays(bidEnd)}
+                    hrs={hours}
+                    mins={minutes}
+                    sec={seconds}
+                />
             </div>
         );
     };

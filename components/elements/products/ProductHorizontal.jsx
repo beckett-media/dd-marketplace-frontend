@@ -29,10 +29,14 @@ const ProductHorizontal = ({ product }) => {
                     as={`/product/${product._id || product.id}`}>
                     <>
                         <>
-                            <span>{product.title}</span>
-                            <p className={'my-3 ps-product__player'}>
-                                {product.playerNames.join(',')}
-                            </p>
+                            <p className={'product_title'}>{product.title}</p>
+                            <div className={'playerName__price'}>
+                                <p className={'my-3 ps-product__player'}>
+                                    {product.playerNames.join(',')}
+                                </p>
+
+                                <div>{StrapiProductPrice(product)}</div>
+                            </div>
                         </>
                         <hr style={{ backgroundColor: '#fff' }} />
                     </>
@@ -61,21 +65,26 @@ const ProductHorizontal = ({ product }) => {
                                 </strong>
                             </p>
                         </div>
-                        {product.card && (
-                            <div>
-                                <a
-                                    style={{
-                                        color: '#37c4ce',
-                                    }}
-                                    target="_blank"
-                                    href={`/snap-score/${product.card._id}`}>
-                                    View SNAPSCORE&trade; Report
-                                </a>
-                            </div>
-                        )}
                     </div>
                 </div>
-                <div>{StrapiProductPrice(product)}</div>
+                {product.card && (
+                    <div className={'product-snapscore__button'}>
+                        <img
+                            style={{ width: '20px', height: '20px' }}
+                            src="https://img.icons8.com/color/48/000000/bar-chart--v1.png"
+                        />
+                        <a
+                            style={{
+                                color: '#37c4ce',
+                                textDecoration: 'underline',
+                                marginLeft: '5px',
+                            }}
+                            target="_blank"
+                            href={`/snap-score/${product.card._id}`}>
+                            View SNAPSCORE&trade; Report
+                        </a>
+                    </div>
+                )}
             </div>
         </div>
     );

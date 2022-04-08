@@ -11,6 +11,7 @@ import HeaderProduct from '~/components/shared/headers/HeaderProduct';
 import HeaderDefault from '~/components/shared/headers/HeaderDefault';
 import { appName, baseUrl } from '~/repositories/Repository';
 import io from 'socket.io-client';
+import { LeftOutlined } from '@ant-design/icons';
 
 const AuctionProductDefaultPage = () => {
     const router = useRouter();
@@ -119,19 +120,6 @@ const AuctionProductDefaultPage = () => {
         }
     });
 
-    const breadCrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Live Auctions',
-            url: '/auctions',
-        },
-        {
-            text: product ? product.title : 'Loading...',
-        },
-    ];
     // Views
     let productView, headerView;
     if (!loading) {
@@ -154,8 +142,19 @@ const AuctionProductDefaultPage = () => {
         <ContainerProductDetail title={product ? product.title : 'Loading...'}>
             {headerView}
             {/* <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" /> */}
+
             <div className="ps-page--product">
                 <div className="ps-container">
+                    <div
+                        className={'ps-page__back'}
+                        onClick={() => {
+                            router.back();
+                        }}>
+                        <LeftOutlined />
+                        <p style={{ color: '#fff', fontSize: '20px' }}>
+                            Back to MarketPlace
+                        </p>
+                    </div>
                     <div className="ps-page__container">
                         <div className="ps-page__left">{productView}</div>
                     </div>
