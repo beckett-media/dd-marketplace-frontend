@@ -102,7 +102,12 @@ const SearchHeader = () => {
         }
         if (keyword !== '') {
             clearTextView = (
-                <span className="ps-form__action" onClick={handleClearKeyword}>
+                <span
+                    className="ps-form__action"
+                    style={{
+                        cursor: 'pointer',
+                    }}
+                    onClick={handleClearKeyword}>
                     <i className="icon icon-cross2"></i>
                 </span>
             );
