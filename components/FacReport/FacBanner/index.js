@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { Modal } from 'antd';
 import ReactModal from 'react-modal';
 
-
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -244,6 +243,7 @@ const FacBanner = ({
     cardId,
     price,
     quantity,
+    listingId,
 }) => {
     const [shareModal, setShareModal] = React.useState(false);
     const [gallery, setGallery] = React.useState([]);
@@ -399,6 +399,7 @@ const FacBanner = ({
                                     cardId={cardId}
                                     price={price}
                                     handleClose={handleCancel}
+                                    listingId={listingId}
                                 />
                             </Modal>
                             {price && (
