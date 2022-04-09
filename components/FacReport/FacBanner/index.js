@@ -165,16 +165,13 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
             </div>
             <div className="mx-2">
                 <EmailShareButton
-                    onClick={() => {}}
                     url={`${process.env.marketUrl}${router.asPath}`}
                     subject={`Card Snapscore ${(
                         <span>&trade;</span>
                     )} Report | Due Dilly`}
                     body={`Checkout this Card Snapscore ${(
                         <span>&trade;</span>
-                    )} Report from Due Dilly ${process.env.marketUrl}${
-                        router.asPath
-                    }`}>
+                    )} Report from Due Dilly`}>
                     <img src={Email} />
                 </EmailShareButton>
             </div>
