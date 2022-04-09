@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import FacBanner from './FacBanner';
 import GradientLine from './GradientLine/index';
 import InfoSection from './InfoSection';
 import QualityAssessment from './QualityAssessment/index';
 import useFetch from 'use-http';
 import { CONFIG } from '../../constants/Config';
+import { baseUrl } from '~/repositories/Repository';
 
 const FacReport = ({ id }) => {
     const [reportData, setData] = React.useState({});
@@ -14,7 +15,7 @@ const FacReport = ({ id }) => {
     const reportDataRef = React.useRef();
 
     const { get: getReport, loading } = useFetch(
-        CONFIG.base_url + '/sports-card/card-fac',
+        baseUrl + '/sports-card/card-fac',
         {
             cachePolicy: 'no-cache',
         }
@@ -92,7 +93,6 @@ const FacReport = ({ id }) => {
         let response = await getReport(`/${id}`);
         setData({ ...response?.data });
         reportDataRef.current = { ...response?.data };
-
         if (response?.data?.card) {
             let {
                 year,
@@ -131,8 +131,9 @@ const FacReport = ({ id }) => {
                 gradeData={reportData?.gradeData}
                 loading={loadingGradingData || loading || loadingJobStatus}
                 cardId={id}
-                price={reportData?.price}
-                quantity={reportData.quantity}
+                price={reportData?.listing?.price}
+                quantity={reportData.listing?.quantity}
+                listingId={reportData.listing?._id}
             />
             <GradientLine />
             <QualityAssessment card={reportData?.card} />

@@ -72,7 +72,7 @@ class Payment extends Component {
     };
 
     render() {
-        const { cardId, price } = this.props;
+        const { cardId, price, listingId } = this.props;
 
         return (
             <div
@@ -92,7 +92,9 @@ class Payment extends Component {
                         </p>
                         <p style={{ color: '#fff' }}>
                             Want to buy as a user?{' '}
-                            <Link href={`/product/${cardId}`}>click here</Link>
+                            <Link href={`/product/${listingId}`}>
+                                click here
+                            </Link>
                         </p>
                     </div>
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 order-last order-lg-first">
