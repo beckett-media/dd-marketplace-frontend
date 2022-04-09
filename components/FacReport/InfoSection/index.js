@@ -7,7 +7,7 @@ import Youtube from "../../../public/static/img/facreport/svgs/Youtube.svg"
 import Twitter from "../../../public/static/img/facreport/svgs/Twitter.svg"
 import VerifiedBadge from "../../../public/static/img/facreport/svgs/verifiedbBadge.jpg"
 
-import { CONFIG } from "../Config"
+import { CONFIG } from "../../../constants/Config"
 // import Loader from "../../Loader"
 
 const Chart = loadable(() => import("react-apexcharts"))

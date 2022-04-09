@@ -1,11 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
+import { Modal } from 'antd';
+import ReactModal from 'react-modal';
+
+
 import {
     EmailShareButton,
     FacebookShareButton,
     TwitterShareButton,
 } from 'react-share';
-import ReactModal from 'react-modal';
 import { toPng } from 'html-to-image';
 
 import { message, Button } from 'antd';
@@ -17,14 +20,10 @@ import FacebookBlue from '../../../public/static/img/facreport/svgs/FacebookBlue
 import Email from '../../../public/static/img/facreport/svgs/Email.svg';
 import Pdf from '../../../public/static/img/facreport/svgs/Pdf.svg';
 import Camera from '../../../public/static/img/facreport/svgs/Camera.svg';
-import Instagram from '../../../public/static/img/facreport/svgs/Instagram.svg';
-// import html2canvas from "html2canvas"
-// import { jsPDF } from "jspdf"
+import { CloseOutlined } from '@ant-design/icons';
 
-import { CONFIG } from '../Config';
+import { CONFIG } from '../../../constants/Config';
 import Payment from '../Payment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const customStyles = {
     content: {
@@ -45,12 +44,11 @@ const shareStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        overflow: "hidden !important",
-        height: "fit-content"
+        overflow: 'hidden !important',
+        height: 'fit-content',
     },
     overlay: { zIndex: 999999 },
 };
-
 
 const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
     const [modal, setModal] = React.useState(false);
@@ -121,8 +119,9 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
             </div>
             <div className="mx-2" style={{ position: 'relative' }}>
                 <div
-                    className={`alert alert-primary p-2 text-center alert-dismissible fade ${copied ? 'show' : ''
-                        }`}
+                    className={`alert alert-primary p-2 text-center alert-dismissible fade ${
+                        copied ? 'show' : ''
+                    }`}
                     style={{
                         position: 'absolute',
                         width: 150,
@@ -167,30 +166,19 @@ const ShareContainer = ({ getImage, getPDF, onCloseCall }) => {
             </div>
             <div className="mx-2">
                 <EmailShareButton
-                    onClick={() => { }}
+                    onClick={() => {}}
                     url={`${process.env.marketUrl}${router.asPath}`}
                     subject={`Card Snapscore ${(
                         <span>&trade;</span>
                     )} Report | Due Dilly`}
                     body={`Checkout this Card Snapscore ${(
                         <span>&trade;</span>
-                    )} Report from Due Dilly ${process.env.marketUrl}${router.asPath
-                        }`}>
+                    )} Report from Due Dilly ${process.env.marketUrl}${
+                        router.asPath
+                    }`}>
                     <img src={Email} />
                 </EmailShareButton>
             </div>
-            {/* <div
-        className="mx-2"
-        style={{
-          width: 50,
-          height: 50,
-          borderRadius: "50%",
-          background: "#00C4FF",
-          padding: 7.5,
-        }}
-      >
-        <img src={Instagram} fill="#fff" />
-      </div> */}
         </div>
     );
 };
@@ -288,99 +276,6 @@ const FacBanner = ({
             ]);
     }, [card]);
 
-    // const getPDF = () => {
-    //   var HTML_Width = currentPageRef.current.clientWidth
-    //   var HTML_Height = currentPageRef.current.clientHeight
-    //   var top_left_margin = 15
-    //   var PDF_Width = HTML_Width + top_left_margin * 2
-    //   var PDF_Height = PDF_Width * 1.5 + top_left_margin * 2
-    //   var canvas_image_width = HTML_Width
-    //   var canvas_image_height = HTML_Height
-
-    //   var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1
-    // html2canvas(currentPageRef.current, {
-    //   allowTaint: true,
-    //   useCORS: true,
-    //   scale: 1,
-    //   scrollY: -window.scrollY,
-    // }).then(function (canvas) {
-    // canvas.getContext("2d")
-
-    // var imgData = canvas.toDataURL("image/jpeg", 1.0)
-    // var imgWidth = 210
-    // var pageHeight = 290
-    // var imgHeight = (canvas.height * imgWidth) / canvas.width
-    // var heightLeft = imgHeight
-
-    // var doc = new jsPDF("p", "mm", "a4")
-    // var position = 0
-    // var pageData = canvas.toDataURL("image/jpeg", 1.0)
-    // var imgData = encodeURIComponent(pageData)
-
-    // doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight)
-    // doc.setLineWidth(5)
-    // doc.setDrawColor(255, 255, 255)
-    // doc.rect(0, 0, 210, 295)
-    // heightLeft -= pageHeight
-
-    // while (heightLeft >= 0) {
-    //   position = heightLeft - imgHeight
-    //   doc.addPage()
-    //   doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight)
-    //   doc.setLineWidth(5)
-    //   doc.setDrawColor(255, 255, 255)
-    //   doc.rect(0, 0, 210, 295)
-    //   heightLeft -= pageHeight
-    // }
-    // doc.save(`${cardId}-report.pdf`)
-
-    // var imgData = canvas.toDataURL("image/png")
-    // var imgWidth = 210
-    // var pageHeight = 295
-    // var imgHeight = (canvas.height * imgWidth) / canvas.width
-    // var heightLeft = imgHeight
-    // var doc = new jsPDF("p", "mm", "a4")
-    // var position = 0
-
-    // doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight)
-    // heightLeft -= pageHeight
-
-    // while (heightLeft >= 0) {
-    //   doc.addPage(PDF_Width, PDF_Height)
-
-    //   position = heightLeft - imgHeight
-    //   doc.addPage()
-    //   doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight)
-    //   heightLeft -= pageHeight
-    // }
-    // doc.save(`${cardId}-report.pdf`)
-
-    // var pdf = new jsPDF("p", "pt", [PDF_Width, PDF_Height])
-    // pdf.addImage(
-    //   imgData,
-    //   "JPG",
-    //   top_left_margin,
-    //   top_left_margin,
-    //   canvas_image_width,
-    //   canvas_image_height
-    // )
-
-    // for (var i = 1; i <= totalPDFPages; i++) {
-    //   pdf.addPage(PDF_Width, PDF_Height)
-    //   pdf.addImage(
-    //     imgData,
-    //     "JPG",
-    //     top_left_margin,
-    //     top_left_margin,
-    //     canvas_image_width,
-    //     canvas_image_height
-    //   )
-    // }
-
-    // pdf.save(`${cardId}-report.pdf`)
-    // })
-    // }
-
     const getImage = useCallback(() => {
         message
             .loading('Compiling everything for you...', 2)
@@ -456,8 +351,9 @@ const FacBanner = ({
 
                     <div className="row g-0 py-5 d-flex">
                         <div
-                            className={`col-12 col-lg-${orientation === 'portrait' ? '4' : '7'
-                                } fac-banner-img-container position-relative`}>
+                            className={`col-12 col-lg-${
+                                orientation === 'portrait' ? '4' : '7'
+                            } fac-banner-img-container position-relative`}>
                             {gallery.length > 0 && (
                                 <ImageGallery
                                     gallery={gallery}
@@ -467,8 +363,9 @@ const FacBanner = ({
                             )}
                         </div>
                         <div
-                            className={`col-12 col-lg-${orientation === 'portrait' ? '8' : '5'
-                                }`}>
+                            className={`col-12 col-lg-${
+                                orientation === 'portrait' ? '8' : '5'
+                            }`}>
                             <p className="h1 m-0 text-uppercase font-weight-bolder text-white pti-font">
                                 {card?.playerNames.join(' ')}
                             </p>
@@ -479,34 +376,46 @@ const FacBanner = ({
                                 {card?.modelNo} {card?.serialNo}
                             </p>
                             <p className="text-white h5">{card?.year}</p>
-                            <ReactModal
-                                isOpen={isModalVisible}
+                            <Modal
+                                visible={isModalVisible}
+                                width={500}
                                 shouldCloseOnOverlayClick={true}
-                                onRequestClose={() => {
+                                onCancel={() => {
                                     handleCancel();
                                 }}
-                                className="payment-modal-card"
-                                overlayClassName="payment-modal-card-overlay">
+                                maskClosable={false}
+                                footer={null}
+                                style={{ top: 20 }}
+                                closeIcon={
+                                    <CloseOutlined
+                                        style={{
+                                            color: '#fff',
+                                            margin: '32px 22px 0 0',
+                                            fontSize: '25px',
+                                        }}
+                                    />
+                                }>
                                 <Payment
                                     cardId={cardId}
                                     price={price}
                                     handleClose={handleCancel}
                                 />
-                            </ReactModal>
+                            </Modal>
                             {price && (
                                 <Button
                                     type="primary"
                                     style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center"
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
                                     }}
                                     className="gradient-link bold text-center buttonstyle"
                                     onClick={quantity ? showModal : null}>
-                                    <span style={{
-                                        fontSize: 'large',
-                                        fontWeight: "bold"
-                                    }}>
+                                    <span
+                                        style={{
+                                            fontSize: 'large',
+                                            fontWeight: 'bold',
+                                        }}>
                                         {quantity
                                             ? `Buy This Card $${price}`
                                             : 'Sold'}
