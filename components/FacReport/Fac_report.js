@@ -4,7 +4,7 @@ import GradientLine from './GradientLine/index';
 import InfoSection from './InfoSection';
 import QualityAssessment from './QualityAssessment/index';
 import useFetch from 'use-http';
-import { CONFIG } from './Config';
+import { CONFIG } from '../../constants/Config';
 
 const FacReport = ({ id }) => {
     const [reportData, setData] = React.useState({});
