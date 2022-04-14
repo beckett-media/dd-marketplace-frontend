@@ -170,7 +170,7 @@ export function StrapiProductThumbnail(product, unClaimed, auctionId) {
         }
     } else {
         view = (
-            <Link href="/product/[pid]" as={`/product/${product?._id}`}>
+            <Link href={`/product/${product?._id}`}>
                 <a>
                     {/* <LazyLoad>
                         <img src="/static/img/not-found.jpg" alt="martfury" />

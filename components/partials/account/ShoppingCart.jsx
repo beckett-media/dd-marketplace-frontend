@@ -162,7 +162,7 @@ class ShoppingCart extends Component {
                             <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                                 <div className="ps-block--shopping-total">
                                     <div className="ps-block__header">
-                                        <p style={{ color: "white" }}>
+                                        <p style={{ color: 'white' }}>
                                             Subtotal <span> ${amount}</span>
                                         </p>
                                     </div>
@@ -170,34 +170,33 @@ class ShoppingCart extends Component {
                                         <ul className="ps-block__product">
                                             {cartItems.length > 0
                                                 ? cartItems.map(
-                                                    (product, index) => {
-                                                        if (index < 3) {
-                                                            return (
-                                                                <li
-                                                                    key={
-                                                                        product.id
-                                                                    }>
-                                                                    <span className="ps-block__estimate">
-                                                                        <Link
-                                                                            href="/product/[pid]"
-                                                                            as={`/product/${product.id}`}>
-                                                                            <a className="ps-product__title">
-                                                                                {
-                                                                                    product.title
-                                                                                }
-                                                                                <br />{' '}
-                                                                                x{' '}
-                                                                                {
-                                                                                    product.cartCount
-                                                                                }
-                                                                            </a>
-                                                                        </Link>
-                                                                    </span>
-                                                                </li>
-                                                            );
-                                                        }
-                                                    }
-                                                )
+                                                      (product, index) => {
+                                                          if (index < 3) {
+                                                              return (
+                                                                  <li
+                                                                      key={
+                                                                          product.id
+                                                                      }>
+                                                                      <span className="ps-block__estimate">
+                                                                          <Link
+                                                                              href={`/product/${product.id}`}>
+                                                                              <a className="ps-product__title">
+                                                                                  {
+                                                                                      product.title
+                                                                                  }
+                                                                                  <br />{' '}
+                                                                                  x{' '}
+                                                                                  {
+                                                                                      product.cartCount
+                                                                                  }
+                                                                              </a>
+                                                                          </Link>
+                                                                      </span>
+                                                                  </li>
+                                                              );
+                                                          }
+                                                      }
+                                                  )
                                                 : ''}
                                         </ul>
                                         <h3>
@@ -206,8 +205,16 @@ class ShoppingCart extends Component {
                                     </div>
                                 </div>
                                 <Link href="/account/checkout">
-                                    <a className="ps-btn ps-btn--fullwidth"
-                                        style={{ display: `${cartItems && cartItems.length > 0 ? "block" : "none"}` }}>
+                                    <a
+                                        className="ps-btn ps-btn--fullwidth"
+                                        style={{
+                                            display: `${
+                                                cartItems &&
+                                                cartItems.length > 0
+                                                    ? 'block'
+                                                    : 'none'
+                                            }`,
+                                        }}>
                                         Proceed to checkout
                                     </a>
                                 </Link>

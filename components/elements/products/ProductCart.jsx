@@ -4,11 +4,15 @@ import { StrapiProductThumbnail } from '~/utilities/product-helper';
 const ProductCart = ({ product }) => {
     return (
         <div className="ps-product--cart">
-            {product.thumbnail  && <div className="ps-product__thumbnail">
-                {StrapiProductThumbnail(product)}
-            </div> || <></>}
-            <div className="ps-product__content" style={!product.thumbnail? {paddingLeft:0}:{}}>
-                <Link href="/product/[pid]" as={`/product/${product.id}`}>
+            {(product.thumbnail && (
+                <div className="ps-product__thumbnail">
+                    {StrapiProductThumbnail(product)}
+                </div>
+            )) || <></>}
+            <div
+                className="ps-product__content"
+                style={!product.thumbnail ? { paddingLeft: 0 } : {}}>
+                <Link href={`/product/${product.id}`}>
                     <a className="ps-product__title">{product.title}</a>
                 </Link>
             </div>

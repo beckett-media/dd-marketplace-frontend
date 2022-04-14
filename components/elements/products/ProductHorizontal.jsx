@@ -16,9 +16,7 @@ const ProductHorizontal = ({ product }) => {
 
     return (
         <div className="ps-product--horizontal">
-            <Link
-                href="/product/[pid]"
-                as={`/product/${product._id || product.id}`}>
+            <Link href={`/product/${product._id || product.id}`}>
                 <div className="ps-product__thumbnail">
                     {StrapiProductThumbnail(product)}
                 </div>

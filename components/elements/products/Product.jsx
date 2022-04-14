@@ -17,8 +17,9 @@ const ProductHorizontal = ({ product, unClaimed }) => {
     if (!unClaimed) {
         return (
             <Link
-                href={!unClaimed ? '#' : '/product/[pid]'}
-                as={!unClaimed ? '#' : `/product/${product._id || product.id}`}>
+                href={
+                    !unClaimed ? '#' : `/product/${product._id || product.id}`
+                }>
                 <div className="ps-product--horizontal">
                     <div className="ps-product__thumbnail">
                         {StrapiProductThumbnail(product)}

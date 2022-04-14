@@ -13,7 +13,7 @@ const ProductSearchResult = ({ product }) => {
     );
 
     return (
-        <Link href="/product/[pid]" as={`/product/${product._id}`}>
+        <Link href={`/product/${product._id}`}>
             <div
                 className="ps-product ps-product--wide ps-product--search-result"
                 style={{
@@ -23,7 +23,7 @@ const ProductSearchResult = ({ product }) => {
                     {StrapiProductThumbnail(product)}
                 </div>
                 <div className="ps-product__content">
-                    <Link href="/product/[pid]" as={`/product/${product._id}`}>
+                    <Link href={`/product/${product._id}`}>
                         <a className="ps-product__title">{product.title}</a>
                     </Link>
                     <></>
