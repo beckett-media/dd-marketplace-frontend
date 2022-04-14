@@ -52,16 +52,6 @@ const SearchPage = ({ query }) => {
         getProductsByKeyword(query.keyword);
     }, [query]);
 
-    const breadcrumb = [
-        {
-            text: 'Home',
-            url: '/',
-        },
-        {
-            text: 'Search Result',
-        },
-    ];
-
     let shopItemsView, statusView;
     if (!loading) {
         if (productItems) {

@@ -37,7 +37,7 @@ const ProductDefaultPage = () => {
     }, []);
 
     useEffect(() => {
-        getProduct(pid);
+        if (pid) getProduct(pid);
     }, [pid]);
 
     let productView, headerView;
