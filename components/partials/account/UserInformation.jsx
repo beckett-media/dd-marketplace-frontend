@@ -7,7 +7,6 @@ import AvatarUpload from '~/components/shared/upload/AvatharUpload';
 import { baseUrl } from '~/repositories/Repository';
 import { Avatar } from 'antd';
 import { logOut } from '~/store/auth/action';
-import BreadCrumb from '~/components/elements/BreadCrumb';
 
 const UserInformation = (props) => {
     const accountLinks = [

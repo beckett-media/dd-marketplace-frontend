@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Upload, Spin } from 'antd';
+import { Avatar, Upload, Spin, message } from 'antd';
 import { useDispatch } from 'react-redux';
 import { updateProfilePhoto } from '~/store/userInfo/action';
 import { baseUrl } from '~/repositories/Repository';
@@ -28,12 +28,26 @@ const AvatarUpload = ({ profilePhoto, userInfo = '' }) => {
     };
 
     const onChange = (payload) => {
-        const { file } = payload;
+        if (!payload.event && payload.file.status === 'uploading') {
+            const { file } = payload;
 
-        if (!isloadingComplete) return;
+            const isJpgOrPng =
+                file.type === 'image/jpeg' || file.type === 'image/png';
+            if (!isJpgOrPng) {
+                return message.error('You can only upload JPG/PNG file!');
+            }
+            const isLt2M = file.size / 1024 / 1024 < 2;
+            if (!isLt2M) {
+                return message.error('Image must smaller than 2MB!');
+            }
 
-        setLoading(true);
-        dispatch(updateProfilePhoto(file, () => onFileUploadComplete(file)));
+            if (!isloadingComplete) return;
+
+            setLoading(true);
+            dispatch(
+                updateProfilePhoto(file, () => onFileUploadComplete(file))
+            );
+        }
     };
 
     const url = `${baseUrl}/${profilePhoto}`;
@@ -46,7 +60,8 @@ const AvatarUpload = ({ profilePhoto, userInfo = '' }) => {
                 accept="image/png,image/jpeg"
                 multiple={false}
                 maxCount={1}
-                onChange={onChange}>
+                onChange={onChange}
+                showUploadList={false}>
                 <div
                     style={{
                         display: 'flex',

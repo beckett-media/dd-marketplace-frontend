@@ -4,10 +4,12 @@ import { isUserAuthenticated, getUserInfo } from '~/store/auth/selectors';
 import { getUserDetails } from '~/store/userInfo/action';
 import { getUserInfoLoading } from '~/store/userInfo/selectors';
 import Router from 'next/router';
+import { Skeleton } from 'antd';
+
 const Wrapper = (WrappedComponent) => {
     return (props) => {
         const [isAuthenticated, loading] = checkUserAuthentication();
-        if (loading) return <div>...loading</div>;
+        if (loading) return <Skeleton />;
         if (isAuthenticated && !loading) return <WrappedComponent {...props} />;
         else return <GoToLogin />;
     };
