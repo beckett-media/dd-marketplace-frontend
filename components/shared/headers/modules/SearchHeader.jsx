@@ -40,7 +40,7 @@ const SearchHeader = () => {
     function handleSubmit(e) {
         setIsSearch(false);
         e.preventDefault();
-        Router.push(`/search?keyword=${keyword}`);
+        if (keyword) Router.push(`/search?keyword=${keyword}`);
     }
 
     useEffect(() => {
@@ -154,6 +154,7 @@ const SearchHeader = () => {
                 style={{
                     backgroundColor: 'cadetblue',
                 }}
+                disabled={!keyword}
                 onClick={handleSubmit}>
                 Search
             </button>

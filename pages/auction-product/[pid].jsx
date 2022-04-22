@@ -5,7 +5,6 @@ import { notification } from 'antd';
 import ContainerProductDetail from '~/components/layouts/ContainerProductDetail';
 import AuctionProductRepository from '~/repositories/AuctionProductRepository';
 import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
-import BreadCrumb from '~/components/elements/BreadCrumb';
 import ProductDetailFullwidth from '~/components/elements/detail/ProductDetailFullwidth';
 import HeaderProduct from '~/components/shared/headers/HeaderProduct';
 import HeaderDefault from '~/components/shared/headers/HeaderDefault';
@@ -54,7 +53,7 @@ const AuctionProductDefaultPage = () => {
     }, [product]);
 
     useEffect(() => {
-        getProduct(pid);
+        if (pid) getProduct(pid);
     }, [pid]);
 
     useEffect(() => {
