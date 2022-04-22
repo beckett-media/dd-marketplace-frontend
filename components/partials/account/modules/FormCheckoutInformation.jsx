@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
-import {
-    Form,
-    Input,
-    Checkbox,
-    Radio,
-    Popconfirm,
-    Typography,
-    Space,
-    Card,
-} from 'antd';
+import { Form, Input, Checkbox, Radio, Popconfirm } from 'antd';
 import { connect } from 'react-redux';
 import {
     getSavedAddressRequest,
@@ -20,6 +11,8 @@ import {
     setDefaultAddressRequest,
 } from '~/store/checkout/action';
 import { getSavedAddress } from '~/store/checkout/selectors';
+import CountryPhoneInput, { ConfigProvider } from 'antd-country-phone-input';
+import en from 'world_countries_lists/data/countries/en/world.json';
 
 class FormCheckoutInformation extends Component {
     constructor(props) {
@@ -27,6 +20,8 @@ class FormCheckoutInformation extends Component {
         this.state = {
             isEdit: false,
             newAddress: false,
+            countryCode: 1,
+            mobileNumber: '',
         };
         this.formRef = React.createRef();
     }
@@ -35,8 +30,8 @@ class FormCheckoutInformation extends Component {
         this.props.dispatch(getSavedAddressRequest(true));
     }
 
-    handleLoginSubmit = (values) => {
-        const auctionId=Router.query?.id_;
+    handleNewAddressSubmit = (values) => {
+        const auctionId = Router.query?.id_;
         const { address } = this.props;
         const isAddressAvailable = Boolean(address && address.length);
 
@@ -46,12 +41,20 @@ class FormCheckoutInformation extends Component {
         const isEdit = Boolean(values._id);
 
         if (!isAddressAvailable) values.isDefaultAddress = true;
-
         this.props.dispatch(
-            saveAddressRequest(values,auctionId, isEdit, () => {
-                this.formRef.current.resetFields();
-                this.setState({ newAddress: false });
-            })
+            saveAddressRequest(
+                {
+                    ...values,
+                    mobile: this.state.mobileNumber.toString(),
+                    countryCode: this.state.countryCode.toString(),
+                },
+                auctionId,
+                isEdit,
+                () => {
+                    this.formRef.current.resetFields();
+                    this.setState({ newAddress: false });
+                }
+            )
         );
     };
 
@@ -61,7 +64,12 @@ class FormCheckoutInformation extends Component {
     };
 
     onAddressEdit = (address) => {
-        this.setState({ edit: true, newAddress: true });
+        this.setState({
+            edit: true,
+            newAddress: true,
+            countryCode: parseInt(address.countryCode),
+            mobileNumber: address.mobile,
+        });
         this.formRef.current.setFieldsValue({
             ...address,
         });
@@ -113,117 +121,124 @@ class FormCheckoutInformation extends Component {
         };
 
         return (
-            <Form
-                ref={this.formRef}
-                className="ps-form__billing-info"
-                onFinish={this.handleLoginSubmit}>
-                {address && address.length ? (
-                    <h3 className="ps-form__heading">Saved Address</h3>
-                ) : null}
+            <ConfigProvider locale={en}>
+                <Form
+                    ref={this.formRef}
+                    className="ps-form__billing-info"
+                    onFinish={this.handleNewAddressSubmit}>
+                    {address && address.length ? (
+                        <h3 className="ps-form__heading">Saved Address</h3>
+                    ) : null}
 
-                {!isAddressAvailable ? null : (
-                    <div className="ps-block--checkout-order">
-                        {address && address.length
-                            ? address.map((address, index) => (
-                                  <div
-                                      className="row border"
-                                      style={{
-                                          marginBottom: 10,
-                                          padding: 10,
-                                      }}>
+                    {!isAddressAvailable ? null : (
+                        <div className="ps-block--checkout-order">
+                            {address && address.length
+                                ? address.map((address, index) => (
                                       <div
-                                          className="col-sm-8 d-flex"
-                                          onClick={() =>
-                                              this.selectAddress(index)
-                                          }>
-                                          <Radio
-                                              style={{ pointerEvents: 'none' }}
-                                              checked={handleRadioCheck(
-                                                  address
-                                              )}></Radio>
-                                          {address.streetAddress || ''},{' '}
-                                          {address.state || ''},
-                                          {address.city || ''}
-                                      </div>
-                                      <div className="col-sm-4 d-flex justify-content-end">
-                                          <span
-                                              className={
-                                                  address.isDefaultAddress
-                                                      ? `badge badge-pill badge-success`
-                                                      : ``
-                                              }
-                                              style={{ height: 15 }}
+                                          className="row border"
+                                          style={{
+                                              marginBottom: 10,
+                                              padding: 10,
+                                          }}>
+                                          <div
+                                              className="col-sm-8 d-flex"
                                               onClick={() =>
-                                                  address.isDefaultAddress
-                                                      ? null
-                                                      : this.onDefaultAddressChange(
-                                                            address
-                                                        )
+                                                  this.selectAddress(index)
                                               }>
-                                              {address.isDefaultAddress
-                                                  ? 'Default'
-                                                  : 'Set default'}
-                                          </span>
+                                              <Radio
+                                                  style={{
+                                                      pointerEvents: 'none',
+                                                  }}
+                                                  checked={handleRadioCheck(
+                                                      address
+                                                  )}></Radio>
+                                              {address.streetAddress || ''},{' '}
+                                              {address.state || ''},
+                                              {address.city || ''}
+                                          </div>
+                                          <div className="col-sm-4 d-flex justify-content-end">
+                                              <span
+                                                  className={
+                                                      address.isDefaultAddress
+                                                          ? `badge badge-pill badge-success`
+                                                          : ``
+                                                  }
+                                                  style={{ height: 15 }}
+                                                  onClick={() =>
+                                                      address.isDefaultAddress
+                                                          ? null
+                                                          : this.onDefaultAddressChange(
+                                                                address
+                                                            )
+                                                  }>
+                                                  {address.isDefaultAddress
+                                                      ? 'Default'
+                                                      : 'Set default'}
+                                              </span>
 
-                                          <span
-                                              style={{
-                                                  cursor: 'pointer',
-                                                  marginLeft: 10,
-                                              }}
-                                              onClick={() =>
-                                                  this.onAddressEdit(address)
-                                              }>
-                                              <i className="icon-pencil mr-2"></i>
-                                              Edit
-                                          </span>
-                                          <Popconfirm
-                                              title="Are you sure to delete this address?"
-                                              onConfirm={() =>
-                                                  this.deleteConfirm(
-                                                      address._id
-                                                  )
-                                              }
-                                              okText="Yes"
-                                              cancelText="No">
                                               <span
                                                   style={{
-                                                      marginLeft: 5,
                                                       cursor: 'pointer',
-                                                  }}>
-                                                  <i className="icon-trash2 mr-2"></i>
-                                                  Delete
+                                                      marginLeft: 10,
+                                                  }}
+                                                  onClick={() =>
+                                                      this.onAddressEdit(
+                                                          address
+                                                      )
+                                                  }>
+                                                  <i className="icon-pencil mr-2"></i>
+                                                  Edit
                                               </span>
-                                          </Popconfirm>
+                                              <Popconfirm
+                                                  title="Are you sure to delete this address?"
+                                                  onConfirm={() =>
+                                                      this.deleteConfirm(
+                                                          address._id
+                                                      )
+                                                  }
+                                                  okText="Yes"
+                                                  cancelText="No">
+                                                  <span
+                                                      style={{
+                                                          marginLeft: 5,
+                                                          cursor: 'pointer',
+                                                      }}>
+                                                      <i className="icon-trash2 mr-2"></i>
+                                                      Delete
+                                                  </span>
+                                              </Popconfirm>
+                                          </div>
                                       </div>
-                                  </div>
-                              ))
-                            : null}
-                        <div
-                            className="row border"
-                            style={{
-                                marginBottom: 10,
-                                padding: 10,
-                            }}>
-                            <div className="col-sm-4">
-                                <Radio
-                                    checked={this.state.newAddress}
-                                    onClick={() => {
-                                        this.setState((prev) => ({
-                                            newAddress: !prev.newAddress,
-                                        }));
+                                  ))
+                                : null}
+                            <div
+                                className="row border"
+                                style={{
+                                    marginBottom: 10,
+                                    padding: 10,
+                                }}>
+                                <div className="col-sm-4">
+                                    <Radio
+                                        checked={this.state.newAddress}
+                                        onClick={() => {
+                                            this.setState((prev) => ({
+                                                newAddress: !prev.newAddress,
+                                            }));
 
-                                        this.formRef.current.setFieldsValue({
-                                            isDefaultAddress: true,
-                                        });
-                                    }}>
-                                    Other
-                                </Radio>
+                                            this.formRef.current.setFieldsValue(
+                                                {
+                                                    isDefaultAddress: true,
+                                                }
+                                            );
+                                        }}>
+                                        Other
+                                    </Radio>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                {/* <div className="form-group">
+                    {/* <div className="form-group">
                     <div className="ps-checkbox">
                         <input
                             className="form-control"
@@ -235,73 +250,87 @@ class FormCheckoutInformation extends Component {
                         </label>
                     </div>
                 </div> */}
-                {(this.state.newAddress || !isAddressAvailable) && (
-                    <>
-                        <h3 className="ps-form__heading mt-5">
-                            Shipping address
-                        </h3>
-                        <div className="row">
-                            <div className="col-sm-12">
-                                <div
-                                    style={{ display: 'none' }}
-                                    className="form-group">
-                                    <Form.Item
-                                        name="_id"
-                                        rules={[
-                                            {
-                                                required: false,
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="text"
-                                            placeholder="Full Name"
-                                        />
-                                    </Form.Item>
-                                </div>
+                    {(this.state.newAddress || !isAddressAvailable) && (
+                        <>
+                            <h3 className="ps-form__heading mt-5">
+                                Shipping address
+                            </h3>
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <div
+                                        style={{ display: 'none' }}
+                                        className="form-group">
+                                        <Form.Item
+                                            name="_id"
+                                            rules={[
+                                                {
+                                                    required: false,
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="text"
+                                                placeholder="Full Name"
+                                            />
+                                        </Form.Item>
+                                    </div>
 
-                                <div className="form-group">
-                                    <label>*Full Name</label>
-                                    <Form.Item
-                                        name="fullName"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    'Enter your full name!',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="text"
-                                            placeholder="Full Name"
-                                        />
-                                    </Form.Item>
+                                    <div className="form-group">
+                                        <label>*Full Name</label>
+                                        <Form.Item
+                                            name="fullName"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Enter your full name!',
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="text"
+                                                placeholder="Full Name"
+                                            />
+                                        </Form.Item>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="row">
-                            <div className="col-sm-2">
-                                <div className="form-group">
-                                    <label>*Area Code</label>
-                                    <Form.Item
-                                        name="countryCode"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message: 'Enter area code',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="text"
-                                            placeholder="Area Code"
-                                        />
-                                    </Form.Item>
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <label>*Mobile Number</label>
+                                        <Form.Item
+                                            // name="mobile"
+                                            initialValue={{
+                                                short: 'us',
+                                            }}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Enter mobile number',
+                                                },
+                                            ]}>
+                                            <CountryPhoneInput
+                                                value={{
+                                                    code: this.state
+                                                        .countryCode,
+                                                    phone: this.state
+                                                        .mobileNumber,
+                                                }}
+                                                onChange={({ code, phone }) => {
+                                                    this.setState({
+                                                        countryCode: code,
+                                                        mobileNumber: phone,
+                                                    });
+                                                }}
+                                                className="form-control"
+                                            />
+                                        </Form.Item>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-sm-10">
+                                {/* <div className="col-sm-10">
                                 <div className="form-group">
                                     <label>*Mobile Number</label>
                                     <Form.Item
@@ -319,130 +348,133 @@ class FormCheckoutInformation extends Component {
                                         />
                                     </Form.Item>
                                 </div>
+                            </div> */}
                             </div>
-                        </div>
 
-                        <div className="form-group">
-                            <label>*Address Line 1</label>
-                            <Form.Item
-                                name="streetAddress"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Enter an address!',
-                                    },
-                                ]}>
-                                <Input
-                                    className="form-control"
-                                    type="text"
-                                    placeholder="Address"
-                                />
-                            </Form.Item>
-                        </div>
-                        <div className="form-group">
-                            <label>Address Line 2</label>
-                            <Form.Item name="streetAddress2">
-                                <Input
-                                    className="form-control"
-                                    type="text"
-                                    placeholder="Apartment, suite, etc. (optional)"
-                                />
-                            </Form.Item>
-                        </div>
-                        <div className="form-group">
-                            <label>*State</label>
-                            <Form.Item
-                                name="state"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message:
-                                            'Please enter name of the state',
-                                    },
-                                ]}>
-                                <Input
-                                    className="form-control"
-                                    type="text"
-                                    placeholder="Enter your state"
-                                />
-                            </Form.Item>
-                        </div>
-                        <div className="row">
-                            <div className="col-sm-6">
-                                <div className="form-group">
-                                    <label>*City</label>
-
-                                    <Form.Item
-                                        name="city"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    'Please enter the name of city',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="city"
-                                            placeholder="City"
-                                        />
-                                    </Form.Item>
-                                </div>
-                            </div>
-                            <div className="col-sm-6">
-                                <div className="form-group">
-                                    <label>*Zip Code</label>
-                                    <Form.Item
-                                        name="zipcode"
-                                        rules={[
-                                            {
-                                                required: true,
-                                                message:
-                                                    'Please enter your zip code.',
-                                            },
-                                        ]}>
-                                        <Input
-                                            className="form-control"
-                                            type="string"
-                                            placeholder="Zip Code"
-                                        />
-                                    </Form.Item>
-                                </div>
-                            </div>
-                        </div>
-                        {isAddressAvailable ? (
                             <div className="form-group">
+                                <label>*Address Line 1</label>
                                 <Form.Item
-                                    valuePropName="checked"
-                                    name="isDefaultAddress"
+                                    name="streetAddress"
                                     rules={[
                                         {
-                                            required: false,
+                                            required: true,
+                                            message: 'Enter an address!',
                                         },
                                     ]}>
-                                    <Checkbox>Make default Address</Checkbox>
+                                    <Input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Address"
+                                    />
                                 </Form.Item>
                             </div>
-                        ) : null}
-                    </>
-                )}
+                            <div className="form-group">
+                                <label>Address Line 2</label>
+                                <Form.Item name="streetAddress2">
+                                    <Input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Apartment, suite, etc. (optional)"
+                                    />
+                                </Form.Item>
+                            </div>
+                            <div className="form-group">
+                                <label>*State</label>
+                                <Form.Item
+                                    name="state"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message:
+                                                'Please enter name of the state',
+                                        },
+                                    ]}>
+                                    <Input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Enter your state"
+                                    />
+                                </Form.Item>
+                            </div>
+                            <div className="row">
+                                <div className="col-sm-6">
+                                    <div className="form-group">
+                                        <label>*City</label>
 
-                <div className="ps-form__submit">
-                    {!auctionProduct && (
-                        <Link href="/account/shopping-cart">
-                            <a>
-                                <i className="icon-arrow-left mr-2"></i>
-                                Return to shopping cart
-                            </a>
-                        </Link>
+                                        <Form.Item
+                                            name="city"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Please enter the name of city',
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="city"
+                                                placeholder="City"
+                                            />
+                                        </Form.Item>
+                                    </div>
+                                </div>
+                                <div className="col-sm-6">
+                                    <div className="form-group">
+                                        <label>*Zip Code</label>
+                                        <Form.Item
+                                            name="zipcode"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message:
+                                                        'Please enter your zip code.',
+                                                },
+                                            ]}>
+                                            <Input
+                                                className="form-control"
+                                                type="string"
+                                                placeholder="Zip Code"
+                                            />
+                                        </Form.Item>
+                                    </div>
+                                </div>
+                            </div>
+                            {isAddressAvailable ? (
+                                <div className="form-group">
+                                    <Form.Item
+                                        valuePropName="checked"
+                                        name="isDefaultAddress"
+                                        rules={[
+                                            {
+                                                required: false,
+                                            },
+                                        ]}>
+                                        <Checkbox>
+                                            Make default Address
+                                        </Checkbox>
+                                    </Form.Item>
+                                </div>
+                            ) : null}
+                        </>
                     )}
-                    <div className="ps-block__footer">
-                        <button type="submit" className="ps-btn">
-                            Next
-                        </button>
+
+                    <div className="ps-form__submit">
+                        {!auctionProduct && (
+                            <Link href="/account/shopping-cart">
+                                <a>
+                                    <i className="icon-arrow-left mr-2"></i>
+                                    Return to shopping cart
+                                </a>
+                            </Link>
+                        )}
+                        <div className="ps-block__footer">
+                            <button type="submit" className="ps-btn">
+                                Next
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </Form>
+                </Form>
+            </ConfigProvider>
         );
     }
 }
