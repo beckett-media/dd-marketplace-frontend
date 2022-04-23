@@ -19,6 +19,7 @@ import {
     resetPromo,
 } from '~/store/checkout/action';
 import { GiftOutlined } from '@ant-design/icons';
+import { CONFIG } from '../../../constants/Config';
 
 const { Option } = Select;
 
@@ -100,7 +101,7 @@ class Payment extends Component {
                                     <div className="ps-block__panel">
                                         <figure>
                                             <small>Contact</small>
-                                            <p style={{ color: "white" }}>
+                                            <p style={{ color: 'white' }}>
                                                 {userInfo?.email || ''},{' '}
                                                 {defaultAddress?.mobile || ''}
                                             </p>
@@ -111,7 +112,7 @@ class Payment extends Component {
                                         </figure>
                                         <figure>
                                             <small>Ship to</small>
-                                            <p style={{ color: "white" }}>
+                                            <p style={{ color: 'white' }}>
                                                 {defaultAddress.streetAddress ||
                                                     ''}
                                                 , {defaultAddress.state || ''},
@@ -326,7 +327,7 @@ export default connect(connectStateToProps)(Payment);
 const PromoCard = ({ promoCode, setPromoCode, validatePromo }) => {
     return (
         <>
-            <p style={{ color: "white" }}>To avail Promo, validate it first</p>
+            <p style={{ color: 'white' }}>To avail Promo, validate it first</p>
             <div className="ps-form--promo">
                 <div className="ps-promo--InputContainer">
                     <GiftOutlined
@@ -351,9 +352,7 @@ const PromoCard = ({ promoCode, setPromoCode, validatePromo }) => {
 };
 
 const StripeHoc = (WrappedComponent) => (props) => {
-    const stripePromise = loadStripe(
-        'pk_test_51HDEqSDZO5dpgj2KwmQY26irjAt1GBg2I2iEy90NUuHHyQefpMwyxeKCN2opBwiOXD6gAYjEe106kG4eWreUZYO9005Ys9lGdc'
-    );
+    const stripePromise = loadStripe(CONFIG.stripe_publishable_key);
     return (
         <Elements stripe={stripePromise}>
             <WrappedComponent {...props} />
