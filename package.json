@@ -19,6 +19,7 @@
         "@stripe/stripe-js": "^1.16.0",
         "@zeit/next-sass": "^1.0.1",
         "antd": "^4.5.2",
+        "antd-country-phone-input": "^4.3.1",
         "apexcharts": "^3.34.0",
         "axios": "^0.19.2",
         "dayjs": "^1.10.6",
@@ -58,7 +59,8 @@
         "simple-crypto-js": "^3.0.0",
         "socket.io-client": "^4.4.1",
         "use-http": "^1.0.26",
-        "webpack": "^5.70.0"
+        "webpack": "^5.70.0",
+        "world_countries_lists": "^2.5.0"
     },
     "devDependencies": {
         "@next/eslint-plugin-next": "^12.1.4",
