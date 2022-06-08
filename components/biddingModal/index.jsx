@@ -1,10 +1,17 @@
 import { Form, Input, Modal } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
 import { baseUrl } from '~/repositories/Repository';
 import { getDifferenceInDays } from '~/utilities/time';
 
-const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
+const BiddingModal = ({
+    open,
+    setOpen,
+    auctionDetails,
+    placeBid,
+    product,
+    user,
+}) => {
     const [visible, setVisible] = useState(false);
     const confirmLoading = false;
     const { bidEnd, bidStart } = product?.auctionDetails || {};
@@ -14,6 +21,14 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
         setOpen(false);
         setVisible(false);
     };
+
+    useEffect(() => {
+        if (ref.current) {
+            ref.current.setFieldsValue({
+                email: user?.biddingEmail || user?.email || '',
+            });
+        }
+    }, [ref]);
 
     const Timer = ({ days, hrs, mins, sec }) => {
         return (
@@ -127,11 +142,18 @@ const BiddingModal = ({ open, setOpen, auctionDetails, placeBid, product }) => {
                                         <div className="form-group dark">
                                             <Form.Item
                                                 name="bidAmount"
-                                                extra={`$${
-                                                    auctionDetails.bids[0]
-                                                        ?.bidAmount ||
-                                                    auctionDetails.startingBid
-                                                } minimum`}
+                                                style={{ color: 'white' }}
+                                                extra={
+                                                    <p
+                                                        style={{
+                                                            color: 'white',
+                                                        }}>{`$${
+                                                        auctionDetails.bids[0]
+                                                            ?.bidAmount + 1 ||
+                                                        auctionDetails.startingBid +
+                                                            1
+                                                    } minimum`}</p>
+                                                }
                                                 rules={[
                                                     {
                                                         required: true,

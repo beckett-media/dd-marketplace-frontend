@@ -5,6 +5,7 @@ const routes = {
     stripeCodeVerification: '/user/stripe-auth',
     updateUserName: '/user/add-update-username',
     profileUpdate: '/user/add-update-profile-picture',
+    biddingEmail: '/user/biddingEmail',
 };
 
 class AuthenticationRepository {
@@ -26,6 +27,18 @@ class AuthenticationRepository {
                 { code }
             );
             return request.data;
+        } catch (error) {
+            throw getError(error);
+        }
+    }
+
+    async changeBiddingEmail(email) {
+        try {
+            const request = await Repository.post(
+                `${baseUrl}${routes.biddingEmail}`,
+                { biddingEmail: email }
+            );
+            return request;
         } catch (error) {
             throw getError(error);
         }

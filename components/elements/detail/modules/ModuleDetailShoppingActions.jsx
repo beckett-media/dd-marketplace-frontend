@@ -206,6 +206,7 @@ const ModuleDetailShoppingActions = ({
                                         auctionDetails={product.auctionDetails}
                                         placeBid={placeBid}
                                         product={product}
+                                        user={props?.auth?.user || {}}
                                     />
                                 ) : (
                                     <StripeConnect
@@ -287,6 +288,7 @@ const ModuleDetailShoppingActions = ({
                                 setOpen={setOpen}
                                 auctionDetails={product.auctionDetails}
                                 product={product}
+                                user={props?.auth?.user || {}}
                             />
                         ) : (
                             <LoginModal
