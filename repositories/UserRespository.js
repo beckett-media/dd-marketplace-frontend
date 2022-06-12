@@ -34,7 +34,7 @@ class AuthenticationRepository {
 
     async changeBiddingEmail(email) {
         try {
-            const request = await Repository.post(
+            const request = await Repository.patch(
                 `${baseUrl}${routes.biddingEmail}`,
                 { biddingEmail: email }
             );

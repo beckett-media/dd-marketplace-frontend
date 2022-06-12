@@ -75,7 +75,7 @@ const AuctionProductDefaultPage = ({ auth }) => {
     const placeBid = async ({ bidAmount, email }) => {
         if (!auth.user.biddingEmail || auth.user.biddingEmail !== email) {
             const request = await UserService.changeBiddingEmail(email);
-            if (request.status == 200) {
+            if (request.status == 204) {
                 notification.success({
                     message: 'Success',
                     description: `Your'll get notifications regarding your bid on ${email}`,
