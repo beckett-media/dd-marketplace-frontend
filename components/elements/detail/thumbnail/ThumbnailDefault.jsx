@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import Lightbox from 'react-image-lightbox';
-import { baseUrl, s3baseURL } from '~/repositories/Repository';
+import {
+    baseUrl,
+    s3baseURL,
+} from '~/repositories/Repository';
 import NextArrow from '~/components/elements/carousel/NextArrow';
 import PrevArrow from '~/components/elements/carousel/PrevArrow';
 
@@ -23,25 +26,31 @@ const ThumbnailDefault = ({ product, store, vertical = true }) => {
     useEffect(() => {
         let images = [];
 
-        let productImages = product?.images;
-        if (productImages?.length > 0) {
-            if (productImages[0].startsWith('card')) {
-                if (productImages[0].startsWith('cardFront')) {
-                    images.push(`${s3baseURL}/${productImages[0]}`);
-                    if (productImages[1])
-                        images.push(`${s3baseURL}/${productImages[1]}`);
-                } else {
-                    if (productImages[1])
-                        images.push(`${s3baseURL}/${productImages[1]}`);
-                    if (productImages[0])
-                        images.push(`${s3baseURL}/${productImages[0]}`);
-                }
-            } else {
-                images.push(`${baseUrl}/${productImages[0]}`);
-                if (productImages[1])
-                    images.push(`${baseUrl}/${productImages[1]}`);
-            }
+        if (product.card) {
+            images.push(`${s3baseURL}/${product?.images[0]}`);
+            images.push(`${s3baseURL}/${product?.images[1]}`);
             setProductImages(images);
+        } else {
+            let productImages = product?.images;
+            if (productImages?.length > 0) {
+                if (productImages[0].startsWith('card')) {
+                    if (productImages[0].startsWith('cardFront')) {
+                        images.push(`${s3baseURL}/${productImages[0]}`);
+                        if (productImages[1])
+                            images.push(`${s3baseURL}/${productImages[1]}`);
+                    } else {
+                        if (productImages[1])
+                            images.push(`${s3baseURL}/${productImages[1]}`);
+                        if (productImages[0])
+                            images.push(`${s3baseURL}/${productImages[0]}`);
+                    }
+                } else {
+                    images.push(`${baseUrl}/${productImages[0]}`);
+                    if (productImages[1])
+                        images.push(`${baseUrl}/${productImages[1]}`);
+                }
+                setProductImages(images);
+            }
         }
         setGallery(galleryCarousel.current);
         setVariant(variantCarousel.current);
