@@ -23,6 +23,7 @@ import '~/scss/electronic.scss';
 import '~/scss/custom.scss';
 import CrossOriginLogin from '~/components/shared/CrossOriginLogin';
 import Head from 'next/head';
+import SkeletonHomePage from '~/components/elements/skeletons/SkeletonHomePage';
 
 class MyApp extends App {
     constructor(props) {
@@ -50,7 +51,7 @@ class MyApp extends App {
         return getLayout(
             <Provider store={store}>
                 <PersistGate
-                    loading={<Component {...pageProps} />}
+                    loading={<SkeletonHomePage />}
                     persistor={this.persistor}>
                     <>
                         <Head>
