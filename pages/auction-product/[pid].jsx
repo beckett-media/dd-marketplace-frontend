@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { notification } from 'antd';
+import UserService from '~/repositories/UserRespository';
 import ContainerProductDetail from '~/components/layouts/ContainerProductDetail';
 import AuctionProductRepository from '~/repositories/AuctionProductRepository';
 import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
@@ -12,7 +13,7 @@ import { appName, baseUrl } from '~/repositories/Repository';
 import io from 'socket.io-client';
 import { LeftOutlined } from '@ant-design/icons';
 
-const AuctionProductDefaultPage = () => {
+const AuctionProductDefaultPage = ({ auth }) => {
     const router = useRouter();
     const userId = useSelector((store) => store.auth.user?.id);
     const { pid } = router.query;
@@ -71,7 +72,21 @@ const AuctionProductDefaultPage = () => {
         };
     }, []);
 
-    const placeBid = ({ bidAmount }) => {
+    const placeBid = async ({ bidAmount, email }) => {
+        if (!auth.user.biddingEmail || auth.user.biddingEmail !== email) {
+            const request = await UserService.changeBiddingEmail(email);
+            if (request.status == 204) {
+                notification.success({
+                    message: 'Success',
+                    description: `Your'll get notifications regarding your bid on ${email}`,
+                });
+            } else {
+                notification.error({
+                    message: 'Error',
+                    description: `Error while changing your ${email}`,
+                });
+            }
+        }
         if (bidAmount < product.auctionDetails.bids?.[0]?.bidAmount) {
             return notification.info({
                 message: 'Info',
@@ -163,4 +178,9 @@ const AuctionProductDefaultPage = () => {
     );
 };
 
-export default AuctionProductDefaultPage;
+const mapStateToProps = (state) => {
+    return {
+        auth: state?.auth || {},
+    };
+};
+export default connect(mapStateToProps)(AuctionProductDefaultPage);
