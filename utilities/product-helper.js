@@ -6,7 +6,11 @@
 
 import React from 'react';
 import LazyLoad from 'react-lazyload';
-import { baseUrl, s3baseURL } from '~/repositories/Repository';
+import {
+    baseUrl,
+    s3baseURL,
+    s3baseURLThumbnail,
+} from '~/repositories/Repository';
 import Link from 'next/link';
 
 export function formatCurrency(num) {
@@ -128,17 +132,45 @@ export function StrapiProductPriceExpanded(product) {
 export function StrapiProductThumbnail(product, unClaimed, auctionId) {
     let view;
 
+    if (product.card) {
+        return (
+            <Link
+                href={auctionId ? '/auction-product/[pid]' : '/product/[pid]'}
+                as={`${
+                    auctionId
+                        ? `/auction-product/${auctionId}`
+                        : `/product/${product._id}`
+                }`}>
+                <a>
+                    <LazyLoad>
+                        <img
+                            src={s3baseURLThumbnail + product.card.front}
+                            alt={product.title}
+                            onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = `${s3baseURL}/${product.card.front}`;
+                            }}
+                        />
+                    </LazyLoad>
+                </a>
+            </Link>
+        );
+    }
+
     let productImages = product?.images;
-    let cardFront;
+    let cardFront, cardFrontThumbnail;
     if (productImages?.length > 0) {
         if (productImages[0].startsWith('card')) {
             if (productImages[0].startsWith('cardFront')) {
                 cardFront = `${s3baseURL}/${productImages[0]}`;
+                cardFrontThumbnail = `${s3baseURLThumbnail}${productImages[0]}`;
             } else {
                 cardFront = `${s3baseURL}/${productImages[1]}`;
+                cardFrontThumbnail = `${s3baseURLThumbnail}${productImages[1]}`;
             }
         } else {
             cardFront = `${baseUrl}/${productImages[0]}`;
+            cardFrontThumbnail = `${s3baseURLThumbnail}${productImages[0]}`;
         }
     }
 
@@ -156,7 +188,14 @@ export function StrapiProductThumbnail(product, unClaimed, auctionId) {
                     }`}>
                     <a>
                         <LazyLoad>
-                            <img src={cardFront} alt={product.title} />
+                            <img
+                                src={cardFrontThumbnail}
+                                alt={product.title}
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src = cardFront;
+                                }}
+                            />
                         </LazyLoad>
                     </a>
                 </Link>
