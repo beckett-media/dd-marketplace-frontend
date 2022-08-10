@@ -507,7 +507,7 @@
 
     &.header--sticky {
         .navigation--mobile {
-            position: fixed;
+            // position: fixed; /* cases flickeing */
             top: 0;
             width: 100%;
             z-index: 1000;
