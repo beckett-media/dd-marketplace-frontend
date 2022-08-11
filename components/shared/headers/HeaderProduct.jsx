@@ -1,22 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Logo from '~/components/elements/common/Logo';
 import HeaderActions from '~/components/shared/headers/modules/HeaderActions';
 import MenuCategories from '~/components/shared/headers/modules/MenuCategories';
 import SearchHeader from '~/components/shared/headers/modules/SearchHeader';
-import { stickyHeader } from '~/utilities/common-helpers';
 
 const HeaderProduct = () => {
-    useEffect(() => {
-        if (process.browser) {
-            window.addEventListener('scroll', stickyHeader);
-        }
-    }, []);
-
     return (
-        <header
-            className="header header--1 header--product"
-            data-sticky="true"
-            id="headerSticky">
+        <header className="header header--1 header--product" data-sticky="true">
             <div className="header__top">
                 <div className="ps-container">
                     <div className="header__left">
