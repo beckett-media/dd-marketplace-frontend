@@ -13,11 +13,11 @@ const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIs
 //     'https://quirky-panini-a633e8.netlify.app/fac-report';
 // const baseDomain = 'https://staging105.botkraft.com';
 
-export const cardFACURL = 'https://duedilly.co/fac-report';
-export const sellerDashboardDomain = 'seller.duedilly.co';
-export const sellerDashboardURL = 'https://seller.duedilly.co';
+export const cardFACURL = process.env.CARD_FAC_URL;
+export const sellerDashboardDomain = process.env.SELLER_DASHBOARD_DOMAIN;
+export const sellerDashboardURL = process.env.SELLER_DASHBOARD_URL;
 // const baseDomain = 'https://beta.apinouthemes.com';
-const baseDomain = 'https://api.duedilly.co';
+const baseDomain = process.env.API_BASE_DOMAIN;
 // export const baseDomain = "https://staging.duedilly.co";
 // const baseDomain = 'http://127.0.0.1:3000';
 
@@ -30,11 +30,9 @@ export const customHeaders = {
 };
 
 export const baseUrl = `${baseDomain}`;
-export const s3baseURL =
-    'https://duedillymobile4ddd12da3ecd4a37ab585dd4904acd7e125824-prod.s3.amazonaws.com/public';
+export const s3baseURL = process.env.S3_BASE_URL;
 
-export const s3baseURLThumbnail =
-    'https://due-dilly-mobile-thumbnail-pro.s3.amazonaws.com/thumbnails/public/';
+export const s3baseURLThumbnail = process.env.S3_BASE_URL_THUMBNAIL;
 
 const instance = axios.create({
     baseUrl,
