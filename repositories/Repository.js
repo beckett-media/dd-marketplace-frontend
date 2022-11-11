@@ -13,11 +13,11 @@ const xAppToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBOYW1lIjoiRENHUyIs
 //     'https://quirky-panini-a633e8.netlify.app/fac-report';
 // const baseDomain = 'https://staging105.botkraft.com';
 
-export const cardFACURL = process.env.CARD_FAC_URL;
-export const sellerDashboardDomain = process.env.SELLER_DASHBOARD_DOMAIN;
-export const sellerDashboardURL = process.env.SELLER_DASHBOARD_URL;
+export const cardFACURL = process.env.NEXT_PUBLIC_CARD_FAC_URL;
+export const sellerDashboardDomain = process.env.NEXT_PUBLIC_SELLER_DASHBOARD_DOMAIN;
+export const sellerDashboardURL = process.env.NEXT_PUBLIC_SELLER_DASHBOARD_URL;
 // const baseDomain = 'https://beta.apinouthemes.com';
-const baseDomain = process.env.API_BASE_DOMAIN;
+const baseDomain = process.env.NEXT_PUBLIC_API_BASE_DOMAIN;
 // export const baseDomain = "https://staging.duedilly.co";
 // const baseDomain = 'http://127.0.0.1:3000';
 
@@ -30,9 +30,9 @@ export const customHeaders = {
 };
 
 export const baseUrl = `${baseDomain}`;
-export const s3baseURL = process.env.S3_BASE_URL;
+export const s3baseURL = process.env.NEXT_PUBLIC_S3_BASE_URL;
 
-export const s3baseURLThumbnail = process.env.S3_BASE_URL_THUMBNAIL;
+export const s3baseURLThumbnail = process.env.NEXT_PUBLIC_S3_BASE_URL_THUMBNAIL;
 
 const instance = axios.create({
     baseUrl,
