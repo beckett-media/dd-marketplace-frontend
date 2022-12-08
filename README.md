@@ -1,7 +1,3 @@
-## MARTFURY TEMPLATE - REACT VERSION v2.1.0 (Strapi CMS)
-
-### Changelogs
-
 ### Version 2.1.0
 * New: Fetch stores (vendors) from API (Strapi API).
 * New: Display store information (Strapi API)
